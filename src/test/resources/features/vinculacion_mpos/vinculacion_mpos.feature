@@ -11,12 +11,12 @@ Feature: Autorizar privilegios Bluetooth
     And Elvis establecio "Mpos1234" como contrasenia de su cuenta
     When Elvis registra los datos personales
 
-  @vinculacion
+#  @vinculacion
   Scenario: Autorizar privilegios Bluetooth
     When Elvis realiza la vinculacion del dispositivo MPOS
     Then Elvis deberia poder que inicio la busqueda de dispositivos
 
-#  @vinculacion
+  @vinculacion @desactivarBT
   Scenario: Autorizar privilegios bluetooth cuando el bluetooth esta desactivado
     When Elvis realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth
     Then Elvis deberia poder que inicio la busqueda de dispositivos
