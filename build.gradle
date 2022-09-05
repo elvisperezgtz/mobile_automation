@@ -15,7 +15,7 @@ buildscript {
         classpath("net.serenity-bdd:serenity-single-page-report:3.3.1")
     }
 }
-group 'started'
+group 'femsa'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -62,7 +62,7 @@ test {
 
 serenity {
     // Specify the root package of any JUnit acceptance tests to appear in the Serenity report
-    testRoot = "starter"
+    testRoot = "femsa"
     // Specify the root directory of any Cucumber feature files
     requirementsDir = "src/test/resources/features"
 
