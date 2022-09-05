@@ -1,0 +1,7 @@
+{
+  "query": "mutation SendOtp($request: OtpSendRequest) {\n  sendOtp(request: $request) {\n    status\n    message\n  }\n}\n",
+  "variables": {
+    "request": { "countryCode": "+57", "mobileNumber": "3046169952" }
+  },
+  "operationName": "SendOtp"
+}
