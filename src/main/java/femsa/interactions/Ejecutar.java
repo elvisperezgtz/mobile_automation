@@ -15,11 +15,22 @@ public class Ejecutar implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        try {
-            Runtime.getRuntime().exec(new String[]{"bash", "-l", "-c",commando});
-        } catch (IOException e) {
-            e.printStackTrace();
+        String os= System.getProperty("os.name").toLowerCase();
+        if (os.equals("osx")){
+            try {
+                Runtime.getRuntime().exec(new String[]{"bash", "-l", "-c",commando});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                Runtime.getRuntime().exec(commando);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+
     }
 public static Ejecutar elComandoAdb(String commando){
         return Tasks.instrumented(Ejecutar.class, commando);
