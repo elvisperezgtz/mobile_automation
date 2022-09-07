@@ -17,7 +17,9 @@ Feature: Autorizar privilegios Bluetooth
     Then Elvis deberia poder que inicio la busqueda de dispositivos
 
   @vinculacion @desactivarBT
+
   Scenario: Autorizar privilegios bluetooth cuando el bluetooth esta desactivado
+    When Elvis desactiva el bluetooth de su telefono
     When Elvis realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth
     Then Elvis deberia poder que inicio la busqueda de dispositivos
 

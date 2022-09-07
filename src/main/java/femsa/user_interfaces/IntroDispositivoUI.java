@@ -41,7 +41,7 @@ public class IntroDispositivoUI {
             .locatedForIOS(By.xpath(""));
 
  public static final Target PERMITIR_ACTIVACION_BT = Target.the("boton Permitir")
-            .locatedForAndroid(By.id("android:id/message"))
+            .locatedForAndroid(By.id("android:id/button1"))
             .locatedForIOS(By.xpath(""));
 
  public static final Target TITULO_PERMITIR_UBICACION = Target.the("mensaje activar ubicacion")

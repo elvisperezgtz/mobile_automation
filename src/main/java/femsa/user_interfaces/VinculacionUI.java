@@ -20,7 +20,7 @@ public class VinculacionUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Buscando Dispositivo…']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target DISPOSITIVOS_ENCONTRADOS = Target.the("mensaje buscando dispositivos")
+    public static final Target DISPOSITIVOS_ENCONTRADOS = Target.the("mensaje dispositivos encontrados")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Dispositivos encontrados:']"))
             .locatedForIOS(By.xpath(""));
 

@@ -24,6 +24,7 @@ public class GetOtp implements Interaction {
         ((AndroidDriver) driver).openNotifications();
 
 
+
         actor.attemptsTo(WaitUntil.the(SMS, WebElementStateMatchers.isVisible()).forNoMoreThan(Duration.ofSeconds(90)));
 
         String otpMessage = SMS.resolveFor(theActorInTheSpotlight()).getText();
