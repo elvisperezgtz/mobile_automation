@@ -16,7 +16,7 @@ public class Ejecutar implements Interaction {
     @Override
     public <T extends Actor> void performAs(T actor) {
         try {
-            Runtime.getRuntime().exec(commando);
+            Runtime.getRuntime().exec(new String[]{"bash", "-l", "-c",commando});
         } catch (IOException e) {
             e.printStackTrace();
         }
