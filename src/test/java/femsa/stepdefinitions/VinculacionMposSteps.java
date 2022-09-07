@@ -36,7 +36,7 @@ public class VinculacionMposSteps {
 
     @Then("{actor} deberia poder que inicio la busqueda de dispositivos")
     public void elvisDeberiaPoderQueInicioLaBusquedaDeDispositivos(Actor actor) {
-        actor.attemptsTo(Ensure.that(DISPOSITIVOS_ENCONTRADOS.waitingForNoMoreThan(ofSeconds(30))).isDisplayed());
+        actor.attemptsTo(Ensure.that(DISPOSITIVOS_ENCONTRADOS.waitingForNoMoreThan(ofSeconds(60))).isDisplayed());
     }
 
     @When("{actor} realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth")

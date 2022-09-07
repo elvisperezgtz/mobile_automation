@@ -1,5 +1,6 @@
 package femsa.interactions;
 
+import femsa.utils.Commands;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
@@ -15,22 +16,7 @@ public class Ejecutar implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String os= System.getProperty("os.name").toLowerCase();
-        if (os.equals("osx")){
-            try {
-                Runtime.getRuntime().exec(new String[]{"bash", "-l", "-c",commando});
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                Runtime.getRuntime().exec(commando);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
+        Commands.execute(commando);
     }
 public static Ejecutar elComandoAdb(String commando){
         return Tasks.instrumented(Ejecutar.class, commando);
