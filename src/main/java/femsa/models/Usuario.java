@@ -8,9 +8,27 @@ public class Usuario {
     private String nombreNegocio;
     private String actividadEconomica;
     private String codigoPostal;
+    private String cuentaClabe;
+    private String nombreTitular;
 
+
+    public String getCuentaClabe() {
+        return cuentaClabe;
+    }
+
+    public String getNombreTitular() {
+        return nombreTitular;
+    }
 
     public Usuario(){
+    }
+
+    public void setCuentaClabe(String cuentaClabe) {
+        this.cuentaClabe = cuentaClabe;
+    }
+
+    public void setNombreTitular(String nombreTitular) {
+        this.nombreTitular = nombreTitular;
     }
 
     public String getNombre() {
@@ -76,6 +94,8 @@ public class Usuario {
         this.nombreNegocio= "OXXO";
         this.actividadEconomica="ALIMENTOS Y BEBIDAS";
         this.codigoPostal="50001";
+        this.nombreTitular="Pepe Perez Rodriguez";
+        this.cuentaClabe="123456789012345678";
     }
 
     @Override
@@ -88,6 +108,8 @@ public class Usuario {
                 ", nombreNegocio='" + nombreNegocio + '\'' +
                 ", actividadEconomica='" + actividadEconomica + '\'' +
                 ", codigoPostal='" + codigoPostal + '\'' +
+                ", cuentaClabe='" + cuentaClabe + '\'' +
+                ", nombreTitular='" + nombreTitular + '\'' +
                 '}';
     }
 }

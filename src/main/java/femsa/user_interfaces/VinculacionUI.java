@@ -25,7 +25,7 @@ public class VinculacionUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target CONECTAR_MPOS = Target.the("boton Conectar")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'MPOS')]/following::android.widget.Button"))
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc='BOTTOMSHEET_BUTTON_CONNECT']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target VINCULAR_BT = Target.the("boton Vincular Bluetooth")

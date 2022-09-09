@@ -10,6 +10,9 @@ public class UsuarioBuilder implements IBuilder {
     private String nombreNegocio;
     private String actividadEconomica;
     private String codigoPostal;
+    private String nombreTitular;
+    private String cuentaClabe;
+
 
     public UsuarioBuilder(String nombre) {
         this.nombre = nombre;
@@ -44,6 +47,14 @@ public class UsuarioBuilder implements IBuilder {
         this.codigoPostal = codigoPostal;
         return this;
     }
+    public UsuarioBuilder conTitularDeLaCuenta(String nombreTitular){
+       this.nombreTitular = nombreTitular;
+       return this;
+    }
+    public UsuarioBuilder conCuentaClabe(String cuentaClabe){
+        this.cuentaClabe = cuentaClabe;
+        return this;
+    }
 
     @Override
     public Usuario build() {
@@ -55,6 +66,8 @@ public class UsuarioBuilder implements IBuilder {
         usuario.setNombreNegocio(this.nombreNegocio);
         usuario.setActividadEconomica(this.actividadEconomica);
         usuario.setCodigoPostal(this.codigoPostal);
+        usuario.setNombreTitular(this.nombreTitular);
+        usuario.setCuentaClabe(this.cuentaClabe);
         return usuario;
     }
 

@@ -26,7 +26,7 @@ public class OtpReader {
 
         WaitUntil.the(otpElement, WebElementStateMatchers.isPresent()).forNoMoreThan(Duration.ofSeconds(90));
         String otpMessage = otpElement.resolveFor(theActorInTheSpotlight()).getText();
-        String otp = StringUtils.substringBetween(otpMessage, "es", ".");
+        String otp = StringUtils.substringBetween(otpMessage, "is ", ".");
         String cmd = "adb shell input keyevent 4";
         Runtime.getRuntime().exec(cmd);
         return otp;
