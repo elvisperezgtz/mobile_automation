@@ -1,12 +1,12 @@
 package femsa.tasks;
 
+import femsa.interactions.Digitar;
 import femsa.interactions.Esperar;
 import femsa.interactions.SelectFromDropDown;
 import femsa.models.Usuario;
 import femsa.user_interfaces.DatosBancariosUI;
 import femsa.user_interfaces.DatosPersonalesUI;
 import femsa.user_interfaces.PasswordUI;
-import femsa.user_interfaces.RegistroUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -34,13 +34,9 @@ public class Ingresar {
 
     public static Performable codigoDeValidacion(String codigoValidacion) throws IOException {
 
+        System.out.println("esta es la otp: " + codigoValidacion);
         return Task.where("{0} ingresa el codigo OTP que le llego a su linea movil",
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(0))).into(RegistroUI.CASILLA1_OTP),
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(1))).into(RegistroUI.CASILLA2_OTP),
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(2))).into(RegistroUI.CASILLA3_OTP),
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(3))).into(RegistroUI.CASILLA4_OTP),
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(4))).into(RegistroUI.CASILLA5_OTP),
-                Enter.theValue(String.valueOf(codigoValidacion.charAt(5))).into(RegistroUI.CASILLA6_OTP)
+                Digitar.conTecladoNativo(codigoValidacion)
         );
     }
 

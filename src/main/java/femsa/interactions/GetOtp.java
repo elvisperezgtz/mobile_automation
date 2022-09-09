@@ -30,9 +30,9 @@ public class GetOtp implements Interaction {
         String otpMessage = SMS.resolveFor(theActorInTheSpotlight()).getText();
         System.out.println(otpMessage);
         String[] code;
-        code = otpMessage.split(" is ");
+        code = otpMessage.split("is");
         code = (code[code.length - 1].replace(".", "").split(" "));
-        String otp = code[0];
+        String otp = code[1];
         String cmd = "adb shell input keyevent 4";
         actor.attemptsTo(Ejecutar.elComandoAdb(cmd));
 
