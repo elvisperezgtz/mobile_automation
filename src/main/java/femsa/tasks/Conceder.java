@@ -18,7 +18,6 @@ public class Conceder {
                 Navegar.aVincularDispositivoMpos(),
                 Permitir.activarBlueTooth(),
                 Permitir.usarUbicacion()
-
         );
     }
 }

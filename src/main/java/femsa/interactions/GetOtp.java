@@ -22,11 +22,7 @@ public class GetOtp implements Interaction {
 
         WebDriver driver = ((WebDriverFacade) BrowseTheWeb.as(actor).getDriver()).getProxiedDriver();
         ((AndroidDriver) driver).openNotifications();
-
-
-
         actor.attemptsTo(WaitUntil.the(SMS, WebElementStateMatchers.isVisible()).forNoMoreThan(Duration.ofSeconds(90)));
-
         String otpMessage = SMS.resolveFor(theActorInTheSpotlight()).getText();
         System.out.println(otpMessage);
         String[] code;
@@ -35,7 +31,6 @@ public class GetOtp implements Interaction {
         String otp = code[1];
         String cmd = "adb shell input keyevent 4";
         actor.attemptsTo(Ejecutar.elComandoAdb(cmd));
-
         actor.remember("otp", otp);
     }
 

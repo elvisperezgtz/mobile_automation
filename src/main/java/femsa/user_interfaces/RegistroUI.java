@@ -4,7 +4,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class RegistroUI {
-        public static final Target PREFIJO = Target.the("Campo prefijo")
+    public static final Target PREFIJO = Target.the("Campo prefijo")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='REGISTERPHONENUMBER_COLUMN_PHONENUMBER']/android.widget.EditText[1]/android.view.View[2]"))
             .locatedForIOS(By.xpath(""));
 
@@ -40,12 +40,11 @@ public class RegistroUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_COLUMN_CONTAINER']/android.widget.TextView"))
             .locatedForIOS(By.xpath(""));
 
-
-  public static final Target CRONOMETRO= Target.the("cronometro")
+    public static final Target CRONOMETRO = Target.the("cronometro")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_COLUMN_CONTAINER_RESEND']/android.widget.TextView"))
             .locatedForIOS(By.xpath(""));
 
-public static final Target REENVIAR_SMS= Target.the("boton Reenviar SMS")
+    public static final Target REENVIAR_SMS = Target.the("boton Reenviar SMS")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc='SMSCODE_BUTTON_RESEND']"))
             .locatedForIOS(By.xpath(""));
 }
