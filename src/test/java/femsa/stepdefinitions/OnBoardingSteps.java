@@ -20,6 +20,7 @@ public class OnBoardingSteps {
     @Managed(driver = "appium")
     private AppiumDriver driver;
 
+
     @Given("{actor} tiene acceso a la App de Mpos")
     public void elvisTieneAccesoALaAppDeMpos(Actor actor) {
         actor.can(
@@ -28,7 +29,7 @@ public class OnBoardingSteps {
     }
     @When("{actor} realiza el tutorial introductorio")
     public void elRealizaElTutorialIntroductorio(Actor actor) {
-        actor.attemptsTo(
+                actor.attemptsTo(
                 Completar.elTutorial()
         );
     }

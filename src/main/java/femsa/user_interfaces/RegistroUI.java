@@ -28,6 +28,10 @@ public class RegistroUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'C\u00F3digo SMS')]"))
             .locatedForIOS(By.xpath(""));
 
+public static final Target CASILLA_1 = Target.the("casilla 1 otp")
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
+            .locatedForIOS(By.xpath(""));
+
     public static final Target MENSAJE_ERROR_TELEFONO = Target.the("mensaje de error del campo telefono")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc='OUTLINE_TEXTFIELD']"))
             .locatedForIOS(By.xpath(""));

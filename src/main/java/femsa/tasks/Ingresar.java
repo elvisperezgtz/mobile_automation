@@ -19,6 +19,7 @@ import static femsa.user_interfaces.DatosBancariosUI.CLABE;
 import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.DatosPersonalesUI.*;
 import static femsa.user_interfaces.PasswordUI.CONTRASENIA;
+import static femsa.user_interfaces.RegistroUI.CASILLA_1;
 import static femsa.user_interfaces.RegistroUI.REENVIAR_SMS;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
@@ -36,6 +37,7 @@ public class Ingresar {
 
         System.out.println("esta es la otp: " + codigoValidacion);
         return Task.where("{0} ingresa el codigo OTP que le llego a su linea movil",
+                Click.on(CASILLA_1),
                 Digitar.conTecladoNativo(codigoValidacion)
         );
     }
