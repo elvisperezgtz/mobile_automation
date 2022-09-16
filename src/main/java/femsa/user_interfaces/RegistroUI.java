@@ -10,11 +10,11 @@ public class RegistroUI {
 
     public static final Target TELEFONO = Target.the("Campo telefono")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='REGISTERPHONENUMBER_COLUMN_PHONENUMBER']/android.widget.EditText[2]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeTextField[@name='REGISTER_TEXTFIELD_PHONE']"));
 
     public static final Target ACEPTO = Target.the("checkbox Acepto aviso de privacidad")
             .locatedForAndroid(By.xpath("//android.widget.CheckBox[@content-desc='REGISTERPHONENUMBER_CHECKBOX_TERMSANDCONDITIONS']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeImage[@name='REGISTER_IMAGEVIEW_CHECKBOX']"));
 
     public static final Target ENVIAR_CODIGO_SMS = Target.the("checkbox Acepto aviso de privacidad")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Enviar c\u00F3digo por SMS']"))
