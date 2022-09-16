@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.utils.GetProperty;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -33,11 +34,11 @@ public class CapturaDatosPersonalesSteps {
     private AppiumDriver driver;
     public Usuario usuario = new Usuario();
 
-    @Given("{actor} ha registrado el telefono {string}")
-    public void elvisHaRegistradoElTelefono(Actor actor, String telefono) {
+    @Given("{actor} ha registrado su telefono")
+    public void elvisHaRegistradoElTelefono(Actor actor) {
         actor.attemptsTo(
                 Completar.elTutorial(),
-                Registrar.elNumeroTelefonico(telefono)
+                Registrar.elNumeroTelefonico(GetProperty.fromPropertyFile("linea"))
         );
     }
     @And("{actor} ingreso el codigo de validacion enviado a su celular")

@@ -1,10 +1,11 @@
+@sp2
 Feature:Visualizar pantalla de generación de contraseña
   Como Usuario
   quiero visualizar una pantalla que me permita ingresar la contraseña
   que sera utulizada como parte del login asi como la validacion del formato de la misma.
 
   Background: El usuario ya verifico el telefono
-    When Elvis realiza el registro en la App con el numero de telefono "5623342574"
+    Given Elvis realiza el registro en la App con su numero de telefono
     And Elvis ingresa el codigo de verifacion enviado a su celular
 
   Scenario: Generar contraseña satisfactoriamente

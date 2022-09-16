@@ -34,14 +34,13 @@ public class Ingresar {
     }
 
     public static Performable codigoDeValidacion(String codigoValidacion) throws IOException {
-
-        System.out.println("esta es la otp: " + codigoValidacion);
         return Task.where("{0} ingresa el codigo OTP que le llego a su linea movil",
                 Click.on(CASILLA_1),
                 Digitar.conTecladoNativo(codigoValidacion)
         );
     }
 
+    //todo verificar este metodo, cambiar nombre
     public static Performable unNuevoCodigoDeVerificacion() throws IOException {
 
         return Task.where("{0} ingresa un nuevo codigo de validacion",

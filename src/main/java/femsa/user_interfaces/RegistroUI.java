@@ -18,7 +18,7 @@ public class RegistroUI {
 
     public static final Target ENVIAR_CODIGO_SMS = Target.the("checkbox Acepto aviso de privacidad")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Enviar c\u00F3digo por SMS']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Enviar c\u00F3digo por SMS']"));
 
     public static final Target MENSAJE_ENVIO_SMS = Target.the("mensaje de confirmacion del envio del sms")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc='TEXT_SUBTITLE']"))
@@ -28,7 +28,7 @@ public class RegistroUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'C\u00F3digo SMS')]"))
             .locatedForIOS(By.xpath(""));
 
-public static final Target CASILLA_1 = Target.the("casilla 1 otp")
+    public static final Target CASILLA_1 = Target.the("casilla 1 otp")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath(""));
 

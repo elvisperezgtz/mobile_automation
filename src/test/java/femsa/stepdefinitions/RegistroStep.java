@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.utils.GetProperty;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,6 +19,7 @@ import femsa.utils.OtpReader;
 
 import java.io.IOException;
 
+import static femsa.utils.GetProperty.fromPropertyFile;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 import static femsa.user_interfaces.PasswordUI.*;
@@ -35,12 +37,12 @@ public class RegistroStep {
         );
     }
 
-    @When("{actor} realiza el registro en la App con el numero de telefono {string}")
-    public void el_realiza_el_registro_en_la_app_con_el_numero_de_telefono(Actor actor, String numeroTelefonico) {
+    @When("{actor} realiza el registro en la App con su numero de telefono")
+    public void el_realiza_el_registro_en_la_app_con_su_numero_de_telefono(Actor actor) {
         actor.attemptsTo(
-                Registrar.elNumeroTelefonico(numeroTelefonico)
+                Registrar.elNumeroTelefonico(fromPropertyFile("linea"))
         );
-        actor.remember("numero telefonico", numeroTelefonico);
+        actor.remember("numero telefonico", fromPropertyFile("linea"));
 
     }
 
@@ -169,4 +171,10 @@ public class RegistroStep {
         );
     }
 
+    @And("{actor} realiza el registro en la App con el numero de telefono {string}")
+    public void elvisRealizaElRegistroEnLaAppConElNumeroDeTelefono(Actor actor,String numeroTelefonico) {
+        actor.attemptsTo(
+                        Registrar.elNumeroTelefonico(numeroTelefonico)
+        );
+    }
 }

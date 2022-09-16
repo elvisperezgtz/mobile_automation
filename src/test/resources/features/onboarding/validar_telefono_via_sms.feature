@@ -10,7 +10,7 @@ Feature: Formulario de registro
     When Elvis realiza el tutorial introductorio
 
   Scenario: Validar telefono via SMS en Onboarding/Registro
-    And Elvis realiza el registro en la App con el numero de telefono "5223345634"
+    And Elvis realiza el registro en la App con su numero de telefono
     Then Elvis deberia poder ver que el mensaje de envio del codigo SMS contine el numero registrado por el usuario
 
   Scenario: Pantalla de envio de SMS, numero no valido
