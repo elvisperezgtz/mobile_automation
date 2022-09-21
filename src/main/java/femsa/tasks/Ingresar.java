@@ -15,15 +15,16 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.io.IOException;
 
+import static femsa.interactions.Ejecutar.elComandoAdb;
 import static femsa.user_interfaces.DatosBancariosUI.CLABE;
 import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.DatosPersonalesUI.*;
 import static femsa.user_interfaces.PasswordUI.CONTRASENIA;
 import static femsa.user_interfaces.RegistroUI.CASILLA_1;
 import static femsa.user_interfaces.RegistroUI.REENVIAR_SMS;
+import static java.time.Duration.ofMinutes;
 import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 
 public class Ingresar {
 
@@ -35,7 +36,7 @@ public class Ingresar {
 
     public static Performable codigoDeValidacion(String codigoValidacion) throws IOException {
         return Task.where("{0} ingresa el codigo OTP que le llego a su linea movil",
-                Click.on(CASILLA_1),
+                WaitUntil.the(CASILLA_1, isClickable()).forNoMoreThan(ofMinutes(3)).then(Click.on(CASILLA_1)),
                 Digitar.conTecladoNativo(codigoValidacion)
         );
     }
@@ -59,12 +60,12 @@ public class Ingresar {
     public static Performable datosPersonales(Usuario usuario) {
         return Task.where("{0} llena el formulario de datos personales",
                 WaitUntil.the(DatosPersonalesUI.TITULO, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Enter.theValue(usuario.getNombre()).into(NOMBRES),
-                Enter.theValue(usuario.getApellido()).into(PRIMER_APELLIDO),
-                Enter.theValue(usuario.getEmail()).into(EMAIL),
-                Enter.theValue(usuario.getNombreNegocio()).into(NOMBRE_DE_TU_NEGOCIO),
+                Click.on(NOMBRES).then(Enter.theValue(usuario.getNombre()).into(NOMBRES)),
+                Click.on(PRIMER_APELLIDO).then(Enter.theValue(usuario.getApellido()).into(PRIMER_APELLIDO)),
+                Click.on(EMAIL).then(Enter.theValue(usuario.getEmail()).into(EMAIL)),
+                Click.on(NOMBRE_DE_TU_NEGOCIO).then(Enter.theValue(usuario.getNombreNegocio()).into(NOMBRE_DE_TU_NEGOCIO)).then(elComandoAdb("adb shell input keyevent 4")),
                 SelectFromDropDown.byVisibleText(ACTIVIDAD_DE_TU_NEGOCIO, usuario.getActividadEconomica()),
-                Enter.theValue(usuario.getCodigoPostal()).into(CODIGO_POSTAL)
+                Click.on(CODIGO_POSTAL).then(Enter.theValue(usuario.getCodigoPostal()).into(CODIGO_POSTAL)).then(elComandoAdb("adb shell input keyevent 4")).then(Click.on(TITULO))
         );
     }
 

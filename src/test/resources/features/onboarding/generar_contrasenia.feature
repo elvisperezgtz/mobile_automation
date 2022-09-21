@@ -1,4 +1,4 @@
-@sp2
+@Sprint_2
 Feature:Visualizar pantalla de generación de contraseña
   Como Usuario
   quiero visualizar una pantalla que me permita ingresar la contraseña

@@ -87,7 +87,7 @@ public class Usuario {
         this.codigoPostal = codigoPostal;
     }
     public void defaulValues(){
-        this.nombre= "Pepe";
+        this.nombre= "Pepito";
         this.apellido ="Perez";
         this.email="testautomationoxxo@gmail.com";
         this.contrasenia = "Fensa2022**";

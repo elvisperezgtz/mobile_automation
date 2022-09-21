@@ -39,5 +39,4 @@ public class OnBoardingSteps {
                 Ensure.that(OnBoardingUI.TITULO.waitingForNoMoreThan(ofSeconds(20))).isDisplayed()
         );
     }
-
 }

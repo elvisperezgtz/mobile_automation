@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import femsa.interactions.GetOtp;
@@ -20,13 +19,13 @@ import femsa.tasks.Registrar;
 import femsa.user_interfaces.IntroDispositivoUI;
 
 import java.io.IOException;
-import java.time.Duration;
 
-import static femsa.user_interfaces.DatosPersonalesUI.CONTINUAR;
+import static femsa.user_interfaces.DatosPersonalesUI.*;
 import static femsa.user_interfaces.IntroDispositivoUI.TITULO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
 import static femsa.user_interfaces.PasswordUI.BOTON_CONTINUAR;
 import static java.time.Duration.ofSeconds;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class CapturaDatosPersonalesSteps {
@@ -63,16 +62,23 @@ public class CapturaDatosPersonalesSteps {
     public void elvisRegistraLosDatosPersonales(Actor actor) {
         usuario.defaulValues();
         actor.attemptsTo(
-                Ingresar.datosPersonales(usuario),
-                Click.on(CONTINUAR),
-                WaitUntil.the(YA_LO_TENGO, isVisible()).forNoMoreThan(ofSeconds(15))
+                Ingresar.datosPersonales(usuario)
         );
     }
 
     @Then("{actor} deberia poder ver el titulo {string}")
     public void elvisDeberiaPoderVerElTitulo(Actor actor, String titulo) {
         actor.attemptsTo(
+                WaitUntil.the(CONTINUAR, isClickable()).forNoMoreThan(ofSeconds(5)).then(Click.on(CONTINUAR)),
+                WaitUntil.the(YA_LO_TENGO, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(TITULO).text().isEqualToIgnoringCase(titulo)
+        );
+    }
+
+    @Then("{actor} deberia poder ver la alerta {string}")
+    public void elvisDeberiaPoderVerLaAlerta(Actor actor, String titulo) {
+        actor.attemptsTo(
+                Ensure.that(OBLIGATORIEDAD).text().isEqualToIgnoringCase(titulo)
         );
     }
 
@@ -82,5 +88,13 @@ public class CapturaDatosPersonalesSteps {
                 Ensure.that(YA_LO_TENGO).text().isEqualTo(botonYaLoTengo),
                 Ensure.that(IntroDispositivoUI.AUN_NO_LO_TENGO).text().isEqualTo(botonAunNoLoTengo)
         );
+    }
+
+    @Then("{actor} deberia validar que la longitud del campo nombre sea menor igual a {int}")
+    public void elvisDeberiaValidarQueLaLongitudDelCampoNombreSeaMenorIgualA(Actor actor, int longitud) {
+        actor.attemptsTo(
+                Ensure.that(NOMBRES).text().hasSizeBetween(1,longitud)
+        );
+
     }
 }

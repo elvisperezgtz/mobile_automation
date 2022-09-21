@@ -37,4 +37,8 @@ public class DatosPersonalesUI {
     public static final Target CONTINUAR = Target.the("boton continuar")
             .locatedForAndroid(By.className("android.widget.Button"))
             .locatedForIOS(By.xpath(""));
+
+    public static final Target OBLIGATORIEDAD = Target.the("Este campo es obligatorio")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[3]"))
+            .locatedForIOS(By.xpath(""));
 }
