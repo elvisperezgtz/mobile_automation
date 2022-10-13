@@ -1,66 +1,93 @@
 package femsa.utils;
 
+import femsa.enums.Direccion;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import net.thucydides.core.webdriver.WebDriverFacade;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
+import java.util.HashMap;
 
 public class Swipe {
 
-    public static void down(WebDriver facade) {
+    public static void mobileSwipe(WebDriver facade, Direccion direccion) throws InterruptedException {
+        final int ANIMATION_TIME = 500;
+        final int PRESS_TIME = 200; // ms
 
-        WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
-        TouchAction actions = new TouchAction((PerformsTouchActions) driver);
+        int edgeBorder = 10;
+        PointOption pointOptionStart, pointOptionEnd;
 
-        int puntoInicialX = facade.manage().window().getSize().width / 2;
-        int puntoInicialY = (int) (facade.manage().window().getSize().height * 0.8);
-        int puntoFinalY = facade.manage().window().getSize().height / 2;
 
-        actions
-                .longPress(PointOption.point(puntoInicialX, puntoInicialY))
-                .moveTo(PointOption.point(puntoInicialX, puntoFinalY))
-                .release()
-                .perform();
+        final HashMap<String, String> scrollObject = new HashMap<String, String>();
+        switch (direccion) {
+            case ABAJO:
+                scrollObject.put("direction", "down");
+                break;
+            case ARRIBA:
+                scrollObject.put("direction", "up");
+                break;
+            case IZQUIERDA:
+                scrollObject.put("direction", "left");
+                break;
+            case DERECHA:
+                scrollObject.put("direction", "right");
+                break;
+            default:
+                throw new IllegalArgumentException("mobileSwipeScreenIOS(): dir: '" + direccion + "' NOT supported");
 
-    }
-
-    public static void up(WebDriver facade) {
-
-        WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
-        TouchAction actions = new TouchAction((PerformsTouchActions) driver);
-
-        int puntoInicialX = facade.manage().window().getSize().width / 2;
-        int puntoInicialY = facade.manage().window().getSize().height / 2;
-        int puntoFinalY = (int) (facade.manage().window().getSize().height * 0.8);
-
-        actions
-                .longPress(PointOption.point(puntoInicialX, puntoInicialY))
-                .moveTo(PointOption.point(puntoInicialX, puntoFinalY))
-                .release()
-                .perform();
-
-    }
-
-    public static void leftToRight(WebDriver facade) {
-
-        WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
-        TouchAction actions = new TouchAction((PerformsTouchActions) driver);
-
-        int puntoInicialX = (int) (facade.manage().window().getSize().width -50);
-        int puntoInicialY = facade.manage().window().getSize().height /2;
-        int puntoFinalX = (int) (facade.manage().window().getSize().width * 0.1);;
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        actions
-                .press(PointOption.point(puntoInicialX, puntoInicialY))
-                .moveTo(PointOption.point(puntoFinalX, puntoInicialY))
-                .release()
-                .perform();
+
+        if (Validate.isIOS()) {
+            try {
+                ((WebDriverFacade) facade).executeScript("mobile:swipe", scrollObject);
+                Thread.sleep(ANIMATION_TIME);
+
+            } catch (Exception e) {
+                System.err.println("mobileSwipeScreenIOS(): FAILED\n" + e.getMessage());
+                return;
+            }
+        } else if (Validate.isAndroid()) {
+            WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
+            Dimension dims = driver.manage().window().getSize();
+            pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
+
+            switch (direccion) {
+                case ABAJO: // center of footer
+                    pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
+                    break;
+                case ARRIBA: // center of header
+                    pointOptionEnd = PointOption.point(dims.width / 2, edgeBorder);
+                    break;
+                case IZQUIERDA: // center of left side
+                    pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
+                    break;
+                case DERECHA: // center of right side
+                    pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
+                    break;
+                default:
+                    throw new IllegalArgumentException("swipeScreen(): dir: '" + direccion + "' NOT supported");
+            }
+            try {
+                new TouchAction((PerformsTouchActions) driver)
+                        .press(pointOptionStart)
+                        .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
+                        .moveTo(pointOptionEnd)
+                        .release().perform();
+            } catch (Exception e) {
+                System.err.println("swipeScreen(): TouchAction FAILED\n" + e.getMessage());
+                return;
+            }
+            try {
+                Thread.sleep(ANIMATION_TIME);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Ejecutando Swipe en Android");
+        }
 
     }
 

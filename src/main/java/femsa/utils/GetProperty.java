@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class GetProperty {
-    public static String fromPropertyFile(String propertyName){
-        try(InputStream inputStream = new FileInputStream("src/test/resources/properties/usuario.properties")) {
+    public static String fromPropertyFile(String file, String propertyName){
+        try(InputStream inputStream = new FileInputStream(file)) {
             Properties properties = new Properties();
             properties.load(inputStream);
             return properties.getProperty(propertyName);
@@ -21,7 +21,9 @@ public class GetProperty {
         }
     }
 
+
     public static void main(String[] args) {
-        System.out.println(fromPropertyFile("linea"));
+        System.out.println(fromPropertyFile("src/test/resources/properties/usuario.properties","linea"));
+
     }
 }

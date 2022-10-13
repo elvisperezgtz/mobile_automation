@@ -40,9 +40,9 @@ public class RegistroStep {
     @When("{actor} realiza el registro en la App con su numero de telefono")
     public void el_realiza_el_registro_en_la_app_con_su_numero_de_telefono(Actor actor) {
         actor.attemptsTo(
-                Registrar.elNumeroTelefonico(fromPropertyFile("linea"))
+                Registrar.elNumeroTelefonico(fromPropertyFile("src/test/resources/properties/usuario.properties","linea"))
         );
-        actor.remember("numero telefonico", fromPropertyFile("linea"));
+        actor.remember("numero telefonico", fromPropertyFile("src/test/resources/properties/usuario.properties","linea"));
 
     }
 

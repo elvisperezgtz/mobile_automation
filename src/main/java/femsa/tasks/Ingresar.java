@@ -2,6 +2,7 @@ package femsa.tasks;
 
 import femsa.interactions.Digitar;
 import femsa.interactions.Esperar;
+import femsa.interactions.GetOtp;
 import femsa.interactions.SelectFromDropDown;
 import femsa.models.Usuario;
 import femsa.user_interfaces.DatosBancariosUI;
@@ -11,6 +12,7 @@ import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.io.IOException;
@@ -74,6 +76,13 @@ public class Ingresar {
                 WaitUntil.the(DatosBancariosUI.TITULO, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Enter.theValue(usuario.getNombreTitular()).into(NOMBRE_TITULAR),
                 Enter.theValue(usuario.getCuentaClabe()).into(CLABE)
+        );
+    }
+
+    public static Performable codigoOtp() throws IOException {
+        return Task.where("{0} ingresa el codigo recibido en su dispositivo celular",
+                GetOtp.fromSMS(),
+                Ingresar.codigoDeValidacion(OnStage.theActorInTheSpotlight().recall("otp"))
         );
     }
 }

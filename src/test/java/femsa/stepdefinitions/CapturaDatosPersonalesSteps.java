@@ -37,7 +37,7 @@ public class CapturaDatosPersonalesSteps {
     public void elvisHaRegistradoElTelefono(Actor actor) {
         actor.attemptsTo(
                 Completar.elTutorial(),
-                Registrar.elNumeroTelefonico(GetProperty.fromPropertyFile("linea"))
+                Registrar.elNumeroTelefonico(GetProperty.fromPropertyFile("src/test/resources/properties/usuario.properties","linea"))
         );
     }
     @And("{actor} ingreso el codigo de validacion enviado a su celular")

@@ -1,8 +1,10 @@
 package femsa.interactions;
 
+import femsa.utils.Validate;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Step;
 
 import static femsa.interactions.Ejecutar.elComandoAdb;
@@ -19,14 +21,22 @@ public class Digitar implements Interaction {
     @Step("{0} ingresa el codigo de validacion")
     @Override
     public <T extends Actor> void performAs(T actor) {
-        for (char numero : codigoValidacion.toCharArray()) {
-            actor.attemptsTo(
-                    elComandoAdb("adb shell input keyevent ".concat(getKeyEventCode(numero)))
-            );
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        if (Validate.isIOS()) {
+            for (char numero : codigoValidacion.toCharArray()) {
+                actor.attemptsTo(
+                        Click.on("//XCUIElementTypeKey[@name='" + numero + "']")
+                );
+            }
+        } else {
+            for (char numero : codigoValidacion.toCharArray()) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                actor.attemptsTo(
+                        elComandoAdb("adb shell input keyevent ".concat(getKeyEventCode(numero)))
+                );
             }
         }
     }
