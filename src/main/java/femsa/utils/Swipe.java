@@ -56,16 +56,16 @@ public class Swipe {
             pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
 
             switch (direccion) {
-                case ABAJO: // center of footer
+                case ABAJO:
                     pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
                     break;
-                case ARRIBA: // center of header
+                case ARRIBA:
                     pointOptionEnd = PointOption.point(dims.width / 2, edgeBorder);
                     break;
-                case IZQUIERDA: // center of left side
+                case IZQUIERDA:
                     pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
                     break;
-                case DERECHA: // center of right side
+                case DERECHA:
                     pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
                     break;
                 default:

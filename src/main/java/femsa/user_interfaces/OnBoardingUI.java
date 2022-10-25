@@ -18,7 +18,7 @@ public class OnBoardingUI {
 
     public static final Target YA_TENGO_CUENTA = Target.the("boton Ya tengo cuenta")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text = 'Ya tengo cuenta']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@label='Ya tengo cuenta']"));
 
 
 }
