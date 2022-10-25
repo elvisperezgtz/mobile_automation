@@ -19,11 +19,11 @@ public class LoginUI {
 
     public static final Target INICIANDO_SESION = Target.the("mensaje iniciando sesion")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Unregistered user']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeOther"));
 
  public static final Target MENSAJE_ERROR = Target.the("mensaje de error usuario no registrado ")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Unregistered user']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther"));
 
 
 }

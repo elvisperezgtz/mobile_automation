@@ -16,4 +16,8 @@ public class CommonsUI {
             .locatedForAndroid(By.id(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeOther[@name='NotificationShortLookView']"));
 
+    public static final Target HIDE_KEYBOARD = Target.the("notificacion SMS iOS")
+            .locatedForAndroid(By.id(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='btn keyboard ocultar']"));
+
 }
