@@ -20,4 +20,8 @@ public class CommonsUI {
             .locatedForAndroid(By.id(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='btn keyboard ocultar']"));
 
+    public static final Target OK_BLUETOOTH = Target.the("boton ok del modal acceder a bluetooth")
+            .locatedForAndroid(By.id(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='OK']"));
+
 }
