@@ -24,4 +24,17 @@ public class CobroUI {
             .locatedForAndroid(By.xpath(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='COLLECT_COLLECT_BUTTON']"));
 
+    public static final Target TARJETA_BLOQUEADA = Target.the("titulo Tarjeta bloquada")
+            .locatedForAndroid(By.xpath(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Tarjeta bloqueada']"));
+
+    public static final Target VOLVER_A_INTENTAR = Target.the("boton Volver a intentar")
+            .locatedForAndroid(By.xpath(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Volver a intentar']"));
+
+    public static final Target CANCELAR = Target.the("boton Cancelar")
+            .locatedForAndroid(By.xpath(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Cancelar']"));
+
+
 }

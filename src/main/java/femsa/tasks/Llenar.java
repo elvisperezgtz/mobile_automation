@@ -2,7 +2,6 @@ package femsa.tasks;
 
 import femsa.interactions.Digitar;
 import femsa.interactions.Hide;
-import femsa.user_interfaces.CobroUI;
 import femsa.utils.Validate;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -21,7 +20,6 @@ public class Llenar {
                 Enter.theValue(contrasenia).into(CONTRASENIA),
                 Hide.theKeyboard()
         );
-
     }
 
     public static Performable elFormularioDeCobros(String monto, String concepto) {

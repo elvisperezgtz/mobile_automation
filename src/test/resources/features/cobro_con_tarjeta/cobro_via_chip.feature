@@ -1,4 +1,4 @@
-@cobroViaChip
+
 Feature: Cobro via chip
 
 
@@ -13,4 +13,18 @@ Feature: Cobro via chip
     When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
     Then Elvis deberia poder ver que el cobro se realizo con exito
 
+  Scenario: Cobro via chip - Tarjeta bloqueada
+    When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
+    Then Elvis deberia poder ver la pantalla de tarjeta bloqueada
 
+
+  Scenario: Cobro via chip - Tarjeta bloqueada, redireccionar al home
+    When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
+    And Elvis selecciona la opcion Cancelar en la pantalla de tarjeta bloqueada
+    Then Elvis deberia poder ver el home de la app
+
+  @cobroViaChip
+  Scenario: Cobro via chip - Tarjeta bloqueada, redireccionar a la pantalla Monto por cobrar
+    When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
+    And Elvis selecciona la opcion Volver a intentar en la pantalla de tarjeta bloqueada
+    Then Elvis deberia poder ver la pantalla de Monto por cobrar

@@ -13,4 +13,9 @@ public class HomeUI {
             .locatedForAndroid(By.xpath(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Inicio']"));
 
+    public static final Target MOVIMIENTOS_HOY = Target.the("texto Movimientos hoy")
+            .locatedForAndroid(By.xpath(""))
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Movimientos hoy']"));
+
+
 }

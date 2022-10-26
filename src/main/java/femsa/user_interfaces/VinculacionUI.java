@@ -54,6 +54,6 @@ public class VinculacionUI {
 
     public static final Target BOTON_CONTINUAR = Target.the("boton continuar")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Continuar']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='SUCCESSCONNECTION_BTN_CONFIG']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='SUCCESSCONNECTION_BTN_CONTINUE']"));
 
 }
