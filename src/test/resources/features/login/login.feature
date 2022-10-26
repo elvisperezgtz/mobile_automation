@@ -17,7 +17,7 @@ Feature: Login
       | "admin@add.com" | "Femsa2022"   | "Datos incorrectos" | Email no valido            |
       | "5521996723"    | "badPassword" | "Datos incorrectos" | con contrasenia incorrecta |
 
-  Scenario Outline: Iniciar Sesión con <testCase>
+  Scenario Outline: Iniciar Sesión: validacion de <testCase>
     When Elvis inicia sesion con el usuario <usuario> y la contrasenia <contrasenia>
     Then Elvis deberia poder ver el boton Iniciar sesion deshabilitado
     Examples:
