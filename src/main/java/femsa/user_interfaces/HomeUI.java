@@ -17,5 +17,10 @@ public class HomeUI {
             .locatedForAndroid(By.xpath(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Movimientos hoy']"));
 
+    public static final Target PERFIL = Target.the("administracion de perfil")
+            .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='title'])[3]"))
+            .locatedForIOS(By.xpath(""));
+
+
 
 }
