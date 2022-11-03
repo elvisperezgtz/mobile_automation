@@ -53,7 +53,7 @@ public class Swipe {
         } else if (Validate.isAndroid()) {
             WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
             Dimension dims = driver.manage().window().getSize();
-            pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
+            pointOptionStart = PointOption.point(((dims.width / 1)-100), dims.height / 2);
 
             switch (direccion) {
                 case ABAJO:

@@ -35,6 +35,7 @@ public class LoginSteps {
         actor.attemptsTo(
                 IniciarSesion.conSusCredenciales(usuario, contrasenia)
         );
+        actor.remember("contrasenia", contrasenia);
     }
 
     @Then("{actor} deberia poder ver el boton Iniciar sesion deshabilitado")
