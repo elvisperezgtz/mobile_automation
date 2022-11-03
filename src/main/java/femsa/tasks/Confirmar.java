@@ -14,6 +14,5 @@ public class Confirmar {
                 Enter.theValue(contrasenia).into(CONTRASENIA),
                 Click.on(CONTINUAR)
         );
-
     }
 }

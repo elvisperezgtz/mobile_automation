@@ -1,24 +1,20 @@
 package femsa.stepdefinitions;
 
+import femsa.tasks.Cancelar;
 import femsa.tasks.Confirmar;
+import femsa.tasks.Editar;
 import femsa.tasks.Navegar;
-import femsa.user_interfaces.AdministracionPerilUI;
-import femsa.user_interfaces.ClabeInterbancariaUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import java.time.Duration;
-
-import static femsa.user_interfaces.AdministracionPerilUI.*;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static java.time.Duration.ofSeconds;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class AdministracionPerfilSteps {
@@ -27,11 +23,10 @@ public class AdministracionPerfilSteps {
         actor.attemptsTo(
                 Navegar.aAdministracionDePerfil()
         );
-
     }
 
     @Then("{actor} deberia ver los datos registrados Nombre del titular {string} y cuenta clabe {string}")
-    public void elvisDeberiaVerLosDatosRegistradosNombreDelTitularYCuentaClabe(Actor actor,String titular, String cuentaClabe) {
+    public void elvisDeberiaVerLosDatosRegistradosNombreDelTitularYCuentaClabe(Actor actor, String titular, String cuentaClabe) {
         actor.attemptsTo(
                 Ensure.that(NOMBRE_TITULAR).text().isEqualToIgnoringCase(titular),
                 Ensure.that(CLABE_INTERBANCARIA).text().isEqualToIgnoringCase(cuentaClabe)
@@ -60,15 +55,83 @@ public class AdministracionPerfilSteps {
 
     @And("{actor} confirma la contrasenia {string}")
     public void elvisConfirmaLaContrasenia(Actor actor, String contrasenia) {
-        actor.attemptsTo(Enter.theValue(contrasenia).into(CONTRASENIA));
+        actor.attemptsTo(Confirmar.contrasenia(contrasenia));
     }
 
     @Then("{actor} deberia poder ver que los campos CLABE y Titular se pueden editar")
     public void elvisDeberiaPoderVerQueLosCamposCLABEYTitularSePuedenEditar(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(NOMBRE_TITULAR,isVisible()).forNoMoreThan(ofSeconds(15)),
+                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(NOMBRE_TITULAR).isEnabled(),
                 Ensure.that(CLABE_INTERBANCARIA).isEnabled()
+        );
+    }
+
+    @Then("{actor} debaria ver el mensaje Contraseña incorrecta")
+    public void elvisDebariaVerElMensajeContraseñaIncorrecta(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(CONTRASENIA_INCORRECTA).isDisplayed()
+        );
+    }
+
+    @And("{actor} cancela la actualizacion de los datos bancarios")
+    public void elvisCancelaLaActualizacionDeLosDatosBancarios(Actor actor) {
+        actor.attemptsTo(
+                Cancelar.laActualizacionDeDatosBancarios()
+        );
+    }
+
+    @Then("{actor} deberia ver la pantalla de datos bancarios con los campos deshabilitados")
+    public void elvisDeberiaVerLaPantallaDeDatosBancariosConLosCamposDesabilitados(Actor actor) {
+        actor.attemptsTo(
+                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(NOMBRE_TITULAR).not().isEnabled(),
+                Ensure.that(CLABE_INTERBANCARIA).not().isEnabled()
+        );
+    }
+
+    @And("{actor} cancela la actualizacion de datos pero continua editando")
+    public void elvisCancelaLaActualizacionDeDatosPeroContinuaEditando(Actor actor) {
+        actor.attemptsTo(
+                Cancelar.laActualizacionDeDatosBancariosYSeguirEditando()
+        );
+    }
+
+    @And("{actor} intenta guardar los datos actualizados y cancela el guardado de datos")
+    public void elvisIntentaGuardarLosDatosActualizadosYCancelaElGuardadoDeDatos(Actor actor) {
+        actor.attemptsTo(Cancelar.guardadoDeDatos());
+    }
+
+    @When("{actor} edita sus datos bancarios con clabe {string} y titular {string}")
+    public void elvisEditaSusDatosBancariosConClabeYTitular(Actor actor, String clabe, String titular) {
+        actor.remember("clabe", clabe);
+        actor.remember("titular", titular);
+        actor.attemptsTo(
+                Click.on(EDITAR),
+                Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia"))
+        );
+        actor.attemptsTo(Editar.losDatosBancarios(clabe,titular));
+
+    }
+
+    @Then("{actor} deberia poder ver el mensaje de guardado con exito")
+    public void elvisDeberiaPoderVerElMensajeDeGuardadoConExito(Actor actor) {
+        actor.attemptsTo(
+                WaitUntil.the(MENSAJE_GUARDADO_EXITOSO, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(MENSAJE_GUARDADO_EXITOSO).isDisplayed()
+        );
+    }
+
+    //TODO Guardar estos datos en un archivo y modificarlos automaticamente
+    @And("{actor} deberia poder ver los datos actualizados correctamente")
+    public void elvisDeberiaPoderVerLosDatosActualizadosCorrectamente(Actor actor) {
+        actor.attemptsTo(
+                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(NOMBRE_TITULAR).not().isEnabled(),
+                Ensure.that(CLABE_INTERBANCARIA).not().isEnabled(),
+                Ensure.that(NOMBRE_TITULAR).text().isEqualToIgnoringCase(actor.recall("titular")),
+                Ensure.that(CLABE_INTERBANCARIA).text().isEqualToIgnoringCase(actor.recall("clabe"))
+
         );
     }
 }
