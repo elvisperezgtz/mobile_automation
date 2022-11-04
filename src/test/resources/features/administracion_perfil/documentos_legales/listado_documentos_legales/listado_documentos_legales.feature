@@ -10,7 +10,6 @@ Feature: Visualizacion de documentos legales
     And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
     And  Elvis ingresa a la opcion de Documentos legales
 
-
   Scenario: Visualizar listado de documentos legales
     Then Elvis deberia poder ver las opciones de Terminos y condiciones y Politica de Privacidad
 
