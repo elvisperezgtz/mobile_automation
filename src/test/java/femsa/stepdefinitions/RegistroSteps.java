@@ -1,6 +1,5 @@
 package femsa.stepdefinitions;
 
-import femsa.utils.GetProperty;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -25,7 +24,7 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPres
 import static femsa.user_interfaces.PasswordUI.*;
 import static femsa.user_interfaces.RegistroUI.*;
 
-public class RegistroStep {
+public class RegistroSteps {
 
     @Managed(driver = "appium")
     private AppiumDriver driver;

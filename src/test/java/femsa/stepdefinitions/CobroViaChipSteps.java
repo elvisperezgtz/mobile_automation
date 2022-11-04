@@ -3,18 +3,12 @@ package femsa.stepdefinitions;
 import femsa.tasks.Cacelar;
 import femsa.tasks.Cobrar;
 import femsa.tasks.Reintentar;
-import femsa.user_interfaces.CobroUI;
-import femsa.user_interfaces.HomeUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import java.time.Duration;
 
 import static femsa.user_interfaces.CobroUI.COBRAR;
 import static femsa.user_interfaces.CobroUI.TARJETA_BLOQUEADA;
@@ -23,7 +17,7 @@ import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
 
-public class CobroViaChip {
+public class CobroViaChipSteps {
 
     @When("{actor} realiza el cobro con monto {string} y concepto {string}")
     public void elvisRealizaElCobroConMontoMontoYConceptoConcepto(Actor actor, String monto, String concepto) {
