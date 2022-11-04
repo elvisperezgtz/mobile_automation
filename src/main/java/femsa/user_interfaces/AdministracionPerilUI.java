@@ -9,8 +9,9 @@ public class AdministracionPerilUI {
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[2]"))
             .locatedForIOS(By.xpath(""));
 
-
-
+    public static final Target DOCUMENTOS_LEGALES = Target.the("boton Documentos Legales")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Documentos legales']"))
+            .locatedForIOS(By.xpath(""));
 
 
 }

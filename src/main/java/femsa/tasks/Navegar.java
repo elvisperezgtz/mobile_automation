@@ -1,16 +1,12 @@
 package femsa.tasks;
 
-import femsa.user_interfaces.AdministracionPerilUI;
-import femsa.user_interfaces.HomeUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import java.time.Duration;
-
 import static femsa.user_interfaces.AdministracionPerilUI.CLABE;
+import static femsa.user_interfaces.AdministracionPerilUI.DOCUMENTOS_LEGALES;
 import static femsa.user_interfaces.HomeUI.*;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
@@ -24,11 +20,19 @@ public class Navegar {
                 Click.on(CONECTAR_DISPOSITIVO)
                 );
     }
-    public static Performable aAdministracionDePerfil(){
+    public static Performable aLaPantallaDeDatosBancarios(){
         return Task.where("{0} navega hasta la pantalla de administracion de perfil",
                 WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(PERFIL),
                 Click.on(CLABE)
         );
     }
+    public static Performable aLaPantallaDocumentosLegales(){
+        return Task.where("{0} navega hasta la pantalla de Documentos legales",
+                WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(PERFIL),
+                Click.on(DOCUMENTOS_LEGALES)
+        );
+    }
+
 }
