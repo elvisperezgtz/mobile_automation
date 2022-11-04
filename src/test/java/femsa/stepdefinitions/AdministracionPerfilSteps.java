@@ -134,4 +134,9 @@ public class AdministracionPerfilSteps {
 
         );
     }
+
+    @And("{actor} ingresa a la opcion de Administracion de Perfil")
+    public void elvisIngresaALaOpcionDeAdministracionDePerfil(Actor actor) {
+        actor.attemptsTo(Navegar.aLaPantallaAdministracionDePerfil());
+    }
 }

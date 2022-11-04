@@ -20,5 +20,4 @@ public class DocumentosUI {
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@text='Aviso de privacidad'])[2]"))
             .locatedForIOS(By.xpath(""));
 
-
 }
