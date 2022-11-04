@@ -22,16 +22,20 @@ public class Navegar {
     }
     public static Performable aLaPantallaDeDatosBancarios(){
         return Task.where("{0} navega hasta la pantalla de administracion de perfil",
-                WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Click.on(PERFIL),
+               Navegar.aLaPantallaAdministracionDePerfil(),
                 Click.on(CLABE)
         );
     }
     public static Performable aLaPantallaDocumentosLegales(){
         return Task.where("{0} navega hasta la pantalla de Documentos legales",
-                WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Click.on(PERFIL),
+                aLaPantallaAdministracionDePerfil(),
                 Click.on(DOCUMENTOS_LEGALES)
+        );
+    }
+ public static Performable aLaPantallaAdministracionDePerfil(){
+        return Task.where("{0} navega hasta la pantalla de administracion de perfil",
+                WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(PERFIL)
         );
     }
 

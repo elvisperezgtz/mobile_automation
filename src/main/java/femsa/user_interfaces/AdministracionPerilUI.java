@@ -13,5 +13,18 @@ public class AdministracionPerilUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Documentos legales']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target CERRAR_SESION = Target.the("boton cerrar sesion")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
+            .locatedForIOS(By.xpath(""));
+
+     public static final Target CANCELAR = Target.the("boton cancelar cerrar sesion")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
+            .locatedForIOS(By.xpath(""));
+
+     public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SÍ, CERRAR SESIÓN']"))
+            .locatedForIOS(By.xpath(""));
+
+
 
 }
