@@ -26,10 +26,10 @@ public class AdministracionPerilUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target AYUDA = Target.the("boton Ayuda")
-            .locatedForAndroid(By.xpath(""))
+            .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[3]"))
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=' '])[3]"));
 
     public static final Target PREGUNTAS_FRECUENTES = Target.the("titulo Preguntas Frecuentes")
-            .locatedForAndroid(By.xpath(""))
+            .locatedForAndroid(By.xpath("(//android.widget.TextView[@text='Preguntas frecuentes'])[2]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Preguntas frecuentes']"));
 }
