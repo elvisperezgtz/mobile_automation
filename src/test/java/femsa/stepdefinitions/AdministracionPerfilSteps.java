@@ -161,4 +161,11 @@ public class AdministracionPerfilSteps {
                         .then(Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed())
         );
     }
+
+    @When("{actor} ingresa a la opcion datos personales")
+    public void elvisIngresaALaOpcionDatosPersonales(Actor actor) {
+        actor.attemptsTo(Navegar.aLaPantallaDeDatosPersonales());
+    }
+
+
 }

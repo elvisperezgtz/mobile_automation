@@ -1,12 +1,16 @@
 package femsa.tasks;
 
+import femsa.user_interfaces.EdicionDatosPersonalesUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
+import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
+import static femsa.user_interfaces.EdicionDatosPersonalesUI.EDITAR;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
 public class Editar {
@@ -24,6 +28,24 @@ public class Editar {
                 Editar.formularioDeDatosBancarios(clabe, titular),
                 Click.on(GUARDAR),
                 Click.on(CONFIRMAR)
+        );
+    }
+     public static Performable datosPersonales(String nombre, String apellidos, String email) {
+        return Task.where("{0} edita sus datos personales",
+
+                Click.on(EDITAR),
+                Confirmar.contrasenia(OnStage.theActorInTheSpotlight().recall("contrasenia")),
+                WaitUntil.the(NOMBRE, isEnabled()),
+                Editar.formularioDeDatosPersonales(nombre,apellidos,email),
+                Click.on(GUARDAR),
+                Click.on(GUARDAR_CAMBIOS)
+        );
+    }
+    public static Performable formularioDeDatosPersonales(String nombre, String apellidos, String email) {
+        return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
+                Enter.theValue(nombre).into(NOMBRE),
+                Enter.theValue(apellidos).into(APELLIDOS),
+                Enter.theValue(email).into(EMAIL)
         );
     }
 }

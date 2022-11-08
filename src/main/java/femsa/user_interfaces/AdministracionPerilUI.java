@@ -32,4 +32,9 @@ public class AdministracionPerilUI {
     public static final Target PREGUNTAS_FRECUENTES = Target.the("titulo Preguntas Frecuentes")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@text='Preguntas frecuentes'])[2]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Preguntas frecuentes']"));
+
+    public static final Target EDITAR = Target.the("boton editar Datos Personales")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
+            .locatedForIOS(By.xpath(""));
+
 }

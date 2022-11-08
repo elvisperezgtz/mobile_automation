@@ -5,8 +5,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.AdministracionPerilUI.CLABE;
-import static femsa.user_interfaces.AdministracionPerilUI.DOCUMENTOS_LEGALES;
+import static femsa.user_interfaces.AdministracionPerilUI.*;
 import static femsa.user_interfaces.HomeUI.*;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
@@ -36,6 +35,12 @@ public class Navegar {
         return Task.where("{0} navega hasta la pantalla de administracion de perfil",
                 WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(PERFIL)
+        );
+    }
+    public static Performable aLaPantallaDeDatosPersonales(){
+        return Task.where("{0} navega hasta la pantalla de administracion de perfil",
+                Navegar.aLaPantallaAdministracionDePerfil(),
+                Click.on(EDITAR)
         );
     }
 
