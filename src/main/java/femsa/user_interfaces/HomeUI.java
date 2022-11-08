@@ -19,7 +19,7 @@ public class HomeUI {
 
     public static final Target PERFIL = Target.the("administracion de perfil")
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='title'])[3]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Perfil']"));
 
 
 

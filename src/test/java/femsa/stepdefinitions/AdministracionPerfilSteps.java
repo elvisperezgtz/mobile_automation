@@ -1,17 +1,20 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.Cancelar;
-import femsa.tasks.Confirmar;
-import femsa.tasks.Editar;
-import femsa.tasks.Navegar;
+import femsa.tasks.*;
+import femsa.user_interfaces.AdministracionPerilUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_old.Ac;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import java.time.Duration;
+
+import static femsa.user_interfaces.AdministracionPerilUI.PREGUNTAS_FRECUENTES;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -138,5 +141,27 @@ public class AdministracionPerfilSteps {
     @And("{actor} ingresa a la opcion de Administracion de Perfil")
     public void elvisIngresaALaOpcionDeAdministracionDePerfil(Actor actor) {
         actor.attemptsTo(Navegar.aLaPantallaAdministracionDePerfil());
+    }
+
+    @When("{actor} ingresa a la pantalla de administracion de perfil")
+    public void elvisIngresaALaPantallaDeAdministracionDePerfil(Actor actor) {
+        actor.attemptsTo(
+                Navegar.aLaPantallaAdministracionDePerfil()
+        );
+    }
+
+    @When("{actor} ingresa a la opcion Ayuda")
+    public void elvisIngresaALaOpcionAyuda(Actor actor) {
+        actor.attemptsTo(
+                Ingresar.aLaPantallaAyuda()
+        );
+    }
+
+    @Then("{actor} deberia ver la pantalla de FAQ's")
+    public void elvisDeberiaVerLaPantallaDeFAQS(Actor actor) {
+        actor.attemptsTo(
+                WaitUntil.the(PREGUNTAS_FRECUENTES, isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+                        .then(Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed())
+        );
     }
 }

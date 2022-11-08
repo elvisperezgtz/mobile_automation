@@ -5,6 +5,7 @@ import femsa.interactions.Esperar;
 import femsa.interactions.GetOtp;
 import femsa.interactions.SelectFromDropDown;
 import femsa.models.Usuario;
+import femsa.user_interfaces.AdministracionPerilUI;
 import femsa.user_interfaces.DatosBancariosUI;
 import femsa.user_interfaces.DatosPersonalesUI;
 import femsa.user_interfaces.PasswordUI;
@@ -13,11 +14,14 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import static femsa.interactions.Ejecutar.elComandoAdb;
+import static femsa.user_interfaces.AdministracionPerilUI.AYUDA;
 import static femsa.user_interfaces.DatosBancariosUI.CLABE;
 import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.DatosPersonalesUI.*;
@@ -84,5 +88,10 @@ public class Ingresar {
                 GetOtp.fromSMS(),
                 Ingresar.codigoDeValidacion(OnStage.theActorInTheSpotlight().recall("otp"))
         );
+    }
+    public static Performable aLaPantallaAyuda(){
+        return Task.where("{0} ingresa a la opcion Ayuda",
+                WaitUntil.the(AYUDA, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(AYUDA));
     }
 }
