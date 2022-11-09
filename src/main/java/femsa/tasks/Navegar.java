@@ -38,9 +38,14 @@ public class Navegar {
         );
     }
     public static Performable aLaPantallaDeDatosPersonales(){
-        return Task.where("{0} navega hasta la pantalla de administracion de perfil",
+        return Task.where("{0} navega hasta la pantalla de edicion de datos personales",
                 Navegar.aLaPantallaAdministracionDePerfil(),
                 Click.on(EDITAR)
+        );
+    }  public static Performable aLaPantallaDeDatosDeNegocio(){
+        return Task.where("{0} navega hasta la pantalla de datos de negocio",
+                Navegar.aLaPantallaAdministracionDePerfil(),
+                Click.on(NEGOCIO)
         );
     }
 
