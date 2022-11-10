@@ -13,6 +13,7 @@ import java.time.Duration;
 
 import static femsa.user_interfaces.AdministracionPerilUI.PREGUNTAS_FRECUENTES;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
+import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;

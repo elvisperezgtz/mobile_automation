@@ -1,5 +1,5 @@
 @sprint7
-@edicionDatosNegocio
+#@editarDatosNegocio
 Feature: Visualizar Pantalla "Edicion de datos de negocio"
 
   yo como usuario tendero
@@ -11,7 +11,8 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
     And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
     When Elvis ingresa a la opcion datos de negocio
 
-  Scenario: Edicion de datos de negocio exitoso
+#  @editarDatosNegocio
+  Scenario: Edicion de datos de negocio
     When Elvis edita los datos de negocio
       | Nombre      | Actividad  | CodigoPostal |
       | Bug Hunters | ASOCIACIÓN | 50004        |
@@ -19,3 +20,9 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
     And Elvis deberia ver los datos actualizados correctamente
       | Nombre      | Actividad  | CodigoPostal |
       | Bug Hunters | ASOCIACIÓN | 50004        |
+
+  @editarDatosNegocio
+  Scenario: Validar que el boton Editar solicite la validacion de contrasenia
+    When Elvis intenta editar los datos del negocio
+    Then Elvis deberia ver la solicitud de confirmacion de su contrasenia
+

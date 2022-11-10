@@ -13,7 +13,7 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
   Scenario: Visualizar datos personales
     Then Elvis deberia ver sus datos personales registrados
       | Nombre | Apellidos | Email        |
-      | Juan   | Gomez     | jg@gmail.com |
+      | Juan Jose  | Gomez     | jg@gmail.com |
 
 #  @editarDatosPersonales
   Scenario: Visualizar confirmar contrasenia antes de editar datos personales

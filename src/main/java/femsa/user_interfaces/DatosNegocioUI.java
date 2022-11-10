@@ -18,8 +18,15 @@ public class DatosNegocioUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target EDITAR= Target.the("boton Editar")
-            .locatedForAndroid(By.xpath("//android.view.View[@content-desc='EDIT_CONSTRAINT_CONTENT']/android.widget.ScrollView/android.widget.EditText[2]"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target CANCELAR= Target.the("boton Editar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar']"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target GUARDAR= Target.the("boton Editar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar']"))
+            .locatedForIOS(By.xpath(""));
 
 }

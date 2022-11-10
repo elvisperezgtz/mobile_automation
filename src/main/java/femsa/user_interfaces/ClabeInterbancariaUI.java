@@ -8,9 +8,6 @@ public class ClabeInterbancariaUI {
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath(""));
 
-        public static final Target CONTRASENIA = Target.the("campo contrasenia")
-            .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
-            .locatedForIOS(By.xpath(""));
 
     public static final Target CLABE_INTERBANCARIA = Target.the("campo Clabe interbancaria")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[2]"))
@@ -24,17 +21,11 @@ public class ClabeInterbancariaUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target CONFIRMA_TU_CONTRASENIA = Target.the("titulo Confirma tu contrasenia")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Confirma tu contrase\u00f1a']"))
-            .locatedForIOS(By.xpath("//android.widget.TextView[@text='Ingresar']"));
 
     public static final Target CANCELAR = Target.the("boton Cancelar del modal Confirma tu contrasenia")
             .locatedForAndroid(By.xpath("(//android.widget.Button)[1]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target CONTINUAR = Target.the("boton Continuar del modal Confirma tu contrasenia")
-            .locatedForAndroid(By.xpath("(//android.widget.Button)[2]"))
-            .locatedForIOS(By.xpath(""));
 
     public static final Target CANCELAR_EDICION = Target.the("boton Cancelar edicion")
             .locatedForAndroid(By.xpath("(//android.widget.Button)[2]"))
