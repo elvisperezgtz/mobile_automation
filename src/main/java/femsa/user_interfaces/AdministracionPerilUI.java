@@ -17,11 +17,11 @@ public class AdministracionPerilUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
             .locatedForIOS(By.xpath(""));
 
-     public static final Target CANCELAR = Target.the("boton cancelar cerrar sesion")
+    public static final Target CANCELAR = Target.the("boton cancelar cerrar sesion")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
             .locatedForIOS(By.xpath(""));
 
-     public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
+    public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SÍ, CERRAR SESIÓN']"))
             .locatedForIOS(By.xpath(""));
 
@@ -36,5 +36,10 @@ public class AdministracionPerilUI {
     public static final Target EDITAR = Target.the("boton editar Datos Personales")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath(""));
+
+    public static final Target NEGOCIO = Target.the("boton Negocio")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Negocio']"))
+            .locatedForIOS(By.xpath(""));
+
 
 }

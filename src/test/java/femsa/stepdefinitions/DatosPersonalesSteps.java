@@ -12,7 +12,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import java.util.List;
 import java.util.Map;
 
-import static femsa.user_interfaces.ClabeInterbancariaUI.CONFIRMA_TU_CONTRASENIA;
+import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
 import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
