@@ -15,7 +15,7 @@ public class AdministracionPerilUI {
 
     public static final Target CERRAR_SESION = Target.the("boton cerrar sesion")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cerrar sesión']"));
 
     public static final Target CANCELAR = Target.the("boton cancelar cerrar sesion")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
@@ -23,7 +23,7 @@ public class AdministracionPerilUI {
 
     public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SÍ, CERRAR SESIÓN']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Si, cerrar sesión']"));
 
     public static final Target AYUDA = Target.the("boton Ayuda")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[3]"))
@@ -40,6 +40,5 @@ public class AdministracionPerilUI {
     public static final Target NEGOCIO = Target.the("boton Negocio")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Negocio']"))
             .locatedForIOS(By.xpath(""));
-
 
 }
