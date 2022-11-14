@@ -16,6 +16,7 @@ import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class AdministracionPerfilSteps {
@@ -158,7 +159,7 @@ public class AdministracionPerfilSteps {
     @Then("{actor} deberia ver la pantalla de FAQ's")
     public void elvisDeberiaVerLaPantallaDeFAQS(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(PREGUNTAS_FRECUENTES, isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+                WaitUntil.the(PREGUNTAS_FRECUENTES, isCurrentlyVisible()).forNoMoreThan(Duration.ofSeconds(10))
                         .then(Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed())
         );
     }

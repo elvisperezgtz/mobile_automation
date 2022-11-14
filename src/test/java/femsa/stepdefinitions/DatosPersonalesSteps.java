@@ -22,7 +22,6 @@ public class DatosPersonalesSteps {
     public void elvisDeberiaVerSusDatosPersonalesRegistrados(Actor actor, DataTable datosPersonales) {
         List<Map<String, String>> rows = datosPersonales.asMaps(String.class, String.class);
 
-
         actor.attemptsTo(
                 Ensure.that(NOMBRE).text().isEqualToIgnoringCase(rows.get(0).get("Nombre")),
                 Ensure.that(APELLIDOS).text().isEqualToIgnoringCase(rows.get(0).get("Apellidos")),
@@ -62,7 +61,6 @@ public class DatosPersonalesSteps {
                 Ensure.that(EMAIL).text().isEqualToIgnoringCase(rows.get(0).get("Email"))
         );
     }
-
 
     @Then("{actor} deberia ver la imagen de perfil compuesta por la primera letra del nombre y del apellido")
     public void elvisDeberiaVerLaImagenDePerfilCompuestaPorLaPrimeraLetraDelNombreYDelApellido(Actor actor) {
