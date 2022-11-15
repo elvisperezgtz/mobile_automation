@@ -21,9 +21,21 @@ public class LoginUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeOther"));
 
- public static final Target MENSAJE_ERROR = Target.the("mensaje de error usuario no registrado ")
+    public static final Target MENSAJE_ERROR = Target.the("mensaje de error usuario no registrado")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther"));
+
+    public static final Target AYUDA = Target.the("boton Ayuda de la pantalla login")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target TITULO_AYUDA = Target.the("titulo Ayuda de la pantalla login")
+            .locatedForAndroid(By.xpath("(//android.widget.TextView[@text='Aviso de privacidad'])[2]"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target OLVIDE_MI_CONTRASENIA = Target.the("opcion olvide mi contrasenia")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Olvidé mi contraseña']"))
+            .locatedForIOS(By.xpath(""));
 
 
 }

@@ -71,3 +71,8 @@ serenity {
 gradle.startParameter.continueOnFailure = true
 
 test.finalizedBy(aggregate)
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+

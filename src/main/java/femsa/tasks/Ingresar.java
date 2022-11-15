@@ -54,7 +54,7 @@ public class Ingresar {
     }
 
     public static Performable unaContrasenia(String contrasenia) {
-        return Task.where("{0} ingresa una contraseña para su cuenta",
+        return Task.where("{0} ingresa una contrasenia para su cuenta",
                 WaitUntil.the(PasswordUI.TITULO, isPresent()).forNoMoreThan(ofSeconds(5))
                         .then(Enter.theValue(contrasenia).into(CONTRASENIA))
         );

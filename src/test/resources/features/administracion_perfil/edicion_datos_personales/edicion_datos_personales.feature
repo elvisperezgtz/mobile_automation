@@ -12,8 +12,8 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
 #@editarDatosPersonales
   Scenario: Visualizar datos personales
     Then Elvis deberia ver sus datos personales registrados
-      | Nombre | Apellidos | Email        |
-      | Juan Jose  | Gomez     | jg@gmail.com |
+      | Nombre    | Apellidos | Email        |
+      | Juan Jose | Gomez     | jg@gmail.com |
 
 #  @editarDatosPersonales
   Scenario: Visualizar confirmar contrasenia antes de editar datos personales
@@ -30,9 +30,9 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
       | Nombre    | Apellidos | Email        |
       | Juan Jose | Gomez     | jg@gmail.com |
 
-    @editarDatosPersonales
-    Scenario: Validar composicion de la imagen del perfil
-      Then Elvis deberia ver la imagen de perfil compuesta por la primera letra del nombre y del apellido
+  @editarDatosPersonales
+  Scenario: Validar composicion de la imagen del perfil
+    Then Elvis deberia ver la imagen de perfil compuesta por la primera letra del nombre y del apellido
 
 
 

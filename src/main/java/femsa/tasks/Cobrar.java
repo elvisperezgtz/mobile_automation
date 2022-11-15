@@ -1,15 +1,11 @@
 package femsa.tasks;
 
 import femsa.user_interfaces.HomeUI;
-import femsa.user_interfaces.VinculacionExitosaUI;
 import femsa.user_interfaces.VinculacionUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import java.time.Duration;
 
 import static femsa.user_interfaces.CobroUI.COBRAR;
 import static femsa.user_interfaces.VinculacionUI.BOTON_CONTINUAR;
