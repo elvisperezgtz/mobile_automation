@@ -11,7 +11,7 @@ Feature: FAQ's en seccion "Ayuda" de pantalla "Perfil"
     And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
     When Elvis ingresa a la pantalla de administracion de perfil
 
-  @faq
+  @faq  @smoke
   Scenario: Validar que la opcion Ayuda nos redireccione a la pantalla FAQ's
     When Elvis ingresa a la opcion Ayuda
     Then Elvis deberia ver la pantalla de FAQ's

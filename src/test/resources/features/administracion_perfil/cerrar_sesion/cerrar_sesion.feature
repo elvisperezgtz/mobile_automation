@@ -12,6 +12,7 @@ Feature: Cerrar Sesion
     And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
     And  Elvis ingresa a la opcion de Administracion de Perfil
 
+  @smoke
     Scenario: Cierre de sesion
       When Elvis cierra la sesion de la app
       Then Elvis deberia ver la pantalla de inicio de sesion

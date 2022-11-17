@@ -8,7 +8,7 @@ Feature: Pantallas introductorias
 
 #    Background: El usuario tiene acceso a la app
 
-  @pantallasIntro
+  @pantallasIntro @smoke
   Scenario: Navegacion por las pantallas introductorias por medio de gestos
     Given Elvis tiene acceso a la App de Mpos
     When Elvis realiza el tutorial introductorio
