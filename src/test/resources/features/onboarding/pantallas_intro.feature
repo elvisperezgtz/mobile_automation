@@ -1,4 +1,4 @@
-@Sprint_1
+@Sprint_1 @regresion
 Feature: Pantallas introductorias
   Como Usuario Tendero
   Quiero visualizar las pantallas con la informacion introductoria del producto

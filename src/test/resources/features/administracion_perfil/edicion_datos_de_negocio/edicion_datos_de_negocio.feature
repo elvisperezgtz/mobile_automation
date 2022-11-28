@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 #@editarDatosNegocio
 Feature: Visualizar Pantalla "Edicion de datos de negocio"
 

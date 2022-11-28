@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 Feature: Detalle de datos bancarios
   yo como usuario tendero
   quiero de una pantalla que me permita visualizar los datos bancarios registrados en el proceso de onboarding de la aplicacion

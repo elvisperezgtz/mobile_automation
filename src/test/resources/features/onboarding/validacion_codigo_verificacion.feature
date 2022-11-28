@@ -1,4 +1,4 @@
-
+@regresion
 Feature: Visualizar pantalla de verificacion
   Como Usuario
   Quiero visualizar una pantalla que me permita ingresar el codigo de verificacion recibido via SMS

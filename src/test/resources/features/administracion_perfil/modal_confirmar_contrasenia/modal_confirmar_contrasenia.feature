@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 @modalPassword
 Feature: Visualizar modal "Confirmar contraseña"
 

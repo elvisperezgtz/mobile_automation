@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 
 Feature: FAQ's en seccion "Ayuda" de pantalla "Perfil"
 

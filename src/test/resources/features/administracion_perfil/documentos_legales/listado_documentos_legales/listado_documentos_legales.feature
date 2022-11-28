@@ -1,5 +1,5 @@
 @sprint7
-@documentosLegales
+@documentosLegales @regresion
 Feature: Visualizacion de documentos legales
   Yo como usuario tendero
   Requiero que a partir del elemento  “Documentos legales” del listado de la pantalla “Administracion de Perfil” se desprenda una pantalla adicional que muestre el listado de “Documentos” disponibles

@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 @cerrarSesion
 Feature: Cerrar Sesion
   Yo como usuario tendero

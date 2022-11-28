@@ -1,3 +1,4 @@
+@regresion
 Feature: Autorizar privilegios Bluetooth
 
   Yo como Usuario Tendero

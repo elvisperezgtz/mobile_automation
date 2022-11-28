@@ -1,4 +1,4 @@
-@login
+@login @regresion
 Feature: Login
 
 

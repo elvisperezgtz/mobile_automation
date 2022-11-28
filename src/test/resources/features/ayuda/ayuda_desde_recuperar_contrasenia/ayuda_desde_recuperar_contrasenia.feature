@@ -1,4 +1,4 @@
-@ayuda @sprint8
+@ayuda @sprint8 @regresion
 Feature: Ayuda desde pantalla de recuperar contrasenia
   Como usuario tendero
   Quiero

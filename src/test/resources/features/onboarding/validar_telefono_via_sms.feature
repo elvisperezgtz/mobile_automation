@@ -1,4 +1,4 @@
-@registro @Sprint_1
+@registro @Sprint_1 @regresion
 Feature: Formulario de registro
 
   Como Usuario

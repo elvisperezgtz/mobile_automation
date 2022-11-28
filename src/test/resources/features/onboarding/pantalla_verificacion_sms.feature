@@ -1,3 +1,4 @@
+@regresion
 Feature: Visualizar pantalla de verificación de código vía SMS
 
   Como Usuario

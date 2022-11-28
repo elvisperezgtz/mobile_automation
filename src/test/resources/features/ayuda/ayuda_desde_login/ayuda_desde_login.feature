@@ -1,4 +1,4 @@
-@ayuda @sprint8
+@ayuda @sprint8 @regresion
 Feature: Solicitar "Ayuda" desde el login
   Como usuario tendero
   Quiero

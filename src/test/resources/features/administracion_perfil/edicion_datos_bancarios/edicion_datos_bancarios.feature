@@ -1,4 +1,4 @@
-@sprint7
+@sprint7 @regresion
 Feature: Visualizar Pantalla "Edicion datos bancarios"
   yo como usuario tendero
   Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion,

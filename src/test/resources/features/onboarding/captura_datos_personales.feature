@@ -1,4 +1,4 @@
-@Sprint_2
+@Sprint_2 @regresion
 Feature: Visualizar pantalla de captura de datos Personales & Negocio
   Como Usuario
   Quiero visualizar un pantalla que me permita ingresar mis datos personales y de negocio
