@@ -13,6 +13,8 @@ Feature: Transaccion Exitosa via chip
     When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
     Then Elvis deberia poder ver que el cobro se realizo con exito
 
+  #Todo Completar el escenario
+
 #  Scenario: Cobro via chip - redireccion a la pantalla Home
 #    When Elvis realiza el cobro con monto "1010" y concepto "bebidas"
 #    And Elvis finaliza la transaccion en la pantalla de "Transaccion exitosa"

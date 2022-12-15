@@ -1,5 +1,5 @@
 @sprint7 @regresion
-@modalPassword
+@modalConfirmarContrasenia
 Feature: Visualizar modal "Confirmar contraseña"
 
   Yo como usuario tendero
@@ -11,12 +11,10 @@ Feature: Visualizar modal "Confirmar contraseña"
     And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
     When Elvis ingresa a la opcion datos personales
 
-
   Scenario: Validar redireccionamiento a la pantalla de datos personales al presionar el boton cancelar
     When Elvis intenta editar sus datos personales
     And Elvis presiona el boton cancelar
     Then Elvis deberia ver la pantalla de datos personales con los campos deshabilitados
-
 
   Scenario: Validar que al presionar el boton Continuar habilite los campos para editar los datos
     When Elvis intenta editar sus datos personales

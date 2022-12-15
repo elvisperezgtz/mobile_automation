@@ -5,7 +5,11 @@ Feature: Visualizar pantalla de verificacion
   Para verificar mi dispositivo movil como una forma de contacto valida mostrando el mensaje de exito
   o error correspondiente
 
+  #Todo automatizar casos
   Scenario: Ingresar codigo SMS incorrecto
   Scenario: Ingresar codigo SMS incorrecto- caracteres especiales
-  Scenario: Ingresar codigo SMS correcto
+  Scenario: Ingresar codigo SMS incorrecto- codigo incorrecto
+  Scenario: Ingresar codigo SMS vacio
+  Scenario: Gestos de retorno
+
 

@@ -3,12 +3,15 @@ package femsa.stepdefinitions;
 
 import femsa.tasks.Completar;
 import femsa.user_interfaces.OnBoardingUI;
+import femsa.user_interfaces.RegistroUI;
 import io.appium.java_client.AppiumDriver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
@@ -43,4 +46,6 @@ public class OnBoardingSteps {
                 Ensure.that(OnBoardingUI.TITULO.waitingForNoMoreThan(ofSeconds(20))).isDisplayed()
         );
     }
+
+
 }

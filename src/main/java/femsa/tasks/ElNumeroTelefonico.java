@@ -4,13 +4,10 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
 
-import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
-import static femsa.user_interfaces.OnBoardingUI.EMPEZAR_REGISTRO;
 import static femsa.user_interfaces.RegistroUI.*;
+import static java.time.Duration.ofSeconds;
 
 public class ElNumeroTelefonico implements Task {
     private String numeroTelefonico;
@@ -29,8 +26,7 @@ public class ElNumeroTelefonico implements Task {
             e.printStackTrace();
         }
         actor.attemptsTo(
-                WaitUntil.the(EMPEZAR_REGISTRO, isClickable()).forNoMoreThan(ofSeconds(15)),
-                Click.on(EMPEZAR_REGISTRO),
+                Empezar.registro(),
                 Enter.theValue(numeroTelefonico).into(TELEFONO.waitingForNoMoreThan(ofSeconds(15))),
                 Click.on(ACEPTO),
                 Click.on(ENVIAR_CODIGO_SMS)
