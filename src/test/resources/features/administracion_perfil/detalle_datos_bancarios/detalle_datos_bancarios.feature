@@ -1,4 +1,4 @@
-@sprint7 @regresion @editarDetalleDatosBancarios
+@sprint7 @regresion @editarDetalleDatosBancarios @perfil
 Feature: Detalle de datos bancarios
   yo como usuario tendero
   quiero de una pantalla que me permita visualizar los datos bancarios registrados en el proceso de onboarding de la aplicacion
@@ -6,7 +6,7 @@ Feature: Detalle de datos bancarios
 
   Background: El usuario se encuentra en la opcion de datos bancarios
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos bancarios
 
   Scenario: Validar pantalla de datos bancarios

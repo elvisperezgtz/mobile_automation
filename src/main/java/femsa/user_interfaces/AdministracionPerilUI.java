@@ -9,21 +9,13 @@ public class AdministracionPerilUI {
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[2]"))
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[2]"));
 
+    public static final Target LOGO = Target.the("Logo")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='JG']"))
+            .locatedForIOS(By.xpath(""));
+
     public static final Target DOCUMENTOS_LEGALES = Target.the("boton Documentos Legales")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Documentos legales']"))
             .locatedForIOS(By.xpath("(//XCUIElementTypeImage[@name=\"continuePurple\"])[2]"));
-
-    public static final Target CERRAR_SESION = Target.the("boton cerrar sesion")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cerrar sesión']"));
-
-    public static final Target CANCELAR = Target.the("boton cancelar cerrar sesion")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
-            .locatedForIOS(By.xpath(""));
-
-    public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SÍ, CERRAR SESIÓN']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Si, cerrar sesión']"));
 
     public static final Target AYUDA = Target.the("boton Ayuda")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[3]"))
@@ -40,5 +32,20 @@ public class AdministracionPerilUI {
     public static final Target NEGOCIO = Target.the("boton Negocio")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Negocio']"))
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[1]"));
+
+    public static final Target NOMBRE_USUARIO = Target.the("Nombre usuario")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Juan Gil']"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target NUMERO_TELEFONICO = Target.the("Numero de telefono")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='5521996723']"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target AUTORIZAR_DISPOSITIVO = Target.the("opcion Autorizar dispositivo")
+            .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc=\"TEXT_TITLE\"])[4]"))
+            .locatedForIOS(By.xpath(""));
+    public static final Target CERRAR_SESION = Target.the("boton cerrar sesion")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cerrar sesión']"));
 
 }

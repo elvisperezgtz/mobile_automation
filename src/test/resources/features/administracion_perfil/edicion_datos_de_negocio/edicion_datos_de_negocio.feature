@@ -1,4 +1,4 @@
-@sprint7 @regresion
+@sprint7 @regresion @perfil
 @editarDatosNegocio
 Feature: Visualizar Pantalla "Edicion de datos de negocio"
 
@@ -8,7 +8,7 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
 
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos de negocio
 
   Scenario: Edicion de datos de negocio

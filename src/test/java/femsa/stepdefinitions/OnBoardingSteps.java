@@ -3,15 +3,13 @@ package femsa.stepdefinitions;
 
 import femsa.tasks.Completar;
 import femsa.user_interfaces.OnBoardingUI;
-import femsa.user_interfaces.RegistroUI;
+import femsa.user_interfaces.Registrate3PasosUI;
 import io.appium.java_client.AppiumDriver;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
@@ -36,7 +34,7 @@ public class OnBoardingSteps {
     public void elRealizaElTutorialIntroductorio(Actor actor) {
                 actor.attemptsTo(
                 Completar.elTutorial(),
-                        WaitUntil.the(OnBoardingUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(10))
+                        WaitUntil.the(Registrate3PasosUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(10))
         );
 
     }

@@ -1,4 +1,4 @@
-@sprint7 @regresion
+@sprint7 @regresion @perfil
 @modalConfirmarContrasenia
 Feature: Visualizar modal "Confirmar contraseña"
 
@@ -8,7 +8,7 @@ Feature: Visualizar modal "Confirmar contraseña"
 
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos personales
 
   Scenario: Validar redireccionamiento a la pantalla de datos personales al presionar el boton cancelar

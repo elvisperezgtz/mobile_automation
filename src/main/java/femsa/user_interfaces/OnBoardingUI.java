@@ -12,13 +12,6 @@ public class OnBoardingUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc='ONBOARDING_TEXT_TITLE']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target EMPEZAR_REGISTRO = Target.the("boton Empezar mi registro")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Empezar mi registro']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Empezar mi registro   ']"));
-
-    public static final Target YA_TENGO_CUENTA = Target.the("boton Ya tengo cuenta")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text = 'Ya tengo cuenta']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@label='Ya tengo cuenta']"));
 
 
 }

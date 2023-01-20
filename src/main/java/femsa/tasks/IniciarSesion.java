@@ -5,7 +5,8 @@ import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 
-import static femsa.user_interfaces.OnBoardingUI.YA_TENGO_CUENTA;
+import static femsa.user_interfaces.Registrate3PasosUI.YA_TENGO_CUENTA;
+
 
 public class IniciarSesion {
 

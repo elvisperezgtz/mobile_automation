@@ -1,4 +1,4 @@
-@sprint7 @regresion @editarDatosPersonales
+@sprint7 @regresion @editarDatosPersonales @perfil
 Feature: Visualizar Pantalla "Edicion de datos personales"
   Yo como usuario tendero
   Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion,
@@ -6,13 +6,13 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
 
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos personales
 
   Scenario: Visualizar datos personales
     Then Elvis deberia ver sus datos personales registrados
       | Nombre    | Apellidos | Email        |
-      | Juan Jose | Gomez     | jg@gmail.com |
+      | Juan Jose | Gomez Jimenez   | jg@mail.com |
 
   Scenario: Visualizar confirmar contrasenia antes de editar datos personales
     When Elvis intenta editar sus datos personales

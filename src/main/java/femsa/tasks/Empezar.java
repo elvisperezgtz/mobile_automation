@@ -5,7 +5,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.OnBoardingUI.EMPEZAR_REGISTRO;
+
+import static femsa.user_interfaces.Registrate3PasosUI.EMPEZAR_REGISTRO;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 

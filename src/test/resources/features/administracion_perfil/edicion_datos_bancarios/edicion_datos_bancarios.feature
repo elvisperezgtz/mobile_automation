@@ -1,4 +1,4 @@
-@sprint7 @regresion @editarDatosBancarios
+@sprint7 @regresion @editarDatosBancarios @perfil
 Feature: Visualizar Pantalla "Edicion datos bancarios"
   yo como usuario tendero
   Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion,
@@ -7,7 +7,7 @@ Feature: Visualizar Pantalla "Edicion datos bancarios"
 
   Background: El usuario se encuentra en la opcion de datos bancarios
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos bancarios
 
   Scenario: Verificar rediccionamiento a la pantalla Editar datos bancarios al ingresar una contrasenia valida
