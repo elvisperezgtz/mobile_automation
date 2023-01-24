@@ -35,7 +35,7 @@ public class Editar {
      public static Performable datosPersonales(String nombre, String apellidos, String email) {
         return Task.where("{0} edita sus datos personales",
                 Click.on(EDITAR),
-                Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia")),
+                Confirmar.contrasenia("Femsa123"),
                 WaitUntil.the(NOMBRE, isEnabled()),
                 Editar.formularioDeDatosPersonales(nombre,apellidos,email),
                 Click.on(GUARDAR),

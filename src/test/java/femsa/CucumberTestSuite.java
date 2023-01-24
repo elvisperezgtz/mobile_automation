@@ -8,6 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/test/resources/features",
-        tags = "@cerrarSesion"
+        tags = "@prueba1"
 )
 public class CucumberTestSuite {}

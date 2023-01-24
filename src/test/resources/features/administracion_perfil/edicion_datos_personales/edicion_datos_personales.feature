@@ -11,8 +11,8 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
 
   Scenario: Visualizar datos personales
     Then Elvis deberia ver sus datos personales registrados
-      | Nombre    | Apellidos | Email        |
-      | Juan Jose | Gomez Jimenez   | jg@mail.com |
+      | Nombre    | Apellidos     | Email       |
+      | Juan Jose | Gomez Jimenez | jg@mail.com |
 
   Scenario: Visualizar confirmar contrasenia antes de editar datos personales
     When Elvis intenta editar sus datos personales
@@ -31,5 +31,35 @@ Feature: Visualizar Pantalla "Edicion de datos personales"
     Then Elvis deberia ver la imagen de perfil compuesta por la primera letra del nombre y del apellido
 
 
+  Scenario: Validar obligatoriedad del campo Nombre
+    When Elvis borra el contenido del campo Nombre e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
 
+
+  Scenario: Validar obligatoriedad del campo Apellidos
+    When Elvis borra el contenido del campo Apellidos e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+  Scenario: Validar obligatoriedad del campo Email
+    When Elvis borra el contenido del campo Email e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+
+  Scenario: Validar que no se permita cambiar el correo por otro correo registrado previamente en el sistema
+    When Elvis cambia el correo registrado por otro correo registrado previamente
+    Then Elvis deberia ver la alerta "Este email ya tiene una cuenta"
+
+
+  Scenario: Verificar validacion de formato de correo electronico
+    When Elvis modifica el correo electronico "corre@sinformato"
+    Then Elvis deberia ver la alerta con el texto "Formato de email incorrecto"
+
+  @prueba1 @hookDatosPersonales
+  Scenario: Verificar cambio de logo al modificar nombres y apellidos desde el perfil
+    When Elvis modifica su nombre "Felix" y apellidos "Sabas"
+    Then Elvis deberia ver el logo modificado con las iniciales "FS"
+
+  Scenario: Verificar cambio del titulo en la pantalla perfil al realizar cambio de nombres y apellidos
+
+  Scenario: Verificar inicio de sesion con correo modificado
 

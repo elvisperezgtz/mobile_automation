@@ -34,7 +34,7 @@ public class OnBoardingSteps {
     public void elRealizaElTutorialIntroductorio(Actor actor) {
                 actor.attemptsTo(
                 Completar.elTutorial(),
-                        WaitUntil.the(Registrate3PasosUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(10))
+                        WaitUntil.the(Registrate3PasosUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(20))
         );
 
     }

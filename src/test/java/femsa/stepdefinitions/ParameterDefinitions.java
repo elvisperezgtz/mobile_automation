@@ -1,10 +1,14 @@
 package femsa.stepdefinitions;
 
+import femsa.utils.database.FindUser;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+
+import java.sql.SQLException;
 
 public class ParameterDefinitions {
 
@@ -24,5 +28,13 @@ public class ParameterDefinitions {
 //                Commands.execute("adb uninstall com.oxxo.Mpos.dev");
 //    }
 
+    @Before("@hookDatosPersonales")
+    public void setDefaultUser() throws SQLException {
+        FindUser.andUpdate();
+    }
+    @After("@hookDatosPersonales")
+    public void backupUser() throws SQLException {
+        FindUser.andUpdate();
+    }
 
 }
