@@ -1,6 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.*;
+import femsa.user_interfaces.AdministracionPerilUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -112,7 +113,7 @@ public class AdministracionPerfilSteps {
                 Click.on(EDITAR),
                 Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia"))
         );
-        actor.attemptsTo(Editar.losDatosBancarios(clabe,titular));
+        actor.attemptsTo(Editar.losDatosBancarios(clabe, titular));
 
     }
 
@@ -169,4 +170,9 @@ public class AdministracionPerfilSteps {
         actor.attemptsTo(Navegar.aLaPantallaDeDatosPersonales());
     }
 
+    @Then("{actor} deberia poder ver el numero de telefono registrado")
+    public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
+        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NUMERO_TELEFONICO).isDisplayed());
+
+    }
 }
