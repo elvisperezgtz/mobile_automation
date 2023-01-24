@@ -1,6 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.IniciarSesion;
+import femsa.utils.Await;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -45,16 +46,11 @@ public class LoginSteps {
 
     @Then("{actor} deberia poder ver el mensaje de error {string}")
     public void elvisDeberiaPoderVerElMensajeError(Actor actor, String mensajeError) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Await.during(2000);
         actor.attemptsTo(
                 WaitUntil.the(MENSAJE_ERROR, isPresent()).forNoMoreThan(ofSeconds(10)),
                 Ensure.that(MENSAJE_ERROR).isDisplayed()
         );
     }
-
 
 }
