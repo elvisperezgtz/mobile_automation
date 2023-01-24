@@ -43,5 +43,8 @@ public class EdicionDatosPersonalesUI {
     public static final Target MENSAJE_FORMATO_INCORRECTO = Target.the("alerta Formato de email incorrecto")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Formato de email incorrecto']"))
             .locatedForIOS(By.xpath(""));
+  public static final Target ATRAS = Target.the("boton atras")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_BACK\"]"))
+            .locatedForIOS(By.xpath(""));
 
 }
