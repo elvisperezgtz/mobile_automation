@@ -10,7 +10,7 @@ public class AdministracionPerilUI {
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[2]"));
 
     public static final Target LOGO = Target.the("Logo")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='JG']"))
+            .locatedForAndroid(By.xpath("(//android.widget.TextView)[1]"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target DOCUMENTOS_LEGALES = Target.the("boton Documentos Legales")
@@ -34,7 +34,7 @@ public class AdministracionPerilUI {
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[1]"));
 
     public static final Target NOMBRE_USUARIO = Target.the("Nombre usuario")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Juan Gil']"))
+            .locatedForAndroid(By.xpath("(//android.widget.TextView)[2]"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target NUMERO_TELEFONICO = Target.the("Numero de telefono")
