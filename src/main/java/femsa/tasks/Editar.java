@@ -17,6 +17,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
 public class Editar {
+    private Editar(){}
     public static Performable formularioDeDatosBancarios(String clabe, String titular) {
         return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
                 Enter.theValue(titular).into(NOMBRE_TITULAR),
