@@ -5,7 +5,9 @@ import femsa.interactions.Hide;
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirmar;
 import femsa.tasks.Editar;
+import femsa.user_interfaces.AdministracionPerilUI;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -129,7 +131,7 @@ public class DatosPersonalesSteps {
                 Confirmar.contrasenia("Femsa123")
         );
         actor.attemptsTo(
-               Clear.textBox(EMAIL)
+                Clear.textBox(EMAIL)
         );
         actor.attemptsTo(
                 Enter.theValue("azcarate@palo-it.com").into(EMAIL));
@@ -168,7 +170,7 @@ public class DatosPersonalesSteps {
     public void elvisModificaSuNombreYApellidos(Actor actor, String nombres, String apellidos) {
 
         actor.attemptsTo(
-               Editar.datosPersonales(nombres,apellidos,"another@mail.com")
+                Editar.datosPersonales(nombres, apellidos, "another@mail.com")
         );
     }
 
@@ -177,5 +179,22 @@ public class DatosPersonalesSteps {
         actor.attemptsTo(
                 Ensure.that(LOGO.waitingForNoMoreThan(Duration.ofSeconds(15))).text().isEqualTo(iniciales)
         );
+    }
+
+    @And("{actor} regresa a la pantalla de perfil")
+    public void elvisRegresaALaPantallaDePerfil(Actor actor) {
+        actor.attemptsTo(Click.on(ATRAS));
+    }
+
+    @Then("{actor} deberia ver el logo en la pantalla Perfil modificado con las iniciales {string}")
+    public void elvisDeberiaVerElLogoEnLaPantallaPerfilModificadoConLasIniciales(Actor actor, String iniciales) {
+        actor.attemptsTo(
+                Ensure.that(AdministracionPerilUI.LOGO).text().isEqualTo(iniciales)
+        );
+    }
+
+    @And("{actor} deberia ver el titulo {string} en la pantalla perfil")
+    public void elvisDeberiaVerElTituloEnLaPantallaPerfil(Actor actor, String titulo) {
+        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NOMBRE_USUARIO).text().isEqualTo(titulo));
     }
 }
