@@ -25,7 +25,23 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
     Then Elvis deberia ver la solicitud de confirmacion de su contrasenia
 
     #Todo
-    Scenario: Editar datos personales | fallido
-      #
+  Scenario: Editar datos personales | fallido
+
+  Scenario: validar obligatoriedad del campo Nombre de tu negocio
+    When Elvis borra el contenido del campo Nombre de tu negocio e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+
+  Scenario: validar obligatoriedad del campo Codigo postal
+    When Elvis borra el contenido del campo Codigo postal e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+  @prueba2
+  Scenario: validar que el campo Codigo postal no admita codigos postales no validos
+    When Elvis modifica el codigo postal por "50001"
+    Then Elvis deberia ver la alerta "El Código Postal es incorrecto"
+
+
+
 
 
