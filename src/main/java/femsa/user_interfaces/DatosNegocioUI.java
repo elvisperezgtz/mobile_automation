@@ -17,7 +17,7 @@ public class DatosNegocioUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='EDIT_CONSTRAINT_CONTENT']/android.widget.ScrollView/android.widget.EditText[2]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target EDITAR= Target.the("boton Editar")
+    public static final Target BOTON_EDITAR= Target.the("boton Editar")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath(""));
 
@@ -29,4 +29,7 @@ public class DatosNegocioUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target TITULO = Target.the("boton Editar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Tu negocio']"))
+            .locatedForIOS(By.xpath(""));
 }
