@@ -21,7 +21,7 @@ public class EdicionDatosPersonalesUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"PROFILE_PERSONALDATA_BTN_SAVE\"]"));
 
     public static final Target GUARDAR_CAMBIOS = Target.the("boton guardar cambios")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR']"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='GUARDAR CAMBIOS']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"Guardar\"]"));
 
     public static final Target CANCELAR = Target.the("boton cancelar")
