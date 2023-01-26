@@ -1,19 +1,22 @@
 package femsa.stepdefinitions;
 
+import femsa.tasks.Borrar;
+import femsa.tasks.Confirmar;
 import femsa.tasks.Editar;
 import femsa.tasks.Navegar;
-import femsa.user_interfaces.DatosNegocioUI;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
 import java.util.List;
 import java.util.Map;
 
 import static femsa.user_interfaces.DatosNegocioUI.*;
+import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
 
 public class DatosDeNegocioSteps {
     @When("{actor} ingresa a la opcion datos de negocio")
@@ -51,5 +54,40 @@ public class DatosDeNegocioSteps {
     public void elvisIntentaEditarLosDatosDelNegocio( Actor actor) {
 
                 actor.attemptsTo(Click.on(EDITAR));
+    }
+
+    @When("{actor} borra el contenido del campo Nombre de tu negocio e intenta guardar")
+    public void elvisBorraElContenidoDelCampoNombreDeTuNegocioEIntentaGuardar(Actor actor) {
+        actor.attemptsTo(
+                Click.on(EDITAR),
+                Confirmar.contrasenia("Femsa123")
+        );
+        actor.attemptsTo(
+                Borrar.campoEnNegocio(NOMBRE_NEGOCIO)
+        );
+    }
+
+    @When("{actor} borra el contenido del campo Codigo postal e intenta guardar")
+    public void elvisBorraElContenidoDelCampoCodigoPostalEIntentaGuardar(Actor actor) {
+        actor.attemptsTo(
+                Click.on(EDITAR),
+                Confirmar.contrasenia("Femsa123")
+        );
+        actor.attemptsTo(
+                Borrar.campoEnNegocio(CODIGO_POSTAL)
+        );
+    }
+
+    @When("{actor} modifica el codigo postal por {string}")
+    public void elvisModificaElCodigoPostalPor(Actor actor,String codigoPostal) {
+        actor.attemptsTo(
+                Click.on(EDITAR),
+                Confirmar.contrasenia("Femsa123")
+        );
+        actor.attemptsTo(
+                Enter.theValue(codigoPostal).into(CODIGO_POSTAL),
+                Click.on(GUARDAR),
+                Click.on(GUARDAR_CAMBIOS)
+        );
     }
 }
