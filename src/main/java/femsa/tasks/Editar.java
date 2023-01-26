@@ -53,7 +53,7 @@ public class Editar {
 
     public static Performable datosDelNegocio(String nombreNegocio, String actividadNegocio, String codigoPostal) {
         return Task.where("{0} edita sus datos personales",
-                Click.on(DatosNegocioUI.EDITAR),
+                Click.on(DatosNegocioUI.BOTON_EDITAR),
                 Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia")),
                 Editar.formularioDeDatosDeNegocio(nombreNegocio, actividadNegocio, codigoPostal),
                 Click.on(DatosNegocioUI.GUARDAR),
