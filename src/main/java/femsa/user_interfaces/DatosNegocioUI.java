@@ -32,4 +32,7 @@ public class DatosNegocioUI {
     public static final Target TITULO = Target.the("boton Editar")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Tu negocio']"))
             .locatedForIOS(By.xpath(""));
+    public static final Target CODIGO_POSTAL_INCORRECTO =  Target.the("boton Editar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este código postal es incorrecto']"))
+            .locatedForIOS(By.xpath(""));
 }
