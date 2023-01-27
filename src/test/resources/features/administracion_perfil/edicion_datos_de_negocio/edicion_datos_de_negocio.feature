@@ -36,10 +36,10 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
     When Elvis borra el contenido del campo Codigo postal e intenta guardar
     Then Elvis deberia ver la alerta "Este campo es obligatorio"
 
-  @prueba2
+  @codigoPostal
   Scenario: validar que el campo Codigo postal no admita codigos postales no validos
     When Elvis modifica el codigo postal por "50001"
-    Then Elvis deberia ver la alerta "El Código Postal es incorrecto"
+    Then Elvis deberia ver el mensaje "El Código Postal es incorrecto"
 
 
 
