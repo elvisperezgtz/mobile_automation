@@ -1,11 +1,15 @@
 package femsa.stepdefinitions;
 
+import femsa.interactions.Clear;
+import femsa.interactions.Hide;
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirmar;
 import femsa.tasks.Editar;
 import femsa.tasks.Navegar;
+import femsa.user_interfaces.DatosNegocioUI;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
@@ -85,9 +89,18 @@ public class DatosDeNegocioSteps {
                 Confirmar.contrasenia("Femsa123")
         );
         actor.attemptsTo(
+                Clear.textBox(CODIGO_POSTAL),
                 Enter.theValue(codigoPostal).into(CODIGO_POSTAL),
+                Hide.theKeyboard(),
                 Click.on(GUARDAR),
                 Click.on(GUARDAR_CAMBIOS)
+        );
+    }
+
+    @Then("{actor} deberia ver el mensaje {string}")
+    public void elvisDeberiaVerElMensaje(Actor actor, String error) {
+        actor.attemptsTo(
+                Ensure.that(DatosNegocioUI.CODIGO_POSTAL_INCORRECTO).text().isEqualTo(error)
         );
     }
 }
