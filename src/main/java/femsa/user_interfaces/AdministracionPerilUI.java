@@ -38,7 +38,7 @@ public class AdministracionPerilUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target NUMERO_TELEFONICO = Target.the("Numero de telefono")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='5521996723']"))
+            .locatedForAndroid(By.xpath("(//android.widget.TextView)[3]"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target AUTORIZAR_DISPOSITIVO = Target.the("opcion Autorizar dispositivo")
