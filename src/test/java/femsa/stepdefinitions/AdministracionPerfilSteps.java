@@ -172,7 +172,6 @@ public class AdministracionPerfilSteps {
 
     @Then("{actor} deberia poder ver el numero de telefono registrado")
     public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
-        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NUMERO_TELEFONICO).isDisplayed());
-
+        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
     }
 }
