@@ -2,10 +2,7 @@ package femsa.stepdefinitions;
 
 import femsa.interactions.Clear;
 import femsa.interactions.Hide;
-import femsa.tasks.Borrar;
-import femsa.tasks.Confirmar;
-import femsa.tasks.Editar;
-import femsa.tasks.Navegar;
+import femsa.tasks.*;
 import femsa.user_interfaces.DatosNegocioUI;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -19,8 +16,10 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import java.util.List;
 import java.util.Map;
 
-import static femsa.user_interfaces.DatosNegocioUI.*;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
+import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL;
+import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL_INCORRECTO;
+import static femsa.user_interfaces.EdicionDatosPersonalesUI.EDITAR;
+import static femsa.user_interfaces.HomeUI.NOMBRE_NEGOCIO;
 
 public class DatosDeNegocioSteps {
     @When("{actor} ingresa a la opcion datos de negocio")
@@ -32,7 +31,7 @@ public class DatosDeNegocioSteps {
 
     @When("{actor} edita los datos de negocio")
     public void elvisEditaLosDatosDeNegocio(Actor actor, DataTable datosNegocio) {
-        List<Map<String,String>>rows = datosNegocio.asMaps(String.class, String.class);
+        List<Map<String, String>> rows = datosNegocio.asMaps(String.class, String.class);
         actor.attemptsTo(
                 Editar.datosDelNegocio(
                         rows.get(0).get("Nombre"),
@@ -45,19 +44,18 @@ public class DatosDeNegocioSteps {
     @And("{actor} deberia ver los datos actualizados correctamente")
     public void elvisDeberiaVerLosDatosActualizadosCorrectamente(Actor actor, DataTable datosNegocio) {
 
-        List<Map<String,String>> rows = datosNegocio.asMaps(String.class, String.class);
+        List<Map<String, String>> rows = datosNegocio.asMaps(String.class, String.class);
         actor.attemptsTo(
-                Ensure.that(NOMBRE_NEGOCIO).text().isEqualTo(rows.get(0).get("Nombre")),
+                Ensure.that(DatosNegocioUI.NOMBRE_NEGOCIO).text().isEqualTo(rows.get(0).get("Nombre")),
 //                Ensure.that(ACTIVIDAD_DE_TU_NEGOCIO).text().isEqualTo(rows.get(0).get("Actividad")),
                 Ensure.that(CODIGO_POSTAL).text().isEqualTo(rows.get(0).get("CodigoPostal"))
         );
     }
 
-
     @When("{actor} intenta editar los datos del negocio")
-    public void elvisIntentaEditarLosDatosDelNegocio( Actor actor) {
+    public void elvisIntentaEditarLosDatosDelNegocio(Actor actor) {
 
-                actor.attemptsTo(Click.on(EDITAR));
+        actor.attemptsTo(Click.on(EDITAR));
     }
 
     @When("{actor} borra el contenido del campo Nombre de tu negocio e intenta guardar")
@@ -67,7 +65,7 @@ public class DatosDeNegocioSteps {
                 Confirmar.contrasenia("Femsa123")
         );
         actor.attemptsTo(
-                Borrar.campoEnNegocio(NOMBRE_NEGOCIO)
+                Borrar.campoEnNegocio(DatosNegocioUI.NOMBRE_NEGOCIO)
         );
     }
 
@@ -83,7 +81,7 @@ public class DatosDeNegocioSteps {
     }
 
     @When("{actor} modifica el codigo postal por {string}")
-    public void elvisModificaElCodigoPostalPor(Actor actor,String codigoPostal) {
+    public void elvisModificaElCodigoPostalPor(Actor actor, String codigoPostal) {
         actor.attemptsTo(
                 Click.on(EDITAR),
                 Confirmar.contrasenia("Femsa123")
@@ -92,15 +90,35 @@ public class DatosDeNegocioSteps {
                 Clear.textBox(CODIGO_POSTAL),
                 Enter.theValue(codigoPostal).into(CODIGO_POSTAL),
                 Hide.theKeyboard(),
-                Click.on(GUARDAR),
-                Click.on(GUARDAR_CAMBIOS)
+                Guardar.datos()
         );
     }
 
     @Then("{actor} deberia ver el mensaje {string}")
     public void elvisDeberiaVerElMensaje(Actor actor, String error) {
         actor.attemptsTo(
-                Ensure.that(DatosNegocioUI.CODIGO_POSTAL_INCORRECTO).text().isEqualTo(error)
+                Ensure.that(CODIGO_POSTAL_INCORRECTO).text().isEqualTo(error)
         );
     }
+
+    @When("{actor} cambia el nombre del negocio por {string}")
+    public void elvisCambiaElNombreDelNegocioPor(Actor actor, String negocio) {
+        actor.attemptsTo(
+                Modificar.nombreDeNegocio(negocio)
+        );
+    }
+
+    @And("{actor} ingresa al home de la aplicacion")
+    public void elvisIngresaAlHomeDeLaAplicacion(Actor actor) {
+        actor.attemptsTo(Navegar.desdeNegocioHastaHome());
+    }
+
+    @Then("{actor} deberia ver el nombre del negocio {string}")
+    public void elvisDeberiaVerElNombreDelNegocio(Actor actor, String nombreNegocio) {
+        actor.attemptsTo(
+                Ensure.that(NOMBRE_NEGOCIO).text().isEqualTo(nombreNegocio)
+        );
+    }
+
+
 }

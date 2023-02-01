@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.interactions.Digitar;
 import femsa.tasks.Confirmar;
 import femsa.user_interfaces.EdicionDatosPersonalesUI;
 import io.cucumber.java.en.And;
@@ -9,8 +10,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.ConfirmarContraseniaUI.CANCELAR;
-import static femsa.user_interfaces.ConfirmarContraseniaUI.MENSAJE_ERROR;
+import static femsa.user_interfaces.ConfirmarContraseniaUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -53,6 +53,24 @@ public class ModalConfirmarContraseniaSteps {
                 Ensure.that(EdicionDatosPersonalesUI.NOMBRE).isEnabled(),
                 Ensure.that(EdicionDatosPersonalesUI.APELLIDOS).isEnabled(),
                 Ensure.that(EdicionDatosPersonalesUI.EMAIL).isEnabled()
+        );
+    }
+
+    @And("{actor} ingresa una contrasenia con {int} caracteres")
+    public void elvisIngresaUnaContraseniaConCaracteres(Actor actor, int caracteres) {
+
+        String cadena = "1234567890123456789012345678901234";
+
+            actor.attemptsTo(
+                    Digitar.conTecladoNativo(cadena)
+            );
+
+    }
+
+    @Then("{actor} deberia ver que el campo contraseña solo tiene {int} caracteres")
+    public void elvisDeberiaVerQueElCampoContraseñaSoloTieneCaracteres(Actor actor, int caracteres) {
+        actor.attemptsTo(
+                Ensure.that(CONTRASENIA).text().hasSize(caracteres)
         );
     }
 }

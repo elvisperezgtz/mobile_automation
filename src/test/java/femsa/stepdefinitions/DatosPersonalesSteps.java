@@ -5,6 +5,7 @@ import femsa.interactions.Hide;
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirmar;
 import femsa.tasks.Editar;
+import femsa.tasks.Guardar;
 import femsa.user_interfaces.AdministracionPerilUI;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -137,8 +138,7 @@ public class DatosPersonalesSteps {
                 Enter.theValue("azcarate@palo-it.com").into(EMAIL));
         actor.attemptsTo(Hide.theKeyboard());
         actor.attemptsTo(
-                Click.on(GUARDAR_CAMBIOS),
-                Click.on(CONTINUAR)
+                Guardar.datos()
         );
     }
 

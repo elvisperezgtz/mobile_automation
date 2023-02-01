@@ -5,11 +5,13 @@ import femsa.utils.Await;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.LoginUI.*;
 import static femsa.utils.GetProperty.fromPropertyFile;
+import static femsa.utils.StringGenerator.generateRandomString;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 
@@ -53,4 +55,10 @@ public class LoginSteps {
         );
     }
 
+    @When("{actor} ingresa una contraseña de {int} caracteres")
+    public void elvisIngresaUnaContraseñaDeCaracteres(Actor actor, int caracteres) {
+        actor.attemptsTo(
+                Enter.theValue(generateRandomString(caracteres,false,true)).into(EMAIL_O_NUMERO)
+        );
+    }
 }
