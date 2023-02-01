@@ -14,4 +14,5 @@ public class Cerrar {
                 Click.on(CERRAR_SESION),
                 Click.on(SI_CERRAR_SESION));
     }
+
 }
