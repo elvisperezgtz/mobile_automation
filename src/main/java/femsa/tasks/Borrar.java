@@ -8,6 +8,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.targets.Target;
 
+import static femsa.user_interfaces.DatosBancariosUI.CLABE;
+import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.EdicionDatosPersonalesUI.LOGO;
 
 public class Borrar {
@@ -24,7 +26,18 @@ public class Borrar {
                 Clear.textBox(target),
                 SelectFromDropDown.byVisibleText(DatosNegocioUI.ACTIVIDAD_DE_TU_NEGOCIO,"ABARROTES Y MISCELANEAS")
         );
-
+    }
+    public static Performable elCampoNombreDelTitular(){
+        return Task.where("{0} borra el contenido del campo Nombre del titular",
+                Clear.textBox(NOMBRE_TITULAR)
+                        .then(Click.on(CLABE))
+        );
+    }
+    public static Performable elCampoCLABEInterbancaria(){
+        return Task.where("{0} borra el contenido del campo CLABE Interbancaria",
+                Clear.textBox(CLABE)
+                        .then(Click.on(NOMBRE_TITULAR))
+        );
     }
 
 }
