@@ -27,6 +27,12 @@ Feature: Visualizar modal "Confirmar contraseña"
     Then Elvis deberia ver el mensaje Contraseña incorrecta
     And Elvis deberia ver la pantalla de datos personales con los campos deshabilitados
 
+    @longitudCampo
+Scenario: Validar longitud del campo contraseña
+  When Elvis intenta editar sus datos personales
+  And Elvis ingresa una contrasenia con 33 caracteres
+  Then Elvis deberia ver que el campo contraseña solo tiene 32 caracteres
+
 
 
 

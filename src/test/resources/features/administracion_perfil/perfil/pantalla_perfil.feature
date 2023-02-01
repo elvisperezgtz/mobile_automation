@@ -12,7 +12,7 @@ Feature: Pantalla perfil
   Scenario: Verificar funcionalidad del boton Perfil
     Then Elvis deberia ver la pantalla de perfil con todos sus componentes
 
-  @prueba1 @Sprint2Q1
+  @prueba1 @Sprint2Q1 @numeroTelefonico
   Scenario: Visualizar numero telefonico en la pantalla perfil
     Then Elvis deberia poder ver el numero de telefono registrado
 
