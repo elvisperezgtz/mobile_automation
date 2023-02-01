@@ -3,6 +3,7 @@ package femsa.stepdefinitions;
 
 import femsa.tasks.Completar;
 import femsa.user_interfaces.OnBoardingUI;
+import femsa.user_interfaces.Registrate3PasosUI;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -33,7 +34,7 @@ public class OnBoardingSteps {
     public void elRealizaElTutorialIntroductorio(Actor actor) {
                 actor.attemptsTo(
                 Completar.elTutorial(),
-                        WaitUntil.the(OnBoardingUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(10))
+                        WaitUntil.the(Registrate3PasosUI.EMPEZAR_REGISTRO, isVisible()).forNoMoreThan(ofSeconds(20))
         );
 
     }
@@ -43,4 +44,6 @@ public class OnBoardingSteps {
                 Ensure.that(OnBoardingUI.TITULO.waitingForNoMoreThan(ofSeconds(20))).isDisplayed()
         );
     }
+
+
 }

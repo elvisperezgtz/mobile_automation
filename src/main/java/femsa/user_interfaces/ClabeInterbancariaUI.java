@@ -4,6 +4,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class ClabeInterbancariaUI {
+    private ClabeInterbancariaUI(){}
     public static final Target NOMBRE_TITULAR = Target.the("campo Nombre del titular")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath(""));

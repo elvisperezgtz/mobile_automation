@@ -1,14 +1,17 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.IniciarSesion;
+import femsa.utils.Await;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.LoginUI.*;
 import static femsa.utils.GetProperty.fromPropertyFile;
+import static femsa.utils.StringGenerator.generateRandomString;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 
@@ -45,15 +48,17 @@ public class LoginSteps {
 
     @Then("{actor} deberia poder ver el mensaje de error {string}")
     public void elvisDeberiaPoderVerElMensajeError(Actor actor, String mensajeError) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Await.during(2000);
         actor.attemptsTo(
                 WaitUntil.the(MENSAJE_ERROR, isPresent()).forNoMoreThan(ofSeconds(10)),
                 Ensure.that(MENSAJE_ERROR).isDisplayed()
         );
     }
 
+    @When("{actor} ingresa una contraseña de {int} caracteres")
+    public void elvisIngresaUnaContraseñaDeCaracteres(Actor actor, int caracteres) {
+        actor.attemptsTo(
+                Enter.theValue(generateRandomString(caracteres,false,true)).into(EMAIL_O_NUMERO)
+        );
+    }
 }

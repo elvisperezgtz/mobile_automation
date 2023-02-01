@@ -24,4 +24,8 @@ public class CommonsUI {
             .locatedForAndroid(By.id(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='OK']"));
 
+    public static final Target EDITAR = Target.the("boton Editar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='OK']"));
+
 }

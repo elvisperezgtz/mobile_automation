@@ -37,5 +37,8 @@ public class LoginUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Olvidé mi contraseña']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target ATRAS = Target.the("boton Atras")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_BACK\"]"))
+            .locatedForIOS(By.xpath(""));
 
 }

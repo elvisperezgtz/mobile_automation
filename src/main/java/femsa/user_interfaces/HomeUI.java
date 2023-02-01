@@ -10,7 +10,7 @@ public class HomeUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cobrar']"));
 
     public static final Target INICIO = Target.the("boton Inicio- Home")
-            .locatedForAndroid(By.xpath(""))
+            .locatedForAndroid(By.xpath("(//android.view.View[@content-desc=\"title\"])[1]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Inicio']"));
 
     public static final Target MOVIMIENTOS_HOY = Target.the("texto Movimientos hoy")
@@ -21,6 +21,7 @@ public class HomeUI {
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='title'])[3]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Perfil']"));
 
-
-
+    public static final Target NOMBRE_NEGOCIO =  Target.the("nombre del negocio")
+            .locatedForAndroid(By.xpath("(//android.widget.TextView)[15]"))
+            .locatedForIOS(By.xpath(""));
 }
