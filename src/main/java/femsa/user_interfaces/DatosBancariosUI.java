@@ -36,7 +36,21 @@ public class DatosBancariosUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'Ya casi')]"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target ALERTA_LONGITUD = Target.the("alerta La CLABE debe tener 18 dígitos")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"EDIT_CONSTRAINT_CONTENT\"]/android.widget.ScrollView/android.widget.TextView[2]"))
+            .locatedForIOS(By.xpath(""));
 
+    public static final Target ACTUALIZACION_EXITOSA= Target.the("Actualizaste tus datos")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Actualizaste tus datos']"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target CONFIRMAR = Target.the("boton Confirmar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'CONFIRMAR')]"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target BOTON_CANCELAR = Target.the("boton cancelar")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'CANCELAR')]"))
+            .locatedForIOS(By.xpath(""));
 
 
 }
