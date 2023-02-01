@@ -43,7 +43,7 @@ public class Visualizar {
                 WaitUntil.the(NEGOCIO, isVisible()).forNoMoreThan(ofSeconds(8)),
                 Ensure.that(LOGO).isDisplayed(),
                 Ensure.that(NOMBRE_USUARIO).isDisplayed(),
-//                Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
+                Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
                 Ensure.that(EDITAR).isDisplayed(),
                 Ensure.that(NEGOCIO).isDisplayed(),
                 Ensure.that(AYUDA).isDisplayed(),
