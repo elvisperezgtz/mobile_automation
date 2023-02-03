@@ -17,6 +17,9 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
 public class Editar {
+    private Editar() {
+    }
+
     public static Performable formularioDeDatosBancarios(String clabe, String titular) {
         return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
                 Enter.theValue(titular).into(NOMBRE_TITULAR),
@@ -28,20 +31,20 @@ public class Editar {
         return Task.where("{0} edita sus datos bancarios",
                 WaitUntil.the(CLABE_INTERBANCARIA, isEnabled()),
                 Editar.formularioDeDatosBancarios(clabe, titular),
-                Click.on(GUARDAR),
-                Click.on(CONFIRMAR)
+                Guardar.datos()
         );
     }
-     public static Performable datosPersonales(String nombre, String apellidos, String email) {
+
+    public static Performable datosPersonales(String nombre, String apellidos, String email) {
         return Task.where("{0} edita sus datos personales",
                 Click.on(EDITAR),
-                Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia")),
+                Confirmar.contrasenia("Femsa123"),
                 WaitUntil.the(NOMBRE, isEnabled()),
-                Editar.formularioDeDatosPersonales(nombre,apellidos,email),
-                Click.on(GUARDAR),
-                Click.on(GUARDAR_CAMBIOS)
+                Editar.formularioDeDatosPersonales(nombre, apellidos, email),
+                Guardar.datos()
         );
     }
+
     public static Performable formularioDeDatosPersonales(String nombre, String apellidos, String email) {
         return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
                 Enter.theValue(nombre).into(NOMBRE),
@@ -52,18 +55,18 @@ public class Editar {
 
     public static Performable datosDelNegocio(String nombreNegocio, String actividadNegocio, String codigoPostal) {
         return Task.where("{0} edita sus datos personales",
-                Click.on(DatosNegocioUI.EDITAR),
+                Click.on(DatosNegocioUI.BOTON_EDITAR),
                 Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia")),
                 Editar.formularioDeDatosDeNegocio(nombreNegocio, actividadNegocio, codigoPostal),
-                Click.on(DatosNegocioUI.GUARDAR),
-                Click.on(GUARDAR_CAMBIOS)
+                Guardar.datos()
 
         );
     }
+
     public static Performable formularioDeDatosDeNegocio(String nombreNegocio, String actividadNegocio, String codigoPostal) {
         return Task.where("{0} edita sus datos de su negocio en el formulario de datos de negocio",
                 Enter.theValue(nombreNegocio).into(NOMBRE_NEGOCIO),
-                SelectFromDropDown.byVisibleText(ACTIVIDAD_DE_TU_NEGOCIO,actividadNegocio),
+                SelectFromDropDown.byVisibleText(ACTIVIDAD_DE_TU_NEGOCIO, actividadNegocio),
                 Enter.theValue(codigoPostal).into(EMAIL)
         );
     }

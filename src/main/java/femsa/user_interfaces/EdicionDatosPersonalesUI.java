@@ -28,8 +28,23 @@ public class EdicionDatosPersonalesUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target CONTINUAR = Target.the("boton CONTINUAR")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR']"))
+            .locatedForIOS(By.xpath(""));
+
     public static final Target LOGO = Target.the("logo")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='EDIT_CONSTRAINT_CONTENT']/android.widget.ScrollView/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"PROFILE_PERSONALDATA_TITLE_LABEL\"]"));
+
+    public static final Target MENSAJE_CAMPO_OBLIGATORIO = Target.the("alerta Campo obligatorio")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este campo es obligatorio']"))
+            .locatedForIOS(By.xpath(""));
+
+    public static final Target MENSAJE_FORMATO_INCORRECTO = Target.the("alerta Formato de email incorrecto")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Formato de email incorrecto']"))
+            .locatedForIOS(By.xpath(""));
+  public static final Target ATRAS = Target.the("boton atras")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_BACK\"]"))
+            .locatedForIOS(By.xpath(""));
 
 }

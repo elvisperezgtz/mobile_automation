@@ -18,7 +18,8 @@ public class Llenar {
         return Task.where("{0} llena el formulario de inicio de sesion con sus credenciales",
                 Enter.theValue(usuario).into(EMAIL_O_NUMERO),
                 Enter.theValue(contrasenia).into(CONTRASENIA),
-                Hide.theKeyboard()
+                Check.whether(Validate.isIOS())
+                        .andIfSo(Hide.theKeyboard())
         );
     }
 

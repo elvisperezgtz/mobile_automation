@@ -1,6 +1,7 @@
 @login @regresion
-Feature: Login
 
+Feature: Login
+#Todo Agregar el sprint
 
   Background: El usuario se encuentra en home de la aplicacion
     Given Elvis realiza el tutorial introductorio
@@ -26,3 +27,7 @@ Feature: Login
       | "badUser" | ""            | campo contrasenia vacio                              |
       | ""        | ""            | campos requeridos vacios                             |
       | "abc"     | "Femsa2022"   | campo usuario con menos de los caracteres requeridos |
+#
+#    Scenario: Validar longitud del campo Contraseña
+#      When Elvis ingresa una contraseña de 33 caracteres
+#      Then Elvis deberia ver que el campo Contraseña solo permitio escribir 32 caracteres

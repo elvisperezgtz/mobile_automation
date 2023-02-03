@@ -1,16 +1,13 @@
 package femsa.stepdefinitions;
 
+import femsa.asserts.Visualizar;
 import femsa.tasks.Cerrar;
+import femsa.user_interfaces.LoginUI;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import static femsa.user_interfaces.LoginUI.CONTRASENIA;
-import static femsa.user_interfaces.LoginUI.EMAIL_O_NUMERO;
-import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import net.serenitybdd.screenplay.actions.Click;
 
 public class CerrarSesionSteps {
 
@@ -24,9 +21,36 @@ public class CerrarSesionSteps {
     @Then("{actor} deberia ver la pantalla de inicio de sesion")
     public void elvisDeberiaVerLaPantallaDeInicioDeSesion(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(EMAIL_O_NUMERO, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(EMAIL_O_NUMERO).isDisplayed(),
-                Ensure.that(CONTRASENIA).isDisplayed()
+                Visualizar.pantallaLogin()
+        );
+    }
+    @When("{actor} cierra la sesion de la app e intenta volver atras")
+    public void elvisCierraLaSesionDeLaAppEIntentaVolverAtras(Actor actor) {
+        actor.attemptsTo(
+                Cerrar.sesion(),
+                Visualizar.pantallaLogin(),
+                Click.on(LoginUI.ATRAS)
+        );
+
+    }
+
+    @Then("{actor} deberia ver la pantalla Registrate en tres pasos")
+    public void elvisDeberiaVerLaPantallaRegistrateEnTresPasos(Actor actor) {
+        actor.attemptsTo(
+                Visualizar.pantallaRegistrate3Pasos()
+        );
+    }
+
+    @Then("{actor} deberia ver el modal Quieres cerrar tu sesion")
+    public void elvisDeberiaVerElModalQuieresCerrarTuSesion(Actor actor) {
+        actor.attemptsTo();
+
+    }
+
+    @And("{actor} quiere cerrar la sesion activa")
+    public void elvisQuiereCerrarLaSesionActiva(Actor actor) {
+        actor.attemptsTo(
+
         );
     }
 }

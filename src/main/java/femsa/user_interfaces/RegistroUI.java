@@ -16,8 +16,8 @@ public class RegistroUI {
             .locatedForAndroid(By.xpath("//android.widget.CheckBox[@content-desc='REGISTERPHONENUMBER_CHECKBOX_TERMSANDCONDITIONS']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeImage[@name='REGISTER_IMAGEVIEW_CHECKBOX']"));
 
-    public static final Target ENVIAR_CODIGO_SMS = Target.the("checkbox Acepto aviso de privacidad")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Enviar c\u00F3digo por SMS']"))
+    public static final Target ENVIAR_CODIGO_SMS = Target.the("boton Enviar c\u00F3digo por SMS")
+            .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERPHONENUMBER_COLUMN\"]/android.view.View[5]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Enviar c\u00F3digo por SMS']"));
 
     public static final Target MENSAJE_ENVIO_SMS = Target.the("mensaje de confirmacion del envio del sms")

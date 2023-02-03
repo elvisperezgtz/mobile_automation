@@ -18,4 +18,5 @@ public class Confirmar {
                 Click.on(CONTINUAR)
         );
     }
+
 }

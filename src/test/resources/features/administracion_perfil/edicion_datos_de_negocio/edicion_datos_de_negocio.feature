@@ -1,5 +1,5 @@
-@sprint7 @regresion
-#@editarDatosNegocio
+@sprint7 @regresion @perfil
+@editarDatosNegocio
 Feature: Visualizar Pantalla "Edicion de datos de negocio"
 
   yo como usuario tendero
@@ -8,10 +8,9 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
 
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos de negocio
 
-#  @editarDatosNegocio
   Scenario: Edicion de datos de negocio
     When Elvis edita los datos de negocio
       | Nombre      | Actividad  | CodigoPostal |
@@ -21,8 +20,31 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
       | Nombre      | Actividad  | CodigoPostal |
       | Bug Hunters | ASOCIACIÓN | 50004        |
 
-  @editarDatosNegocio
   Scenario: Validar que el boton Editar solicite la validacion de contrasenia
     When Elvis intenta editar los datos del negocio
     Then Elvis deberia ver la solicitud de confirmacion de su contrasenia
+
+  Scenario: validar obligatoriedad del campo Nombre de tu negocio
+    When Elvis borra el contenido del campo Nombre de tu negocio e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+
+  Scenario: validar obligatoriedad del campo Codigo postal
+    When Elvis borra el contenido del campo Codigo postal e intenta guardar
+    Then Elvis deberia ver la alerta "Este campo es obligatorio"
+
+  @codigoPostal
+  Scenario: validar que el campo Codigo postal no admita codigos postales no validos
+    When Elvis modifica el codigo postal por "50001"
+    Then Elvis deberia ver el mensaje "El Código Postal es incorrecto"
+
+  @negocio
+  Scenario: Verificar que se actualice el nombre del negocio en el home
+    When Elvis cambia el nombre del negocio por "Surtitodo"
+    And Elvis ingresa al home de la aplicacion
+    Then Elvis deberia ver el nombre del negocio "Surtitodo"
+
+
+
+
 

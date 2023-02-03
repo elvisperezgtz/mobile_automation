@@ -1,4 +1,4 @@
-@registro @Sprint_1 @regresion
+@registro @Sprint1 @regresion
 Feature: Formulario de registro
 
   Como Usuario
@@ -24,3 +24,9 @@ Feature: Formulario de registro
   Scenario: Pantalla de envio de SMS, campo Telefono vacio
     And Elvis realiza el registro en la App con el numero de telefono ""
     Then Elvis deberia poder ver que el mensaje de error "El número es inválido"
+
+  Scenario: Pantalla de envio de SMS | no se debe habilitar el boton Continuar hasta que no acepten los terminos y condiciones
+    And Elvis ingresa el numero de telefono "5568721918"
+    Then Elvis deberia ver que el boton Enviar codigo por SMS esta deshabilitado
+
+

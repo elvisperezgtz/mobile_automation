@@ -11,15 +11,16 @@ public class Hide implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        if (Validate.isAndroid()){
-            //todo hide keyboard for android devices
-        }else if (Validate.isIOS()){
-           actor.attemptsTo(
-                   Click.on(CommonsUI.HIDE_KEYBOARD)
-           );
+        if (Validate.isAndroid()) {
+            actor.attemptsTo(Ejecutar.elComandoAdb("adb shell input keyevent KEYCODE_ESCAPE"));
+        } else if (Validate.isIOS()) {
+            actor.attemptsTo(
+                    Click.on(CommonsUI.HIDE_KEYBOARD)
+            );
         }
     }
-    public static Hide theKeyboard(){
+
+    public static Hide theKeyboard() {
         return Tasks.instrumented(Hide.class);
     }
 }

@@ -2,7 +2,7 @@ package femsa.stepdefinitions;
 
 import femsa.tasks.Navegar;
 import femsa.user_interfaces.LoginUI;
-import femsa.user_interfaces.OnBoardingUI;
+import femsa.user_interfaces.Registrate3PasosUI;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -48,7 +48,7 @@ public class AyudaSteps {
     @When("{actor} ingresa a la ayuda de la pantalla Ingresa tu numero")
     public void elvisIngresaALaAyudaDeLaPantallaIngresaTuNumero(Actor actor) {
         actor.attemptsTo(
-                Click.on(OnBoardingUI.EMPEZAR_REGISTRO),
+                Click.on(Registrate3PasosUI.EMPEZAR_REGISTRO),
                 Click.on(LoginUI.AYUDA)
         );
     }

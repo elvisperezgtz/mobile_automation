@@ -1,5 +1,5 @@
-@sprint7 @regresion
-@modalPassword
+@sprint7 @regresion @perfil
+@modalConfirmarContrasenia
 Feature: Visualizar modal "Confirmar contraseña"
 
   Yo como usuario tendero
@@ -8,15 +8,13 @@ Feature: Visualizar modal "Confirmar contraseña"
 
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos personales
-
 
   Scenario: Validar redireccionamiento a la pantalla de datos personales al presionar el boton cancelar
     When Elvis intenta editar sus datos personales
     And Elvis presiona el boton cancelar
     Then Elvis deberia ver la pantalla de datos personales con los campos deshabilitados
-
 
   Scenario: Validar que al presionar el boton Continuar habilite los campos para editar los datos
     When Elvis intenta editar sus datos personales
@@ -28,6 +26,22 @@ Feature: Visualizar modal "Confirmar contraseña"
     And Elvis ingresa una contrasenia "123Femsa"
     Then Elvis deberia ver el mensaje Contraseña incorrecta
     And Elvis deberia ver la pantalla de datos personales con los campos deshabilitados
+
+    @longitudCampo
+Scenario: Validar longitud del campo contraseña
+  When Elvis intenta editar sus datos personales
+  And Elvis ingresa una contrasenia con 33 caracteres
+  Then Elvis deberia ver que el campo contraseña solo tiene 32 caracteres
+
+
+
+
+
+
+
+
+
+
 
 
 
