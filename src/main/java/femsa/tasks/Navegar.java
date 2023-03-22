@@ -11,7 +11,7 @@ import static femsa.user_interfaces.AdministracionPerilUI.*;
 import static femsa.user_interfaces.HomeUI.PERFIL;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
-import static femsa.user_interfaces.Registrate3PasosUI.YA_TENGO_CUENTA;
+import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -61,9 +61,9 @@ public class Navegar {
 
     public static Performable aLaPantallaDeLogin() {
         return Task.where("{0} navega hasta la pantalla de login",
-                Completar.elTutorial(),
-                WaitUntil.the(YA_TENGO_CUENTA, isVisible()).forNoMoreThan(ofSeconds(10)),
-                Click.on(YA_TENGO_CUENTA)
+                Complete.theIntroductoryTutorial(),
+                WaitUntil.the(ALREADY_HAVE_ACCOUNT, isVisible()).forNoMoreThan(ofSeconds(10)),
+                Click.on(ALREADY_HAVE_ACCOUNT)
         );
     }
 
