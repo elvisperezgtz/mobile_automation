@@ -6,8 +6,8 @@ Feature: Cobro con tarjeta bloqueada
   para que pueda mostrarse la pantalla de error correspondiente en la aplicación.
 
   Background: El usuario se encuentra en home de la aplicacion
-    Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    Given Elvis Perform the introductory tutorial
+    And Elvis login with his credentials
 
 
   Scenario: Cobro via chip - Tarjeta bloqueada

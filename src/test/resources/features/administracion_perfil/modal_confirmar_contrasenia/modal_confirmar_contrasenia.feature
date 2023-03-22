@@ -7,7 +7,7 @@ Feature: Visualizar modal "Confirmar contraseña"
   de tal forma que el usuario tenga la seguridad que solo aquien conozca la contraseña podra visualizar o editar su informacion.
 
   Background: El usuario se encuentra en la opcion de datos personales
-    Given Elvis realiza el tutorial introductorio
+    Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos personales
 

@@ -7,7 +7,7 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
   de tal forma que el usuario pueda hacer los ajustes de su informacion segun lo requiera.
 
   Background: El usuario se encuentra en la opcion de datos personales
-    Given Elvis realiza el tutorial introductorio
+    Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos de negocio
 
