@@ -13,7 +13,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import femsa.interactions.GetOtp;
 import femsa.models.Usuario;
-import femsa.tasks.Completar;
+import femsa.tasks.Complete;
 import femsa.tasks.Ingresar;
 import femsa.tasks.Registrar;
 import femsa.user_interfaces.IntroDispositivoUI;
@@ -36,8 +36,8 @@ public class CapturaDatosPersonalesSteps {
     @Given("{actor} ha registrado su telefono")
     public void elvisHaRegistradoElTelefono(Actor actor) {
         actor.attemptsTo(
-                Completar.elTutorial(),
-                Registrar.elNumeroTelefonico(GetProperty.fromPropertyFile("src/test/resources/properties/usuario.properties","linea"))
+                Complete.theIntroductoryTutorial(),
+                Registrar.elNumeroTelefonico(GetProperty.fromPropertyFile("src/test/resources/properties/credentials.properties","linea"))
         );
     }
     @And("{actor} ingreso el codigo de validacion enviado a su celular")

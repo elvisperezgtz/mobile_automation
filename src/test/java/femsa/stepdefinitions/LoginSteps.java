@@ -1,64 +1,93 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.IniciarSesion;
-import femsa.utils.Await;
+import femsa.asserts.Visualize;
+import femsa.models.Credential;
+import femsa.tasks.Fill;
+import femsa.tasks.Login;
+import femsa.utils.Decoder;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.waits.WaitUntil;
+
+import java.io.IOException;
 
 import static femsa.user_interfaces.LoginUI.*;
-import static femsa.utils.GetProperty.fromPropertyFile;
-import static femsa.utils.StringGenerator.generateRandomString;
+import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
+import static femsa.utils.jsons.JsonTemplate.fromJsonToCredential;
 import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 
 public class LoginSteps {
 
-    @When("{actor} inicia sesion con su numero telefonico")
-    public void elvisIniciaSesionConSuNumeroTelefonico(Actor actor) {
-        String usuario = fromPropertyFile("src/test/resources/properties/usuario.properties", "linea");
-        String contrasenia = fromPropertyFile("src/test/resources/properties/usuario.properties", "contrasenia");
+    @Then("{actor} should see the message {string}")
+    public void heShouldSeeTheMessage(Actor actor, String message) {
         actor.attemptsTo(
-                IniciarSesion.conSusCredenciales(usuario, contrasenia)
+                Ensure.that(LOGGING_IN.waitingForNoMoreThan(ofSeconds(10))).text().isEqualTo(message)
         );
     }
 
-    @Then("{actor} deberia poder ver el mensaje {string}")
-    public void elvisDeberiaPoderVerElMensaje(Actor actor, String mensaje) {
+    @When("{actor} logs in by {string} with his {string}")
+    public void heLogsInByWithHis(Actor actor, String loginType, String credentialName) throws IOException {
+        Credential credential = fromJsonToCredential(loginType, credentialName);
         actor.attemptsTo(
-                Ensure.that(INICIANDO_SESION.waitingForNoMoreThan(ofSeconds(10))).isDisplayed()
+                Login
+                        .whit()
+                        .username(credential.getUsername())
+                        .andPassword(Decoder.decode(credential.getPassword()))
         );
     }
 
-    @When("{actor} inicia sesion con el usuario {string} y la contrasenia {string}")
-    public void elvisIniciaSesionConElUsuarioYLaContrasenia(Actor actor, String usuario, String contrasenia) {
-        actor.attemptsTo(
-                IniciarSesion.conSusCredenciales(usuario, contrasenia)
-        );
-        actor.remember("contrasenia", contrasenia);
+    @When("{actor} wants to login")
+    public void heWantsToLogin(Actor actor) {
+        actor.attemptsTo(Click.on(ALREADY_HAVE_ACCOUNT));
     }
 
-    @Then("{actor} deberia poder ver el boton Iniciar sesion deshabilitado")
-    public void elvisDeberiaPoderVerElBotonIniciarSesionDeshabilitado(Actor actor) {
-        actor.attemptsTo(Ensure.that(INICIAR_SESION).not().isEnabled());
+    @And("{actor} wants to go back")
+    public void heWantsToGoBack(Actor actor) {
+        actor.attemptsTo(Click.on(BACK));
     }
 
-    @Then("{actor} deberia poder ver el mensaje de error {string}")
-    public void elvisDeberiaPoderVerElMensajeError(Actor actor, String mensajeError) {
-        Await.during(2000);
+    @Then("{actor} should be able to see the Register in three steps screen")
+    public void heShouldBeAbleToSeeTheRegisterInThreeStepsScreen(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(MENSAJE_ERROR, isPresent()).forNoMoreThan(ofSeconds(10)),
-                Ensure.that(MENSAJE_ERROR).isDisplayed()
+                Visualize.registerInThreeStepsScreen()
         );
     }
 
-    @When("{actor} ingresa una contraseña de {int} caracteres")
-    public void elvisIngresaUnaContraseñaDeCaracteres(Actor actor, int caracteres) {
+    @Then("{actor} should see the alert {string}")
+    public void heShouldSeeTheAlert(Actor actor, String alert) {
         actor.attemptsTo(
-                Enter.theValue(generateRandomString(caracteres,false,true)).into(EMAIL_O_NUMERO)
+                Ensure.that(ALERT).text().isEqualTo(alert)
         );
     }
+
+    @When("{actor} enters a empty password")
+    public void heEntersAEmptyPassword(Actor actor) throws IOException {
+        actor.attemptsTo(
+                Fill.inTheLoginFormWithoutPassword()
+        );
+    }
+
+    @When("{actor} enters a empty email or phone number")
+    public void heEntersAEmptyEmailOrPhoneNumber(Actor actor) throws IOException {
+        actor.attemptsTo(
+              Fill.inTheLoginFormWithoutEmailOrPhoneNumber()
+        );
+    }
+
+    @When("{actor} wants to recover his password")
+    public void heWantsToRecoverHisPassword(Actor actor) {
+        actor.attemptsTo(
+                Click.on(ALREADY_HAVE_ACCOUNT),
+                Click.on(FORGOT_PASSWORD)
+        );
+    }
+
+    @Then("{actor} should see the Reset password screen")
+    public void heShouldSeeTheResetPasswordScreen(Actor actor) {
+        actor.attemptsTo(Visualize.resetPasswordScreen());
+    }
+
 }

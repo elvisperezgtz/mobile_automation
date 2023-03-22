@@ -1,0 +1,34 @@
+{
+  "data": {
+    "Elvis": {
+      "phoneNumber": "5521996723",
+      "email": "eperez@palo-it.com",
+      "password": "RmVtc2ExMjM="
+    },
+    "Nicole": {
+      "phoneNumber": "",
+      "email": "nn@palo-it.com",
+      "password": "RmVtc2ExMjM="
+    },
+    "valid credentials": {
+      "phoneNumber": "5512380167",
+      "email": "aazcarate@palo-it.com",
+      "password": "UHJ1ZWJhMTIzNA=="
+    },
+    "wrong credentials": {
+      "phoneNumber": "5555555555",
+      "email": "noemail@palo-it.com",
+      "password": "QmFkUGFzc3dvcmQ="
+    },
+    "password empty": {
+      "phoneNumber": "5555555555",
+      "email": "noemail@palo-it.com",
+      "password": ""
+    },
+    "username empty": {
+      "phoneNumber": "",
+      "email": "",
+      "password": "BadPassword"
+    }
+  }
+}

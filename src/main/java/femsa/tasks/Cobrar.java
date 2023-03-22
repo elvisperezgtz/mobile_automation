@@ -21,7 +21,7 @@ public class Cobrar {
                  * 1 preguntar por el SO
                  * 2 si es android, preguntar por la version del so
                  */
-                Llenar.elFormularioDeCobros(monto, concepto),
+                Fill.elFormularioDeCobros(monto, concepto),
                 Click.on(COBRAR),
                 Conectar.elDispositivoMpos(),
                 WaitUntil.the(VinculacionUI.VINCULACION_EXITOSA, isVisible()).forNoMoreThan(ofSeconds(15)),

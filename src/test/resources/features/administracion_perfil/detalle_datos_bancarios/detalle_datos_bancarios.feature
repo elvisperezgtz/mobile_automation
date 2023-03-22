@@ -5,7 +5,7 @@ Feature: Detalle de datos bancarios
   Para que me permita acceder a la edicion de los mismos a traves de un boton que ejecute la funcionalidad de “Validacion de identidad”.
 
   Background: El usuario se encuentra en la opcion de datos bancarios
-    Given Elvis realiza el tutorial introductorio
+    Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico
     When Elvis ingresa a la opcion datos bancarios
 

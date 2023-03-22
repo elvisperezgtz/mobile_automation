@@ -5,8 +5,8 @@ Feature: Transaccion Exitosa via chip
   Para que se indique al usuario el resultado de un cobro exitoso y se muestren en pantalla los datos basicos de la transaccion.
 
   Background: El usuario se encuentra en home de la aplicacion
-    Given Elvis realiza el tutorial introductorio
-    And Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
+    Given Elvis Perform the introductory tutorial
+    And Elvis login with his credentials
 
   @transaccionExitosa
   Scenario: Cobro via chip - Sin privilegios concedidos

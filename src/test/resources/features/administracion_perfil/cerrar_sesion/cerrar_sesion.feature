@@ -6,7 +6,7 @@ Feature: Cerrar Sesion
   Para que permita el cierre de la sesion activa del usuario en caso de que asi se requiera.
 
   Background: el usuario se encuentra en la administracion de perfil
-    Given Elvis realiza el tutorial introductorio
+    Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico
     And  Elvis ingresa a la opcion de Administracion de Perfil
 

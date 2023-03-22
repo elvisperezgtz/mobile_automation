@@ -1,6 +1,6 @@
 package femsa.stepdefinitions;
 
-import femsa.asserts.Visualizar;
+import femsa.asserts.Visualize;
 import femsa.tasks.Cerrar;
 import femsa.user_interfaces.LoginUI;
 import io.cucumber.java.en.And;
@@ -21,15 +21,15 @@ public class CerrarSesionSteps {
     @Then("{actor} deberia ver la pantalla de inicio de sesion")
     public void elvisDeberiaVerLaPantallaDeInicioDeSesion(Actor actor) {
         actor.attemptsTo(
-                Visualizar.pantallaLogin()
+                Visualize.pantallaLogin()
         );
     }
     @When("{actor} cierra la sesion de la app e intenta volver atras")
     public void elvisCierraLaSesionDeLaAppEIntentaVolverAtras(Actor actor) {
         actor.attemptsTo(
                 Cerrar.sesion(),
-                Visualizar.pantallaLogin(),
-                Click.on(LoginUI.ATRAS)
+                Visualize.pantallaLogin(),
+                Click.on(LoginUI.BACK)
         );
 
     }
@@ -37,7 +37,7 @@ public class CerrarSesionSteps {
     @Then("{actor} deberia ver la pantalla Registrate en tres pasos")
     public void elvisDeberiaVerLaPantallaRegistrateEnTresPasos(Actor actor) {
         actor.attemptsTo(
-                Visualizar.pantallaRegistrate3Pasos()
+                Visualize.registerInThreeStepsScreen()
         );
     }
 

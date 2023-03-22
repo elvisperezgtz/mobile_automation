@@ -1,6 +1,6 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.Empezar;
+import femsa.tasks.Begin;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -41,9 +41,9 @@ public class RegistroSteps {
     @When("{actor} realiza el registro en la App con su numero de telefono")
     public void el_realiza_el_registro_en_la_app_con_su_numero_de_telefono(Actor actor) {
         actor.attemptsTo(
-                Registrar.elNumeroTelefonico(fromPropertyFile("src/test/resources/properties/usuario.properties","linea"))
+                Registrar.elNumeroTelefonico(fromPropertyFile("src/test/resources/properties/credentials.properties","linea"))
         );
-        actor.remember("numero telefonico", fromPropertyFile("src/test/resources/properties/usuario.properties","linea"));
+        actor.remember("numero telefonico", fromPropertyFile("src/test/resources/properties/credentials.properties","linea"));
 
     }
 
@@ -181,7 +181,7 @@ public class RegistroSteps {
     @And("{actor} ingresa el numero de telefono {string}")
     public void elvisIngresaElNumeroDeTelefono(Actor actor, String telefono) {
         actor.attemptsTo(
-                Empezar.registro(),
+                Begin.registration(),
                 Enter.theValue(telefono).into(RegistroUI.TELEFONO));
 
     }

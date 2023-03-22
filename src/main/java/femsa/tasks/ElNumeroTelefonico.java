@@ -26,7 +26,7 @@ public class ElNumeroTelefonico implements Task {
             e.printStackTrace();
         }
         actor.attemptsTo(
-                Empezar.registro(),
+                Begin.registration(),
                 Enter.theValue(numeroTelefonico).into(TELEFONO.waitingForNoMoreThan(ofSeconds(15))),
                 Click.on(ACEPTO),
                 Click.on(ENVIAR_CODIGO_SMS)

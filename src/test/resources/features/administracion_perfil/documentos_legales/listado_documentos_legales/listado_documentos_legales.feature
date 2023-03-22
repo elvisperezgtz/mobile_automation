@@ -6,7 +6,7 @@ Feature: Visualizacion de documentos legales
   Para consultar desde la aplicacion, de tal forma que el usuario pueda consultar los terminos y condiciones que acepta al usar el producto.
 
   Background: el usuario se encuentra en la opcion de documentos legales
-    Given Elvis realiza el tutorial introductorio
+    Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico
     And  Elvis ingresa a la opcion de Documentos legales
 
