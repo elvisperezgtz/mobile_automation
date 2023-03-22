@@ -6,14 +6,14 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 
-import static femsa.user_interfaces.Registrate3PasosUI.EMPEZAR_REGISTRO;
+import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
-public class Empezar {
-    public static Performable registro() {
-        return Task.where(
-                WaitUntil.the(EMPEZAR_REGISTRO, isClickable()).forNoMoreThan(ofSeconds(15)),
-                Click.on(EMPEZAR_REGISTRO));
+public class Begin {
+    public static Performable registration() {
+        return Task.where("{0 begins registration process}",
+                WaitUntil.the(BEGIN_REGISTRATION, isClickable()).forNoMoreThan(ofSeconds(15)),
+                Click.on(BEGIN_REGISTRATION));
     }
 }
