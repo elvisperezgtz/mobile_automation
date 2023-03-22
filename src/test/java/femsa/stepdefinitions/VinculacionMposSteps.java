@@ -2,7 +2,7 @@ package femsa.stepdefinitions;
 
 import femsa.interactions.Ejecutar;
 import femsa.models.Usuario;
-import femsa.tasks.Completar;
+import femsa.tasks.Complete;
 import femsa.tasks.Conceder;
 import femsa.tasks.Conectar;
 import femsa.tasks.Desactivar;
@@ -65,7 +65,7 @@ public class VinculacionMposSteps {
         usuario.defaulValues();
         actor.attemptsTo(
                 Click.on(BOTON_CONTINUAR.waitingForNoMoreThan(Duration.ofSeconds(20))),
-                Completar.elProcesoDeOnboarding(usuario)
+                Complete.elProcesoDeOnboarding(usuario)
         );
     }
 
