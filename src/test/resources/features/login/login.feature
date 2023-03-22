@@ -1,33 +1,36 @@
 @login @regresion
 
 Feature: Login
-#Todo Agregar el sprint
+  As a user
+  I want a login module
+  To access my Spin pro account
 
-  Background: El usuario se encuentra en home de la aplicacion
-    Given Elvis realiza el tutorial introductorio
+  Background: The user is at the home of the application.
+    Given Elvis Perform the introductory tutorial
 
-  Scenario: Iniciar sesión acceso correcto con teléfono
-    When Elvis inicia sesion con el usuario "5521996723" y la contrasenia "Femsa123"
-    Then Elvis deberia poder ver el mensaje "Iniciando sesión"
-
-  Scenario Outline: Iniciar Sesión con <testCase>
-    When Elvis inicia sesion con el usuario <usuario> y la contrasenia <contrasenia>
-    Then Elvis deberia poder ver el mensaje de error <mensaje>
+  Scenario Outline: Verify <testCase>
+    When he logs in by "<loginType>" with his "<credentials>"
+    Then he should see the message "<message>"
     Examples:
-      | usuario         | contrasenia   | mensaje             | testCase                   |
-      | "admin@add.com" | "Femsa2022"   | "Datos incorrectos" | Email no valido            |
-      | "5521996723"    | "badPassword" | "Datos incorrectos" | con contrasenia incorrecta |
+      | loginType    | credentials       | message           | testCase                                                 |
+      | phone number | valid credentials | Iniciando sesión  | Login with phone number                                  |
+      | phone number | wrong credentials | Datos incorrectos | error message when logging in with an unregistered phone |
+      | email        | valid credentials | Iniciando sesión  | Login with email                                         |
+      | email        | wrong credentials | Datos incorrectos | error message when logging in with an unregistered email |
 
-  Scenario Outline: Iniciar Sesión: validacion de <testCase>
-    When Elvis inicia sesion con el usuario <usuario> y la contrasenia <contrasenia>
-    Then Elvis deberia poder ver el boton Iniciar sesion deshabilitado
-    Examples:
-      | usuario   | contrasenia   | testCase                                             |
-      | ""        | "badPassword" | campo telefono vacio                                 |
-      | "badUser" | ""            | campo contrasenia vacio                              |
-      | ""        | ""            | campos requeridos vacios                             |
-      | "abc"     | "Femsa2022"   | campo usuario con menos de los caracteres requeridos |
-#
-#    Scenario: Validar longitud del campo Contraseña
-#      When Elvis ingresa una contraseña de 33 caracteres
-#      Then Elvis deberia ver que el campo Contraseña solo permitio escribir 32 caracteres
+  Scenario: Verify that the Password field is mandatory
+    When he enters a empty password
+    Then he should see the alert "Este campo es obligatorio"
+
+  Scenario: Verify that the Email or Cell phone number field is mandatory
+    When he enters a empty email or phone number
+    Then he should see the alert "Este campo es obligatorio"
+
+  Scenario:Verify Back button redirection
+    When he wants to login
+    And he wants to go back
+    Then he should be able to see the Register in three steps screen
+
+  Scenario:Verify redirection of Forgot Password button
+    When he wants to recover his password
+    Then he should see the Reset password screen
