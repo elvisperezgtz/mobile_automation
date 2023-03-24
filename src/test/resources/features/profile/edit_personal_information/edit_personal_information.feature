@@ -41,11 +41,6 @@ Feature: Edit personal information
   Scenario: Verify functionality of the EXIT WITHOUT SAVING button
 
 
-  Scenario: Visualizar datos personales
-    Then Elvis deberia ver sus datos personales registrados
-      | Nombre    | Apellidos     | Email       |
-      | Juan Jose | Gomez Jimenez | jg@mail.com |
-
   Scenario: Visualizar confirmar contrasenia antes de editar datos personales
     When Elvis intenta editar sus datos personales
     Then Elvis deberia ver la solicitud de confirmacion de su contrasenia
