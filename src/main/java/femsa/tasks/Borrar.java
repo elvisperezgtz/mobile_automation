@@ -10,7 +10,7 @@ import net.serenitybdd.screenplay.targets.Target;
 
 import static femsa.user_interfaces.DatosBancariosUI.CLABE;
 import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.LOGO;
+import static femsa.user_interfaces.EditPersonalInformationUI.LOGO;
 
 public class Borrar {
 

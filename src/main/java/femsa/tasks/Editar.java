@@ -11,8 +11,8 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static femsa.user_interfaces.DatosNegocioUI.ACTIVIDAD_DE_TU_NEGOCIO;
 import static femsa.user_interfaces.DatosNegocioUI.NOMBRE_NEGOCIO;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.EDITAR;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
+import static femsa.user_interfaces.EditPersonalInformationUI.EDITAR;
+import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
@@ -39,7 +39,7 @@ public class Editar {
         return Task.where("{0} edita sus datos personales",
                 Click.on(EDITAR),
                 Confirmar.contrasenia("Femsa123"),
-                WaitUntil.the(NOMBRE, isEnabled()),
+                WaitUntil.the(FIRST_NAME, isEnabled()),
                 Editar.formularioDeDatosPersonales(nombre, apellidos, email),
                 Guardar.datos()
         );
@@ -47,8 +47,8 @@ public class Editar {
 
     public static Performable formularioDeDatosPersonales(String nombre, String apellidos, String email) {
         return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
-                Enter.theValue(nombre).into(NOMBRE),
-                Enter.theValue(apellidos).into(APELLIDOS),
+                Enter.theValue(nombre).into(FIRST_NAME),
+                Enter.theValue(apellidos).into(LAST_NAME),
                 Enter.theValue(email).into(EMAIL)
         );
     }

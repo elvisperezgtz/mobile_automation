@@ -1,18 +1,13 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.Navegar;
-import femsa.user_interfaces.DocumentosUI;
+import femsa.tasks.Navigate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import java.time.Duration;
 
 import static femsa.user_interfaces.DocumentosUI.*;
 import static java.time.Duration.ofSeconds;
@@ -23,7 +18,7 @@ public class DocumentosLegales {
     @And("{actor} ingresa a la opcion de Documentos legales")
     public void elvisIngresaALaOpcionDeDocumentosLegales(Actor actor) {
         actor.attemptsTo(
-                Navegar.aLaPantallaDocumentosLegales()
+                Navigate.aLaPantallaDocumentosLegales()
         );
     }
 

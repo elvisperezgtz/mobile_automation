@@ -2,7 +2,7 @@ package femsa.stepdefinitions;
 
 import femsa.interactions.Digitar;
 import femsa.tasks.Confirmar;
-import femsa.user_interfaces.EdicionDatosPersonalesUI;
+import femsa.user_interfaces.EditPersonalInformationUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.Actor;
@@ -24,9 +24,9 @@ public class ModalConfirmarContraseniaSteps {
     @Then("{actor} deberia ver la pantalla de datos personales con los campos deshabilitados")
     public void elvisDeberiaVerLaPantallaDeDatosPersonalesConLosCamposDeshabilitados(Actor actor) {
         actor.attemptsTo(
-                Ensure.that(EdicionDatosPersonalesUI.NOMBRE).not().isEnabled(),
-                Ensure.that(EdicionDatosPersonalesUI.APELLIDOS).not().isEnabled(),
-                Ensure.that(EdicionDatosPersonalesUI.EMAIL).not().isEnabled()
+                Ensure.that(EditPersonalInformationUI.FIRST_NAME).not().isEnabled(),
+                Ensure.that(EditPersonalInformationUI.LAST_NAME).not().isEnabled(),
+                Ensure.that(EditPersonalInformationUI.EMAIL).not().isEnabled()
         );
     }
 
@@ -50,9 +50,9 @@ public class ModalConfirmarContraseniaSteps {
     public void elvisDeberiaVerLosCamposDelFormularioDeDatosPersonalesHabilitadosParaEdicion(Actor actor) throws InterruptedException {
         Thread.sleep(4000);
         actor.attemptsTo(
-                Ensure.that(EdicionDatosPersonalesUI.NOMBRE).isEnabled(),
-                Ensure.that(EdicionDatosPersonalesUI.APELLIDOS).isEnabled(),
-                Ensure.that(EdicionDatosPersonalesUI.EMAIL).isEnabled()
+                Ensure.that(EditPersonalInformationUI.FIRST_NAME).isEnabled(),
+                Ensure.that(EditPersonalInformationUI.LAST_NAME).isEnabled(),
+                Ensure.that(EditPersonalInformationUI.EMAIL).isEnabled()
         );
     }
 

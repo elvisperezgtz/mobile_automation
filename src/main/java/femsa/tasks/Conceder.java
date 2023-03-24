@@ -7,7 +7,7 @@ public class Conceder {
     public static Performable permisosConBlueToothActivado() {
         return Task.where(
                 "{0} vincula su movil con el dispositivo MPOS",
-                Navegar.aVincularDispositivoMpos(),
+                Navigate.aVincularDispositivoMpos(),
                 Permitir.usarUbicacion()
         );
     }
@@ -15,7 +15,7 @@ public class Conceder {
     public static Performable permisosConBluetoothDesactivado() {
         return Task.where(
                 "{0} vincula su movil con el dispositivo MPOS cuando el bluetooth esta desactivado",
-                Navegar.aVincularDispositivoMpos(),
+                Navigate.aVincularDispositivoMpos(),
                 Permitir.activarBlueTooth(),
                 Permitir.usarUbicacion()
         );
