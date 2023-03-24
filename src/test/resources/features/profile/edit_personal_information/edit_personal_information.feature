@@ -1,5 +1,5 @@
-@sprint7 @regresion @editarDatosPersonales @perfil
-Feature: Visualizar Pantalla "Edicion de datos personales"
+
+Feature: Edit personal information
   As a shopkeeper user
   I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the onboarding process of the application,
   so that the user can make adjustments to their information as required.
