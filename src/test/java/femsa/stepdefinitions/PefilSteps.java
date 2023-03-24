@@ -1,6 +1,6 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.Navegar;
+import femsa.tasks.Navigate;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -9,7 +9,7 @@ public class PefilSteps {
     @When("{actor} ingresa a la opcion Perfil")
     public void elvisIngresaALaOpcionPerfil(Actor actor) {
         actor.attemptsTo(
-                Navegar.aLaPantallaAdministracionDePerfil()
+                Navigate.toTheProfileAdministrationScreen()
         );
     }
 
@@ -20,6 +20,5 @@ public class PefilSteps {
         );
 
     }
-
 
 }

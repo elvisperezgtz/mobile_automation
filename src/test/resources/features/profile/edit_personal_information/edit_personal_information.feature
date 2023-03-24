@@ -1,13 +1,45 @@
 @sprint7 @regresion @editarDatosPersonales @perfil
 Feature: Visualizar Pantalla "Edicion de datos personales"
-  Yo como usuario tendero
-  Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion,
-  de tal forma que el usuario pueda hacer los ajustes de su informacion segun lo requiera.
+  As a shopkeeper user
+  I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the onboarding process of the application,
+  so that the user can make adjustments to their information as required.
 
-  Background: El usuario se encuentra en la opcion de datos personales
+  Background: The user is in the edit personal information option.
     Given Elvis Perform the introductory tutorial
-    And Elvis inicia sesion con su numero telefonico
-    When Elvis ingresa a la opcion datos personales
+    And he is logged in to the app by "phone number" with his "valid credentials"
+    When he enters in the personal data option
+
+  @fix
+  Scenario: Verify Edit button redirection
+    Then Elvis should see his personal data registered
+
+
+  Scenario: Verify functionality of the Edit button
+
+  Scenario: Verify Back button redirection
+
+  Scenario: Validate email format of the Email field
+
+  Scenario: Validate length of Last name field with 1 character
+
+  Scenario: Validate that the Name field accepts accented characters
+
+  Scenario: Validate that emails already registered are not accepted
+
+  Scenario: Verify that when you press the Continue button the data is saved correctly.
+
+
+  Scenario: Verify CANCEL button functionality
+
+  Scenario: Verify functionality of Continue Button with incorrect password
+
+  Scenario: Verify functionality of Continue Button with valid password
+
+
+  Scenario: Verify functionality of the Save button
+
+  Scenario: Verify functionality of the EXIT WITHOUT SAVING button
+
 
   Scenario: Visualizar datos personales
     Then Elvis deberia ver sus datos personales registrados
