@@ -1,6 +1,6 @@
 package femsa.stepdefinitions;
 
-import femsa.tasks.Navegar;
+import femsa.tasks.Navigate;
 import femsa.user_interfaces.LoginUI;
 import femsa.user_interfaces.RegisterInThreeStepsUI;
 import io.cucumber.java.en.Given;
@@ -18,7 +18,7 @@ public class AyudaSteps {
 
     @Given("{actor} ingresa a la pantalla de inicio de sesion")
     public void elvisIngresaALaPantallaDeInicioDeSesion(Actor actor) {
-        actor.wasAbleTo(Navegar.aLaPantallaDeLogin());
+        actor.wasAbleTo(Navigate.aLaPantallaDeLogin());
     }
 
     @When("{actor} ingresa a la ayuda de la pantalla de inicio de sesion")

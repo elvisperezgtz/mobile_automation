@@ -15,7 +15,7 @@ import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
-public class Navegar {
+public class Navigate {
 
     public static Performable aVincularDispositivoMpos() {
         return Task.where("{0} navega hasta la pantalla de vincular dispositivo",
@@ -26,35 +26,35 @@ public class Navegar {
 
     public static Performable aLaPantallaDeDatosBancarios() {
         return Task.where("{0} navega hasta la pantalla de administracion de perfil",
-                Navegar.aLaPantallaAdministracionDePerfil(),
+                Navigate.toTheProfileAdministrationScreen(),
                 Click.on(CLABE)
         );
     }
 
     public static Performable aLaPantallaDocumentosLegales() {
         return Task.where("{0} navega hasta la pantalla de Documentos legales",
-                aLaPantallaAdministracionDePerfil(),
+                toTheProfileAdministrationScreen(),
                 Click.on(DOCUMENTOS_LEGALES)
         );
     }
 
-    public static Performable aLaPantallaAdministracionDePerfil() {
+    public static Performable toTheProfileAdministrationScreen() {
         return Task.where("{0} navega hasta la pantalla de administracion de perfil",
                 WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(PERFIL)
         );
     }
 
-    public static Performable aLaPantallaDeDatosPersonales() {
-        return Task.where("{0} navega hasta la pantalla de edicion de datos personales",
-                Navegar.aLaPantallaAdministracionDePerfil(),
-                Click.on(EDITAR)
+    public static Performable toThePersonalInformationScreen() {
+        return Task.where("{0} navigates to the personal information editing screen",
+                Navigate.toTheProfileAdministrationScreen(),
+                Click.on(EDIT)
         );
     }
 
     public static Performable aLaPantallaDeDatosDeNegocio() {
         return Task.where("{0} navega hasta la pantalla de datos de negocio",
-                Navegar.aLaPantallaAdministracionDePerfil(),
+                Navigate.toTheProfileAdministrationScreen(),
                 Click.on(NEGOCIO)
         );
     }

@@ -1,11 +1,14 @@
 package femsa.asserts;
 
+import femsa.models.User;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.AdministracionPerilUI.*;
+import static femsa.user_interfaces.AdministracionPerilUI.LOGO;
+import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
 import static femsa.user_interfaces.LoginUI.PASSWORD;
 import static femsa.user_interfaces.OnBoardingUI.TITLE;
@@ -48,7 +51,7 @@ public class Visualize {
                 Ensure.that(LOGO).isDisplayed(),
                 Ensure.that(NOMBRE_USUARIO).isDisplayed(),
                 Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
-                Ensure.that(EDITAR).isDisplayed(),
+                Ensure.that(EDIT).isDisplayed(),
                 Ensure.that(NEGOCIO).isDisplayed(),
                 Ensure.that(AYUDA).isDisplayed(),
                 Ensure.that(AUTORIZAR_DISPOSITIVO).isDisplayed(),
@@ -59,13 +62,21 @@ public class Visualize {
     }
 
     public static Performable resetPasswordScreen(){
-        return Task.where("{0} visualize reset password screen",
+        return Task.where("{0} visualizes reset password screen",
                 Ensure.that(RESET_PASSWORD_TITLE).isDisplayed(),
                 Ensure.that(HELP).isDisplayed(),
                 Ensure.that(BACK).isDisplayed(),
                 Ensure.that(PHONE_NUMBER).isDisplayed(),
                 Ensure.that(CONTINUE).isDisplayed()
                 );
+    }
+
+    public static Performable hisPersonalInformation(User user){
+        return Task.where("{0} validates that your personal information is the same as previously registered",
+                Ensure.that(FIRST_NAME).text().isEqualToIgnoringCase(user.getFirstName()),
+                Ensure.that(LAST_NAME).text().isEqualToIgnoringCase(user.getLastName()),
+                Ensure.that(EMAIL).text().isEqualToIgnoringCase(user.getEmail())
+        );
     }
 
 }

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.*;
+import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -32,8 +32,8 @@ public class DatosPersonalesSteps {
         List<Map<String, String>> rows = datosPersonales.asMaps(String.class, String.class);
 
         actor.attemptsTo(
-                Ensure.that(NOMBRE).text().isEqualToIgnoringCase(rows.get(0).get("Nombre")),
-                Ensure.that(APELLIDOS).text().isEqualToIgnoringCase(rows.get(0).get("Apellidos")),
+                Ensure.that(FIRST_NAME).text().isEqualToIgnoringCase(rows.get(0).get("Nombre")),
+                Ensure.that(LAST_NAME).text().isEqualToIgnoringCase(rows.get(0).get("Apellidos")),
                 Ensure.that(EMAIL).text().isEqualToIgnoringCase(rows.get(0).get("Email"))
         );
     }
@@ -65,8 +65,8 @@ public class DatosPersonalesSteps {
     public void elvisDeberiaVerLosCambiosAplicadosASusDatosPersonales(Actor actor, DataTable datosPersonales) {
         List<Map<String, String>> rows = datosPersonales.asMaps(String.class, String.class);
         actor.attemptsTo(
-                Ensure.that(NOMBRE).text().isEqualToIgnoringCase(rows.get(0).get("Nombre")),
-                Ensure.that(APELLIDOS).text().isEqualToIgnoringCase(rows.get(0).get("Apellidos")),
+                Ensure.that(FIRST_NAME).text().isEqualToIgnoringCase(rows.get(0).get("Nombre")),
+                Ensure.that(LAST_NAME).text().isEqualToIgnoringCase(rows.get(0).get("Apellidos")),
                 Ensure.that(EMAIL).text().isEqualToIgnoringCase(rows.get(0).get("Email"))
         );
     }
@@ -74,8 +74,8 @@ public class DatosPersonalesSteps {
     @Then("{actor} deberia ver la imagen de perfil compuesta por la primera letra del nombre y del apellido")
     public void elvisDeberiaVerLaImagenDePerfilCompuestaPorLaPrimeraLetraDelNombreYDelApellido(Actor actor) {
 
-        String primeraLetra = String.valueOf(NOMBRE.resolveFor(actor).getText().charAt(0));
-        String segundaLetra = String.valueOf(APELLIDOS.resolveFor(actor).getText().charAt(0));
+        String primeraLetra = String.valueOf(FIRST_NAME.resolveFor(actor).getText().charAt(0));
+        String segundaLetra = String.valueOf(LAST_NAME.resolveFor(actor).getText().charAt(0));
         String logo = primeraLetra.concat(segundaLetra);
         actor.attemptsTo(
                 Ensure.that(LOGO).text().isEqualTo(logo)
@@ -87,7 +87,7 @@ public class DatosPersonalesSteps {
         actor.attemptsTo(
                 Click.on(EDITAR),
                 Confirmar.contrasenia("Femsa123"),
-                Borrar.campoEnDatosPersonales(NOMBRE)
+                Borrar.campoEnDatosPersonales(FIRST_NAME)
         );
     }
 
@@ -103,7 +103,7 @@ public class DatosPersonalesSteps {
                 Confirmar.contrasenia("Femsa123")
         );
         actor.attemptsTo(
-                Borrar.campoEnDatosPersonales(APELLIDOS)
+                Borrar.campoEnDatosPersonales(LAST_NAME)
         );
     }
 

@@ -3,12 +3,12 @@ package femsa.user_interfaces;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class EdicionDatosPersonalesUI {
-    public static final Target NOMBRE = Target.the("campo nombre")
+public class EditPersonalInformationUI {
+    public static final Target FIRST_NAME = Target.the("first name")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeTextField[@name=\"PROFILE_PERSONALDATA_NAME_TEXTFIELD\"]"));
 
-    public static final Target APELLIDOS = Target.the("campo apellidos")
+    public static final Target LAST_NAME = Target.the("last name")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[2]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeTextField[@name=\"PERSONALDATA_LAST_NAME_TEXTFIELD\"]"));
 

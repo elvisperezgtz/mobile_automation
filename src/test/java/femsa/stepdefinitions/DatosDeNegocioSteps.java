@@ -18,14 +18,14 @@ import java.util.Map;
 
 import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL;
 import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL_INCORRECTO;
-import static femsa.user_interfaces.EdicionDatosPersonalesUI.EDITAR;
+import static femsa.user_interfaces.EditPersonalInformationUI.EDITAR;
 import static femsa.user_interfaces.HomeUI.NOMBRE_NEGOCIO;
 
 public class DatosDeNegocioSteps {
     @When("{actor} ingresa a la opcion datos de negocio")
     public void elvisIngresaALaOpcionDatosDeNegocio(Actor actor) {
         actor.attemptsTo(
-                Navegar.aLaPantallaDeDatosDeNegocio()
+                Navigate.aLaPantallaDeDatosDeNegocio()
         );
     }
 
@@ -110,7 +110,7 @@ public class DatosDeNegocioSteps {
 
     @And("{actor} ingresa al home de la aplicacion")
     public void elvisIngresaAlHomeDeLaAplicacion(Actor actor) {
-        actor.attemptsTo(Navegar.desdeNegocioHastaHome());
+        actor.attemptsTo(Navigate.desdeNegocioHastaHome());
     }
 
     @Then("{actor} deberia ver el nombre del negocio {string}")

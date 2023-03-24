@@ -90,4 +90,14 @@ public class LoginSteps {
         actor.attemptsTo(Visualize.resetPasswordScreen());
     }
 
+    @And("{actor} is logged in to the app by {string} with his {string}")
+    public void elvisIsLoggedInToTheAppByWithHis(Actor actor, String loginType, String credentialName) throws IOException {
+        Credential credential = fromJsonToCredential(loginType, credentialName);
+        actor.attemptsTo(
+                Login
+                        .whit()
+                        .username(credential.getUsername())
+                        .andPassword(Decoder.decode(credential.getPassword()))
+        );
+    }
 }
