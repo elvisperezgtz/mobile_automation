@@ -24,7 +24,7 @@ public class AdministracionPerfilSteps {
     @When("{actor} ingresa a la opcion datos bancarios")
     public void elvisIngresaALaOpcionDatosBancarios(Actor actor) {
         actor.attemptsTo(
-                Navegar.aLaPantallaDeDatosBancarios()
+                Navigate.aLaPantallaDeDatosBancarios()
         );
     }
 
@@ -140,13 +140,13 @@ public class AdministracionPerfilSteps {
 
     @And("{actor} ingresa a la opcion de Administracion de Perfil")
     public void elvisIngresaALaOpcionDeAdministracionDePerfil(Actor actor) {
-        actor.attemptsTo(Navegar.aLaPantallaAdministracionDePerfil());
+        actor.attemptsTo(Navigate.toTheProfileAdministrationScreen());
     }
 
     @When("{actor} ingresa a la pantalla de administracion de perfil")
     public void elvisIngresaALaPantallaDeAdministracionDePerfil(Actor actor) {
         actor.attemptsTo(
-                Navegar.aLaPantallaAdministracionDePerfil()
+                Navigate.toTheProfileAdministrationScreen()
         );
     }
 
@@ -165,10 +165,6 @@ public class AdministracionPerfilSteps {
         );
     }
 
-    @When("{actor} ingresa a la opcion datos personales")
-    public void elvisIngresaALaOpcionDatosPersonales(Actor actor) {
-        actor.attemptsTo(Navegar.aLaPantallaDeDatosPersonales());
-    }
 
     @Then("{actor} deberia poder ver el numero de telefono registrado")
     public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
