@@ -3,7 +3,8 @@ package femsa.enums;
 public enum JsonPath {
     USER_TEMPLATE("src/test/resources/data/api/json_templates/user_template.json"),
 
-    USERS_DATA("src/test/resources/data/api/users_data.json");
+    CREDENTIALS("src/test/resources/data/api/credentials.json"),
+    USERS_DATA("src/test/resources/data/api/users/users_data.json");
 
 
     private final String filePath;
