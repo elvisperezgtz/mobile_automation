@@ -1,4 +1,3 @@
-
 Feature: Edit personal information
   As a shopkeeper user
   I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the onboarding process of the application,
@@ -9,32 +8,40 @@ Feature: Edit personal information
     And he is logged in to the app by "phone number" with his "valid credentials"
     When he enters in the personal data option
 
-  @fix
+
   Scenario: Verify Edit button redirection
     Then Elvis should see his personal data registered
 
-
   Scenario: Verify functionality of the Edit button
+    And he wants to edit his personal information
+    Then he should see a Confirm Password modal
+
 
   Scenario: Verify Back button redirection
+    And he wants to go back
+    Then he should see the Profile screen
+
+
+  Scenario: Verify functionality of Continue Button with incorrect password
+    And he tries to confirm the password with a wrong password "BadPassword"
+    Then he should see the error message "Contraseña incorrecta"
+
+  @fix
+  Scenario: Verify functionality of Continue Button with valid password
+    And he confirms his password
+    Then he should see the personal information form in edit mode
 
   Scenario: Validate email format of the Email field
-
-  Scenario: Validate length of Last name field with 1 character
-
-  Scenario: Validate that the Name field accepts accented characters
 
   Scenario: Validate that emails already registered are not accepted
 
   Scenario: Verify that when you press the Continue button the data is saved correctly.
 
+  Scenario: Validate length of Last name field with 1 character
+
+  Scenario: Validate that the Name field accepts accented characters
 
   Scenario: Verify CANCEL button functionality
-
-  Scenario: Verify functionality of Continue Button with incorrect password
-
-  Scenario: Verify functionality of Continue Button with valid password
-
 
   Scenario: Verify functionality of the Save button
 

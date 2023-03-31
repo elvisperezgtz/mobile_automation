@@ -3,8 +3,8 @@ package femsa.user_interfaces;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class ConfirmarContraseniaUI {
-    public static final Target CONTRASENIA = Target.the("campo contrasenia")
+public class ConfirmPasswordModalUI {
+    public static final Target PASSWORD = Target.the("password input")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeSecureTextField[@name='CONFIRMPSS_PSS_TEXTFIELD']"));
 
@@ -17,12 +17,16 @@ public class ConfirmarContraseniaUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='CONFIRMPSS_CANCEL_BUTTON']"));
 
-    public static final Target CONTINUAR = Target.the("boton Continuar")
+    public static final Target CONTINUE = Target.the("Continue button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Continuar']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='CONFIRMPSS_SAVE_BUTTON']"));
 
-    public static final Target MENSAJE_ERROR = Target.the("modal mensaje de error")
-            .locatedForAndroid(By.xpath(""))
+    public static final Target ERROR_MESSAGE = Target.the("wrong password error message")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Contraseña incorrecta']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[6]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+
+    public static final Target TITLE = Target.the("modal title")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Confirma tu contraseña']"))
+            .locatedForIOS(By.xpath(""));
 
 }

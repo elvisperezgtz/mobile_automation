@@ -11,7 +11,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static femsa.user_interfaces.DatosNegocioUI.ACTIVIDAD_DE_TU_NEGOCIO;
 import static femsa.user_interfaces.DatosNegocioUI.NOMBRE_NEGOCIO;
-import static femsa.user_interfaces.EditPersonalInformationUI.EDITAR;
+import static femsa.user_interfaces.EditPersonalInformationUI.EDIT;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
@@ -37,8 +37,8 @@ public class Editar {
 
     public static Performable datosPersonales(String nombre, String apellidos, String email) {
         return Task.where("{0} edita sus datos personales",
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123"),
                 WaitUntil.the(FIRST_NAME, isEnabled()),
                 Editar.formularioDeDatosPersonales(nombre, apellidos, email),
                 Guardar.datos()
@@ -56,7 +56,7 @@ public class Editar {
     public static Performable datosDelNegocio(String nombreNegocio, String actividadNegocio, String codigoPostal) {
         return Task.where("{0} edita sus datos personales",
                 Click.on(DatosNegocioUI.BOTON_EDITAR),
-                Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia")),
+                Confirm.thePassword(theActorInTheSpotlight().recall("contrasenia")),
                 Editar.formularioDeDatosDeNegocio(nombreNegocio, actividadNegocio, codigoPostal),
                 Guardar.datos()
 

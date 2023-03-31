@@ -3,7 +3,7 @@ package femsa.stepdefinitions;
 import femsa.interactions.Clear;
 import femsa.interactions.Hide;
 import femsa.tasks.Borrar;
-import femsa.tasks.Confirmar;
+import femsa.tasks.Confirm;
 import femsa.tasks.Editar;
 import femsa.tasks.Guardar;
 import femsa.user_interfaces.AdministracionPerilUI;
@@ -21,7 +21,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
+import static femsa.user_interfaces.ConfirmPasswordModalUI.CONFIRMA_TU_CONTRASENIA;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -41,7 +41,7 @@ public class DatosPersonalesSteps {
     @When("{actor} intenta editar sus datos personales")
     public void elvisIntentaEditarSusDatosPersonales(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR)
+                Click.on(EDIT)
         );
     }
 
@@ -85,8 +85,8 @@ public class DatosPersonalesSteps {
     @When("{actor} borra el contenido del campo Nombre e intenta guardar")
     public void elvisBorraElContenidoDelCampoNombreEIntentaGuardar(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123"),
                 Borrar.campoEnDatosPersonales(FIRST_NAME)
         );
     }
@@ -99,8 +99,8 @@ public class DatosPersonalesSteps {
     @When("{actor} borra el contenido del campo Apellidos e intenta guardar")
     public void elvisBorraElContenidoDelCampoApellidosEIntentaGuardar(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Borrar.campoEnDatosPersonales(LAST_NAME)
@@ -117,8 +117,8 @@ public class DatosPersonalesSteps {
     @When("{actor} borra el contenido del campo Email e intenta guardar")
     public void elvisBorraElContenidoDelCampoEmailEIntentaGuardar(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Borrar.campoEnDatosPersonales(EMAIL)
@@ -128,8 +128,8 @@ public class DatosPersonalesSteps {
     @When("{actor} cambia el correo registrado por otro correo registrado previamente")
     public void elvisCambiaElCorreoRegistradoPorOtroCorreoRegistradoPreviamente(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Clear.textBox(EMAIL)
@@ -145,8 +145,8 @@ public class DatosPersonalesSteps {
     @When("{actor} modifica el correo electronico {string}")
     public void elvisModificaElCorreoElectronico(Actor actor, String email) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Clear.textBox(EMAIL)

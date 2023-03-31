@@ -99,5 +99,6 @@ public class LoginSteps {
                         .username(credential.getUsername())
                         .andPassword(Decoder.decode(credential.getPassword()))
         );
+        actor.remember("password", Decoder.decode(credential.getPassword()));
     }
 }

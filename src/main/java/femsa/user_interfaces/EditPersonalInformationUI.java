@@ -16,7 +16,7 @@ public class EditPersonalInformationUI {
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[3]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeTextField[@name=\"PERSONALDATA_EMAIL_TEXTFIELD\"]"));
 
-    public static final Target EDITAR = Target.the("boton editar")
+    public static final Target EDIT = Target.the("edit ")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='BUTTON_EDIT']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"PROFILE_PERSONALDATA_BTN_SAVE\"]"));
 

@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL;
 import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL_INCORRECTO;
-import static femsa.user_interfaces.EditPersonalInformationUI.EDITAR;
+import static femsa.user_interfaces.EditPersonalInformationUI.EDIT;
 import static femsa.user_interfaces.HomeUI.NOMBRE_NEGOCIO;
 
 public class DatosDeNegocioSteps {
@@ -55,14 +55,14 @@ public class DatosDeNegocioSteps {
     @When("{actor} intenta editar los datos del negocio")
     public void elvisIntentaEditarLosDatosDelNegocio(Actor actor) {
 
-        actor.attemptsTo(Click.on(EDITAR));
+        actor.attemptsTo(Click.on(EDIT));
     }
 
     @When("{actor} borra el contenido del campo Nombre de tu negocio e intenta guardar")
     public void elvisBorraElContenidoDelCampoNombreDeTuNegocioEIntentaGuardar(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Borrar.campoEnNegocio(DatosNegocioUI.NOMBRE_NEGOCIO)
@@ -72,8 +72,8 @@ public class DatosDeNegocioSteps {
     @When("{actor} borra el contenido del campo Codigo postal e intenta guardar")
     public void elvisBorraElContenidoDelCampoCodigoPostalEIntentaGuardar(Actor actor) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Borrar.campoEnNegocio(CODIGO_POSTAL)
@@ -83,8 +83,8 @@ public class DatosDeNegocioSteps {
     @When("{actor} modifica el codigo postal por {string}")
     public void elvisModificaElCodigoPostalPor(Actor actor, String codigoPostal) {
         actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123")
+                Click.on(EDIT),
+                Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
                 Clear.textBox(CODIGO_POSTAL),
@@ -119,6 +119,7 @@ public class DatosDeNegocioSteps {
                 Ensure.that(NOMBRE_NEGOCIO).text().isEqualTo(nombreNegocio)
         );
     }
+
 
 
 }

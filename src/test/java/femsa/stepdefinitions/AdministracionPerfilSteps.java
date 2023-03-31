@@ -14,7 +14,7 @@ import java.time.Duration;
 
 import static femsa.user_interfaces.AdministracionPerilUI.PREGUNTAS_FRECUENTES;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
-import static femsa.user_interfaces.ConfirmarContraseniaUI.CONFIRMA_TU_CONTRASENIA;
+import static femsa.user_interfaces.ConfirmPasswordModalUI.CONFIRMA_TU_CONTRASENIA;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
@@ -58,7 +58,7 @@ public class AdministracionPerfilSteps {
 
     @And("{actor} confirma la contrasenia {string}")
     public void elvisConfirmaLaContrasenia(Actor actor, String contrasenia) {
-        actor.attemptsTo(Confirmar.contrasenia(contrasenia));
+        actor.attemptsTo(Confirm.thePassword(contrasenia));
     }
 
     @Then("{actor} deberia poder ver que los campos CLABE y Titular se pueden editar")
@@ -111,7 +111,7 @@ public class AdministracionPerfilSteps {
         actor.remember("titular", titular);
         actor.attemptsTo(
                 Click.on(EDITAR),
-                Confirmar.contrasenia(theActorInTheSpotlight().recall("contrasenia"))
+                Confirm.thePassword(theActorInTheSpotlight().recall("contrasenia"))
         );
         actor.attemptsTo(Editar.losDatosBancarios(clabe, titular));
 

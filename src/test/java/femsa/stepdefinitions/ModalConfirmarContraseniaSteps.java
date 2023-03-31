@@ -1,7 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.interactions.Digitar;
-import femsa.tasks.Confirmar;
+import femsa.tasks.Confirm;
 import femsa.user_interfaces.EditPersonalInformationUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -10,7 +10,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.ConfirmarContraseniaUI.*;
+import static femsa.user_interfaces.ConfirmPasswordModalUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -33,7 +33,7 @@ public class ModalConfirmarContraseniaSteps {
     @And("{actor} ingresa una contrasenia {string}")
     public void elvisIngresaUnaContrasenia(Actor actor, String contrasenia) {
         actor.attemptsTo(
-                Confirmar.contrasenia(contrasenia)
+                Confirm.thePassword(contrasenia)
         );
     }
 
@@ -41,8 +41,8 @@ public class ModalConfirmarContraseniaSteps {
     public void elvisDeberiaVerElMensajeContraseñaIncorrecta(Actor actor) {
 
         actor.attemptsTo(
-                WaitUntil.the(MENSAJE_ERROR, isVisible()).forNoMoreThan(ofSeconds(10)),
-                Ensure.that(MENSAJE_ERROR).isDisplayed()
+                WaitUntil.the(ERROR_MESSAGE, isVisible()).forNoMoreThan(ofSeconds(10)),
+                Ensure.that(ERROR_MESSAGE).isDisplayed()
         );
     }
 
@@ -70,7 +70,12 @@ public class ModalConfirmarContraseniaSteps {
     @Then("{actor} deberia ver que el campo contraseña solo tiene {int} caracteres")
     public void elvisDeberiaVerQueElCampoContraseñaSoloTieneCaracteres(Actor actor, int caracteres) {
         actor.attemptsTo(
-                Ensure.that(CONTRASENIA).text().hasSize(caracteres)
+                Ensure.that(PASSWORD).text().hasSize(caracteres)
         );
+    }
+
+    @Then("{actor} should see the error message {string}")
+    public void heShouldSeeTheErrorMessage(Actor actor, String errorMessage) {
+        actor.attemptsTo(Ensure.that(ERROR_MESSAGE).text().isEqualTo(errorMessage));
     }
 }

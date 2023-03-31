@@ -1,7 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.Borrar;
-import femsa.tasks.Confirmar;
+import femsa.tasks.Confirm;
 import femsa.tasks.Guardar;
 import femsa.user_interfaces.DatosBancariosUI;
 import io.cucumber.java.en.Then;
@@ -21,7 +21,7 @@ public class DatosBancariosSteps {
     public void elvisBorraElContenidoDelCampoCLABEInterbancaria(Actor actor) {
         actor.attemptsTo(
                 Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Confirm.thePassword("Femsa123"),
                 Borrar.elCampoCLABEInterbancaria()
         );
     }
@@ -30,7 +30,7 @@ public class DatosBancariosSteps {
     public void elvisBorraElContenidoDelCampoNombreDelTitular(Actor actor) {
         actor.attemptsTo(
                 Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Confirm.thePassword("Femsa123"),
                 Borrar.elCampoNombreDelTitular()
         );
     }
@@ -39,7 +39,7 @@ public class DatosBancariosSteps {
     public void elvisIngresaUnaCuentaCLABEDeDigitos(Actor actor, int digitos) {
         actor.attemptsTo(
                 Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Confirm.thePassword("Femsa123"),
                 Click.on(CLABE)
                         .then(Enter.theValue(withOnlyRandomNumbers(digitos)).into(CLABE)),
                 Click.on(NOMBRE_TITULAR)
@@ -57,7 +57,7 @@ public class DatosBancariosSteps {
     public void elvisEditaSuCLABEYNombreDeTitular(Actor actor, String clabe, String titular) {
         actor.attemptsTo(
                 Click.on(EDITAR),
-                Confirmar.contrasenia("Femsa123"),
+                Confirm.thePassword("Femsa123"),
                 Enter.theValue(titular).into(NOMBRE_TITULAR),
                 Enter.theValue(clabe).into(CLABE),
                 Guardar.datosBancarios()
