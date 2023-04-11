@@ -1,6 +1,7 @@
 package femsa.tasks;
 
 import femsa.interactions.SelectFromDropDown;
+import femsa.models.User;
 import femsa.user_interfaces.DatosNegocioUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -35,21 +36,21 @@ public class Editar {
         );
     }
 
-    public static Performable datosPersonales(String nombre, String apellidos, String email) {
+    public static Performable datosPersonales(User user) {
         return Task.where("{0} edita sus datos personales",
                 Click.on(EDIT),
                 Confirm.thePassword("Femsa123"),
                 WaitUntil.the(FIRST_NAME, isEnabled()),
-                Editar.formularioDeDatosPersonales(nombre, apellidos, email),
+                Editar.formularioDeDatosPersonales(user),
                 Guardar.datos()
         );
     }
 
-    public static Performable formularioDeDatosPersonales(String nombre, String apellidos, String email) {
+    public static Performable formularioDeDatosPersonales(User user) {
         return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
-                Enter.theValue(nombre).into(FIRST_NAME),
-                Enter.theValue(apellidos).into(LAST_NAME),
-                Enter.theValue(email).into(EMAIL)
+                Enter.theValue(user.getFirstName()).into(FIRST_NAME),
+                Enter.theValue(user.getLastName()).into(LAST_NAME),
+                Enter.theValue(user.getEmail()).into(EMAIL)
         );
     }
 

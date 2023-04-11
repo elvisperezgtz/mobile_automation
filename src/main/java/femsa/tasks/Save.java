@@ -6,13 +6,13 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 
 import static femsa.user_interfaces.ModalGuardarUI.GUARDAR;
-import static femsa.user_interfaces.ModalGuardarUI.GUARDAR_CAMBIOS;
+import static femsa.user_interfaces.ModalGuardarUI.SAVE;
 
 public class Guardar {
     public static Performable datos(){
         return Task.where("{0} guarda los datos editados",
-                Click.on(GUARDAR),
-                Click.on(GUARDAR_CAMBIOS)
+                Click.on(SAVE),
+                Click.on()
                 );
     }
     public static Performable datosBancarios(){
