@@ -1,6 +1,6 @@
 package femsa.stepdefinitions;
 
-import femsa.utils.database.FindUser;
+import femsa.api.Update;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
@@ -9,6 +9,8 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
 import java.sql.SQLException;
+
+import static femsa.enums.CredentialsName.ELVIS;
 
 public class ParameterDefinitions {
 
@@ -22,19 +24,13 @@ public class ParameterDefinitions {
         OnStage.setTheStage(new OnlineCast());
     }
 
-//    @After
-//    public void uninstallApp(){
-//        System.out.println("Eliminando la app ...");
-//                Commands.execute("adb uninstall com.oxxo.Mpos.dev");
-//    }
-
-    @Before("@hookDatosPersonales")
+    @Before("@hookPersonalData")
     public void setDefaultUser() throws SQLException {
-        FindUser.andUpdate();
+        Update.userInfo(ELVIS.getName());
     }
-    @After("@hookDatosPersonales")
+    @After("@hookPersonalData")
     public void backupUser() throws SQLException {
-        FindUser.andUpdate();
+        Update.userInfo(ELVIS.getName());
     }
 
 }

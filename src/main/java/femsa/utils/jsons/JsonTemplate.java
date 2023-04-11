@@ -18,7 +18,7 @@ import static femsa.enums.JsonPath.CREDENTIALS;
 public class JsonTemplate {
     private static final Logger LOGGER = Logger.getLogger(JsonTemplate.class.getName());
 
-    public static Credential fromJsonToCredential(String credentialType, String credentialName ) throws IOException {
+    public static Credential fromJsonToCredential(String credentialType, String credentialName) throws IOException {
         // Read json file
         String dataJSON = new String(Files.readAllBytes(new File(CREDENTIALS.getFilePath()).toPath()));
         // Convert json file into json object
@@ -57,8 +57,33 @@ public class JsonTemplate {
         return null;
     }
 
-    public static void main(String[] args) {
-      LOGGER.info(getObjectFromJsonFile("src/test/resources/data/api/users/users_data.json","elvis").toString());
+    public static Credential getCredentialsFromTemplate(String filePath, String objectName) {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filePath)) {
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            JsonObject dataObject = jsonObject.getAsJsonObject("data");
+            JsonObject userObject = dataObject.getAsJsonObject(objectName);
+            LOGGER.info(userObject.toString());
+            return gson.fromJson(userObject, Credential.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static User getUserFromJsonTemplate(String objectName) {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("src/test/resources/data/api/users/users_data.json")) {
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            JsonObject dataObject = jsonObject.getAsJsonObject("data");
+            JsonObject userObject = dataObject.getAsJsonObject(objectName);
+            LOGGER.info(userObject.toString());
+            return gson.fromJson(userObject, User.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

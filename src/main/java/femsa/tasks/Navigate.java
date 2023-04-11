@@ -7,7 +7,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.AdministracionPerilUI.*;
+import static femsa.user_interfaces.ProfileUI.*;
 import static femsa.user_interfaces.HomeUI.PERFIL;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;

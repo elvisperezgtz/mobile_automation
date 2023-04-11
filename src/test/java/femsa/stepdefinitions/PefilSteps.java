@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.asserts.Visualize;
 import femsa.tasks.Navigate;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,4 +22,8 @@ public class PefilSteps {
 
     }
 
+    @Then("{actor} should see the Profile screen")
+    public void heShouldSeeTheProfileScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theProfileScreen());
+    }
 }

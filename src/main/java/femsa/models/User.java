@@ -14,7 +14,9 @@ public class User {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("merchant_info")
     private MerchantInfo merchantInfo;
+    @SerializedName("bank_information")
     private BankInformation bankInformation;
 
     private User(Builder builder) {
@@ -52,17 +54,17 @@ public class User {
         private MerchantInfo merchantInfo;
         private BankInformation bankInformation;
 
-        public Builder firstName(String firstName) {
+        public Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder lastName(String lastName) {
+        public Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public Builder email(String email) {
+        public Builder withEmail(String email) {
             this.email = email;
             return this;
         }

@@ -1,7 +1,11 @@
 package femsa.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Credential {
+    @SerializedName("phoneNumber")
     private final String username;
+    @SerializedName("password")
     private final String password;
 
     private Credential(Builder builder) {
