@@ -18,7 +18,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import java.io.IOException;
 
 import static femsa.interactions.Ejecutar.elComandoAdb;
-import static femsa.user_interfaces.AdministracionPerilUI.AYUDA;
+import static femsa.user_interfaces.ProfileUI.AYUDA;
 import static femsa.user_interfaces.DatosBancariosUI.CLABE;
 import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.DatosPersonalesUI.*;

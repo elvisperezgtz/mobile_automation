@@ -25,7 +25,6 @@ public class Login implements Task {
                         .withPassword(password),
                 Click.on(LoginUI.LOGIN)
         );
-
     }
     public static Login whit(){
         return Tasks.instrumented(Login.class);

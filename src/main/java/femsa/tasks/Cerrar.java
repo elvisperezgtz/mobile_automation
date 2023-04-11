@@ -4,7 +4,7 @@ import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 
-import static femsa.user_interfaces.AdministracionPerilUI.CERRAR_SESION;
+import static femsa.user_interfaces.ProfileUI.CERRAR_SESION;
 import static femsa.user_interfaces.ModalCerrarSesionUI.SI_CERRAR_SESION;
 
 

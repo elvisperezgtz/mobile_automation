@@ -14,7 +14,7 @@ public class Modificar {
                 Click.on(BOTON_EDITAR),
                 Confirm.thePassword("Femsa123"),
                 Enter.theValue(nombreNegocio).into(NOMBRE_NEGOCIO),
-                Guardar.datos()
+                Save.theEditedInformation()
                 );
     }
 }
