@@ -4,9 +4,11 @@ import femsa.interactions.Clear;
 import femsa.interactions.Hide;
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirm;
-import femsa.tasks.Editar;
-import femsa.tasks.Guardar;
-import femsa.user_interfaces.AdministracionPerilUI;
+import femsa.tasks.Edit;
+import femsa.tasks.Save;
+import femsa.user_interfaces.ProfileUI;
+import femsa.user_interfaces.EditPersonalInformationUI;
+import femsa.utils.Convert;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -17,10 +19,10 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
+import static femsa.user_interfaces.ProfileUI.LOGO;
 import static femsa.user_interfaces.ConfirmPasswordModalUI.CONFIRMA_TU_CONTRASENIA;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static java.time.Duration.ofSeconds;
@@ -57,7 +59,7 @@ public class DatosPersonalesSteps {
     public void elvisEditaSusDatosPersonales(Actor actor, DataTable datosPersonales) {
         List<Map<String, String>> rows = datosPersonales.asMaps(String.class, String.class);
         actor.attemptsTo(
-                Editar.datosPersonales(rows.get(0).get("Nombre"), rows.get(0).get("Apellidos"), rows.get(0).get("Email"))
+                Edit.personalInformation(Convert.dataTableToUser(datosPersonales))
         );
     }
 
@@ -78,7 +80,7 @@ public class DatosPersonalesSteps {
         String segundaLetra = String.valueOf(LAST_NAME.resolveFor(actor).getText().charAt(0));
         String logo = primeraLetra.concat(segundaLetra);
         actor.attemptsTo(
-                Ensure.that(LOGO).text().isEqualTo(logo)
+                Ensure.that(EditPersonalInformationUI.LOGO).text().isEqualTo(logo)
         );
     }
 
@@ -138,7 +140,7 @@ public class DatosPersonalesSteps {
                 Enter.theValue("azcarate@palo-it.com").into(EMAIL));
         actor.attemptsTo(Hide.theKeyboard());
         actor.attemptsTo(
-                Guardar.datos()
+                Save.theEditedInformation()
         );
     }
 
@@ -155,46 +157,46 @@ public class DatosPersonalesSteps {
                 Enter.theValue(email).into(EMAIL));
         actor.attemptsTo(Hide.theKeyboard());
 
-        actor.attemptsTo(Click.on(LOGO)
+        actor.attemptsTo(Click.on(EditPersonalInformationUI.LOGO)
         );
     }
 
     @Then("{actor} deberia ver la alerta con el texto {string}")
     public void elvisDeberiaVerLaAlertaConElTexto(Actor actor, String mensajeError) {
         actor.attemptsTo(
-                Ensure.that(MENSAJE_FORMATO_INCORRECTO).text().isEqualTo(mensajeError)
+                Ensure.that(INVALID_EMAIL_FORMAT).text().isEqualTo(mensajeError)
         );
     }
 
-    @When("{actor} modifica su nombre {string} y apellidos {string}")
-    public void elvisModificaSuNombreYApellidos(Actor actor, String nombres, String apellidos) {
-
-        actor.attemptsTo(
-                Editar.datosPersonales(nombres, apellidos, "another@mail.com")
-        );
-    }
+//    @When("{actor} modifica su nombre {string} y apellidos {string}")
+//    public void elvisModificaSuNombreYApellidos(Actor actor, String nombres, String apellidos) {
+//
+//        actor.attemptsTo(
+//                Editar.datosPersonales(Convert.dataTableToUser())
+//        );
+//    }
 
     @Then("{actor} deberia ver el logo modificado con las iniciales {string}")
     public void elvisDeberiaVerElLogoModificadoConLasIniciales(Actor actor, String iniciales) {
         actor.attemptsTo(
-                Ensure.that(LOGO.waitingForNoMoreThan(Duration.ofSeconds(15))).text().isEqualTo(iniciales)
+                Ensure.that(EditPersonalInformationUI.LOGO.waitingForNoMoreThan(ofSeconds(15))).text().isEqualTo(iniciales)
         );
     }
 
     @And("{actor} regresa a la pantalla de perfil")
     public void elvisRegresaALaPantallaDePerfil(Actor actor) {
-        actor.attemptsTo(Click.on(ATRAS));
+        actor.attemptsTo(Click.on(BACK));
     }
 
     @Then("{actor} deberia ver el logo en la pantalla Perfil modificado con las iniciales {string}")
     public void elvisDeberiaVerElLogoEnLaPantallaPerfilModificadoConLasIniciales(Actor actor, String iniciales) {
         actor.attemptsTo(
-                Ensure.that(AdministracionPerilUI.LOGO).text().isEqualTo(iniciales)
+                Ensure.that(LOGO.waitingForNoMoreThan(ofSeconds(15))).text().isEqualTo(iniciales)
         );
     }
 
     @And("{actor} deberia ver el titulo {string} en la pantalla perfil")
     public void elvisDeberiaVerElTituloEnLaPantallaPerfil(Actor actor, String titulo) {
-        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NOMBRE_USUARIO).text().isEqualTo(titulo));
+        actor.attemptsTo(Ensure.that(ProfileUI.PROFILE_TITLE).text().isEqualTo(titulo));
     }
 }

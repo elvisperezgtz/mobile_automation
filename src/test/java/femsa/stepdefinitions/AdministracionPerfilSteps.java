@@ -1,7 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.*;
-import femsa.user_interfaces.AdministracionPerilUI;
+import femsa.user_interfaces.ProfileUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,7 +12,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.time.Duration;
 
-import static femsa.user_interfaces.AdministracionPerilUI.PREGUNTAS_FRECUENTES;
+import static femsa.user_interfaces.ProfileUI.PREGUNTAS_FRECUENTES;
 import static femsa.user_interfaces.ClabeInterbancariaUI.*;
 import static femsa.user_interfaces.ConfirmPasswordModalUI.CONFIRMA_TU_CONTRASENIA;
 import static java.time.Duration.ofSeconds;
@@ -113,7 +113,7 @@ public class AdministracionPerfilSteps {
                 Click.on(EDITAR),
                 Confirm.thePassword(theActorInTheSpotlight().recall("contrasenia"))
         );
-        actor.attemptsTo(Editar.losDatosBancarios(clabe, titular));
+        actor.attemptsTo(Edit.losDatosBancarios(clabe, titular));
 
     }
 
@@ -168,6 +168,6 @@ public class AdministracionPerfilSteps {
 
     @Then("{actor} deberia poder ver el numero de telefono registrado")
     public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
-        actor.attemptsTo(Ensure.that(AdministracionPerilUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
+        actor.attemptsTo(Ensure.that(ProfileUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
     }
 }

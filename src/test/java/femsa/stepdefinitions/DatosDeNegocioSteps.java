@@ -33,7 +33,7 @@ public class DatosDeNegocioSteps {
     public void elvisEditaLosDatosDeNegocio(Actor actor, DataTable datosNegocio) {
         List<Map<String, String>> rows = datosNegocio.asMaps(String.class, String.class);
         actor.attemptsTo(
-                Editar.datosDelNegocio(
+                Edit.datosDelNegocio(
                         rows.get(0).get("Nombre"),
                         rows.get(0).get("Actividad"),
                         rows.get(0).get("CodigoPostal")
@@ -90,7 +90,7 @@ public class DatosDeNegocioSteps {
                 Clear.textBox(CODIGO_POSTAL),
                 Enter.theValue(codigoPostal).into(CODIGO_POSTAL),
                 Hide.theKeyboard(),
-                Guardar.datos()
+                Save.theEditedInformation()
         );
     }
 

@@ -58,13 +58,10 @@ public class ModalConfirmarContraseniaSteps {
 
     @And("{actor} ingresa una contrasenia con {int} caracteres")
     public void elvisIngresaUnaContraseniaConCaracteres(Actor actor, int caracteres) {
-
         String cadena = "1234567890123456789012345678901234";
-
-            actor.attemptsTo(
-                    Digitar.conTecladoNativo(cadena)
-            );
-
+        actor.attemptsTo(
+                Digitar.conTecladoNativo(cadena)
+        );
     }
 
     @Then("{actor} deberia ver que el campo contraseña solo tiene {int} caracteres")

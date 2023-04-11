@@ -2,7 +2,7 @@ package femsa.stepdefinitions;
 
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirm;
-import femsa.tasks.Guardar;
+import femsa.tasks.Save;
 import femsa.user_interfaces.DatosBancariosUI;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -60,7 +60,7 @@ public class DatosBancariosSteps {
                 Confirm.thePassword("Femsa123"),
                 Enter.theValue(titular).into(NOMBRE_TITULAR),
                 Enter.theValue(clabe).into(CLABE),
-                Guardar.datosBancarios()
+                Save.datosBancarios()
         );
     }
 
