@@ -1,0 +1,14 @@
+{
+  "default_user": {
+    "idUser": "0009-000l",
+    "nombre" : "Juan Alberto",
+    "apellidos": "Gil Romero",
+    "email": "jgil@mail.com"
+  },
+  "user_without_clabe": {
+    "idUser": "0009-0002",
+    "firstName" : "Elvis Rafael",
+    "lastName": "Perez Gutierrez",
+    "email": "eperez@palo-it.com"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "query": "mutation {saveUserInfo(request:{email:\"email@prueba.com\",idUser:\"cd048b2b-2417-4216-a8fd-492a1fea61fe\",lastName:\"perez\",name:\"pepito\"}){message status}}"
+}
+
+
