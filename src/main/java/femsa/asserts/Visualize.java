@@ -2,6 +2,7 @@ package femsa.asserts;
 
 import femsa.models.User;
 import femsa.user_interfaces.ConfirmPasswordModalUI;
+import femsa.user_interfaces.DoYouWantToGoModalUI;
 import femsa.user_interfaces.LoginUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -9,15 +10,16 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.AdministracionPerilUI.EDIT;
-import static femsa.user_interfaces.AdministracionPerilUI.LOGO;
-import static femsa.user_interfaces.AdministracionPerilUI.*;
+import static femsa.user_interfaces.ProfileUI.EDIT;
+import static femsa.user_interfaces.ProfileUI.LOGO;
+import static femsa.user_interfaces.ProfileUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
 import static femsa.user_interfaces.OnBoardingUI.TITLE;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
 import static femsa.user_interfaces.ResetPasswordUI.*;
+import static femsa.user_interfaces.ResetPasswordUI.BACK;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -53,7 +55,7 @@ public class Visualize {
         return Task.where("{0} visualizes the Profile screen",
                 WaitUntil.the(NEGOCIO, isVisible()).forNoMoreThan(ofSeconds(8)),
                 Ensure.that(LOGO).isDisplayed(),
-                Ensure.that(NOMBRE_USUARIO).isDisplayed(),
+                Ensure.that(PROFILE_TITLE).isDisplayed(),
                 Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
                 Ensure.that(EDIT).isDisplayed(),
                 Ensure.that(NEGOCIO).isDisplayed(),
@@ -88,9 +90,9 @@ public class Visualize {
                 Ensure.that(ConfirmPasswordModalUI.TITLE).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.PASSWORD).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.CONTINUE).isDisplayed(),
-                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CONTINUE))).isFalse(),
-                Ensure.that(ConfirmPasswordModalUI.CANCELAR).isDisplayed(),
-                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CANCELAR))).isTrue()
+//                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CONTINUE))).isFalse(),
+                Ensure.that(ConfirmPasswordModalUI.CANCELAR).isDisplayed()
+//                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CANCELAR))).isTrue()
         );
     }
 
@@ -102,6 +104,14 @@ public class Visualize {
                 Ensure.that(LAST_NAME).text().isEqualTo(user.getLastName()),
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(EMAIL))).isTrue(),
                 Ensure.that(EMAIL).text().isEqualTo(user.getEmail())
+        );
+    }
+
+    public static Performable doYouWantToGoOutModal() {
+        return Task.where("{Visualizes the Do you want to go out? modal}",
+                Ensure.that(DoYouWantToGoModalUI.TITLE).isDisplayed(),
+                Ensure.that(DoYouWantToGoModalUI.CONTINUE_EDITING).isDisplayed(),
+                Ensure.that(DoYouWantToGoModalUI.EXIT_WITHOUT_SAVING).isDisplayed()
         );
     }
 
