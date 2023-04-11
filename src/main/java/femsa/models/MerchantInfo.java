@@ -34,4 +34,12 @@ public class MerchantInfo {
         this.postalCode = postalCode;
     }
 
+    @Override
+    public String toString() {
+        return "MerchantInfo{" +
+                "merchantName='" + merchantName + '\'' +
+                ", merchantActivity='" + merchantActivity + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                '}';
+    }
 }

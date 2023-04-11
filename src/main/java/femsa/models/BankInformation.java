@@ -24,4 +24,11 @@ public class BankInformation {
         this.accountHolder = accountHolder;
     }
 
+    @Override
+    public String toString() {
+        return "BankInformation{" +
+                "clabe='" + clabe + '\'' +
+                ", accountHolder='" + accountHolder + '\'' +
+                '}';
+    }
 }
