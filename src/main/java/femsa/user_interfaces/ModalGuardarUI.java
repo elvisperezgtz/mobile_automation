@@ -4,8 +4,11 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class ModalGuardarUI {
-    public static final Target GUARDAR_CAMBIOS = Target.the("boton Guardar Cambios")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='GUARDAR CAMBIOS']"))
+    public static final Target SAVE = Target.the("Save button")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar']"))
+            .locatedForIOS(By.xpath(""));
+   public static final Target CONTINUE = Target.the("Continue button")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target GUARDAR = Target.the("boton Guardar")
