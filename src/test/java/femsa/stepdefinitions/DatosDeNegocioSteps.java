@@ -1,9 +1,14 @@
 package femsa.stepdefinitions;
 
+import femsa.asserts.Visualize;
+import femsa.enums.CredentialsName;
+import femsa.enums.JsonPath;
 import femsa.interactions.Clear;
 import femsa.interactions.Hide;
+import femsa.models.User;
 import femsa.tasks.*;
-import femsa.user_interfaces.DatosNegocioUI;
+import femsa.user_interfaces.EditBusinessDataUI;
+import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -16,8 +21,8 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import java.util.List;
 import java.util.Map;
 
-import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL;
-import static femsa.user_interfaces.DatosNegocioUI.CODIGO_POSTAL_INCORRECTO;
+import static femsa.user_interfaces.EditBusinessDataUI.POSTAL_CODE;
+import static femsa.user_interfaces.EditBusinessDataUI.CODIGO_POSTAL_INCORRECTO;
 import static femsa.user_interfaces.EditPersonalInformationUI.EDIT;
 import static femsa.user_interfaces.HomeUI.NOMBRE_NEGOCIO;
 
@@ -25,7 +30,7 @@ public class DatosDeNegocioSteps {
     @When("{actor} ingresa a la opcion datos de negocio")
     public void elvisIngresaALaOpcionDatosDeNegocio(Actor actor) {
         actor.attemptsTo(
-                Navigate.aLaPantallaDeDatosDeNegocio()
+                Navigate.toTheBusinessInformationScreen()
         );
     }
 
@@ -46,9 +51,9 @@ public class DatosDeNegocioSteps {
 
         List<Map<String, String>> rows = datosNegocio.asMaps(String.class, String.class);
         actor.attemptsTo(
-                Ensure.that(DatosNegocioUI.NOMBRE_NEGOCIO).text().isEqualTo(rows.get(0).get("Nombre")),
+                Ensure.that(EditBusinessDataUI.BUSINESS_NAME).text().isEqualTo(rows.get(0).get("Nombre")),
 //                Ensure.that(ACTIVIDAD_DE_TU_NEGOCIO).text().isEqualTo(rows.get(0).get("Actividad")),
-                Ensure.that(CODIGO_POSTAL).text().isEqualTo(rows.get(0).get("CodigoPostal"))
+                Ensure.that(POSTAL_CODE).text().isEqualTo(rows.get(0).get("CodigoPostal"))
         );
     }
 
@@ -65,7 +70,7 @@ public class DatosDeNegocioSteps {
                 Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
-                Borrar.campoEnNegocio(DatosNegocioUI.NOMBRE_NEGOCIO)
+                Borrar.campoEnNegocio(EditBusinessDataUI.BUSINESS_NAME)
         );
     }
 
@@ -76,7 +81,7 @@ public class DatosDeNegocioSteps {
                 Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
-                Borrar.campoEnNegocio(CODIGO_POSTAL)
+                Borrar.campoEnNegocio(POSTAL_CODE)
         );
     }
 
@@ -87,8 +92,8 @@ public class DatosDeNegocioSteps {
                 Confirm.thePassword("Femsa123")
         );
         actor.attemptsTo(
-                Clear.textBox(CODIGO_POSTAL),
-                Enter.theValue(codigoPostal).into(CODIGO_POSTAL),
+                Clear.textBox(POSTAL_CODE),
+                Enter.theValue(codigoPostal).into(POSTAL_CODE),
                 Hide.theKeyboard(),
                 Save.theEditedInformation()
         );
@@ -120,6 +125,35 @@ public class DatosDeNegocioSteps {
         );
     }
 
+    /***
+     * changes
+     */
 
+    @When("{actor} enters in the Business data option")
+    public void heEntersInTheBusinessDataOption(Actor actor) {
+        actor.attemptsTo(Navigate.toTheBusinessInformationScreen());
+    }
 
+    @Then("{actor} should see his Business information registered")
+    public void heShouldSeeHisBusinessInformationRegistered(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(Visualize.hisBusinessInformation(user));
+    }
+
+    @And("{actor} wants to edit his Business information")
+    public void heWantsToEditHisBusinessInformation(Actor actor) {
+        actor.attemptsTo(Click.on(EDIT));
+    }
+
+    @Then("{actor} should see the business information form in edit mode")
+    public void heShouldSeeTheBusinessInformationFormInEditMode(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(Visualize.theBusinessInformationFormInEditMode(user));
+
+    }
+
+    @And("{actor} changes his Business name for {string}")
+    public void heChangesHisBusinessNameFor(Actor actor, String businessName) {
+        actor.attemptsTo(Edit.businessName(businessName));
+    }
 }

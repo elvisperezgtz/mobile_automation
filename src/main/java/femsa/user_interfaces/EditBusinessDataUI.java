@@ -3,7 +3,7 @@ package femsa.user_interfaces;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class DatosNegocioUI {
+public class EditBusinessDataUI {
 
     public static final Target BUSINESS_NAME = Target.the("Business name field")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
