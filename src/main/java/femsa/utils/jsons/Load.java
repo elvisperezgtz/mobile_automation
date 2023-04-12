@@ -2,6 +2,7 @@ package femsa.utils.jsons;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import femsa.enums.JsonPath;
 import femsa.models.Credential;
 import femsa.models.User;
 import femsa.utils.Decoder;
@@ -35,6 +36,7 @@ public class Load {
         return query;
     }
 
+
     public static JsonObject loadJson(String filePath) {
         try {
             FileReader reader = new FileReader(filePath);
@@ -47,7 +49,14 @@ public class Load {
         }
     }
 
+    public static String userAccountFromJsonTemplate(String idUser){
+        String query = requireNonNull(loadJson(JsonPath.USER_ACCOUNT_DATA.getFilePath())).toString();
+        query = query.replace("{{idUser}}", idUser);
+        return query;
+    }
+
     public static void main(String[] args) {
-        System.out.println(userFromJsonTemplate("Elvis",""));
+//        System.out.println(userFromJsonTemplate("Elvis",""));
+        System.out.println(userAccountFromJsonTemplate("prueba"));
     }
 }
