@@ -29,7 +29,7 @@ public class ProfileUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Editar']"));
 
-    public static final Target NEGOCIO = Target.the("boton Negocio")
+    public static final Target BUSINESS = Target.the("Business button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Negocio']"))
             .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[1]"));
 

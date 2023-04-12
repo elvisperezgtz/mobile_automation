@@ -1,6 +1,6 @@
 package femsa.tasks;
 
-import femsa.user_interfaces.DatosNegocioUI;
+import femsa.user_interfaces.EditBusinessDataUI;
 import femsa.user_interfaces.HomeUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -39,7 +39,7 @@ public class Navigate {
     }
 
     public static Performable toTheProfileAdministrationScreen() {
-        return Task.where("{0} navega hasta la pantalla de administracion de perfil",
+        return Task.where("{0} navigates to the Profile screen",
                 WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(PERFIL)
         );
@@ -52,10 +52,10 @@ public class Navigate {
         );
     }
 
-    public static Performable aLaPantallaDeDatosDeNegocio() {
-        return Task.where("{0} navega hasta la pantalla de datos de negocio",
+    public static Performable toTheBusinessInformationScreen() {
+        return Task.where("{0} navigates to te business information editing screen",
                 Navigate.toTheProfileAdministrationScreen(),
-                Click.on(NEGOCIO)
+                Click.on(BUSINESS)
         );
     }
 
@@ -69,7 +69,7 @@ public class Navigate {
 
     public static Performable desdeNegocioHastaHome() {
         return Task.where("{0} navega desde la pantalla Negocio hasta la pantalla Home",
-                Click.on(DatosNegocioUI.ATRAS),
+                Click.on(EditBusinessDataUI.ATRAS),
                 Click.on(HomeUI.INICIO)
         );
     }
