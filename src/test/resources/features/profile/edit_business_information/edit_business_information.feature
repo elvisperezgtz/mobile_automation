@@ -6,6 +6,49 @@ Feature: Visualizar Pantalla "Edicion de datos de negocio"
   Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos de negocio capturados en el proceso de onboarding de la aplicacion,
   de tal forma que el usuario pueda hacer los ajustes de su informacion segun lo requiera.
 
+  Background: The user is in the edit personal information option.
+    Given Elvis Perform the introductory tutorial
+    And he is logged in to the app by "phone number" with his "valid credentials"
+    When he enters in the personal data option
+
+  Scenario: Verify Edit button redirection
+
+  Scenario: Verify functionality of the Edit button
+
+  Scenario: Verify Back button redirection
+
+  Scenario: Verify functionality of Continue Button with incorrect password
+
+  Scenario: Verify functionality of Continue Button with valid password
+
+  Scenario Outline: Validate the length of your Business Name field with
+    Examples:
+      | 35 characters |
+      | 1 character   |
+      | with numbers  |
+
+  Scenario Outline: Validate the mandatory of <tesCase>
+    Examples:
+      | Business name |
+      | postal code   |
+      | Activity      |
+
+  Scenario Outline: Validate the length of your Postal code field with
+    Examples:
+      | empty        |
+      | 1 character  |
+      | with numbers |
+
+  Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
+
+  Scenario: Verify functionality of the EXIT WITHOUT SAVING button
+
+  Scenario: Verify CANCEL button functionality
+
+  Scenario: Verify that the information was updated
+
+  Scenario: Validate that the title at home change when update the Business information
+
   Background: El usuario se encuentra en la opcion de datos personales
     Given Elvis Perform the introductory tutorial
     And Elvis inicia sesion con su numero telefonico

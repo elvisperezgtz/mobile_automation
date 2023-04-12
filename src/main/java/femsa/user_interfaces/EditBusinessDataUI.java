@@ -5,23 +5,23 @@ import org.openqa.selenium.By;
 
 public class DatosNegocioUI {
 
-    public static final Target NOMBRE_NEGOCIO = Target.the("campo Nombre negocio")
-            .locatedForAndroid(By.xpath("//android.view.View[@content-desc='EDIT_CONSTRAINT_CONTENT']/android.widget.ScrollView/android.widget.EditText[1]"))
+    public static final Target BUSINESS_NAME = Target.the("Business name field")
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target ACTIVIDAD_DE_TU_NEGOCIO= Target.the("campo Actividad de tu negocio")
-            .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='REGISTERDATA_DROPDOWNMENU_BUSINESS'])[1]/android.widget.EditText/android.view.View[2]"))
+    public static final Target BUSINESS_ACTIVITY = Target.the("Business activity")
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[2]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target CODIGO_POSTAL= Target.the("campo codigo postal")
-            .locatedForAndroid(By.xpath("//android.view.View[@content-desc='EDIT_CONSTRAINT_CONTENT']/android.widget.ScrollView/android.widget.EditText[2]"))
+    public static final Target POSTAL_CODE = Target.the("postal code field")
+            .locatedForAndroid(By.xpath("(//android.widget.EditText)[3]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target BOTON_EDITAR= Target.the("boton Editar")
+    public static final Target EDIT = Target.the("Edit button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target CANCELAR= Target.the("boton Cancelar")
+    public static final Target CANCEL = Target.the("Cancel button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar']"))
             .locatedForIOS(By.xpath(""));
 
@@ -29,7 +29,7 @@ public class DatosNegocioUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target TITULO = Target.the("titulo")
+    public static final Target TITLE = Target.the("title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Tu negocio']"))
             .locatedForIOS(By.xpath(""));
     public static final Target CODIGO_POSTAL_INCORRECTO =  Target.the("alerta codigo postal")

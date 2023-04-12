@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class ModalGuardarUI {
     public static final Target SAVE = Target.the("Save button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar']"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar' or @text='GUARDAR']"))
             .locatedForIOS(By.xpath(""));
    public static final Target CONTINUE = Target.the("Continue button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR']"))
