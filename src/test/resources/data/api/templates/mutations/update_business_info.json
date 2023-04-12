@@ -1,0 +1,3 @@
+{
+  "mutation": "{updateBusinessInfo(request: {businessActivity:\"{{businessActivity}}\",businessName:\"{{businessName}}\", idBranch:\"{{idBranch}}\", zipCode: \"{{zipCode}}\" }) {message status}}"
+}
