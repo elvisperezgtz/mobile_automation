@@ -25,7 +25,7 @@ import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeT
 @Narrative(text = {"As an user",
         "I want to be able to edit my personal information",
         "In order to get update my personal information"})
-@WithTagValuesOf({"profile"})
+@WithTagValuesOf({"poc"})
 public class GetName {
 
     private Actor actor;
