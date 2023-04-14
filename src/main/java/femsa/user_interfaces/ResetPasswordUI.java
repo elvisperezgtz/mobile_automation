@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class ResetPasswordUI {
 
     public static final Target RESET_PASSWORD_TITLE = Target.the("title")
-            .locatedForAndroid(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.q0/android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Restablece tu contraseña']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target HELP = Target.the("help button")
@@ -22,7 +22,7 @@ public class ResetPasswordUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target CONTINUE = Target.the("Continue button")
-            .locatedForAndroid(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.q0/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.widget.Button"))
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"BUTTON_CONCEPT\"]"))
             .locatedForIOS(By.xpath(""));
 
 }

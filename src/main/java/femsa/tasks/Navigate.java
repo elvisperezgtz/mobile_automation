@@ -1,16 +1,16 @@
 package femsa.tasks;
 
 import femsa.user_interfaces.EditBusinessDataUI;
-import femsa.user_interfaces.HomeUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.ProfileUI.*;
+import static femsa.user_interfaces.HomeUI.HOME;
 import static femsa.user_interfaces.HomeUI.PERFIL;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
+import static femsa.user_interfaces.ProfileUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -69,9 +69,15 @@ public class Navigate {
 
     public static Performable desdeNegocioHastaHome() {
         return Task.where("{0} navega desde la pantalla Negocio hasta la pantalla Home",
-                Click.on(EditBusinessDataUI.ATRAS),
-                Click.on(HomeUI.INICIO)
+                Click.on(EditBusinessDataUI.BACK),
+                Click.on(HOME)
         );
     }
 
+    public static Performable fromEditBusinessInformationToHome() {
+        return Task.where("{0} navigates from Business Information to Home screen",
+                Click.on(EditBusinessDataUI.BACK),
+                Click.on(HOME)
+        );
+    }
 }

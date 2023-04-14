@@ -32,11 +32,11 @@ public class EditBusinessDataUI {
     public static final Target TITLE = Target.the("title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Tu negocio']"))
             .locatedForIOS(By.xpath(""));
-    public static final Target CODIGO_POSTAL_INCORRECTO =  Target.the("alerta codigo postal")
+    public static final Target WRONG_POSTAL_CODE =  Target.the("Wrong postal code message")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este código postal es incorrecto']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target ATRAS = Target.the("boton Atras")
+    public static final Target BACK = Target.the("Back button")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='ICONBUTTON_BACK']"))
             .locatedForIOS(By.xpath(""));
 }
