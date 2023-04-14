@@ -8,8 +8,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
-import java.sql.SQLException;
-
 import static femsa.enums.CredentialsName.ELVIS;
 
 public class ParameterDefinitions {
@@ -25,12 +23,15 @@ public class ParameterDefinitions {
     }
 
     @Before("@hookPersonalData")
-    public void setDefaultUser() throws SQLException {
+    @After("@hookPersonalData")
+    public void setDefaultUser() {
         Update.userInfo(ELVIS.getName());
     }
-    @After("@hookPersonalData")
-    public void backupUser() throws SQLException {
-        Update.userInfo(ELVIS.getName());
+
+    @Before("@hookBusinessData")
+    @After("@hookBusinessData")
+    public void setDefaultBusinessData() {
+        Update.businessInfo(ELVIS);
     }
 
 }

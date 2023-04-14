@@ -107,9 +107,7 @@ public class EditPersonalInformationSteps {
 
     @And("{actor} wants to cancel editing his personal information")
     public void heWantsToCancelEditingHisPersonalInformation(Actor actor) {
-        actor.attemptsTo(
-                Click.on(CANCEL)
-        );
+        actor.attemptsTo(Click.on(CANCEL.waitingForNoMoreThan(ofSeconds(10))));
     }
 
     @Then("{actor} should see the Do you want to go out? modal")

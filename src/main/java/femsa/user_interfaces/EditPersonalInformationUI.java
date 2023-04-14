@@ -25,7 +25,7 @@ public class EditPersonalInformationUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"Guardar\"]"));
 
     public static final Target CANCEL = Target.the("Cancel button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar']"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar' or @text='CANCELAR']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target CONTINUAR = Target.the("boton CONTINUAR")
