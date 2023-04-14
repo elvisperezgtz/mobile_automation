@@ -1,6 +1,8 @@
 
 ### Display the "Edit Personal information" screen.
-As a shopkeeper user I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the onboarding process of the application, so that the user can make adjustments to their information as required.
+As a Spin pro user
+I want a module to view and edit my personal information.
+To keep this information up to date
 
 ### Link to user story
 
