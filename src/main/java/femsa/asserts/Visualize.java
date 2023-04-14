@@ -10,16 +10,17 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.ProfileUI.EDIT;
-import static femsa.user_interfaces.ProfileUI.LOGO;
-import static femsa.user_interfaces.ProfileUI.*;
+import static femsa.user_interfaces.EditBusinessDataUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
 import static femsa.user_interfaces.OnBoardingUI.TITLE;
+import static femsa.user_interfaces.ProfileUI.EDIT;
+import static femsa.user_interfaces.ProfileUI.LOGO;
+import static femsa.user_interfaces.ProfileUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
-import static femsa.user_interfaces.ResetPasswordUI.*;
 import static femsa.user_interfaces.ResetPasswordUI.BACK;
+import static femsa.user_interfaces.ResetPasswordUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -53,12 +54,12 @@ public class Visualize {
 
     public static Performable theProfileScreen() {
         return Task.where("{0} visualizes the Profile screen",
-                WaitUntil.the(NEGOCIO, isVisible()).forNoMoreThan(ofSeconds(8)),
+                WaitUntil.the(BUSINESS, isVisible()).forNoMoreThan(ofSeconds(8)),
                 Ensure.that(LOGO).isDisplayed(),
                 Ensure.that(PROFILE_TITLE).isDisplayed(),
                 Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
                 Ensure.that(EDIT).isDisplayed(),
-                Ensure.that(NEGOCIO).isDisplayed(),
+                Ensure.that(BUSINESS).isDisplayed(),
                 Ensure.that(AYUDA).isDisplayed(),
                 Ensure.that(AUTORIZAR_DISPOSITIVO).isDisplayed(),
                 Ensure.that(DOCUMENTOS_LEGALES).isDisplayed(),
@@ -108,12 +109,30 @@ public class Visualize {
     }
 
     public static Performable doYouWantToGoOutModal() {
-        return Task.where("{Visualizes the Do you want to go out? modal}",
+        return Task.where("{0} Visualizes the Do you want to go out? modal",
                 Ensure.that(DoYouWantToGoModalUI.TITLE).isDisplayed(),
                 Ensure.that(DoYouWantToGoModalUI.CONTINUE_EDITING).isDisplayed(),
                 Ensure.that(DoYouWantToGoModalUI.EXIT_WITHOUT_SAVING).isDisplayed()
         );
     }
 
+    public static Performable hisBusinessInformation(User user) {
+
+        return Task.where("{0} visualizes his business information",
+                Ensure.that(BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName()),
+                Ensure.that(BUSINESS_ACTIVITY).text().isEqualTo(user.getMerchantInfo().getMerchantActivity()),
+                Ensure.that(POSTAL_CODE).text().isEqualTo(user.getMerchantInfo().getPostalCode())
+        );
+    }
+    public static Performable theBusinessInformationFormInEditMode(User user){
+        return Task.where("{0} visualizes the Business information form in edit mode",
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(BUSINESS_NAME))).isTrue(),
+                Ensure.that(BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName()),
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(BUSINESS_ACTIVITY))).isTrue(),
+                Ensure.that(BUSINESS_ACTIVITY).text().isEqualTo(user.getMerchantInfo().getMerchantActivity()),
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(POSTAL_CODE))).isTrue(),
+                Ensure.that(POSTAL_CODE).text().isEqualTo(user.getMerchantInfo().getPostalCode())
+        );
+    }
 }
 

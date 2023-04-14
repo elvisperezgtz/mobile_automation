@@ -10,6 +10,12 @@ public class MerchantInfo {
     @SerializedName("postal_code")
     private String postalCode;
 
+    private MerchantInfo(Builder builder){
+        this.merchantName= builder.merchantName;
+        this.merchantActivity = builder.merchantActivity;
+        this.postalCode = builder.postalCode;
+    }
+
     public String getMerchantName() {
         return merchantName;
     }
@@ -41,5 +47,26 @@ public class MerchantInfo {
                 ", merchantActivity='" + merchantActivity + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private String merchantName;
+        private String merchantActivity;
+        private String postalCode;
+
+        public Builder withMerchantName(String merchantName) {
+            this.merchantName = merchantName;
+            return this;
+        }
+
+        public Builder withMerchantActivity(String merchantActivity) {
+            this.merchantActivity = merchantActivity;
+            return this;
+        }
+        public Builder withPostalCode (String postalCode){
+            this.postalCode = postalCode;
+            return this;
+        }
+        public MerchantInfo build(){return new MerchantInfo(this);}
     }
 }

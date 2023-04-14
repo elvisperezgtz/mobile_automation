@@ -2,7 +2,7 @@ package femsa.tasks;
 
 import femsa.interactions.Clear;
 import femsa.interactions.SelectFromDropDown;
-import femsa.user_interfaces.DatosNegocioUI;
+import femsa.user_interfaces.EditBusinessDataUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -24,7 +24,7 @@ public class Borrar {
     public static Performable campoEnNegocio(Target target) {
         return Task.where("{0} borra el contenido del campo",
                 Clear.textBox(target),
-                SelectFromDropDown.byVisibleText(DatosNegocioUI.ACTIVIDAD_DE_TU_NEGOCIO,"ABARROTES Y MISCELANEAS")
+                SelectFromDropDown.byVisibleText(EditBusinessDataUI.BUSINESS_ACTIVITY,"ABARROTES Y MISCELANEAS")
         );
     }
     public static Performable elCampoNombreDelTitular(){

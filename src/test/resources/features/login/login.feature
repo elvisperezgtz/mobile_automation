@@ -1,4 +1,4 @@
-@login @regresion
+@login @regression
 
 Feature: Login
   As a user

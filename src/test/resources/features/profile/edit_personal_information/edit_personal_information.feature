@@ -1,4 +1,4 @@
-@editPersonalInformation
+@editPersonalInformation @regression  @hookPersonalData
 Feature: Edit personal information
   As a shopkeeper user
   I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the on boarding process of the application,
@@ -49,7 +49,7 @@ Feature: Edit personal information
       | Elvis     | Perez Gutierrez | mon@mail.com |
     Then he should see the following message This email already has an account
 
-  @hookPersonalData @fix
+  @fix
   Scenario Outline: Validate <testCase>
     And he edits his personal information
       | firstName   | lastName   | email   |
@@ -63,14 +63,12 @@ Feature: Edit personal information
       | Elvís     | Pérez Gutierrez | eperez@palo-it.com | that the First name and last name field accepts accented characters  |
       | Elvis     | Perez Gutierrez | eperez@palo-it.com | that when you press the Continue button the data is saved correctly. |
 
-
   Scenario: Verify CANCEL button functionality
     And he changes his personal information
       | firstName | lastName        | email              |
       | Elvis     | Perez Gutierrez | eperez@palo-it.com |
     And he wants to cancel editing his personal information
     Then he should see the Do you want to go out? modal
-
 
   Scenario: Verify functionality of the EXIT WITHOUT SAVING button
     And he changes his personal information
@@ -79,7 +77,6 @@ Feature: Edit personal information
     And he declines save changes
     Then he should see that there are not changes on his personal information
 
-  @fix @hookPersonalData
   Scenario: Validate profile image composition
     And he edits his personal information
       | firstName | lastName | email              |
@@ -87,7 +84,6 @@ Feature: Edit personal information
     And he saves changes
     Then he should see the composite logo with the text "FD"
 
-  @fix @hookPersonalData
   Scenario: Verify the title change on the profile screen when changing the first and last name.
     And he edits his personal information
       | firstName | lastName | email              |
