@@ -9,7 +9,6 @@ Feature: Edit personal information
     And he is logged in to the app by "phone number" with his "valid credentials"
     When he enters in the personal data option
 
-
   Scenario: Verify Edit button redirection
     Then Elvis should see his personal data registered
 
@@ -42,14 +41,14 @@ Feature: Edit personal information
       | eperez@        | Formato de email incorrecto |
       | eperez@palo-it | Formato de email incorrecto |
 
-
   Scenario: Validate that emails already registered are not accepted
     And he edits his personal information
-      | firstName | lastName        | email        |
-      | Elvis     | Perez Gutierrez | mon@mail.com |
+      | firstName | lastName        | email                   |
+      | Elvis     | Perez Gutierrez | elvisperezg@hotmail.com |
+    And  he saves changes
     Then he should see the following message This email already has an account
 
-  @fix
+
   Scenario Outline: Validate <testCase>
     And he edits his personal information
       | firstName   | lastName   | email   |

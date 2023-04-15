@@ -34,6 +34,7 @@ public class Load {
         query = query.replace("{{idUser}}", idUser);
         query = query.replace("{{lastName}}", user.getLastName());
         query = query.replace("{{name}}", user.getFirstName());
+        System.out.println(query);
         return query;
     }
 
