@@ -33,7 +33,6 @@ public class Update {
 
     public static Response userInfo(String userData) {
         LOGGER.info("Updating user information... ");
-        RestAssured.baseURI = URI;
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer ".concat(getUserID().body().jsonPath().getString("data.login.accessToken")))
