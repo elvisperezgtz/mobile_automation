@@ -1,5 +1,6 @@
 package femsa.asserts;
 
+import femsa.models.BankInformation;
 import femsa.models.User;
 import femsa.user_interfaces.ConfirmPasswordModalUI;
 import femsa.user_interfaces.DoYouWantToGoModalUI;
@@ -138,10 +139,10 @@ public class Visualize {
         );
     }
 
-    public static Performable bankAccountInformation(User user) {
+    public static Performable bankAccountInformation(BankInformation bankInformation) {
         return Task.where("{0} visualizes his Bank account information",
-                Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(user.getBankInformation().getAccountHolder()),
-                Ensure.that(CLABE).text().isEqualTo(user.getBankInformation().getClabe()),
+                Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(bankInformation.getAccountHolder()),
+                Ensure.that(CLABE).text().isEqualTo(bankInformation.getClabe()),
                 Ensure.that(EDIT).isDisplayed(),
                 Ensure.that(BACK).isDisplayed()
         );

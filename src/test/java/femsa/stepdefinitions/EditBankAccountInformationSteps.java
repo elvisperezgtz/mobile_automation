@@ -88,7 +88,7 @@ public class EditBankAccountInformationSteps {
     public void elvisShouldSeeHisBankAccountInformationRegistered(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
         actor.attemptsTo(
-                Visualize.bankAccountInformation(user)
+                Visualize.bankAccountInformation(user.getBankInformation())
         );
     }
 
@@ -132,6 +132,14 @@ public class EditBankAccountInformationSteps {
     @Then("{actor} should see that there are not changes on his bank account information")
     public void heShouldSeeThatThereAreNotChangesOnHisBankAccountInformation(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        actor.attemptsTo(Visualize.bankAccountInformation(user));
+        actor.attemptsTo(Visualize.bankAccountInformation(user.getBankInformation()));
+    }
+
+    @And("{actor} should see the bank account information updated")
+    public void heShouldSeeTheBankAccountInformationUpdated(Actor actor, DataTable updatedInfo) {
+        BankInformation bankInformation = Convert.dataTableToBankAccountInfo(updatedInfo);
+        actor.attemptsTo(
+               Visualize.bankAccountInformation(bankInformation)
+        );
     }
 }

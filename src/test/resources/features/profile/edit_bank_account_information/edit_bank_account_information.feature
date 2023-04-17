@@ -1,4 +1,4 @@
-@sprint7 @regression @editBankAccount
+@sprint7 @regression @editBankAccount @hookBankAccountInfo
 Feature: Edit Bank account information
   As a Spin pro user
   I want a module to change my bank account information
@@ -61,3 +61,6 @@ Feature: Edit Bank account information
         | 123456789123456789 | Elvis Perez Gutierrez |
       And he saves changes
       Then he should see the following message: You have updated your data
+      And he should see the bank account information updated
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
