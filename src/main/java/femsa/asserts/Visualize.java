@@ -1,5 +1,6 @@
 package femsa.asserts;
 
+import femsa.models.BankInformation;
 import femsa.models.User;
 import femsa.user_interfaces.ConfirmPasswordModalUI;
 import femsa.user_interfaces.DoYouWantToGoModalUI;
@@ -10,6 +11,8 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import static femsa.user_interfaces.EditBankAccountUI.CLABE;
+import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
@@ -124,7 +127,8 @@ public class Visualize {
                 Ensure.that(POSTAL_CODE).text().isEqualTo(user.getMerchantInfo().getPostalCode())
         );
     }
-    public static Performable theBusinessInformationFormInEditMode(User user){
+
+    public static Performable theBusinessInformationFormInEditMode(User user) {
         return Task.where("{0} visualizes the Business information form in edit mode",
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(BUSINESS_NAME))).isTrue(),
                 Ensure.that(BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName()),
@@ -133,6 +137,24 @@ public class Visualize {
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(POSTAL_CODE))).isTrue(),
                 Ensure.that(POSTAL_CODE).text().isEqualTo(user.getMerchantInfo().getPostalCode())
         );
+    }
+
+    public static Performable bankAccountInformation(BankInformation bankInformation) {
+        return Task.where("{0} visualizes his Bank account information",
+                Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(bankInformation.getAccountHolder()),
+                Ensure.that(CLABE).text().isEqualTo(bankInformation.getClabe()),
+                Ensure.that(EDIT).isDisplayed(),
+                Ensure.that(BACK).isDisplayed()
+        );
+    }
+
+    public static Performable bankAccountInformationInEditMode(User user) {
+        return Task.where("{0} visualizes the Bank account information form in edit mode",
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ACCOUNT_HOLDER))).isTrue(),
+                Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(user.getBankInformation().getAccountHolder()),
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(CLABE))).isTrue(),
+                Ensure.that(CLABE).text().isEqualTo(user.getBankInformation().getClabe())
+                );
     }
 }
 

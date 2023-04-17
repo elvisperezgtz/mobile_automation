@@ -11,7 +11,7 @@ public class SaveModalUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar' or @text='GUARDAR']"))
             .locatedForIOS(By.xpath(""));
    public static final Target CONTINUE = Target.the("Continue button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR' or @text='GUARDAR CAMBIOS']"))
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR' or @text='GUARDAR CAMBIOS' or @text='CONFIRMAR']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target GUARDAR = Target.the("boton Guardar")

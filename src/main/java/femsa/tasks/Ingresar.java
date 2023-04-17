@@ -5,7 +5,7 @@ import femsa.interactions.Esperar;
 import femsa.interactions.GetOtp;
 import femsa.interactions.SelectFromDropDown;
 import femsa.models.Usuario;
-import femsa.user_interfaces.DatosBancariosUI;
+import femsa.user_interfaces.EditBankAccountUI;
 import femsa.user_interfaces.DatosPersonalesUI;
 import femsa.user_interfaces.PasswordUI;
 import net.serenitybdd.screenplay.Performable;
@@ -19,8 +19,8 @@ import java.io.IOException;
 
 import static femsa.interactions.Ejecutar.elComandoAdb;
 import static femsa.user_interfaces.ProfileUI.AYUDA;
-import static femsa.user_interfaces.DatosBancariosUI.CLABE;
-import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
+import static femsa.user_interfaces.EditBankAccountUI.CLABE;
+import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.DatosPersonalesUI.*;
 import static femsa.user_interfaces.PasswordUI.CONTRASENIA;
 import static femsa.user_interfaces.RegistroUI.CASILLA_1;
@@ -74,8 +74,8 @@ public class Ingresar {
 
     public static Performable cuentaClabeTitular(Usuario usuario) {
         return Task.where("{0} Ingresa los datos de su cuenta CLABE",
-                WaitUntil.the(DatosBancariosUI.TITULO, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Enter.theValue(usuario.getNombreTitular()).into(NOMBRE_TITULAR),
+                WaitUntil.the(EditBankAccountUI.TITULO, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Enter.theValue(usuario.getNombreTitular()).into(ACCOUNT_HOLDER),
                 Enter.theValue(usuario.getCuentaClabe()).into(CLABE)
         );
     }

@@ -24,8 +24,8 @@ public class Navigate {
         );
     }
 
-    public static Performable aLaPantallaDeDatosBancarios() {
-        return Task.where("{0} navega hasta la pantalla de administracion de perfil",
+    public static Performable toBankAccountInformationScreen() {
+        return Task.where("{0} navigates to the Bank account information screen",
                 Navigate.toTheProfileAdministrationScreen(),
                 Click.on(CLABE)
         );

@@ -8,6 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/test/resources/features",
-        tags = "@reRun"
+        tags = "@editBankAccount"
 )
 public class CucumberTestSuite {}

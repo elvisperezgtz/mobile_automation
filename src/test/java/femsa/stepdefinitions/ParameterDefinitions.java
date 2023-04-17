@@ -34,4 +34,10 @@ public class ParameterDefinitions {
         Update.businessInfo(ELVIS);
     }
 
+    @Before("hookBankAccountInfo")
+    @After("hookBankAccountInfo")
+    public void  setDefaultBankAccountInfo(){
+        Update.bankAccountInfo(ELVIS);
+    }
+
 }

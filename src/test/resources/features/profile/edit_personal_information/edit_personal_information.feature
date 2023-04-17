@@ -13,9 +13,8 @@ Feature: Edit personal information
     Then Elvis should see his personal data registered
 
   Scenario: Verify functionality of the Edit button
-    And he wants to edit his personal information
+    And he wants to edit his information
     Then he should see a Confirm Password modal
-
 
   Scenario: Verify Back button redirection
     And he wants to go back
@@ -25,7 +24,6 @@ Feature: Edit personal information
   Scenario: Verify functionality of Continue Button with incorrect password
     And he tries to confirm the password with a wrong password "BadPassword"
     Then he should see the error message "Contraseña incorrecta"
-
 
   Scenario: Verify functionality of Continue Button with valid password
     And he confirms his password
