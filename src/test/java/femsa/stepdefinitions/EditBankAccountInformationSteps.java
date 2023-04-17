@@ -1,9 +1,15 @@
 package femsa.stepdefinitions;
 
+import femsa.asserts.Visualize;
+import femsa.enums.CredentialsName;
+import femsa.enums.JsonPath;
+import femsa.models.User;
 import femsa.tasks.Borrar;
 import femsa.tasks.Confirm;
+import femsa.tasks.Navigate;
 import femsa.tasks.Save;
 import femsa.user_interfaces.DatosBancariosUI;
+import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -68,6 +74,19 @@ public class DatosBancariosSteps {
     public void elvisDeberiaVerElMensajeDeConfirmacion(Actor actor, String mensaje) {
         actor.attemptsTo(
                 Ensure.that(DatosBancariosUI.ACTUALIZACION_EXITOSA).text().isEqualTo(mensaje)
+        );
+    }
+
+    @When("{actor} enters in the bank account information option")
+    public void heEntersInTheBankAccountInformationOption(Actor actor) {
+        actor.attemptsTo(Navigate.toBankAccountInformationScreen());
+    }
+
+    @Then("{actor} should see his Bank account information registered")
+    public void elvisShouldSeeHisBankAccountInformationRegistered(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(
+                Visualize.bankAccountInformation(user)
         );
     }
 }
