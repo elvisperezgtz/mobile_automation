@@ -24,11 +24,33 @@ public class BankInformation {
         this.accountHolder = accountHolder;
     }
 
+    public BankInformation (Builder builder){
+        this.clabe = builder.clabe;
+        this.accountHolder = builder.accountHolder;
+    }
+
     @Override
     public String toString() {
         return "BankInformation{" +
                 "clabe='" + clabe + '\'' +
                 ", accountHolder='" + accountHolder + '\'' +
                 '}';
+    }
+    public static class Builder{
+        private String clabe;
+        private String accountHolder;
+
+        public Builder withClabe(String clabe){
+            this.clabe = clabe;
+            return this;
+        }
+        public Builder withAccountHolder(String accountHolder){
+            this.accountHolder = accountHolder;
+            return  this;
+
+        }
+        public BankInformation build(){
+            return new BankInformation(this);
+        }
     }
 }

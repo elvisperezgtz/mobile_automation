@@ -3,12 +3,12 @@ package femsa.user_interfaces;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
-public class DatosBancariosUI {
-    public static final Target NOMBRE_TITULAR = Target.the("campo Nombre completo del titular")
+public class EditBankAccountUI {
+    public static final Target ACCOUNT_HOLDER = Target.the("Holer name")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target CLABE = Target.the("campo Clabe")
+    public static final Target CLABE = Target.the("Clabe")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[2]"))
             .locatedForIOS(By.xpath(""));
 
@@ -52,5 +52,7 @@ public class DatosBancariosUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'CANCELAR')]"))
             .locatedForIOS(By.xpath(""));
 
-
+    public static final Target CLABE_MUST_HAVE_18_DIGITS =Target.the("The CLABE must have 18 digits")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text,'La Clabe debe tener 18 dígitos']"))
+            .locatedForIOS(By.xpath(""));
 }

@@ -1,6 +1,6 @@
 package femsa.tasks;
 
-import femsa.user_interfaces.DatosBancariosUI;
+import femsa.user_interfaces.EditBankAccountUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -17,7 +17,7 @@ public class Save {
     public static Performable datosBancarios(){
         return Task.where("{0} guarda los datos editados",
                 Click.on(GUARDAR),
-                Click.on(DatosBancariosUI.CONFIRMAR)
+                Click.on(EditBankAccountUI.CONFIRMAR)
         );
     }
 }

@@ -6,8 +6,8 @@ import net.serenitybdd.screenplay.Task;
 import femsa.interactions.SwipeFrom;
 import net.serenitybdd.screenplay.actions.Click;
 
-import static femsa.user_interfaces.DatosBancariosUI.ACEPTAR;
-import static femsa.user_interfaces.DatosBancariosUI.CONTINUAR;
+import static femsa.user_interfaces.EditBankAccountUI.ACEPTAR;
+import static femsa.user_interfaces.EditBankAccountUI.CONTINUAR;
 
 
 public class Complete {

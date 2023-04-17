@@ -13,9 +13,11 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.ClabeInterbancariaUI.CLABE_INTERBANCARIA;
 import static femsa.user_interfaces.ClabeInterbancariaUI.NOMBRE_TITULAR;
+import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
+import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
-import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.EDIT;
+import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
@@ -72,8 +74,8 @@ public class Edit {
         );
     }
 
-    public static  Performable email(String newEmail){
-        return Task.where("{0} edits his email with '"+newEmail+"'",
+    public static Performable email(String newEmail) {
+        return Task.where("{0} edits his email with '" + newEmail + "'",
                 Click.on(EDIT),
                 Confirm.thePassword(theActorInTheSpotlight().recall("password")),
                 WaitUntil.the(EMAIL, isEnabled()).forNoMoreThan(ofSeconds(10)),
@@ -81,28 +83,57 @@ public class Edit {
                 Click.on(LAST_NAME).then(Hide.theKeyboard())
         );
     }
-    public static Performable businessName(String businessName){
-        return Task.where("{0} edits his business name with '"+businessName+"'",
+
+    public static Performable businessName(String businessName) {
+        return Task.where("{0} edits his business name with '" + businessName + "'",
                 Click.on(EditBusinessDataUI.EDIT),
                 Confirm.thePassword(theActorInTheSpotlight().recall("password")),
                 WaitUntil.the(BUSINESS_NAME, isEnabled()).forNoMoreThan(ofSeconds(10)),
                 Enter.theValue(businessName).into(BUSINESS_NAME)
-                );
+        );
     }
-    public static Performable postalCode(String postalCode){
+
+    public static Performable postalCode(String postalCode) {
         return Task.where("{0} edits his postal code",
                 Click.on(EditBusinessDataUI.EDIT),
                 Confirm.thePassword(theActorInTheSpotlight().recall("password")),
                 WaitUntil.the(POSTAL_CODE, isEnabled()).forNoMoreThan(ofSeconds(10)),
                 Enter.theValue(postalCode).into(POSTAL_CODE)
-                );
+        );
     }
-    public static Performable businessInformationForm(MerchantInfo merchantInfo){
+
+    public static Performable businessInformationForm(MerchantInfo merchantInfo) {
 
         return Task.where("{0} edits the business information form",
                 Enter.theValue(merchantInfo.getMerchantName()).into(BUSINESS_NAME),
                 SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, merchantInfo.getMerchantActivity()),
                 Enter.theValue(merchantInfo.getPostalCode()).into(EMAIL)
-                );
+        );
+    }
+
+    public static Performable theAccountHolder(String accountHolder) {
+        return Task.where("{0} edits the account holder field",
+                Click.on(EDIT),
+                Confirm.thePassword(theActorInTheSpotlight().recall("password")),
+                Click.on(ACCOUNT_HOLDER),
+                Enter.theValue(accountHolder).into(ACCOUNT_HOLDER)
+        );
+    }
+
+    public static Performable theClabe(String clabe) {
+        return Task.where("{0} edits the interbank CLABE field",
+                Click.on(EDIT),
+                Confirm.thePassword(theActorInTheSpotlight().recall("password")),
+                Click.on(CLABE),
+                Enter.theValue(clabe).into(CLABE)
+        );
+    }
+
+    public static Performable theBankAccountInformationForm(String clabe, String accountHolder) {
+        return Task.where("{0} edits his bank account information",
+                Click.on(EDIT),
+                Confirm.thePassword(theActorInTheSpotlight().recall("password")),
+                Enter.theValue(clabe).into(CLABE),
+                Enter.theValue(accountHolder).into(ACCOUNT_HOLDER));
     }
 }

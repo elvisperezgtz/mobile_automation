@@ -28,4 +28,7 @@ public class CommonsUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Editar']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='OK']"));
 
+    public static final Target THIS_FIELD_IS_REQUIRED = Target.the("Alert: this field is required")
+            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este campo es obligatorio']"))
+            .locatedForIOS(By.xpath(""));;
 }

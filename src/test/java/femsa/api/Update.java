@@ -38,7 +38,7 @@ public class Update {
                 .header("Authorization", "Bearer ".concat(getUserID().body().jsonPath().getString("data.login.accessToken")))
                 .body(Load.userFromJsonTemplate(userData, getUserID().body().jsonPath().getString("data.login.idUser")))
                 .when()
-                .post("/")
+                .post(URI)
                 .then()
                 .extract()
                 .response();
@@ -90,5 +90,41 @@ public class Update {
                 .extract()
                 .response()
                 .prettyPrint();
+    }
+
+    public static void bankAccountInfo(CredentialsName userData){
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), userData.getName());
+        Response loginResponse = getUserID();
+        String token = loginResponse.jsonPath().getString("data.login.accessToken");
+        String idUser = loginResponse.jsonPath().getString("data.login.idUser");
+        Response userAccountInfoResponse = getUserAccountInfo(token, idUser);
+        String idClabe = userAccountInfoResponse.body().jsonPath().getString("data.findUserAccountInfo.userAccount.idClabe").replace("[", "").replace("]", "");
+
+        LOGGER.info("Updating business information");
+
+        String mutation = "mutation Mutation($request: UpdateBankAccountInfoRequest) {updateBankAccountInfo(request: $request) {message status}}";
+        String request =  "{\"clabe\":\"{{clabe}}\",\"holder\":\"{{holder}}\",\"idClabe\":\"{{idClabe}}\"}";
+
+
+        request = request.replace("{{clabe}}", user.getBankInformation().getClabe());
+        request = request.replace("{{holder}}", user.getBankInformation().getAccountHolder());
+        request = request.replace("{{idClabe}}", idClabe);
+
+        LOGGER.info("Query " + request);
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer ".concat(token))
+                .body("{\"query\":\"" + mutation + "\",\"variables\":{\"request\":" + request + "}}")
+                .post("")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .extract()
+                .response()
+                .prettyPrint();
+    }
+
+    public static void main(String[] args) {
+        bankAccountInfo(CredentialsName.ELVIS);
     }
 }
