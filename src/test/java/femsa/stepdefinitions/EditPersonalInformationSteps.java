@@ -33,9 +33,8 @@ public class EditPersonalInformationSteps {
         );
     }
 
-
-    @And("{actor} wants to edit his personal information")
-    public void heWantsToEditHisPersonalInformation(Actor actor) {
+    @And("{actor} wants to edit his information")
+    public void heWantsToEditHisInformation(Actor actor) {
         actor.attemptsTo(
                 Click.on(EDIT)
         );

@@ -3,13 +3,15 @@ package femsa.stepdefinitions;
 import femsa.asserts.Visualize;
 import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
+import femsa.models.BankInformation;
 import femsa.models.User;
-import femsa.tasks.Borrar;
-import femsa.tasks.Confirm;
-import femsa.tasks.Navigate;
-import femsa.tasks.Save;
-import femsa.user_interfaces.DatosBancariosUI;
+import femsa.tasks.*;
+import femsa.user_interfaces.CommonsUI;
+import femsa.user_interfaces.EditBankAccountUI;
+import femsa.utils.Convert;
 import femsa.utils.jsons.JsonTemplate;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -18,11 +20,11 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
 import static femsa.user_interfaces.CommonsUI.EDITAR;
-import static femsa.user_interfaces.DatosBancariosUI.CLABE;
-import static femsa.user_interfaces.DatosBancariosUI.NOMBRE_TITULAR;
+import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
+import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.utils.StringGenerator.withOnlyRandomNumbers;
 
-public class DatosBancariosSteps {
+public class EditBankAccountInformationSteps {
     @When("{actor} borra el contenido del campo CLABE Interbancaria")
     public void elvisBorraElContenidoDelCampoCLABEInterbancaria(Actor actor) {
         actor.attemptsTo(
@@ -48,14 +50,14 @@ public class DatosBancariosSteps {
                 Confirm.thePassword("Femsa123"),
                 Click.on(CLABE)
                         .then(Enter.theValue(withOnlyRandomNumbers(digitos)).into(CLABE)),
-                Click.on(NOMBRE_TITULAR)
+                Click.on(ACCOUNT_HOLDER)
         );
     }
 
     @Then("{actor} deberia ver la alerta de validacion de longitud con el texto {string}")
     public void elvisDeberiaVerLaAlertaDeValidacionDeLongitudConElTexto(Actor actor, String mensajeError) {
         actor.attemptsTo(
-                Ensure.that(DatosBancariosUI.ALERTA_LONGITUD).text().isEqualTo(mensajeError)
+                Ensure.that(EditBankAccountUI.ALERTA_LONGITUD).text().isEqualTo(mensajeError)
         );
     }
 
@@ -64,7 +66,7 @@ public class DatosBancariosSteps {
         actor.attemptsTo(
                 Click.on(EDITAR),
                 Confirm.thePassword("Femsa123"),
-                Enter.theValue(titular).into(NOMBRE_TITULAR),
+                Enter.theValue(titular).into(ACCOUNT_HOLDER),
                 Enter.theValue(clabe).into(CLABE),
                 Save.datosBancarios()
         );
@@ -73,7 +75,7 @@ public class DatosBancariosSteps {
     @Then("{actor} deberia ver el mensaje de confirmacion {string}")
     public void elvisDeberiaVerElMensajeDeConfirmacion(Actor actor, String mensaje) {
         actor.attemptsTo(
-                Ensure.that(DatosBancariosUI.ACTUALIZACION_EXITOSA).text().isEqualTo(mensaje)
+                Ensure.that(EditBankAccountUI.ACTUALIZACION_EXITOSA).text().isEqualTo(mensaje)
         );
     }
 
@@ -88,5 +90,48 @@ public class DatosBancariosSteps {
         actor.attemptsTo(
                 Visualize.bankAccountInformation(user)
         );
+    }
+
+    @Then("{actor} should see the bank account information form in edit mode")
+    public void heShouldSeeTheBankAccountInformationFormInEditMode(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(Visualize.bankAccountInformationInEditMode(user));
+    }
+
+    @And("{actor} edits his interbank CLABE information with {string}")
+    public void heEditsHisInterbankCLABEInformationWith(Actor actor, String clabe) {
+        actor.attemptsTo(Edit.theClabe(clabe));
+    }
+
+    @Then("{actor} should see the message The CLABE must have 18 digits")
+    public void heShouldSeeTheMessageTheCLABEMustHave18Digits(Actor actor) {
+        actor.attemptsTo(Ensure.that(EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS).isDisplayed());
+    }
+
+    @Then("{actor} should see the alert This field is required")
+    public void heShouldSeeTheAlertThisFieldIsRequired(Actor actor) {
+        actor.attemptsTo(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).isDisplayed());
+    }
+
+    @And("{actor} edits the Account holder field with {string}")
+    public void heEditsTheAccountHolderFieldWith(Actor actor, String accountHolder) {
+        actor.attemptsTo(Edit.theAccountHolder(accountHolder));
+    }
+
+    @And("{actor} edits the CLABE field with {string}")
+    public void heEditsTheCLABEFieldWith(Actor actor, String clabe) {
+        actor.attemptsTo(Edit.theClabe(clabe));
+    }
+
+    @And("{actor} changes his bank account information")
+    public void heChangesHisBankAccountInformation(Actor actor, DataTable bankAccountInformation) {
+        BankInformation bankInformation = Convert.dataTableToBankAccountInfo(bankAccountInformation);
+        actor.attemptsTo(Edit.theBankAccountInformationForm(bankInformation.getClabe(), bankInformation.getAccountHolder()));
+    }
+
+    @Then("{actor} should see that there are not changes on his bank account information")
+    public void heShouldSeeThatThereAreNotChangesOnHisBankAccountInformation(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(Visualize.bankAccountInformation(user));
     }
 }

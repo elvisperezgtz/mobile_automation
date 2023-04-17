@@ -1,7 +1,10 @@
 
-### Visualizar Pantalla "Edicion datos bancarios"
-yo como usuario tendero requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion, de tal forma que el usuario pueda hacer los ajustes de su informacion segun lo requiera.
+### Edit back account information
 
-### Link a la historia de usuario
+As a Spin pro user
+I want a module to change my bank account information
+to keep up to date this information
+
+### Link to user story
 
 [B2CS-1806](https://digitalfemsa.atlassian.net/jira/software/c/projects/B2CS/boards/65?modal=detail&selectedIssue=B2CS-1806&search=Edicion#:~:text=B2CS%2D20-,B2CS%2D1806,-1)

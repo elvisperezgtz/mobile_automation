@@ -1,49 +1,63 @@
-@sprint7 @regresion @editarDatosBancarios @perfil
-Feature: Visualizar Pantalla "Edicion datos bancarios"
-  yo como usuario tendero
-  Requiero que posterior a la validacion de indetidad exitosa, la aplicacion me permita editar y actualizar los datos bancarios capturados en el proceso de onboarding de la aplicacion,
-  Para que el usuario pueda hacer los ajustes de su informacion segun lo requiera.
+@sprint7 @regression @editBankAccount
+Feature: Edit Bank account information
+  As a Spin pro user
+  I want a module to change my bank account information
+  to keep up to date this information
 
-
-  Background: El usuario se encuentra en la opcion de datos bancarios
+  Background: The user is in the edit personal information option.
     Given Elvis Perform the introductory tutorial
-    And Elvis inicia sesion con su numero telefonico
-    When Elvis ingresa a la opcion datos bancarios
+    And he is logged in to the app by "phone number" with his "valid credentials"
+    When he enters in the bank account information option
 
-  Scenario: Verificar rediccionamiento a la pantalla Editar datos bancarios al ingresar una contrasenia valida
-    When Elvis quiere editar sus datos bancarios
-    And Elvis confirma la contrasenia "Femsa123"
-    Then Elvis deberia poder ver que los campos CLABE y Titular se pueden editar
+  Scenario: Verify Edit button redirection
+    Then Elvis should see his Bank account information registered
 
-  Scenario: Verificar mensaje de error al ingresar una contrasenia no valida
-    When Elvis quiere editar sus datos bancarios
-    And Elvis confirma la contrasenia "Femsa1234"
-    Then Elvis debaria ver el mensaje Contraseña incorrecta
+  Scenario: Verify functionality of the Edit button
+    And he wants to edit his information
+    Then he should see a Confirm Password modal
 
-  Scenario: Verificar que el boton Salir sin guardar del modal "Deseas salir?" redireccione a la pantalla de clabe interbancaria con los campos bloqueados
-    When Elvis quiere editar sus datos bancarios
-    And Elvis confirma la contrasenia "Femsa123"
-    And Elvis cancela la actualizacion de los datos bancarios
-    Then Elvis deberia ver la pantalla de datos bancarios con los campos deshabilitados
+  Scenario: Verify functionality of Continue Button with incorrect password
+    And he tries to confirm the password with a wrong password "BadPassword"
+    Then he should see the error message "Contraseña incorrecta"
 
-  Scenario: Verificar que el boton seguir editando del modal "Deseas salir?" redireccione a la pantalla de clabe interbancaria con los campos en modo edicion
-    When Elvis quiere editar sus datos bancarios
-    And Elvis confirma la contrasenia "Femsa123"
-    And Elvis cancela la actualizacion de datos pero continua editando
-    Then Elvis deberia poder ver que los campos CLABE y Titular se pueden editar
+  Scenario: Verify functionality of Continue Button with valid password
+    And he confirms his password
+    Then he should see the bank account information form in edit mode
 
-  Scenario: Verificar que el boton Cancelar del modal "tus datos son correctos?" redireccione a la pantalla de edicion de clabe interbancaria en modo edicion
-    When Elvis quiere editar sus datos bancarios
-    And Elvis confirma la contrasenia "Femsa123"
-    And Elvis intenta guardar los datos actualizados y cancela el guardado de datos
-    Then Elvis deberia poder ver que los campos CLABE y Titular se pueden editar
+  Rule: The interbank CLABE must be 18 digits
 
-  Scenario: Cambio de datos interbancarios con exito
-    When Elvis edita sus datos bancarios con clabe "123456789123456788" y titular "Juan Gomez Jimenez"
-    Then Elvis deberia poder ver el mensaje de guardado con exito
-    And Elvis deberia poder ver los datos actualizados correctamente
+    Scenario: Validate length of interbank CLABE field with less than 18 digits
+      And he edits his interbank CLABE information with "12345678912345678"
+      And he tries to save the changes
+      Then he should see the message The CLABE must have 18 digits
 
-  #Todo terminar estos escenarios
-#  Scenario: Validacion de longitud campo Nombre del titular
-#
-#  Scenario: Validacion de Longitud campo Cuenta clabe
+    Scenario: Validate mandatory of the field Account Holder
+      And he edits his interbank CLABE information with ""
+      And he tries to save the changes
+      Then he should see the alert This field is required
+
+    Scenario:  Validate mandatory of the field CLABE
+      And he edits the CLABE field with ""
+      And he tries to save the changes
+      Then he should see the alert This field is required
+
+    Scenario: Verify CANCEL button functionality
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      And he wants to cancel editing his personal information
+      Then he should see the Do you want to go out? modal
+
+    Scenario: Verify functionality of the EXIT WITHOUT SAVING button
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      And he declines save changes
+      Then he should see that there are not changes on his bank account information
+
+    Scenario: Verify saved change when editing bank account information
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      And he saves changes
+      Then he should see the following message: You have updated your data

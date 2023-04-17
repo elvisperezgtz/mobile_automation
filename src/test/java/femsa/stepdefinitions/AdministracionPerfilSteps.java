@@ -24,7 +24,7 @@ public class AdministracionPerfilSteps {
     @When("{actor} ingresa a la opcion datos bancarios")
     public void elvisIngresaALaOpcionDatosBancarios(Actor actor) {
         actor.attemptsTo(
-                Navigate.aLaPantallaDeDatosBancarios()
+                Navigate.toBankAccountInformationScreen()
         );
     }
 
