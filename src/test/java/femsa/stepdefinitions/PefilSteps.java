@@ -26,4 +26,9 @@ public class PefilSteps {
     public void heShouldSeeTheProfileScreen(Actor actor) {
         actor.attemptsTo(Visualize.theProfileScreen());
     }
+
+    @Then("{actor} should see the login screen")
+    public void heShouldSeeTheLoginScreen(Actor actor) {
+        actor.attemptsTo(Visualize.doYouWantLogOutModal());
+    }
 }

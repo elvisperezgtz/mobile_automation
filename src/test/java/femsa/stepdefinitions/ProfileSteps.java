@@ -1,6 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.tasks.*;
+import femsa.user_interfaces.HomeUI;
 import femsa.user_interfaces.ProfileUI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -20,7 +21,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
-public class AdministracionPerfilSteps {
+public class ProfileSteps {
     @When("{actor} ingresa a la opcion datos bancarios")
     public void elvisIngresaALaOpcionDatosBancarios(Actor actor) {
         actor.attemptsTo(
@@ -169,5 +170,10 @@ public class AdministracionPerfilSteps {
     @Then("{actor} deberia poder ver el numero de telefono registrado")
     public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
         actor.attemptsTo(Ensure.that(ProfileUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
+    }
+
+    @And("{actor} enters in the Profile screen")
+    public void heEntersInTheProfileScreen(Actor actor) {
+        actor.attemptsTo(Click.on(HomeUI.PROFILE.waitingForNoMoreThan(Duration.ofSeconds(15))));
     }
 }

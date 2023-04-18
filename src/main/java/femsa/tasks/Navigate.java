@@ -7,7 +7,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.HomeUI.HOME;
-import static femsa.user_interfaces.HomeUI.PERFIL;
+import static femsa.user_interfaces.HomeUI.PROFILE;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
 import static femsa.user_interfaces.IntroDispositivoUI.YA_LO_TENGO;
 import static femsa.user_interfaces.ProfileUI.*;
@@ -40,8 +40,8 @@ public class Navigate {
 
     public static Performable toTheProfileAdministrationScreen() {
         return Task.where("{0} navigates to the Profile screen",
-                WaitUntil.the(PERFIL, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Click.on(PERFIL)
+                WaitUntil.the(PROFILE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(PROFILE)
         );
     }
 

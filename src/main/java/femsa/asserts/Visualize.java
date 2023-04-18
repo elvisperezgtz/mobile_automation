@@ -5,6 +5,7 @@ import femsa.models.User;
 import femsa.user_interfaces.ConfirmPasswordModalUI;
 import femsa.user_interfaces.DoYouWantToGoModalUI;
 import femsa.user_interfaces.LoginUI;
+import femsa.user_interfaces.LogoutUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.ensure.Ensure;
@@ -32,8 +33,8 @@ public class Visualize {
     private Visualize() {
     }
 
-    public static Performable pantallaLogin() {
-        return Task.where("{0} visualiza la pantalla de Inicia Sesion",
+    public static Performable loginScreen() {
+        return Task.where("{0} visualizes the Login screen",
                 WaitUntil.the(EMAIL_OR_PHONE_NUMBER, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(EMAIL_OR_PHONE_NUMBER).isDisplayed(),
                 Ensure.that(LoginUI.PASSWORD).isDisplayed());
@@ -66,7 +67,7 @@ public class Visualize {
                 Ensure.that(AYUDA).isDisplayed(),
                 Ensure.that(AUTORIZAR_DISPOSITIVO).isDisplayed(),
                 Ensure.that(DOCUMENTOS_LEGALES).isDisplayed(),
-                Ensure.that(CERRAR_SESION).isDisplayed()
+                Ensure.that(LOGOUT).isDisplayed()
         );
 
     }
@@ -155,6 +156,14 @@ public class Visualize {
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(CLABE))).isTrue(),
                 Ensure.that(CLABE).text().isEqualTo(user.getBankInformation().getClabe())
                 );
+    }
+
+    public static Performable doYouWantLogOutModal(){
+        return Task.where("{0} visualizes the Do you want to logout modal",
+               Ensure.that(LogoutUI.TITLE).isDisplayed(),
+                Ensure.that(LogoutUI.YES_LOGOUT).isDisplayed(),
+                Ensure.that(LogoutUI.CANCEL).isDisplayed()
+        );
     }
 }
 
