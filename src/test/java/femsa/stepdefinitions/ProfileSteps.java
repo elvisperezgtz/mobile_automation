@@ -21,7 +21,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
-public class AdministracionPerfilSteps {
+public class ProfileSteps {
     @When("{actor} ingresa a la opcion datos bancarios")
     public void elvisIngresaALaOpcionDatosBancarios(Actor actor) {
         actor.attemptsTo(

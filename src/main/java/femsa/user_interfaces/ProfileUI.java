@@ -44,8 +44,11 @@ public class ProfileUI {
     public static final Target AUTORIZAR_DISPOSITIVO = Target.the("opcion Autorizar dispositivo")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc=\"TEXT_TITLE\"])[4]"))
             .locatedForIOS(By.xpath(""));
-    public static final Target CERRAR_SESION = Target.the("boton cerrar sesion")
+    public static final Target LOGOUT = Target.the("Logout")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cerrar sesión']"));
+
+
+
 
 }
