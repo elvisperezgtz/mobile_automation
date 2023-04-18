@@ -9,7 +9,7 @@ public class ModalCerrarSesionUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CANCELAR']"))
             .locatedForIOS(By.xpath(""));
 
-    public static final Target SI_CERRAR_SESION = Target.the("boton Si cerrar sesion")
+    public static final Target YES_LOGOUT = Target.the("Yes, logout")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SÍ, CERRAR SESIÓN']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Si, cerrar sesión']"));
 
