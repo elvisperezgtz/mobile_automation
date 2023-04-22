@@ -18,7 +18,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import java.io.IOException;
 
 import static femsa.interactions.Ejecutar.elComandoAdb;
-import static femsa.user_interfaces.ProfileUI.AYUDA;
+import static femsa.user_interfaces.LoginUI.HELP;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.DatosPersonalesUI.*;
@@ -86,9 +86,9 @@ public class Ingresar {
                 Ingresar.codigoDeValidacion(OnStage.theActorInTheSpotlight().recall("otp"))
         );
     }
-    public static Performable aLaPantallaAyuda(){
-        return Task.where("{0} ingresa a la opcion Ayuda",
-                WaitUntil.the(AYUDA, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Click.on(AYUDA));
+    public static Performable toTheHelpScreen(){
+        return Task.where("{0}  enters the Help option",
+                WaitUntil.the(HELP, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(HELP));
     }
 }

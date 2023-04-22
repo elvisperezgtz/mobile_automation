@@ -1,11 +1,9 @@
-@regression @profile
-
+@regression @profile @logout
 Feature: Logout
 
   As a Spin pro user
   I want a logout option
   To logout from the app
-
 
   Background: the user is on the Profile screen
     Given Elvis Perform the introductory tutorial
@@ -16,12 +14,10 @@ Feature: Logout
     And he logout from the app
     Then he should see the login screen
 
-
   Scenario: Verify redirection of the Back button after logout
     And he logs out of the app and try to go back to the previous session.
     Then he should see the screen Register in three steps
 
-  @logout
   Scenario: Verify that the Logout button displays the You want to logout modal
     And he wants to close the active session
     Then he should see the Do you want to logout modal

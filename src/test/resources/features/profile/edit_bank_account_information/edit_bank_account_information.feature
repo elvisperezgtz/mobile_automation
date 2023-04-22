@@ -1,4 +1,5 @@
-@sprint7 @regression @editBankAccount @hookBankAccountInfo
+@regression @editBankAccount @hookBankAccountInfo
+
 Feature: Edit Bank account information
   As a Spin pro user
   I want a module to change my bank account information
@@ -9,12 +10,15 @@ Feature: Edit Bank account information
     And he is logged in to the app by "phone number" with his "valid credentials"
     When he enters in the bank account information option
 
+
   Scenario: Verify Edit button redirection
     Then Elvis should see his Bank account information registered
+
 
   Scenario: Verify functionality of the Edit button
     And he wants to edit his information
     Then he should see a Confirm Password modal
+
 
   Scenario: Verify functionality of Continue Button with incorrect password
     And he tries to confirm the password with a wrong password "BadPassword"

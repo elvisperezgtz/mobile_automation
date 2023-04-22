@@ -2,23 +2,20 @@ package femsa.asserts;
 
 import femsa.models.BankInformation;
 import femsa.models.User;
-import femsa.user_interfaces.ConfirmPasswordModalUI;
-import femsa.user_interfaces.DoYouWantToGoModalUI;
-import femsa.user_interfaces.LoginUI;
-import femsa.user_interfaces.LogoutUI;
+import femsa.user_interfaces.*;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
+import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
 import static femsa.user_interfaces.OnBoardingUI.TITLE;
-import static femsa.user_interfaces.ProfileUI.EDIT;
+import static femsa.user_interfaces.ProfileUI.HELP;
 import static femsa.user_interfaces.ProfileUI.LOGO;
 import static femsa.user_interfaces.ProfileUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
@@ -61,12 +58,12 @@ public class Visualize {
                 WaitUntil.the(BUSINESS, isVisible()).forNoMoreThan(ofSeconds(8)),
                 Ensure.that(LOGO).isDisplayed(),
                 Ensure.that(PROFILE_TITLE).isDisplayed(),
-                Ensure.that(NUMERO_TELEFONICO).isDisplayed(),
-                Ensure.that(EDIT).isDisplayed(),
+                Ensure.that(ProfileUI.PROFILE_PHONE_NUMBER).isDisplayed(),
+                Ensure.that(EDIT_INFORMATION).isDisplayed(),
                 Ensure.that(BUSINESS).isDisplayed(),
-                Ensure.that(AYUDA).isDisplayed(),
-                Ensure.that(AUTORIZAR_DISPOSITIVO).isDisplayed(),
-                Ensure.that(DOCUMENTOS_LEGALES).isDisplayed(),
+                Ensure.that(HELP).isDisplayed(),
+                Ensure.that(AUTHORIZE_DEVICE).isDisplayed(),
+                Ensure.that(LEGAL_DOCUMENTS).isDisplayed(),
                 Ensure.that(LOGOUT).isDisplayed()
         );
 
@@ -75,7 +72,7 @@ public class Visualize {
     public static Performable resetPasswordScreen() {
         return Task.where("{0} visualizes reset password screen",
                 Ensure.that(RESET_PASSWORD_TITLE).isDisplayed(),
-                Ensure.that(HELP).isDisplayed(),
+                Ensure.that(ResetPasswordUI.HELP).isDisplayed(),
                 Ensure.that(BACK).isDisplayed(),
                 Ensure.that(PHONE_NUMBER).isDisplayed(),
                 Ensure.that(CONTINUE).isDisplayed()
@@ -144,8 +141,8 @@ public class Visualize {
         return Task.where("{0} visualizes his Bank account information",
                 Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(bankInformation.getAccountHolder()),
                 Ensure.that(CLABE).text().isEqualTo(bankInformation.getClabe()),
-                Ensure.that(EDIT).isDisplayed(),
-                Ensure.that(BACK).isDisplayed()
+                Ensure.that(EDIT_INFORMATION).isDisplayed(),
+                Ensure.that(CommonsUI.BACK).isDisplayed()
         );
     }
 

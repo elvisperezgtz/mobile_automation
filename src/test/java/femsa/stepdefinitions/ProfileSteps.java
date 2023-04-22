@@ -126,7 +126,7 @@ public class ProfileSteps {
         );
     }
 
-    //TODO Guardar estos datos en un archivo y modificarlos automaticamente
+
     @And("{actor} deberia poder ver los datos actualizados correctamente")
     public void elvisDeberiaPoderVerLosDatosActualizadosCorrectamente(Actor actor) {
         actor.attemptsTo(
@@ -154,7 +154,7 @@ public class ProfileSteps {
     @When("{actor} ingresa a la opcion Ayuda")
     public void elvisIngresaALaOpcionAyuda(Actor actor) {
         actor.attemptsTo(
-                Ingresar.aLaPantallaAyuda()
+                Ingresar.toTheHelpScreen()
         );
     }
 
@@ -169,11 +169,12 @@ public class ProfileSteps {
 
     @Then("{actor} deberia poder ver el numero de telefono registrado")
     public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
-        actor.attemptsTo(Ensure.that(ProfileUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
+        actor.attemptsTo(Ensure.that(ProfileUI.PROFILE_PHONE_NUMBER).text().isEqualTo("55 2199 6723"));
     }
 
     @And("{actor} enters in the Profile screen")
     public void heEntersInTheProfileScreen(Actor actor) {
         actor.attemptsTo(Click.on(HomeUI.PROFILE.waitingForNoMoreThan(Duration.ofSeconds(15))));
     }
+
 }

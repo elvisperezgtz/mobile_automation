@@ -1,4 +1,4 @@
-@editPersonalInformation @regression  @hookPersonalData
+@regression
 Feature: Edit personal information
   As a shopkeeper user
   I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the on boarding process of the application,
@@ -20,7 +20,6 @@ Feature: Edit personal information
     And he wants to go back
     Then he should see the Profile screen
 
-
   Scenario: Verify functionality of Continue Button with incorrect password
     And he tries to confirm the password with a wrong password "BadPassword"
     Then he should see the error message "Contraseña incorrecta"
@@ -28,7 +27,6 @@ Feature: Edit personal information
   Scenario: Verify functionality of Continue Button with valid password
     And he confirms his password
     Then he should see the personal information form in edit mode
-
 
   Scenario Outline: Validate the format of the Email field with <email>
     And he changes his email for "<email>"
@@ -39,13 +37,14 @@ Feature: Edit personal information
       | eperez@        | Formato de email incorrecto |
       | eperez@palo-it | Formato de email incorrecto |
 
+  @editPersonalInformation  @hookPersonalData
+    #todo 1
   Scenario: Validate that emails already registered are not accepted
     And he edits his personal information
       | firstName | lastName        | email                   |
       | Elvis     | Perez Gutierrez | elvisperezg@hotmail.com |
     And  he saves changes
     Then he should see the following message This email already has an account
-
 
   Scenario Outline: Validate <testCase>
     And he edits his personal information

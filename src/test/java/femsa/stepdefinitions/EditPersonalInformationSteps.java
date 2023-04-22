@@ -3,8 +3,10 @@ package femsa.stepdefinitions;
 import femsa.asserts.Visualize;
 import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
+import femsa.interactions.Hide;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -12,8 +14,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
+import static femsa.user_interfaces.CommonsUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.ProfileUI.PROFILE_TITLE;
 import static femsa.utils.Convert.dataTableToUser;
@@ -86,7 +90,11 @@ public class EditPersonalInformationSteps {
 
     @Then("{actor} should see the following message This email already has an account")
     public void heShouldSeeTheFollowingMessageThisEmailAlreadyHasAnAccount(Actor actor) {
-        actor.attemptsTo(Ensure.that(THIS_EMAIL_ALREADY_HAS_AN_ACCOUNT).isDisplayed());
+        actor.attemptsTo(
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(Ensure.that(THIS_EMAIL_ALREADY_HAS_AN_ACCOUNT).isDisplayed())
+                        .otherwise(Ensure.that(THIS_EMAIL_ALREADY_HAS_AN_ACCOUNT)
+                                .text().isEqualTo("Este email ya tiene una cuenta")));
     }
 
     @Then("{actor} should see the following message: You have updated your data")
@@ -106,7 +114,11 @@ public class EditPersonalInformationSteps {
 
     @And("{actor} wants to cancel editing his personal information")
     public void heWantsToCancelEditingHisPersonalInformation(Actor actor) {
-        actor.attemptsTo(Click.on(CANCEL.waitingForNoMoreThan(ofSeconds(10))));
+        actor.attemptsTo(
+                Check.whether(Validate.isIOS())
+                        .andIfSo(Hide.theKeyboard()),
+                Click.on(CANCEL.waitingForNoMoreThan(ofSeconds(10))
+                ));
     }
 
     @Then("{actor} should see the Do you want to go out? modal")
