@@ -1,6 +1,7 @@
 package femsa.tasks;
 
 import femsa.user_interfaces.EditBusinessDataUI;
+import femsa.user_interfaces.ProfileUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -49,7 +50,7 @@ public class Navigate {
     public static Performable toThePersonalInformationScreen() {
         return Task.where("{0} navigates to the personal information editing screen",
                 Navigate.toTheProfileAdministrationScreen(),
-                Click.on(EDIT)
+                Click.on(EDIT_INFORMATION)
         );
     }
 

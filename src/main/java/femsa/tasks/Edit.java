@@ -19,7 +19,9 @@ import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
+import static femsa.utils.Validate.isKeyboardShown;
 import static java.time.Duration.ofSeconds;
+import static net.serenitybdd.screenplay.abilities.BrowseTheWeb.as;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
@@ -114,7 +116,11 @@ public class Edit {
                 Enter.theValue(merchantInfo.getMerchantName()).into(BUSINESS_NAME),
                 Check.whether(Validate.isAndroid())
                         .andIfSo(SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, merchantInfo.getMerchantActivity())),
-                Enter.theValue(merchantInfo.getPostalCode()).into(EMAIL)
+                Enter.theValue(merchantInfo.getPostalCode()).into(EMAIL),
+                Check.whether(Validate.isIOS())
+                        .andIfSo(
+                                Check.whether(isKeyboardShown(as(theActorInTheSpotlight()).getDriver())))
+                        .andIfSo(Hide.theKeyboard())
         );
     }
 
