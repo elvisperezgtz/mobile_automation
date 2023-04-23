@@ -35,7 +35,7 @@ public class EditBusinessInformationSteps {
     @Then("{actor} should see his Business information registered")
     public void heShouldSeeHisBusinessInformationRegistered(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        actor.attemptsTo(Visualize.hisBusinessInformation(user));
+        actor.attemptsTo(Visualize.hisBusinessInformation(user.getMerchantInfo()));
 
     }
 
@@ -83,7 +83,7 @@ public class EditBusinessInformationSteps {
     @Then("{actor} should see that there are not changes on his business information")
     public void heShouldSeeThatThereAreNotChangesOnHisBusinessInformation(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        Visualize.hisBusinessInformation(user);
+        Visualize.hisBusinessInformation(user.getMerchantInfo());
     }
 
     @And("{actor} returns to the home screen")
@@ -110,5 +110,11 @@ public class EditBusinessInformationSteps {
                         .andIfSo(Ensure.that(REQUIRED_FIELD).isDisplayed())
                         .otherwise(Ensure.that(REQUIRED_FIELD).text().isEqualTo("Campo obligatorio"))
         );
+    }
+
+    @Then("{actor} should see his Business information updated")
+    public void heShouldSeeHisBusinessInformationUpdated(Actor actor, DataTable dataTable) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        actor.attemptsTo(Visualize.hisBusinessInformation(user.getMerchantInfo()));
     }
 }

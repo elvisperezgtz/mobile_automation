@@ -1,4 +1,4 @@
-@regression @profile  @editBusinessInfo @hookBusinessData
+@regression @profile
 Feature: Edit business information
 
   As a Spin pro user
@@ -33,6 +33,7 @@ Feature: Edit business information
 
   Rule: The system must request a confirmation before saving the edited data
 
+    @editBusinessInfo @hookBusinessData
     Scenario Outline: Validate the length of your Business Name field with <testCase>
       And he changes his Business name for "<businessName>"
       And he saves changes
@@ -43,25 +44,21 @@ Feature: Edit business information
         | m                                   | 1 character   |
         | Merchant123456789123456789123456789 | numbers       |
 
-
     Scenario: Validate the length of your Postal code field with an empty postal code
       And he changes his postal code for ""
       And he tries to save the changes
       Then he should see the following message: Required field
-
 
     Scenario: Validate the length of your Postal code field with a one digit postal code
       And he changes his postal code for "1"
 #      And he tries to save the changes
       Then he should see the following message: Wrong postal code
 
-
   Rule: The app should not admit zip codes that are not from Mexico.
     Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
       And he changes his postal code for "50001"
       And he saves changes
       Then he should see the following message: Wrong postal code
-
 
     Scenario: Verify CANCEL button functionality
       And he edits his business information
@@ -82,8 +79,9 @@ Feature: Edit business information
         | businessName | businessActivity | postalCode |
         | Surtimax     | GASOLINERA       | 43401      |
       And he saves changes
-      And he returns to the home screen
-      Then he should see the title "Surtimax" at the Home screen
+      Then he should see his Business information updated
+        | businessName | businessActivity | postalCode |
+        | Surtimax     | GASOLINERA       | 43401      |
 
     Scenario: Validate that the title at home change when update the Business information
       And he changes his business information
@@ -92,7 +90,3 @@ Feature: Edit business information
       And he saves changes
       And he returns to the home screen
       Then he should see the title "Surtimax" at the Home screen
-
-
-
-

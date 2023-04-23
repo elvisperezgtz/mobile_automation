@@ -112,7 +112,8 @@ public class Edit {
 
         return Task.where("{0} edits the business information form",
                 Enter.theValue(merchantInfo.getMerchantName()).into(BUSINESS_NAME),
-                SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, merchantInfo.getMerchantActivity()),
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, merchantInfo.getMerchantActivity())),
                 Enter.theValue(merchantInfo.getPostalCode()).into(EMAIL)
         );
     }

@@ -17,6 +17,6 @@ public class DoYouWantToGoModalUI {
 
     public static final Target EXIT_WITHOUT_SAVING = Target.the("Exit without saving button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SALIR SIN GUARDAR']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"SALIR SIN GUARDAR\"]"));
+            .locatedForIOS(By.name("SALIR SIN GUARDAR"));
 
 }

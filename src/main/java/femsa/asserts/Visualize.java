@@ -1,6 +1,7 @@
 package femsa.asserts;
 
 import femsa.models.BankInformation;
+import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import net.serenitybdd.screenplay.Performable;
@@ -117,12 +118,12 @@ public class Visualize {
         );
     }
 
-    public static Performable hisBusinessInformation(User user) {
+    public static Performable hisBusinessInformation(MerchantInfo merchantInfo) {
 
         return Task.where("{0} visualizes his business information",
-                Ensure.that(BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName()),
-                Ensure.that(BUSINESS_ACTIVITY).text().isEqualTo(user.getMerchantInfo().getMerchantActivity()),
-                Ensure.that(POSTAL_CODE).text().isEqualTo(user.getMerchantInfo().getPostalCode())
+                Ensure.that(BUSINESS_NAME).text().isEqualTo(merchantInfo.getMerchantName()),
+                Ensure.that(BUSINESS_ACTIVITY).text().isEqualTo(merchantInfo.getMerchantActivity()),
+                Ensure.that(POSTAL_CODE).text().isEqualTo(merchantInfo.getPostalCode())
         );
     }
 
