@@ -1,4 +1,4 @@
-@regression @profile
+@regression @profile @editBusinessInfo @hookBusinessData
 Feature: Edit business information
 
   As a Spin pro user
@@ -33,7 +33,6 @@ Feature: Edit business information
 
   Rule: The system must request a confirmation before saving the edited data
 
-    @editBusinessInfo @hookBusinessData
     Scenario Outline: Validate the length of your Business Name field with <testCase>
       And he changes his Business name for "<businessName>"
       And he saves changes

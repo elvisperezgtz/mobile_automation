@@ -114,7 +114,7 @@ public class EditBusinessInformationSteps {
 
     @Then("{actor} should see his Business information updated")
     public void heShouldSeeHisBusinessInformationUpdated(Actor actor, DataTable dataTable) {
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        actor.attemptsTo(Visualize.hisBusinessInformation(user.getMerchantInfo()));
+        MerchantInfo merchantInfo = Convert.dataTableToMerchantInfo(dataTable);
+        actor.attemptsTo(Visualize.hisBusinessInformation(merchantInfo));
     }
 }

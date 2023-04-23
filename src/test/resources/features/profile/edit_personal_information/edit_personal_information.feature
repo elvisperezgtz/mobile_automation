@@ -1,4 +1,4 @@
-@regression
+@regression @editPersonalInformation  @hookPersonalData
 Feature: Edit personal information
   As a shopkeeper user
   I require that after the successful entity validation, the application allows me to edit and update the bank data captured in the on boarding process of the application,
@@ -37,7 +37,7 @@ Feature: Edit personal information
       | eperez@        | Formato de email incorrecto |
       | eperez@palo-it | Formato de email incorrecto |
 
-  @editPersonalInformation  @hookPersonalData
+
     #todo 1
   Scenario: Validate that emails already registered are not accepted
     And he edits his personal information

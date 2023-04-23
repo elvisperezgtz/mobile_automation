@@ -15,7 +15,7 @@ public class ProfileUI {
 
     public static final Target LEGAL_DOCUMENTS = Target.the("Legal documents button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Documentos legales']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Documentos legales\"]"));
+            .locatedForIOS(By.name("Documentos legales"));
 
     public static final Target HELP = Target.the("Help button")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc='TEXT_TITLE'])[3]"))
@@ -41,9 +41,9 @@ public class ProfileUI {
             .locatedForAndroid(By.xpath("(//android.widget.TextView)[3]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"PROFILE_USERNUMBER_LABEL\"]"));
 
-    public static final Target AUTHORIZE_DEVICE = Target.the("opcion Autorizar dispositivo")
+    public static final Target AUTHORIZE_DEVICE = Target.the("Authorize device option")
             .locatedForAndroid(By.xpath("(//android.widget.TextView[@content-desc=\"TEXT_TITLE\"])[4]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.name("Autorizar dispositivo"));
 
     public static final Target LOGOUT = Target.the("Logout")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cerrar sesión']"))
