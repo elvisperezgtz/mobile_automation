@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.tasks.Begin;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -7,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
@@ -39,9 +41,9 @@ public class RegistroSteps {
     @When("{actor} realiza el registro en la App con su numero de telefono")
     public void el_realiza_el_registro_en_la_app_con_su_numero_de_telefono(Actor actor) {
         actor.attemptsTo(
-                Registrar.elNumeroTelefonico(fromPropertyFile("src/test/resources/properties/usuario.properties","linea"))
+                Registrar.elNumeroTelefonico(fromPropertyFile("src/test/resources/properties/credentials.properties","linea"))
         );
-        actor.remember("numero telefonico", fromPropertyFile("src/test/resources/properties/usuario.properties","linea"));
+        actor.remember("numero telefonico", fromPropertyFile("src/test/resources/properties/credentials.properties","linea"));
 
     }
 
@@ -176,6 +178,19 @@ public class RegistroSteps {
                         Registrar.elNumeroTelefonico(numeroTelefonico)
         );
     }
+    @And("{actor} ingresa el numero de telefono {string}")
+    public void elvisIngresaElNumeroDeTelefono(Actor actor, String telefono) {
+        actor.attemptsTo(
+                Begin.registration(),
+                Enter.theValue(telefono).into(RegistroUI.TELEFONO));
 
+    }
 
+    @Then("{actor} deberia ver que el boton Enviar codigo por SMS esta deshabilitado")
+    public void elvisDeberiaVerQueElBotonEnviarCodigoPorSMSEstaDeshabilitado(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(ENVIAR_CODIGO_SMS).not().isEnabled()
+        );
+
+    }
 }

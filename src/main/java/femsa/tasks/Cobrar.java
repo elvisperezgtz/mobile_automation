@@ -17,7 +17,11 @@ public class Cobrar {
         return Task.where(
                 Click.on(HomeUI.COBRAR),
                 Habilitar.elBlueTooth(),
-                Llenar.elFormularioDeCobros(monto, concepto),
+                /**
+                 * 1 preguntar por el SO
+                 * 2 si es android, preguntar por la version del so
+                 */
+                Fill.elFormularioDeCobros(monto, concepto),
                 Click.on(COBRAR),
                 Conectar.elDispositivoMpos(),
                 WaitUntil.the(VinculacionUI.VINCULACION_EXITOSA, isVisible()).forNoMoreThan(ofSeconds(15)),

@@ -1,0 +1,3 @@
+{
+  "query": "{findUserAccountInfo(request: {idUser: \"{{idUser}}\"}) {holder idBranch idClabe idFinancialData idMerchant nameMerchant}}"
+}

@@ -1,0 +1,31 @@
+{
+  "data": {
+    "Elvis": {
+      "first_name": "Elvis",
+      "last_name": "Perez Gutierrez",
+      "email": "eperez@palo-it.com",
+      "merchant_info": {
+        "merchant_name": "SAO",
+        "merchant_activity": "GASOLINERA",
+        "postal_code": "43400"
+      },
+      "bank_information": {
+        "clabe": "123456789123456789",
+        "account_holder": "Elvis Perez"
+      }
+    },"elvis-edited": {
+      "first_name": "Elvis",
+      "last_name": "Perez Gutiérrez",
+      "email": "eperez@palo-it.com",
+      "merchant_info": {
+        "merchant_name": "SAO",
+        "merchant_activity": "ABARROTES Y MISCELANEA",
+        "postal_code": "43400"
+      },
+      "bank_information": {
+        "clabe": "123456789123456789",
+        "account_holder": "Elvis Perez"
+      }
+    }
+  }
+}

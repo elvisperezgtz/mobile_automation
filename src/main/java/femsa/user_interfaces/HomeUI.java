@@ -9,18 +9,19 @@ public class HomeUI {
             .locatedForAndroid(By.xpath(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cobrar']"));
 
-    public static final Target INICIO = Target.the("boton Inicio- Home")
-            .locatedForAndroid(By.xpath(""))
+    public static final Target HOME = Target.the("Home")
+            .locatedForAndroid(By.xpath("(//android.view.View[@content-desc=\"title\"])[1]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Inicio']"));
 
     public static final Target MOVIMIENTOS_HOY = Target.the("texto Movimientos hoy")
             .locatedForAndroid(By.xpath(""))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name='Movimientos hoy']"));
 
-    public static final Target PERFIL = Target.the("administracion de perfil")
+    public static final Target PROFILE = Target.the("Profile")
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='title'])[3]"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Perfil']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"Perfil\"]"));
 
-
-
+    public static final Target BUSINESS_NAME =  Target.the("nombre del negocio")
+            .locatedForAndroid(By.xpath("(//android.widget.TextView)[15]"))
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"HOME_MERCHANTNAME_LABEL\"]"));
 }

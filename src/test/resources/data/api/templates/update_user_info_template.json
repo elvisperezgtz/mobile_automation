@@ -1,0 +1,4 @@
+
+{
+  "query": "mutation {updateUserInfo(request:{email:\"{{email}}\",idUser:\"{{idUser}}\",lastName:\"{{lastName}}\",name:\"{{name}}\"}){ message status}}"
+}
