@@ -70,6 +70,7 @@ serenity {
     testRoot = "femsa"
     // Specify the root directory of any Cucumber feature files
     requirementsDir = "src/test/resources/features"
+    reports = ["single-page-html"]
 
 }
 
