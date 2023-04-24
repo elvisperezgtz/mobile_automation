@@ -1,5 +1,6 @@
 package femsa.stepdefinitions;
 
+import femsa.asserts.Visualize;
 import femsa.tasks.*;
 import femsa.user_interfaces.HomeUI;
 import femsa.user_interfaces.ProfileUI;
@@ -22,158 +23,19 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurr
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class ProfileSteps {
-    @When("{actor} ingresa a la opcion datos bancarios")
-    public void elvisIngresaALaOpcionDatosBancarios(Actor actor) {
-        actor.attemptsTo(
-                Navigate.toBankAccountInformationScreen()
-        );
-    }
-
-    @Then("{actor} deberia ver los datos registrados Nombre del titular {string} y cuenta clabe {string}")
-    public void elvisDeberiaVerLosDatosRegistradosNombreDelTitularYCuentaClabe(Actor actor, String titular, String cuentaClabe) {
-        actor.attemptsTo(
-                Ensure.that(NOMBRE_TITULAR).text().isEqualToIgnoringCase(titular),
-                Ensure.that(CLABE_INTERBANCARIA).text().isEqualToIgnoringCase(cuentaClabe)
-        );
-    }
-
-    @When("{actor} quiere editar sus datos bancarios")
-    public void elvisQuiereEditarSusDatosBancarios(Actor actor) {
-        actor.attemptsTo(
-                Click.on(EDITAR)
-        );
-    }
-
-    @Then("{actor} deberia poder ver la pantalla de confirmacion de contrasenia")
-    public void elvisDeberiaPoderVerLaPantallaDeConfirmacionDeContrasenia(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(CONFIRMA_TU_CONTRASENIA, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(CONFIRMA_TU_CONTRASENIA).isDisplayed()
-        );
-    }
-
-    @And("{actor} cancela la Confirmacion de la contrasenia")
-    public void elvisCancelaLaConfirmacionDeLaContrasenia(Actor actor) {
-        actor.attemptsTo(Click.on(CANCELAR));
-    }
-
-    @And("{actor} confirma la contrasenia {string}")
-    public void elvisConfirmaLaContrasenia(Actor actor, String contrasenia) {
-        actor.attemptsTo(Confirm.thePassword(contrasenia));
-    }
-
-    @Then("{actor} deberia poder ver que los campos CLABE y Titular se pueden editar")
-    public void elvisDeberiaPoderVerQueLosCamposCLABEYTitularSePuedenEditar(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(NOMBRE_TITULAR).isEnabled(),
-                Ensure.that(CLABE_INTERBANCARIA).isEnabled()
-        );
-    }
-
-    @Then("{actor} debaria ver el mensaje Contraseña incorrecta")
-    public void elvisDebariaVerElMensajeContraseñaIncorrecta(Actor actor) {
-        actor.attemptsTo(
-                Ensure.that(CONTRASENIA_INCORRECTA).isDisplayed()
-        );
-    }
-
-    @And("{actor} cancela la actualizacion de los datos bancarios")
-    public void elvisCancelaLaActualizacionDeLosDatosBancarios(Actor actor) {
-        actor.attemptsTo(
-                Cancelar.laActualizacionDeDatosBancarios()
-        );
-    }
-
-    @Then("{actor} deberia ver la pantalla de datos bancarios con los campos deshabilitados")
-    public void elvisDeberiaVerLaPantallaDeDatosBancariosConLosCamposDesabilitados(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(NOMBRE_TITULAR).not().isEnabled(),
-                Ensure.that(CLABE_INTERBANCARIA).not().isEnabled()
-        );
-    }
-
-    @And("{actor} cancela la actualizacion de datos pero continua editando")
-    public void elvisCancelaLaActualizacionDeDatosPeroContinuaEditando(Actor actor) {
-        actor.attemptsTo(
-                Cancelar.laActualizacionDeDatosBancariosYSeguirEditando()
-        );
-    }
-
-    @And("{actor} intenta guardar los datos actualizados y cancela el guardado de datos")
-    public void elvisIntentaGuardarLosDatosActualizadosYCancelaElGuardadoDeDatos(Actor actor) {
-        actor.attemptsTo(Cancelar.guardadoDeDatos());
-    }
-
-    @When("{actor} edita sus datos bancarios con clabe {string} y titular {string}")
-    public void elvisEditaSusDatosBancariosConClabeYTitular(Actor actor, String clabe, String titular) {
-        actor.remember("clabe", clabe);
-        actor.remember("titular", titular);
-        actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirm.thePassword(theActorInTheSpotlight().recall("contrasenia"))
-        );
-        actor.attemptsTo(Edit.losDatosBancarios(clabe, titular));
-
-    }
-
-    @Then("{actor} deberia poder ver el mensaje de guardado con exito")
-    public void elvisDeberiaPoderVerElMensajeDeGuardadoConExito(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(MENSAJE_GUARDADO_EXITOSO, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(MENSAJE_GUARDADO_EXITOSO).isDisplayed()
-        );
-    }
-
-    //TODO Guardar estos datos en un archivo y modificarlos automaticamente
-    @And("{actor} deberia poder ver los datos actualizados correctamente")
-    public void elvisDeberiaPoderVerLosDatosActualizadosCorrectamente(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(NOMBRE_TITULAR, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(NOMBRE_TITULAR).not().isEnabled(),
-                Ensure.that(CLABE_INTERBANCARIA).not().isEnabled(),
-                Ensure.that(NOMBRE_TITULAR).text().isEqualToIgnoringCase(actor.recall("titular")),
-                Ensure.that(CLABE_INTERBANCARIA).text().isEqualToIgnoringCase(actor.recall("clabe"))
-
-        );
-    }
-
-    @And("{actor} ingresa a la opcion de Administracion de Perfil")
-    public void elvisIngresaALaOpcionDeAdministracionDePerfil(Actor actor) {
-        actor.attemptsTo(Navigate.toTheProfileAdministrationScreen());
-    }
-
-    @When("{actor} ingresa a la pantalla de administracion de perfil")
-    public void elvisIngresaALaPantallaDeAdministracionDePerfil(Actor actor) {
-        actor.attemptsTo(
-                Navigate.toTheProfileAdministrationScreen()
-        );
-    }
-
-    @When("{actor} ingresa a la opcion Ayuda")
-    public void elvisIngresaALaOpcionAyuda(Actor actor) {
-        actor.attemptsTo(
-                Ingresar.aLaPantallaAyuda()
-        );
-    }
-
-    @Then("{actor} deberia ver la pantalla de FAQ's")
-    public void elvisDeberiaVerLaPantallaDeFAQS(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(PREGUNTAS_FRECUENTES, isCurrentlyVisible()).forNoMoreThan(Duration.ofSeconds(10))
-                        .then(Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed())
-        );
-    }
-
-
-    @Then("{actor} deberia poder ver el numero de telefono registrado")
-    public void elvisDeberiaPoderVerElNumeroDeTelefonoRegistrado(Actor actor) {
-        actor.attemptsTo(Ensure.that(ProfileUI.NUMERO_TELEFONICO).text().isEqualTo("55 2199 6723"));
-    }
-
     @And("{actor} enters in the Profile screen")
     public void heEntersInTheProfileScreen(Actor actor) {
         actor.attemptsTo(Click.on(HomeUI.PROFILE.waitingForNoMoreThan(Duration.ofSeconds(15))));
     }
+
+    @Then("{actor} should see the Profile screen")
+    public void heShouldSeeTheProfileScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theProfileScreen());
+    }
+
+    @Then("{actor} should see the login screen")
+    public void heShouldSeeTheLoginScreen(Actor actor) {
+        actor.attemptsTo(Visualize.loginScreen());
+    }
+
 }

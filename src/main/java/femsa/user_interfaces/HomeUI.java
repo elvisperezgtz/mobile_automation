@@ -19,9 +19,9 @@ public class HomeUI {
 
     public static final Target PROFILE = Target.the("Profile")
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc='title'])[3]"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Perfil']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"Perfil\"]"));
 
     public static final Target BUSINESS_NAME =  Target.the("nombre del negocio")
             .locatedForAndroid(By.xpath("(//android.widget.TextView)[15]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"HOME_MERCHANTNAME_LABEL\"]"));
 }

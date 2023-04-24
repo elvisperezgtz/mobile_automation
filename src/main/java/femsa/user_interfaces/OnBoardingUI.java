@@ -10,8 +10,6 @@ public class OnBoardingUI {
 
     public static final Target TITLE = Target.the(" home screen title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc='ONBOARDING_TEXT_TITLE']"))
-            .locatedForIOS(By.xpath(""));
-
-
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"TUTORIALCELL_TEXT_LABEL\"]"));
 
 }

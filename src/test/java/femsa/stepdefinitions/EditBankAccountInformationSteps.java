@@ -5,79 +5,24 @@ import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
 import femsa.models.BankInformation;
 import femsa.models.User;
-import femsa.tasks.*;
+import femsa.tasks.Edit;
+import femsa.tasks.Navigate;
 import femsa.user_interfaces.CommonsUI;
-import femsa.user_interfaces.EditBankAccountUI;
 import femsa.utils.Convert;
+import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
-import static femsa.user_interfaces.CommonsUI.EDITAR;
-import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
-import static femsa.user_interfaces.EditBankAccountUI.CLABE;
-import static femsa.utils.StringGenerator.withOnlyRandomNumbers;
+import static femsa.user_interfaces.EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS;
 
 public class EditBankAccountInformationSteps {
-    @When("{actor} borra el contenido del campo CLABE Interbancaria")
-    public void elvisBorraElContenidoDelCampoCLABEInterbancaria(Actor actor) {
-        actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirm.thePassword("Femsa123"),
-                Borrar.elCampoCLABEInterbancaria()
-        );
-    }
 
-    @When("Elvis borra el contenido del campo Nombre del titular")
-    public void elvisBorraElContenidoDelCampoNombreDelTitular(Actor actor) {
-        actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirm.thePassword("Femsa123"),
-                Borrar.elCampoNombreDelTitular()
-        );
-    }
-
-    @When("{actor} ingresa una cuenta CLABE de {int} digitos")
-    public void elvisIngresaUnaCuentaCLABEDeDigitos(Actor actor, int digitos) {
-        actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirm.thePassword("Femsa123"),
-                Click.on(CLABE)
-                        .then(Enter.theValue(withOnlyRandomNumbers(digitos)).into(CLABE)),
-                Click.on(ACCOUNT_HOLDER)
-        );
-    }
-
-    @Then("{actor} deberia ver la alerta de validacion de longitud con el texto {string}")
-    public void elvisDeberiaVerLaAlertaDeValidacionDeLongitudConElTexto(Actor actor, String mensajeError) {
-        actor.attemptsTo(
-                Ensure.that(EditBankAccountUI.ALERTA_LONGITUD).text().isEqualTo(mensajeError)
-        );
-    }
-
-    @When("{actor} edita su CLABE {string} y nombre de titular {string}")
-    public void elvisEditaSuCLABEYNombreDeTitular(Actor actor, String clabe, String titular) {
-        actor.attemptsTo(
-                Click.on(EDITAR),
-                Confirm.thePassword("Femsa123"),
-                Enter.theValue(titular).into(ACCOUNT_HOLDER),
-                Enter.theValue(clabe).into(CLABE),
-                Save.datosBancarios()
-        );
-    }
-
-    @Then("{actor} deberia ver el mensaje de confirmacion {string}")
-    public void elvisDeberiaVerElMensajeDeConfirmacion(Actor actor, String mensaje) {
-        actor.attemptsTo(
-                Ensure.that(EditBankAccountUI.ACTUALIZACION_EXITOSA).text().isEqualTo(mensaje)
-        );
-    }
 
     @When("{actor} enters in the bank account information option")
     public void heEntersInTheBankAccountInformationOption(Actor actor) {
@@ -105,12 +50,18 @@ public class EditBankAccountInformationSteps {
 
     @Then("{actor} should see the message The CLABE must have 18 digits")
     public void heShouldSeeTheMessageTheCLABEMustHave18Digits(Actor actor) {
-        actor.attemptsTo(Ensure.that(EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS).isDisplayed());
+        actor.attemptsTo(
+//                Ensure.that(EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS).isDisplayed()
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(Ensure.that(CLABE_MUST_HAVE_18_DIGITS).isDisplayed())
+                        .otherwise(Ensure.that(CLABE_MUST_HAVE_18_DIGITS).text().isEqualTo("La CLABE debe tener 18 dígitos"))
+        );
     }
 
     @Then("{actor} should see the alert This field is required")
     public void heShouldSeeTheAlertThisFieldIsRequired(Actor actor) {
-        actor.attemptsTo(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).isDisplayed());
+        actor.attemptsTo(Check.whether(Validate.isAndroid()).andIfSo(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).isDisplayed())
+                .otherwise(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).text().isEqualTo("Este campo es obligatorio")));
     }
 
     @And("{actor} edits the Account holder field with {string}")
@@ -139,7 +90,7 @@ public class EditBankAccountInformationSteps {
     public void heShouldSeeTheBankAccountInformationUpdated(Actor actor, DataTable updatedInfo) {
         BankInformation bankInformation = Convert.dataTableToBankAccountInfo(updatedInfo);
         actor.attemptsTo(
-               Visualize.bankAccountInformation(bankInformation)
+                Visualize.bankAccountInformation(bankInformation)
         );
     }
 }

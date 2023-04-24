@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class ConfirmPasswordModalUI {
     public static final Target PASSWORD = Target.the("password input")
             .locatedForAndroid(By.xpath("(//android.widget.EditText)[1]"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeSecureTextField[@name='CONFIRMPSS_PSS_TEXTFIELD']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeOther[@name=\"CONFIRMPSS_PSS_TEXTFIELD\"]/XCUIElementTypeSecureTextField"));
 
     public static final Target CONFIRMA_TU_CONTRASENIA = Target.the("titulo Confirma tu contrasenia")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Confirma tu contrase\u00f1a']"))
@@ -15,18 +15,18 @@ public class ConfirmPasswordModalUI {
 
     public static final Target CANCELAR = Target.the("boton Cancelar")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cancelar']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='CONFIRMPSS_CANCEL_BUTTON']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"CONFIRMPSS_CANCEL_BTN\"]"));
 
     public static final Target CONTINUE = Target.the("Continue button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Continuar']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='CONFIRMPSS_SAVE_BUTTON']"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"CONFIRMPSS_SAVE_BTN\"]"));
 
     public static final Target ERROR_MESSAGE = Target.the("wrong password error message")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Contraseña incorrecta']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[6]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Contraseña incorrecta\"]"));
 
     public static final Target TITLE = Target.the("modal title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Confirma tu contraseña']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"CONFIRMPSS_TITLE_LABEL\"]"));
 
 }

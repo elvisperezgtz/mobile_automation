@@ -4,15 +4,19 @@ import femsa.asserts.Visualize;
 import femsa.models.Credential;
 import femsa.tasks.Fill;
 import femsa.tasks.Login;
+import femsa.user_interfaces.HomeUI;
 import femsa.utils.Decoder;
+import femsa.utils.Validate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import static femsa.user_interfaces.LoginUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
@@ -73,7 +77,7 @@ public class LoginSteps {
     @When("{actor} enters a empty email or phone number")
     public void heEntersAEmptyEmailOrPhoneNumber(Actor actor) throws IOException {
         actor.attemptsTo(
-              Fill.inTheLoginFormWithoutEmailOrPhoneNumber()
+                Fill.inTheLoginFormWithoutEmailOrPhoneNumber()
         );
     }
 
@@ -100,5 +104,21 @@ public class LoginSteps {
                         .andPassword(Decoder.decode(credential.getPassword()))
         );
         actor.remember("password", Decoder.decode(credential.getPassword()));
+    }
+
+    @Then("{actor} should see the message: Logging in")
+    public void heShouldSeeTheMessageLoggingIn(Actor actor) {
+        actor.attemptsTo(
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(Ensure.that(LOGGING_IN.waitingForNoMoreThan(ofSeconds(15))).isDisplayed())
+                        .otherwise(Ensure.that(HomeUI.HOME.waitingForNoMoreThan(ofSeconds(15))).isDisplayed()));
+
+    }
+
+    @Then("{actor} should see the message: Wrong Data")
+    public void heShouldSeeTheMessageWrongData(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(WRONG_DATA).isDisplayed()
+        );
     }
 }

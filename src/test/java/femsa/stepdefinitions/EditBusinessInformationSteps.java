@@ -7,7 +7,9 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.tasks.Edit;
 import femsa.tasks.Navigate;
+import femsa.user_interfaces.CommonsUI;
 import femsa.utils.Convert;
+import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -15,11 +17,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
-import static femsa.user_interfaces.EditBusinessDataUI.GUARDAR;
+import static femsa.user_interfaces.CommonsUI.EDIT;
+import static femsa.user_interfaces.EditBusinessDataUI.REQUIRED_FIELD;
 import static femsa.user_interfaces.EditBusinessDataUI.WRONG_POSTAL_CODE;
-import static femsa.user_interfaces.EditPersonalInformationUI.EDIT;
 import static femsa.user_interfaces.HomeUI.BUSINESS_NAME;
 
 public class EditBusinessInformationSteps {
@@ -32,7 +35,8 @@ public class EditBusinessInformationSteps {
     @Then("{actor} should see his Business information registered")
     public void heShouldSeeHisBusinessInformationRegistered(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        actor.attemptsTo(Visualize.hisBusinessInformation(user));
+        actor.attemptsTo(Visualize.hisBusinessInformation(user.getMerchantInfo()));
+
     }
 
     @And("{actor} wants to edit his Business information")
@@ -59,7 +63,9 @@ public class EditBusinessInformationSteps {
 
     @Then("{actor} should see the following message: Wrong postal code")
     public void heShouldSeeTheFollowingMessageWrongPostalCode(Actor actor) {
-        actor.attemptsTo(Ensure.that(WRONG_POSTAL_CODE).isDisplayed());
+        actor.attemptsTo(
+                Check.whether(Validate.isAndroid()).andIfSo(Ensure.that(WRONG_POSTAL_CODE).isDisplayed())
+                        .otherwise(Ensure.that(WRONG_POSTAL_CODE).text().isEqualTo("Este código postal es incorrecto")));
     }
 
     @And("{actor} changes his business information")
@@ -77,7 +83,7 @@ public class EditBusinessInformationSteps {
     @Then("{actor} should see that there are not changes on his business information")
     public void heShouldSeeThatThereAreNotChangesOnHisBusinessInformation(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
-        Visualize.hisBusinessInformation(user);
+        Visualize.hisBusinessInformation(user.getMerchantInfo());
     }
 
     @And("{actor} returns to the home screen")
@@ -92,6 +98,23 @@ public class EditBusinessInformationSteps {
 
     @And("{actor} tries to save the changes")
     public void heTriesToSaveTheChanges(Actor actor) {
-        actor.attemptsTo(Click.on(GUARDAR));
+        actor.attemptsTo(
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(Click.on(CommonsUI.SAVE)));
+    }
+
+    @Then("{actor} should see the following message: Required field")
+    public void heShouldSeeTheFollowingMessageRequiredField(Actor actor) {
+        actor.attemptsTo(
+                Check.whether(Validate.isAndroid())
+                        .andIfSo(Ensure.that(REQUIRED_FIELD).isDisplayed())
+                        .otherwise(Ensure.that(REQUIRED_FIELD).text().isEqualTo("Campo obligatorio"))
+        );
+    }
+
+    @Then("{actor} should see his Business information updated")
+    public void heShouldSeeHisBusinessInformationUpdated(Actor actor, DataTable dataTable) {
+        MerchantInfo merchantInfo = Convert.dataTableToMerchantInfo(dataTable);
+        actor.attemptsTo(Visualize.hisBusinessInformation(merchantInfo));
     }
 }

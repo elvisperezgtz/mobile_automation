@@ -9,15 +9,14 @@ public class DoYouWantToGoModalUI {
 
     public static final Target TITLE = Target.the("title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[contains(@text,'¿Quieres salir?')]"))
-            .locatedForIOS(By.xpath(""));
-
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"¿Quieres salir?\"]"));
 
     public static final Target CONTINUE_EDITING = Target.the("Continue editing button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SEGUIR EDITANDO']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"SEGUIR EDITANDO\"]"));
 
     public static final Target EXIT_WITHOUT_SAVING = Target.the("Exit without saving button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='SALIR SIN GUARDAR']"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.name("SALIR SIN GUARDAR"));
 
 }

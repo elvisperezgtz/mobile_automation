@@ -1,11 +1,13 @@
 package femsa.tasks;
 
 import femsa.user_interfaces.EditBusinessDataUI;
+import femsa.user_interfaces.ProfileUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import static femsa.user_interfaces.CommonsUI.EDIT;
 import static femsa.user_interfaces.HomeUI.HOME;
 import static femsa.user_interfaces.HomeUI.PROFILE;
 import static femsa.user_interfaces.IntroDispositivoUI.CONECTAR_DISPOSITIVO;
@@ -34,7 +36,7 @@ public class Navigate {
     public static Performable aLaPantallaDocumentosLegales() {
         return Task.where("{0} navega hasta la pantalla de Documentos legales",
                 toTheProfileAdministrationScreen(),
-                Click.on(DOCUMENTOS_LEGALES)
+                Click.on(LEGAL_DOCUMENTS)
         );
     }
 
@@ -48,7 +50,7 @@ public class Navigate {
     public static Performable toThePersonalInformationScreen() {
         return Task.where("{0} navigates to the personal information editing screen",
                 Navigate.toTheProfileAdministrationScreen(),
-                Click.on(EDIT)
+                Click.on(EDIT_INFORMATION)
         );
     }
 
