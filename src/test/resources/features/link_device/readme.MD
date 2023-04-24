@@ -1,13 +1,12 @@
-## Vinculacion con dispositivo MPOS
+## Linking with MPOS device
 
-### Historia de usuario
-Como Usuario Tendero
-Quiero visualizar las pantallas con la informacion introductoria del producto 
-Para que me permita redireccionar mi navegacion al registro de cuenta o inicio de sesion cada que no tenga una sesion iniciada.
-
+### User story
+As a Spin pro user
+I want to link my mpos device
+To be able to make card payments
 ###Contexto
-Se requiere visualizar una breve introducción a la aplicación mobile de cobro con tarjeta.
+The device must be linked to be able to make card payments.
 
-###Personas interesadas
-* Tenderos
+###Interested parties
+* Shopkeepers
 * Changarros
