@@ -163,5 +163,9 @@ public class Visualize {
                 Ensure.that(LogoutUI.CANCEL).isDisplayed()
         );
     }
+    public static Performable theHelpScreen(){
+return Task.where("{0} visualizes the Help screen",
+        Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed());
+    }
 }
 
