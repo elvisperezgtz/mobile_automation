@@ -24,7 +24,6 @@ Feature: Autorizar privilegios Bluetooth
     When Elvis realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth
     Then Elvis deberia poder que inicio la busqueda de dispositivos
 
-  @onboarding
   Scenario: Proceso de Onboarding exitoso
     When Elvis realiza la vinculacion del dispositivo MPOS
     And Elvis ingresa los datos de su cuenta Clabe

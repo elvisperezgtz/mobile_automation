@@ -13,7 +13,7 @@ import static femsa.user_interfaces.EnterYourPhoneNumberUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
-public class FillOutTheFormWeWantToMeetYou implements Task {
+public class FillOutTheFormEnterYourPhoneNumber implements Task {
     private String phoneNumber;
     private boolean termsAndCondition;
     private boolean clickContinue;
@@ -30,21 +30,21 @@ public class FillOutTheFormWeWantToMeetYou implements Task {
         );
     }
 
-    public static FillOutTheFormWeWantToMeetYou with() {
-        return Tasks.instrumented(FillOutTheFormWeWantToMeetYou.class);
+    public static FillOutTheFormEnterYourPhoneNumber with() {
+        return Tasks.instrumented(FillOutTheFormEnterYourPhoneNumber.class);
     }
 
-    public FillOutTheFormWeWantToMeetYou phoneNumber(String phoneNumber) {
+    public FillOutTheFormEnterYourPhoneNumber phoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public FillOutTheFormWeWantToMeetYou termsAndCondition(boolean termsAndCondition) {
+    public FillOutTheFormEnterYourPhoneNumber termsAndCondition(boolean termsAndCondition) {
         this.termsAndCondition = termsAndCondition;
         return this;
     }
 
-    public FillOutTheFormWeWantToMeetYou clickOnContinue(boolean clickContinue) {
+    public FillOutTheFormEnterYourPhoneNumber clickOnContinue(boolean clickContinue) {
         this.clickContinue = clickContinue;
         return this;
     }
