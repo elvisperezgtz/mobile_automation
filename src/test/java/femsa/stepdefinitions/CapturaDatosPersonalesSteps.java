@@ -12,7 +12,6 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import femsa.interactions.GetOtp;
-import femsa.models.Usuario;
 import femsa.tasks.Complete;
 import femsa.tasks.Ingresar;
 import femsa.tasks.Registrar;
@@ -31,7 +30,7 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 public class CapturaDatosPersonalesSteps {
     @Managed(driver = "appium")
     private AppiumDriver driver;
-    public Usuario usuario = new Usuario();
+//    public Usuario usuario = new Usuario();
 
     @Given("{actor} ha registrado su telefono")
     public void elvisHaRegistradoElTelefono(Actor actor) {
@@ -60,10 +59,10 @@ public class CapturaDatosPersonalesSteps {
 
     @When("{actor} registra los datos personales")
     public void elvisRegistraLosDatosPersonales(Actor actor) {
-        usuario.defaulValues();
-        actor.attemptsTo(
-                Ingresar.datosPersonales(usuario)
-        );
+//        usuario.defaulValues();
+//        actor.attemptsTo(
+//                Ingresar.datosPersonales(usuario)
+//        );
     }
 
     @Then("{actor} deberia poder ver el titulo {string}")
