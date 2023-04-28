@@ -13,22 +13,16 @@ Feature: Enter your phone number
 
   Scenario: Validate that the Send code button is enabled when accepting terms and conditions.
     When he tries to start his registration accepting terms and conditions
-      | phoneNumber | nip  | password   |
-      | 5521996723  | 1234 | Prueba1234 |
     Then he should see Send code button enabled
 
   Rule: The Send code button must be disabled until the terms and conditions are accepted.
     Scenario: Validate that the Send code button is disabled when not accepting terms and conditions.
       When he tries to start his registration without accepting terms and conditions
-        | phoneNumber | nip  | password   |
-        | 5521996723  | 1234 | Prueba1234 |
       Then he should see Send code button disabled
 
   Rule: It should not be allowed to start a new registration with a previously registered cell phone number.
     Scenario: Validate that it is not possible to register a number with existing registration.
       When he tries to start his registration with a phone number previously registered
-        | phoneNumber | nip  | password   |
-        | 5521996723  | 1234 | Prueba1234 |
       Then he should see the message: This number cannot be registered
 
     Scenario: The Type Code screen should be displayed when a valid phone number is registered.

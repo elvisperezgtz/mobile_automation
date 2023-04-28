@@ -12,8 +12,9 @@
       "bank_information": {
         "clabe": "123456789123456789",
         "account_holder": "Elvis Perez"
-      }
-    },"elvis-edited": {
+      },
+      "phone_number": "5521996723"
+    },"newUser": {
       "first_name": "Elvis",
       "last_name": "Perez Gutiérrez",
       "email": "eperez@palo-it.com",

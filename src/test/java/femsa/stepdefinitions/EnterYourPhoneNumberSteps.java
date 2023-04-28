@@ -1,9 +1,12 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
+import femsa.enums.CredentialsName;
+import femsa.enums.JsonPath;
+import femsa.models.User;
 import femsa.tasks.FillOutTheFormEnterYourPhoneNumber;
 import femsa.user_interfaces.EnterYourPhoneNumberUI;
-import io.cucumber.datatable.DataTable;
+import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
@@ -18,12 +21,13 @@ import static java.time.Duration.ofSeconds;
 
 public class EnterYourPhoneNumberSteps {
     @When("{actor} tries to start his registration without accepting terms and conditions")
-    public void heTriesToStartHisRegistrationWithoutAcceptingTermsAndConditions(Actor actor, DataTable table) {
+    public void heTriesToStartHisRegistrationWithoutAcceptingTermsAndConditions(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
-                        .phoneNumber("5521996723")
+                        .phoneNumber(user.getPhoneNumber())
 
         );
     }
@@ -34,13 +38,13 @@ public class EnterYourPhoneNumberSteps {
     }
 
     @When("{actor} tries to start his registration accepting terms and conditions")
-    public void heTriesToStartHisRegistrationAcceptingTermsAndConditions(Actor actor, DataTable table) {
-
+    public void heTriesToStartHisRegistrationAcceptingTermsAndConditions(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
-                        .phoneNumber("5521996723")
+                        .phoneNumber(user.getPhoneNumber())
                         .termsAndCondition(true)
         );
     }
@@ -54,12 +58,13 @@ public class EnterYourPhoneNumberSteps {
     }
 
     @When("{actor} tries to start his registration with a phone number previously registered")
-    public void heTriesToStartHisRegistrationWithAPhoneNumberPreviouslyRegistered(Actor actor, DataTable table) {
+    public void heTriesToStartHisRegistrationWithAPhoneNumberPreviouslyRegistered(Actor actor) {
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber.
                         with()
-                        .phoneNumber("5521996723")
+                        .phoneNumber(user.getPhoneNumber())
                         .termsAndCondition(true)
                         .clickOnContinue(true)
         );
