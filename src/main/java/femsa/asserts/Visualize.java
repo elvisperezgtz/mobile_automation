@@ -153,19 +153,26 @@ public class Visualize {
                 Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(user.getBankInformation().getAccountHolder()),
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(CLABE))).isTrue(),
                 Ensure.that(CLABE).text().isEqualTo(user.getBankInformation().getClabe())
-                );
+        );
     }
 
-    public static Performable doYouWantLogOutModal(){
+    public static Performable doYouWantLogOutModal() {
         return Task.where("{0} visualizes the Do you want to logout modal",
-               Ensure.that(LogoutUI.TITLE).isDisplayed(),
+                Ensure.that(LogoutUI.TITLE).isDisplayed(),
                 Ensure.that(LogoutUI.YES_LOGOUT).isDisplayed(),
                 Ensure.that(LogoutUI.CANCEL).isDisplayed()
         );
     }
-    public static Performable theHelpScreen(){
-return Task.where("{0} visualizes the Help screen",
-        Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed());
+
+    public static Performable theHelpScreen() {
+        return Task.where("{0} visualizes the Help screen",
+                Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed());
+    }
+    public static Performable theEnterYourCodeScreen(){
+        return Task.where("{0} visualizes the Enter your code screen",
+                Ensure.that(EnterYourCodeUI.WRITE_YOUR_CODE_TITLE).isDisplayed(),
+                Ensure.that(EnterYourCodeUI.SMS_CODE_BOXES).isDisplayed()
+        );
     }
 }
 

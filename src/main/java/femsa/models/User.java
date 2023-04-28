@@ -18,6 +18,8 @@ public class User {
     private MerchantInfo merchantInfo;
     @SerializedName("bank_information")
     private BankInformation bankInformation;
+    @SerializedName("phone_number")
+    private String phoneNumber;
 
     private User(Builder builder) {
         this.firstName = builder.firstName;
@@ -25,6 +27,7 @@ public class User {
         this.email = builder.email;
         this.merchantInfo = builder.merchantInfo;
         this.bankInformation = builder.bankInformation;
+        this.phoneNumber = builder.phoneNumber;
     }
 
     public String getFirstName() {
@@ -47,12 +50,17 @@ public class User {
         return bankInformation;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public static class Builder {
         private String firstName;
         private String lastName;
         private String email;
         private MerchantInfo merchantInfo;
         private BankInformation bankInformation;
+        private String phoneNumber;
 
         public Builder withFirstName(String firstName) {
             this.firstName = firstName;
@@ -79,6 +87,10 @@ public class User {
             return this;
         }
 
+        public Builder withPhoneNumber(String phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
         public User build() {
             return new User(this);
         }
@@ -92,6 +104,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", merchantInfo=" + merchantInfo +
                 ", bankInformation=" + bankInformation +
+                ", phoneNumber=" + phoneNumber+
                 '}';
     }
 }
