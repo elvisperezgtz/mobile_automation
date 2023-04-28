@@ -1,5 +1,6 @@
 package femsa.tasks;
 
+import femsa.user_interfaces.wallet.IntroTutorialUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import femsa.interactions.SwipeFrom;
@@ -17,14 +18,11 @@ public class Complete {
         );
     }
 
-//    public static Performable elProcesoDeOnboarding(Usuario usuario){
-//        return Task.where(
-//                "{0} Completa el proceso de onboarding",
-//                Ingresar.cuentaClabeTitular(usuario),
-//                Click.on(CONTINUAR),
-//                Click.on(ACEPTAR)
-//        );
-//
-//    }
-
+public static Performable theWalletIntroTutorial(){
+        return Task.where("{0} completes the introductory tutorial",
+                Click.on(IntroTutorialUI.CONTINUE),
+                Click.on(IntroTutorialUI.CONTINUE),
+                Click.on(IntroTutorialUI.START)
+        );
+}
 }
