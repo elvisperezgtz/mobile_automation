@@ -4,8 +4,13 @@ Feature: Intro wallet
   To learn about how to use the app
 
   Background: He is logged in
+    Given Elvis Perform the introductory tutorial
+    And he is logged in to the app by "phone number" with his "dev credentials"
 
-  Scenario: Verify automatic swiping of INTRO WALLET screens
+  @introWallet
+  Scenario: Validate Wallet intro
+    When he performs the Wallet intro
+    Then  he should see the app home
 
   Scenario: Verify the operation of the Continue button within the INTRO to WALLET
 
