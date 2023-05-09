@@ -4,6 +4,7 @@ import femsa.models.BankInformation;
 import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
+import femsa.user_interfaces.wallet.IntroTutorialUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.ensure.Ensure;
@@ -168,11 +169,36 @@ public class Visualize {
         return Task.where("{0} visualizes the Help screen",
                 Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed());
     }
-    public static Performable theEnterYourCodeScreen(){
+
+    public static Performable theEnterYourCodeScreen() {
         return Task.where("{0} visualizes the Enter your code screen",
                 Ensure.that(EnterYourCodeUI.WRITE_YOUR_CODE_TITLE).isDisplayed(),
                 Ensure.that(EnterYourCodeUI.SMS_CODE_BOXES).isDisplayed()
         );
+    }
+
+    public static Performable theSalesOfTheDayIntro() {
+        return Task.where("{0} visualizes the Sales of the day intro",
+                Ensure.that(IntroTutorialUI.TITLE).text().isEqualTo("Conoce tu app"),
+                Ensure.that(IntroTutorialUI.SALES_OF_THE_DAY).text().isEqualTo("Ventas del dia"),
+                Ensure.that(IntroTutorialUI.SALES_OF_THE_DAY_EXPLANATION).text().isEqualTo("Es el dinero de tus ventas con tarjeta que hiciste con el dispositivo de cobro"),
+                Ensure.that(IntroTutorialUI.CONTINUE).isDisplayed()
+        );
+    }
+
+    public static Performable theInTransitToBankAccountIntro() {
+        return Task.where("{0} visualizes the In transit to bank account intro",
+                Ensure.that(IntroTutorialUI.IN_TRANSIT_TO_BANK_ACCOUNT).text().isEqualTo("En tránsito a cuenta bancaria"),
+                Ensure.that(IntroTutorialUI.IN_TRANSIT_TO_BANK_ACCOUNT_EXPLANATION).text().contains("Es el dinero de tus ventas con tarjeta que está por depositarse a tu cuenta bancaria"),
+                Ensure.that(IntroTutorialUI.CONTINUE).isDisplayed()
+        );
+    }
+
+    public static Performable theGrowYourBusinessIntro() {
+        return Task.where("{0} visualizes the Grow your business",
+                Ensure.that(IntroTutorialUI.GROW_YOUR_BUSINESS).text().isEqualTo("Haz crecer tu negocio"),
+                Ensure.that(IntroTutorialUI.GROW_YOUR_BUSINESS_EXPLANATION).text().contains("Acepta pagos con tarjeta, realiza ventas de tiempo aire y pagos de servicios como luz, Internet y más…"),
+                Ensure.that(IntroTutorialUI.START).isDisplayed());
     }
 }
 

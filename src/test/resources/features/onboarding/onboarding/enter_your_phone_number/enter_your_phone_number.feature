@@ -1,4 +1,4 @@
-@regression @registration
+@regression
 Feature: Enter your phone number
   As a Spin pro user
   I want a module to register my phone number
@@ -16,6 +16,7 @@ Feature: Enter your phone number
     Then he should see Send code button enabled
 
   Rule: The Send code button must be disabled until the terms and conditions are accepted.
+    @registration
     Scenario: Validate that the Send code button is disabled when not accepting terms and conditions.
       When he tries to start his registration without accepting terms and conditions
       Then he should see Send code button disabled
