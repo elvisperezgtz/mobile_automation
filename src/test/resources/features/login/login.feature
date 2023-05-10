@@ -1,4 +1,4 @@
-@regression   @login
+@regression  @login
 
 Feature: Login
   As a user
@@ -9,23 +9,29 @@ Feature: Login
     Given Elvis Perform the introductory tutorial
 
   Scenario: Validate Login with phone number
-    When he logs in by "phone number" with his "valid credentials"
+    When he logs in by "phone number"
     Then he should see the message: Logging in
 
   Scenario: Verify error message when logging in with an unregistered phone
-    When he logs in by "phone number" with his "wrong credentials"
+    When he tries to log in with credentials
+      | username   | password     |
+      | 5521996792 | V3JvbmdQYXNz |
     Then he should see the message: Wrong Data
 
   Scenario: Validate Login with email
-    When he logs in by "email" with his "valid credentials"
+    When he logs in by "email"
     Then he should see the message: Logging in
 
   Scenario: Verify error message when logging in with an unregistered email
-    When he logs in by "email" with his "wrong credentials"
+    When he tries to log in with credentials
+      | username              | password     |
+      | mail@unregistered.com | V3JvbmdQYXNz |
     Then he should see the message: Wrong Data
 
   Scenario: Verify that the Password field is mandatory
     When he enters a empty password
+      | username   | password |
+      | 5521996723 |          |
     Then he should see the alert "Este campo es obligatorio"
 
   Scenario: Verify that the Email or Cell phone number field is mandatory
