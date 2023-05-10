@@ -1,9 +1,8 @@
 package femsa.enums;
 
 public enum CredentialsProperties {
-    PHONE_NUMBER("phoneNumber"),
+    USERNAME("username"),
     PASSWORD("password"),
-    EMAIL("email"),
     ;
 
     private final String propertyName;
