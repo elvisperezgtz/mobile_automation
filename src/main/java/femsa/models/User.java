@@ -21,6 +21,9 @@ public class User {
     @SerializedName("phone_number")
     private String phoneNumber;
 
+    @SerializedName("credentials")
+    private Credentials credentials;
+
     private User(Builder builder) {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -28,6 +31,7 @@ public class User {
         this.merchantInfo = builder.merchantInfo;
         this.bankInformation = builder.bankInformation;
         this.phoneNumber = builder.phoneNumber;
+        this.credentials = builder.credentials;
     }
 
     public String getFirstName() {
@@ -61,6 +65,7 @@ public class User {
         private MerchantInfo merchantInfo;
         private BankInformation bankInformation;
         private String phoneNumber;
+        private Credentials credentials;
 
         public Builder withFirstName(String firstName) {
             this.firstName = firstName;
@@ -87,10 +92,15 @@ public class User {
             return this;
         }
 
-        public Builder withPhoneNumber(String phoneNumber){
+        public Builder withPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
+        public Builder withCredentials(Credentials credentials){
+            this.credentials = credentials;
+            return this;
+        }
+
         public User build() {
             return new User(this);
         }
@@ -104,7 +114,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", merchantInfo=" + merchantInfo +
                 ", bankInformation=" + bankInformation +
-                ", phoneNumber=" + phoneNumber+
+                ", phoneNumber=" + phoneNumber +
+                ", credentials=" + credentials+
                 '}';
     }
 }
