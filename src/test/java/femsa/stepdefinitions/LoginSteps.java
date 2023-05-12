@@ -105,18 +105,6 @@ public class LoginSteps {
         actor.attemptsTo(Visualize.resetPasswordScreen());
     }
 
-    @And("{actor} is logged in to the app by {string} with his {string}")
-    public void elvisIsLoggedInToTheAppByWithHis(Actor actor, String loginType, String credentialName) throws IOException {
-        Credentials credentials = fromJsonToCredential(loginType, credentialName);
-        actor.attemptsTo(
-                Login
-                        .whit()
-                        .username(credentials.getUsername())
-                        .andPassword(Decoder.decode(credentials.getPassword()))
-        );
-        actor.remember("password", Decoder.decode(credentials.getPassword()));
-    }
-
     @Then("{actor} should see the message: Logging in")
     public void heShouldSeeTheMessageLoggingIn(Actor actor) {
         actor.attemptsTo(
@@ -143,7 +131,7 @@ public class LoginSteps {
                         .andPassword(Decoder.decode(credentials.getPassword()))
                         .andClickLoginButton(true)
         );
-
+        actor.remember("password", Decoder.decode(credentials.getPassword()));
     }
 
 
