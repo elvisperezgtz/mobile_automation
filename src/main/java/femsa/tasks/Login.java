@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.thucydides.core.annotations.Step;
 
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
@@ -13,6 +14,7 @@ public class Login implements Task {
 
     private String password;
     private String username;
+    private Boolean clickLoginButton;
 
 
     @Override
@@ -23,19 +25,27 @@ public class Login implements Task {
                 Fill.inTheLoginForm()
                         .withUsername(username)
                         .withPassword(password),
-                Click.on(LoginUI.LOGIN)
+                Check.whether(clickLoginButton)
+                        .andIfSo(Click.on(LoginUI.LOGIN))
         );
     }
-    public static Login whit(){
+
+    public static Login whit() {
         return Tasks.instrumented(Login.class);
     }
 
-    public  Login andPassword(String password){
+    public Login andPassword(String password) {
         this.password = password;
         return this;
     }
-    public Login username (String username){
+
+    public Login username(String username) {
         this.username = username;
+        return this;
+    }
+
+    public Login andClickLoginButton(Boolean clickLoginButton) {
+        this.clickLoginButton = clickLoginButton;
         return this;
     }
 

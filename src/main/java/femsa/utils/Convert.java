@@ -1,6 +1,7 @@
 package femsa.utils;
 
 import femsa.models.BankInformation;
+import femsa.models.Credentials;
 import femsa.models.MerchantInfo;
 import femsa.models.User;
 import io.cucumber.datatable.DataTable;
@@ -34,6 +35,14 @@ public class Convert {
         return new BankInformation.Builder()
                 .withClabe(row.get(0).get("clabe"))
                 .withAccountHolder(row.get(0).get("accountHolder"))
+                .build();
+    }
+
+    public  static Credentials dataTableToCredentials(DataTable credentialsInfo){
+        List<Map<String,String>> row = credentialsInfo.asMaps(String.class, String.class);
+        return  new Credentials.Builder()
+                .withUsername(row.get(0).get("username"))
+                .withPassword(row.get(0).get("password"))
                 .build();
     }
 }

@@ -4,13 +4,14 @@ import femsa.api.Update;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-
-import static femsa.enums.CredentialsName.ELVIS;
+import net.thucydides.core.util.EnvironmentVariables;
 
 public class ParameterDefinitions {
+    EnvironmentVariables env;
 
     @ParameterType(".*")
     public Actor actor(String actorName) {
@@ -25,19 +26,19 @@ public class ParameterDefinitions {
     @Before("@hookPersonalData")
     @After("@hookPersonalData")
     public void setDefaultUser() {
-        Update.userInfo(ELVIS.getName());
+        Update.userInfo(EnvironmentSpecificConfiguration.from(env).getProperty("actor"));
     }
 
     @Before("@hookBusinessData")
     @After("@hookBusinessData")
     public void setDefaultBusinessData() {
-        Update.businessInfo(ELVIS);
+        Update.businessInfo(EnvironmentSpecificConfiguration.from(env).getProperty("actor"));
     }
 
     @Before("@hookBankAccountInfo")
     @After("@hookBankAccountInfo")
     public void  setDefaultBankAccountInfo(){
-        Update.bankAccountInfo(ELVIS);
+        Update.bankAccountInfo(EnvironmentSpecificConfiguration.from(env).getProperty("actor"));
     }
 
 }

@@ -6,7 +6,7 @@ Feature: Edit personal information
 
   Background: The user is in the edit personal information option.
     Given Elvis Perform the introductory tutorial
-    And he is logged in to the app by "phone number" with his "valid credentials"
+    And he logs in by "phone number"
     When he enters in the personal data option
 
   Scenario: Verify Edit button redirection

@@ -1,31 +1,24 @@
 package femsa.tasks;
 
-import femsa.enums.CredentialsName;
 import femsa.interactions.Digitar;
-import femsa.models.Credential;
-import femsa.models.User;
-import femsa.user_interfaces.EnterYourPhoneNumberUI;
+import femsa.models.Credentials;
 import femsa.utils.Validate;
+import femsa.utils.jsons.JsonTemplate;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.conditions.Check;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
-import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import static femsa.user_interfaces.CobroUI.*;
-import static femsa.user_interfaces.EnterYourPhoneNumberUI.*;
 import static femsa.user_interfaces.LoginUI.EMAIL_OR_PHONE_NUMBER;
 import static femsa.user_interfaces.LoginUI.PASSWORD;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
-import static femsa.utils.jsons.JsonTemplate.fromJsonToCredential;
-import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class Fill {
 
@@ -36,21 +29,24 @@ public class Fill {
         return Tasks.instrumented(InTheLoginForm.class);
     }
 
-    public static Performable inTheLoginFormWithoutPassword() throws IOException {
-        Credential credential = fromJsonToCredential("email", CredentialsName.EMPTY_PASSWORD.getName());
+    public static Performable inTheLoginFormWithoutPassword(Credentials credentials) throws IOException {
+
         return Task.where("{0} fill the form without a password",
                 Click.on(ALREADY_HAVE_ACCOUNT),
-                Enter.theValue(credential.getUsername()).into(EMAIL_OR_PHONE_NUMBER),
+                Enter.theValue(credentials.getUsername()).into(EMAIL_OR_PHONE_NUMBER),
                 Click.on(PASSWORD),
                 Click.on(EMAIL_OR_PHONE_NUMBER)
         );
     }
 
     public static Performable inTheLoginFormWithoutEmailOrPhoneNumber() throws IOException {
-        Credential credential = fromJsonToCredential("email", CredentialsName.EMPTY_PASSWORD.getName());
+        EnvironmentSpecificConfiguration env= OnStage.theActorInTheSpotlight().recall("env");
+
+        Credentials credentials = JsonTemplate.fromJsonToCredential("phone number",env.getProperty("actor"));
+
         return Task.where("{0} fill the form without an email or phone number",
                 Click.on(ALREADY_HAVE_ACCOUNT),
-                Enter.theValue(credential.getPassword()).into(PASSWORD),
+                Enter.theValue(credentials.getPassword()).into(PASSWORD),
                 Click.on(EMAIL_OR_PHONE_NUMBER),
                 Click.on(PASSWORD)
         );

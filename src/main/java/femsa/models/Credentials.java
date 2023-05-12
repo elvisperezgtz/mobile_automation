@@ -2,13 +2,13 @@ package femsa.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Credential {
-    @SerializedName("phoneNumber")
+public class Credentials {
+    @SerializedName("username")
     private final String username;
     @SerializedName("password")
     private final String password;
 
-    private Credential(Builder builder) {
+    private Credentials(Builder builder) {
         this.username = builder.username;
         this.password = builder.password;
     }
@@ -22,7 +22,6 @@ public class Credential {
     }
 
 
-
     public static class Builder {
         private String username;
 
@@ -30,8 +29,6 @@ public class Credential {
 
         public Builder() {
         }
-
-
 
         public Builder withUsername(String username) {
             this.username = username;
@@ -43,8 +40,8 @@ public class Credential {
             return this;
         }
 
-        public Credential build() {
-            return new Credential(this);
+        public Credentials build() {
+            return new Credentials(this);
         }
     }
 

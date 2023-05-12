@@ -116,7 +116,7 @@ public class Edit {
                 Enter.theValue(merchantInfo.getMerchantName()).into(BUSINESS_NAME),
                 Check.whether(Validate.isAndroid())
                         .andIfSo(SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, merchantInfo.getMerchantActivity())),
-                Enter.theValue(merchantInfo.getPostalCode()).into(EMAIL),
+                Enter.theValue(merchantInfo.getPostalCode()).into(POSTAL_CODE),
                 Check.whether(Validate.isIOS())
                         .andIfSo(
                                 Check.whether(isKeyboardShown(as(theActorInTheSpotlight()).getDriver())))
