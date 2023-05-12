@@ -25,7 +25,6 @@ import java.io.IOException;
 
 import static femsa.user_interfaces.LoginUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.ALREADY_HAVE_ACCOUNT;
-import static femsa.utils.jsons.JsonTemplate.fromJsonToCredential;
 import static java.time.Duration.ofSeconds;
 
 public class LoginSteps {
@@ -39,11 +38,11 @@ public class LoginSteps {
 
     @When("{actor} logs in by {string} with his {string}")
     public void heLogsInByWithHis(Actor actor, String loginType, String credentialName) throws IOException {
-        Credentials credentials = fromJsonToCredential(loginType, credentialName);
 
         EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        Credentials credentials = user.getCredentials();
 
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), credentialName.toUpperCase());
         actor.attemptsTo(
                 Login
                         .whit()

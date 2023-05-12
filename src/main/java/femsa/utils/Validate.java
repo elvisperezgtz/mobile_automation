@@ -21,8 +21,12 @@ public class Validate {
     }
 
     public static boolean isKeyboardShown(WebDriver facade) {
-        WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
-        return ((IOSDriver) driver).isKeyboardShown();
+        boolean isShow = false;
+        if (Validate.isIOS()) {
+            WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
+            isShow = ((IOSDriver) driver).isKeyboardShown();
+        }
+        return isShow;
     }
 
 }
