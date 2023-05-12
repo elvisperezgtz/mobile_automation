@@ -58,6 +58,10 @@ public class User {
         return phoneNumber;
     }
 
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
     public static class Builder {
         private String firstName;
         private String lastName;
