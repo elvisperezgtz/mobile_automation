@@ -14,7 +14,8 @@
         "account_holder": "Elvis Perez"
       },
       "phone_number": "5521996723"
-    },"newUser": {
+    },
+    "newUser": {
       "first_name": "Elvis",
       "last_name": "Perez Gutiérrez",
       "email": "eperez@palo-it.com",
@@ -28,6 +29,21 @@
         "account_holder": "Elvis Perez"
       },
       "phone_number": "5521996723"
+    },
+    "KOF_User": {
+      "first_name": "Luis",
+      "last_name": "Arcia",
+      "email": null,
+      "merchant_info": {
+        "merchant_name": "Tiendita KOF",
+        "merchant_activity": null,
+        "postal_code": null
+      },
+      "bank_information": {
+        "clabe": null,
+        "account_holder": null
+      },
+      "phone_number": "00 0000 0103"
     }
   }
 }

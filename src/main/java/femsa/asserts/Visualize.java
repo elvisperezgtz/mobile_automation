@@ -174,5 +174,18 @@ public class Visualize {
                 Ensure.that(EnterYourCodeUI.SMS_CODE_BOXES).isDisplayed()
         );
     }
+    public static Performable theProfileKOFScreen() {
+        return Task.where("{0} visualizes the Profile screen",
+                WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(8)),
+                Ensure.that(LOGO).isDisplayed(),
+                Ensure.that(ProfileUI.PROFILE_PHONE_NUMBER).isDisplayed(),
+                Ensure.that(EDIT_INFORMATION).isNotDisplayed(),
+                Ensure.that(BUSINESS).isDisplayed(),
+                Ensure.that(HELP).isDisplayed(),
+                Ensure.that(AUTHORIZE_DEVICE).isDisplayed(),
+                Ensure.that(LEGAL_DOCUMENTS).isDisplayed(),
+                Ensure.that(LOGOUT).isDisplayed()
+        );
+    }
 }
 

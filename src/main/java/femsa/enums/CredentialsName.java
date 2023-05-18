@@ -4,6 +4,7 @@ public enum CredentialsName {
     ELVIS("Elvis"),
     NICOLE("Nicole"),
     LUIS("Luis"),
+    KOF("KOF_User"),
     VALID_CREDENTIAL("valid_credential"),
     EMPTY_PASSWORD("password empty"),
     EMPTY_USERNAME("password empty"),
