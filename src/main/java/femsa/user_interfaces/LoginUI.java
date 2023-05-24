@@ -50,6 +50,6 @@ public class LoginUI {
 
     public static final Target WRONG_DATA = Target.the("Wrong data")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Datos incorrectos']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"Spin Pro-QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Datos incorrectos\"]"));
 
 }

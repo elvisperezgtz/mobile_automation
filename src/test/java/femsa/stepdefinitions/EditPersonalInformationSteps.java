@@ -102,7 +102,7 @@ public class EditPersonalInformationSteps {
     @Then("{actor} should see the following message: You have updated your data")
     public void heShouldSeeTheFollowingMessageYouHaveUpdatedYourData(Actor actor) {
         //Todo change this validation for text()
-        actor.attemptsTo(Ensure.that(YOU_HAVE_UPDATED_YOUR_DATA).isDisplayed());
+        actor.attemptsTo(Ensure.that(YOU_HAVE_UPDATED_YOUR_DATA).text().isEqualTo("Actualizaste tus datos"));
     }
 
     @And("{actor} changes his personal information")

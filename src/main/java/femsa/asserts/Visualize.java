@@ -11,6 +11,8 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import java.time.Duration;
+
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
@@ -91,7 +93,7 @@ public class Visualize {
 
     public static Performable aConfirmPasswordModal() {
         return Task.where("{0} visualizes a Confirm Password modal",
-                Ensure.that(ConfirmPasswordModalUI.TITLE).isDisplayed(),
+                Ensure.that(ConfirmPasswordModalUI.TITLE.waitingForNoMoreThan(Duration.ofSeconds(10))).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.PASSWORD).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.CONTINUE).isDisplayed(),
 //                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CONTINUE))).isFalse(),

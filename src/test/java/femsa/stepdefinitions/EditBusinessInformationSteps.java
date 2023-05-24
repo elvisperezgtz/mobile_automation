@@ -37,7 +37,6 @@ public class EditBusinessInformationSteps {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
         actor.attemptsTo(Visualize.hisBusinessInformation(user.getMerchantInfo()));
-
     }
 
     @And("{actor} wants to edit his Business information")
