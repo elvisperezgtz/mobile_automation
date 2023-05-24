@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Swipe {
@@ -91,6 +92,8 @@ public class Swipe {
                 Thread.sleep(ANIMATION_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                LOGGER.log(Level.WARNING,"Interrupted!", e);
+                Thread.currentThread().interrupt();
             }
             LOGGER.info("Executing Swipe on Android");
         }
