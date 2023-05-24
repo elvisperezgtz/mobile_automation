@@ -32,7 +32,7 @@ public class EditBankAccountInformationSteps {
     @Then("{actor} should see his Bank account information registered")
     public void elvisShouldSeeHisBankAccountInformationRegistered(Actor actor) {
         EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(
                 Visualize.bankAccountInformation(user.getBankInformation())
         );
@@ -41,7 +41,7 @@ public class EditBankAccountInformationSteps {
     @Then("{actor} should see the bank account information form in edit mode")
     public void heShouldSeeTheBankAccountInformationFormInEditMode(Actor actor) {
         EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(Visualize.bankAccountInformationInEditMode(user));
     }
 
@@ -53,7 +53,6 @@ public class EditBankAccountInformationSteps {
     @Then("{actor} should see the message The CLABE must have 18 digits")
     public void heShouldSeeTheMessageTheCLABEMustHave18Digits(Actor actor) {
         actor.attemptsTo(
-//                Ensure.that(EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS).isDisplayed()
                 Check.whether(Validate.isAndroid())
                         .andIfSo(Ensure.that(CLABE_MUST_HAVE_18_DIGITS).isDisplayed())
                         .otherwise(Ensure.that(CLABE_MUST_HAVE_18_DIGITS).text().isEqualTo("La CLABE debe tener 18 dígitos"))
@@ -64,11 +63,6 @@ public class EditBankAccountInformationSteps {
     public void heShouldSeeTheAlertThisFieldIsRequired(Actor actor) {
         actor.attemptsTo(Check.whether(Validate.isAndroid()).andIfSo(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).isDisplayed())
                 .otherwise(Ensure.that(CommonsUI.THIS_FIELD_IS_REQUIRED).text().isEqualTo("Este campo es obligatorio")));
-    }
-
-    @And("{actor} edits the Account holder field with {string}")
-    public void heEditsTheAccountHolderFieldWith(Actor actor, String accountHolder) {
-        actor.attemptsTo(Edit.theAccountHolder(accountHolder));
     }
 
     @And("{actor} edits the CLABE field with {string}")
@@ -85,7 +79,7 @@ public class EditBankAccountInformationSteps {
     @Then("{actor} should see that there are not changes on his bank account information")
     public void heShouldSeeThatThereAreNotChangesOnHisBankAccountInformation(Actor actor) {
         EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(Visualize.bankAccountInformation(user.getBankInformation()));
     }
 

@@ -11,8 +11,15 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Swipe {
+
+    private Swipe() {
+    }
+
+    private static final Logger LOGGER = Logger.getLogger(Swipe.class.getName());
 
     public static void mobileSwipe(WebDriver facade, Direccion direccion) throws InterruptedException {
         final int ANIMATION_TIME = 500;
@@ -47,13 +54,13 @@ public class Swipe {
                 Thread.sleep(ANIMATION_TIME);
 
             } catch (Exception e) {
-                System.err.println("mobileSwipeScreenIOS(): FAILED\n" + e.getMessage());
+                LOGGER.severe("mobileSwipeScreenIOS(): FAILED\n" + e.getMessage());
                 return;
             }
         } else if (Validate.isAndroid()) {
             WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
             Dimension dims = driver.manage().window().getSize();
-            pointOptionStart = PointOption.point(((dims.width / 1)-100), dims.height / 2);
+            pointOptionStart = PointOption.point(((dims.width / 1) - 100), dims.height / 2);
 
             switch (direccion) {
                 case ABAJO:
@@ -78,15 +85,17 @@ public class Swipe {
                         .moveTo(pointOptionEnd)
                         .release().perform();
             } catch (Exception e) {
-                System.err.println("swipeScreen(): TouchAction FAILED\n" + e.getMessage());
+                LOGGER.severe("swipeScreen(): TouchAction FAILED\n" + e.getMessage());
                 return;
             }
             try {
                 Thread.sleep(ANIMATION_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                LOGGER.log(Level.WARNING,"Interrupted!", e);
+                Thread.currentThread().interrupt();
             }
-            System.out.println("Ejecutando Swipe en Android");
+            LOGGER.info("Executing Swipe on Android");
         }
 
     }
