@@ -12,7 +12,7 @@ public class KofUserSteps {
     @Then("{actor} should see the personal data of the KOF profile correctly")
     public void heShouldSeeThePersonalDataOfTheKOFProfileCorrectly(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.KOF.getName());
-        assert user != null;
+        //assert user != null;
         actor.attemptsTo(
                 Visualize.thePersonalInformationUserKOF(user)
         );

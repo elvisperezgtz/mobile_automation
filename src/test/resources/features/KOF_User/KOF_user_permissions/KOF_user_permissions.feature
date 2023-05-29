@@ -6,8 +6,10 @@
     I want to access only to the functions delimited by my profile
     To avoid modifying and viewing sensitive Business information
   Background: the KOF user accesses the Profile screen
-    Given RegularUser Perform the introductory tutorial
-      And he logs in by "KOF ID" with his "Valid KOF credentials"
+    Given KOF_User Perform the introductory tutorial
+      And he tries to log in with credentials
+        | username   | password         |
+        | KOF0000071 | UHJ1ZWJhMTIzNA== |
       And he enters in the Profile screen
     @KOFProfile
     Scenario: Verify personal information from the profile screen

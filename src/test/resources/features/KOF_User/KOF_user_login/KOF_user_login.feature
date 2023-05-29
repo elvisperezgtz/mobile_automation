@@ -7,8 +7,12 @@
   Background: The user is at the home of the app
     Given RegularUser Perform the introductory tutorial
   Scenario: Validate successful login to the app
-    When he logs in by "KOF ID" with his "Valid KOF credentials"
+    When he tries to log in with credentials
+      | username   | password         |
+      | KOF0000071 | UHJ1ZWJhMTIzNA== |
     Then he should see the message: Logging in
   Scenario: Validate error message when logging in with invalid password
-    When he logs in by "KOF ID" with his "Invalid KOF credentials"
+    When he tries to log in with credentials
+      | username   | password     |
+      | KOF0000071 | V3JvbmdQYXNz |
     Then he should see the message: Wrong Data

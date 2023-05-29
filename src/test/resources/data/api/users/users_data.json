@@ -29,7 +29,7 @@
         "postal_code": "82995"
       },
       "bank_information": {
-        "clabe": "123456789012345678”",
+        "clabe": "123456789012345678",
         "account_holder": "Luis Arcia"
       },
       "phone_number": "5529608038",
@@ -58,30 +58,11 @@
       }
     },
     "kof_user": {
-      "first_name": "Elvis",
-      "last_name": "Perez Gutiérrez",
-      "email": "eperez@palo-it.com",
+      "first_name": "luis",
+      "last_name": "Arcia",
+      "email": "larcia@palo-it.com",
       "merchant_info": {
-        "merchant_name": "SAO",
-        "merchant_activity": "ABARROTES Y MISCELANEA",
-        "postal_code": "43400"
-      },
-      "bank_information": {
-        "clabe": "123456789123456789",
-        "account_holder": "Elvis Perez"
-      },
-      "phone_number": "",
-      "credentials": {
-        "username": "KOF0000016",
-        "password": "cDRTNXcwckQ="
-      }
-    },
-    "kof_admin": {
-      "first_name": "Kof",
-      "last_name": "user",
-      "email": "",
-      "merchant_info": {
-        "merchant_name": "",
+        "merchant_name": "Tiendita KOF",
         "merchant_activity": "",
         "postal_code": ""
       },
@@ -89,9 +70,28 @@
         "clabe": "",
         "account_holder": ""
       },
-      "phone_number": "",
+      "phone_number": "00 0000 0103",
       "credentials": {
-        "username": "5521996723",
+        "username": "KOF0000071",
+        "password": "UHJ1ZWJhMTIzNA=="
+      }
+    },
+    "kof_admin": {
+      "first_name": "Usiario",
+      "last_name": "Admin KOF",
+      "email": "usuarioAdminKof@spinpro.com",
+      "merchant_info": {
+        "merchant_name": "Tiendita KOF",
+        "merchant_activity": "ABARROTES Y MISCELANEAS",
+        "postal_code": "05000"
+      },
+      "bank_information": {
+        "clabe": "646466464646464644",
+        "account_holder": "Usuarios KOF"
+      },
+      "phone_number": "5521996611",
+      "credentials": {
+        "username": "5521996611",
         "password": "Prueba1234"
       }
     }
