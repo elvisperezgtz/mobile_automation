@@ -34,5 +34,5 @@ public class EditPersonalInformationUI {
 
     public static final Target YOU_HAVE_UPDATED_YOUR_DATA = Target.the("Message You have updated your data")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Actualizaste tus datos']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"Spin Pro-QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Actualizaste tus datos\"]"));
 }
