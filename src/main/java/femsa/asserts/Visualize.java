@@ -202,5 +202,30 @@ public class Visualize {
                 Ensure.that(IntroTutorialUI.GROW_YOUR_BUSINESS_EXPLANATION).text().contains("Acepta pagos con tarjeta, realiza ventas de tiempo aire y pagos de servicios como luz, Internet y más…"),
                 Ensure.that(IntroTutorialUI.START).isDisplayed());
     }
+    public static Performable thePersonalInformationUserKOF(User user) {
+        return Task.where("{0} validates that your personal information is the same as previously registered",
+                WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() +' '+user.getLastName()),
+                Ensure.that(PROFILE_PHONE_NUMBER).text().isEqualToIgnoringCase(user.getPhoneNumber())
+        );
+    }
+    public static Performable theAbsenceOfTheEditButton() {
+        return Task.where("{0} not display the Edit button on profile screen",
+                WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(EDIT_INFORMATION).isNotDisplayed()
+        );
+    }
+    public static Performable theAbsenceOfTheBusinessButton() {
+        return Task.where("{0} not display the Business button on profile screen",
+                WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(BUSINESS).isNotDisplayed()
+        );
+    }
+    public static Performable theAbsenceOfTheCLABEButton() {
+        return Task.where("{0} not display the CLABE button on profile screen",
+                WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(CLABE).isNotDisplayed()
+        );
+    }
 }
 
