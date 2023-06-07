@@ -21,6 +21,7 @@ import static femsa.user_interfaces.CommonsUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.ProfileUI.PROFILE_TITLE;
 import static femsa.utils.Convert.dataTableToUser;
+import static femsa.utils.Convert.dataTableToUserWithoutEmail;
 import static java.time.Duration.ofSeconds;
 
 public class EditPersonalInformationSteps {
@@ -155,5 +156,9 @@ public class EditPersonalInformationSteps {
     public void heShouldSeeTheTitleAtTheProfileScreen(Actor actor, String title) {
         actor.attemptsTo(Ensure.that(PROFILE_TITLE).text().isEqualTo(title));
 
+    }
+    @And("{actor} edits his personal information without modifying email")
+    public void heEditsHisPersonalInformationWithoutModifyingEmail(Actor actor, DataTable hisPersonalInformation) {
+        actor.attemptsTo(Edit.personalInformation(dataTableToUserWithoutEmail(hisPersonalInformation, actor)));
     }
 }

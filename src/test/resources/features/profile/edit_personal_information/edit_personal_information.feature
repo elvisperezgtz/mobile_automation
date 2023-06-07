@@ -43,19 +43,19 @@ Feature: Edit personal information
       | Elvis     | Perez Gutierrez | elvisperezg@hotmail.com |
     And  he saves changes
     Then he should see the following message This email already has an account
-
+  @error2
   Scenario Outline: Validate <testCase>
-    And he edits his personal information
-      | firstName   | lastName   | email   |
-      | <firstName> | <lastName> | <email> |
+    And he edits his personal information without modifying email
+      | firstName   | lastName   |
+      | <firstName> | <lastName> |
     And he saves changes
     Then he should see the following message: You have updated your data
     Examples:
-      | firstName | lastName        | email              | testCase                                                             |
-      | E         | Perez Gutierrez | eperez@palo-it.com | length of first name field with 1 character                          |
-      | Elvis     | P               | eperez@palo-it.com | length of Last name field with 1 character                           |
-      | Elvís     | Pérez Gutierrez | eperez@palo-it.com | that the First name and last name field accepts accented characters  |
-      | Elvis     | Perez Gutierrez | eperez@palo-it.com | that when you press the Continue button the data is saved correctly. |
+      | firstName | lastName        | testCase                                                             |
+      | E         | Perez Gutierrez | length of first name field with 1 character                          |
+      | Elvis     | P               | length of Last name field with 1 character                           |
+      | Elvís     | Pérez Gutierrez | that the First name and last name field accepts accented characters  |
+      | Elvis     | Perez Gutierrez | that when you press the Continue button the data is saved correctly. |
 
   Scenario: Verify CANCEL button functionality
     And he changes his personal information
@@ -70,18 +70,18 @@ Feature: Edit personal information
       | Elvis     | Perez Gutierrez | eperez@palo-it.com |
     And he declines save changes
     Then he should see that there are not changes on his personal information
-
+  @error2
   Scenario: Validate profile image composition
-    And he edits his personal information
-      | firstName | lastName | email              |
-      | Francis   | Drake    | eperez@palo-it.com |
+    And he edits his personal information without modifying email
+      | firstName | lastName |
+      | Francis   | Drake    |
     And he saves changes
     Then he should see the composite logo with the text "FD"
-
+  @error2
   Scenario: Verify the title change on the profile screen when changing the first and last name.
-    And he edits his personal information
-      | firstName | lastName | email              |
-      | Francis   | Drake    | eperez@palo-it.com |
+    And he edits his personal information without modifying email
+      | firstName | lastName |
+      | Francis   | Drake    |
     And he saves changes
     And he returns to the profile screen
     And he should see the title "Francis Drake" at the Profile screen
