@@ -1,7 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.interactions.Ejecutar;
-import femsa.tasks.Conceder;
+import femsa.tasks.GrantPermissionsOnAndroid;
 import femsa.tasks.Conectar;
 import femsa.tasks.Desactivar;
 import femsa.user_interfaces.VinculacionExitosaUI;
@@ -30,7 +30,7 @@ public class VinculacionMposSteps {
     @When("{actor} realiza la vinculacion del dispositivo MPOS")
     public void elvisRealizaLaVinculacionDelDispositivoMPOS(Actor actor) {
         actor.attemptsTo(
-                Conceder.permisosConBlueToothActivado(),
+                GrantPermissionsOnAndroid.permisosConBlueToothActivado(),
                 Conectar.elDispositivoMpos()
         );
     }
@@ -43,7 +43,7 @@ public class VinculacionMposSteps {
     @When("{actor} realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth")
     public void elvisRealizaLaVinculacionDelDispositivoMposAceptandoActivarElBluetooth(Actor actor) {
         actor.attemptsTo(
-                Conceder.permisosConBluetoothDesactivado()
+                GrantPermissionsOnAndroid.permisosConBluetoothDesactivado()
         );
     }
 

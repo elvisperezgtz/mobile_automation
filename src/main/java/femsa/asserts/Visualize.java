@@ -227,5 +227,14 @@ public class Visualize {
                 Ensure.that(CLABE).isNotDisplayed()
         );
     }
+
+    public static Performable theLinkedDeviceScreen(){
+        return Task.where("{0} visualize the linked device screen",
+                WaitUntil.the(AuthorizeDeviceUI.LINKED_DEVICE, isVisible()).forNoMoreThan(Duration.ofSeconds(15)),
+                Ensure.that(AuthorizeDeviceUI.BATTERY).isDisplayed(),
+                Ensure.that(AuthorizeDeviceUI.SERIAL_NUMBER).isDisplayed(),
+                Ensure.that(AuthorizeDeviceUI.VERSION).isDisplayed()
+        );
+    }
 }
 
