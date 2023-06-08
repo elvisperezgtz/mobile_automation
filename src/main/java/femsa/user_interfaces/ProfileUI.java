@@ -31,7 +31,7 @@ public class ProfileUI {
 
     public static final Target BUSINESS = Target.the("Business button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Negocio']"))
-            .locatedForIOS(By.xpath("(//XCUIElementTypeButton[@name=\" \"])[1]"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeOther[@name=\"PROFILE_BTNMERCHANT_VIEW\"]"));
 
     public static final Target PROFILE_TITLE = Target.the("Profile title")
             .locatedForAndroid(By.xpath("(//android.widget.TextView)[2]"))
