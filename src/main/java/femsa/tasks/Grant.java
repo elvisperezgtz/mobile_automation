@@ -14,7 +14,7 @@ public class Grant {
         return Task.where("{0} grants bluetooth permission",
                 Check.whether(grantPermission)
                         .andIfSo(Click.on(ActivateBluetoothUI.ALLOW))
-                        .andIfSo(Click.on(ActivateBluetoothUI.REJECT))
+                        .otherwise(Click.on(ActivateBluetoothUI.REJECT))
         );
     }
 

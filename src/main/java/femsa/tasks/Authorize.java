@@ -12,6 +12,7 @@ import net.thucydides.core.annotations.Step;
 
 import static femsa.user_interfaces.AuthorizeDeviceUI.*;
 import static femsa.user_interfaces.ProfileUI.AUTHORIZE_DEVICE;
+import static femsa.user_interfaces.TurnOnYourDeviceUI.START;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -29,7 +30,7 @@ public class Authorize implements Task {
                 Click.on(AUTHORIZE_DEVICE),
                 Click.on(START),
                 Check.whether(Validate.isAndroid())
-                        .andIfSo(GrantPermissions.forAndroidPlatformVersion(env.getProperty("appium.platformVersion")))
+                        .andIfSo(GrantPermissions.forAndroidPlatformVersion(env.getProperty("appium.platformVersion"),true))
                         .otherwise(/*GrantPermissions.forIos()*/),
                 WaitUntil.the(DEVICES_FOUND, isVisible()).forNoMoreThan(ofSeconds(30)),
                 Check.whether(connectDevice)
