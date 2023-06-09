@@ -4,9 +4,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class AuthorizeDeviceUI {
-    public static final Target START = Target.the("start button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Comenzar']"))
-            .locatedForIOS(By.xpath(""));
+
 
     public static final Target DEVICES_FOUND = Target.the("Devices found modal title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Dispositivos encontrados:']"))

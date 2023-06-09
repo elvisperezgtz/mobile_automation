@@ -14,7 +14,7 @@ public class ProximityPermissionUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target DO_NOT_ALLOW = Target.the("Do not allow")
-            .locatedForAndroid(By.id("com.android.permissioncontroller:id/permission_deny_and_dont_ask_again_button"))
+            .locatedForAndroid(By.xpath("//android.widget.Button[@text='No permitir']"))
             .locatedForIOS(By.xpath(""));
 
 }
