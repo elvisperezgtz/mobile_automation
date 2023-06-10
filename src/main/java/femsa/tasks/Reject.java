@@ -1,11 +1,8 @@
 package femsa.tasks;
 
-import femsa.user_interfaces.LocationPermissionsUI;
-import femsa.user_interfaces.ProximityPermissionUI;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.actions.Click;
 
 import java.util.logging.Logger;
 
@@ -30,10 +27,8 @@ public class Reject implements Task {
                 case "13":
                 case "12":
                     actor.attemptsTo(
-//                            Grant.locationPermission(false),
-//                            Grant.proximityPermission(false)
-                            Click.on(LocationPermissionsUI.DO_NOT_ALLOW),
-                            Click.on(ProximityPermissionUI.DO_NOT_ALLOW)
+                            Grant.locationPermission(false),
+                            Grant.proximityPermission(false)
                     );
                     break;
                 case "10":
@@ -74,6 +69,5 @@ public class Reject implements Task {
 
     public static Reject permissionAndroid(String androidVersion, boolean isBluetoothActive) {
         return Tasks.instrumented(Reject.class, androidVersion, isBluetoothActive);
-
     }
 }

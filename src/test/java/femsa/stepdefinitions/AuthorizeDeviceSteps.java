@@ -1,6 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
+import femsa.interactions.Execute;
 import femsa.tasks.Authorize;
 import femsa.tasks.Reject;
 import femsa.user_interfaces.ProfileUI;
@@ -67,4 +68,19 @@ public class AuthorizeDeviceSteps {
 
     }
 
+    @When("{actor} authorize his device with bluetooth turned off")
+    public void heAuthorizeHisDeviceWithBluetoothTurnedOff(Actor actor) {
+
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        String deviceName = env.getProperty("appium.deviceName");
+        actor.attemptsTo(
+                Execute.theAdbCommand("adb -s "+deviceName+" shell cmd bluetooth_manager disable"),
+                Authorize
+                        .with()
+                        .bluetoothActive(false)
+                        .connectDevice(true)
+                        .authorizeDevice(true)
+
+        );
+    }
 }

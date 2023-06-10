@@ -10,6 +10,7 @@ Feature: Authorize device
     And he logs in by "phone number"
     When he enters in the Profile screen
 
+
   Scenario: Authorize device with permissions granted previously
     And he authorize his device
     Then he should see the message Device ready
@@ -27,10 +28,17 @@ Feature: Authorize device
     Then he should see the Profile screen
 
   Rule: When a required permission is not granted, it should return to the Profile screen.
-    @authorizeDevice
+
     Scenario: Do not allow permissions
       When he deny permissions on his cellphone
       Then he should see the Turn on your device screen
+
+  Rule: Bluetooth is required on to start the pairing process
+    @authorizeDevice
+    Scenario: Authorize device when the Bluetooth is turned off
+      When he authorize his device with bluetooth turned off
+
+
 
 #    Validar funcionalidad del boton Conectar √
 #    Verficar funcionalidad del boton No permitir

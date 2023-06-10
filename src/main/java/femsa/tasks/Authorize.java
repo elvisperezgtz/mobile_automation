@@ -20,6 +20,7 @@ public class Authorize implements Task {
 
     private boolean connectDevice;
     private boolean authorizeDevice;
+    private boolean isBluetoothActive;
 
 
     @Override
@@ -30,7 +31,7 @@ public class Authorize implements Task {
                 Click.on(AUTHORIZE_DEVICE),
                 Click.on(START),
                 Check.whether(Validate.isAndroid())
-                        .andIfSo(GrantPermissions.forAndroidPlatformVersion(env.getProperty("appium.platformVersion"),true))
+                        .andIfSo(GrantPermissions.forAndroidPlatformVersion(env.getProperty("appium.platformVersion"), isBluetoothActive))
                         .otherwise(/*GrantPermissions.forIos()*/),
                 WaitUntil.the(DEVICES_FOUND, isVisible()).forNoMoreThan(ofSeconds(30)),
                 Check.whether(connectDevice)
@@ -52,6 +53,11 @@ public class Authorize implements Task {
 
     public Authorize authorizeDevice(boolean authorizeDevice) {
         this.authorizeDevice = authorizeDevice;
+        return this;
+    }
+
+    public Authorize bluetoothActive(boolean isBluetoothActive) {
+        this.isBluetoothActive = isBluetoothActive;
         return this;
     }
 

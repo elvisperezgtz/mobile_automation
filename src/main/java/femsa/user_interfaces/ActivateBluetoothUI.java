@@ -10,11 +10,11 @@ public class ActivateBluetoothUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target REJECT = Target.the("Reject button")
-            .locatedForAndroid(By.id("android:id/button2"))
+            .locatedForAndroid(By.xpath("//android.widget.Button[@text='Rechazar' or @text='RECHAZAR']"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target ALLOW = Target.the("Allow button")
-            .locatedForAndroid(By.id("android:id/button1"))
+            .locatedForAndroid(By.xpath("//android.widget.Button[@text='Permitir' or @text='PERMITIR']"))
             .locatedForIOS(By.xpath(""));
 
 }
