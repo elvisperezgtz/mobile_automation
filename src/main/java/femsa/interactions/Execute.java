@@ -5,12 +5,10 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
 
-import java.io.IOException;
-
-public class Ejecutar implements Interaction {
+public class Execute implements Interaction {
     private String commando;
 
-    public Ejecutar(String commando) {
+    public Execute(String commando) {
         this.commando = commando;
     }
 
@@ -18,7 +16,7 @@ public class Ejecutar implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         Commands.execute(commando);
     }
-public static Ejecutar elComandoAdb(String commando){
-        return Tasks.instrumented(Ejecutar.class, commando);
+public static Execute theAdbCommand(String command){
+        return Tasks.instrumented(Execute.class, command);
 }
 }
