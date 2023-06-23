@@ -33,4 +33,5 @@ public class Grant {
                         .otherwise(Click.on(ProximityPermissionUI.DO_NOT_ALLOW))
         );
     }
+
 }

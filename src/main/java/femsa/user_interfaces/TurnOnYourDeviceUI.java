@@ -19,4 +19,8 @@ public class TurnOnYourDeviceUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Vincular más tarde']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target HELP = Target.the("Help button")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
+            .locatedForIOS(By.xpath(""));
+
 }

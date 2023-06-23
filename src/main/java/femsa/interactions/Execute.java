@@ -16,7 +16,8 @@ public class Execute implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         Commands.execute(commando);
     }
-public static Execute theAdbCommand(String command){
+
+    public static Execute theAdbCommand(String command) {
         return Tasks.instrumented(Execute.class, command);
-}
+    }
 }

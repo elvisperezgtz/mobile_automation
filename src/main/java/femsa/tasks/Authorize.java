@@ -23,6 +23,7 @@ public class Authorize implements Task {
     private boolean isBluetoothActive;
 
 
+
     @Override
     @Step("{0} authorize his device")
     public <T extends Actor> void performAs(T actor) {

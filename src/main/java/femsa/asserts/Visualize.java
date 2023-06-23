@@ -257,4 +257,14 @@ public class Visualize {
                 Ensure.that(LocationPermissionsUI.DO_NOT_ALLOW).isDisplayed()
         );
     }
+
+
+    public static Performable theYouDoNotHaveInternetConnectionModal(){
+        return Task.where("{0} visualize the You do not have Internet connection modal",
+                WaitUntil.the(YouDoNotHaveInternetConnectionModalUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(20)),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.TITLE).text().isEqualTo("No tienes conexión a internet"),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.DO_IT_LATER).isDisplayed(),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.TRY_AGAIN).isDisplayed()
+                );
+    }
 }

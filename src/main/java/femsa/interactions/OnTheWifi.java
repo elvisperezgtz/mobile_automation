@@ -6,21 +6,20 @@ import net.thucydides.core.annotations.Step;
 
 import java.util.logging.Logger;
 
-public class OffTheWifi implements Interaction {
-    private static final Logger LOGGER = Logger.getLogger(OffTheWifi.class.getName());
+public class OnTheWifi implements Interaction {
     private String deviceName;
+    private static final Logger LOGGER = Logger.getLogger(OnTheWifi.class.getName());
 
-    public OffTheWifi(String deviceName) {
+    public OnTheWifi(String deviceName) {
         this.deviceName = deviceName;
     }
 
     @Override
-    @Step("{0} turns off the wifi")
+    @Step("{0} turns on the wifi")
     public <T extends Actor> void performAs(T actor) {
-        LOGGER.info("Turning off the wifi...");
+        LOGGER.info("Turning on the wifi...");
         actor.attemptsTo(
-                Execute.theAdbCommand("adb -s " + deviceName + " shell svc wifi disable")
+                Execute.theAdbCommand("adb -s " + deviceName + " shell svc wifi enable")
         );
     }
-
 }

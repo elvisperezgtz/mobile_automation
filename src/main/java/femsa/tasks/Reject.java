@@ -47,7 +47,6 @@ public class Reject implements Task {
             switch (androidVersion) {
                 case "13":
                 case "12":
-                    System.out.println("flujo correcto");
                     actor.attemptsTo(
                             Grant.locationPermission(false),
                             Grant.proximityPermission(false)
