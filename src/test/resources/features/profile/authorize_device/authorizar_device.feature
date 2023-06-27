@@ -1,4 +1,4 @@
-@regression @profile
+@profile @authorizeDevice
 Feature: Authorize device
 
   As a Spin pro user
@@ -21,7 +21,7 @@ Feature: Authorize device
     Then he should see the screen: How to use my Spiro device
 
 #    Verificar funcionalidad del boton cerrar desde ayudd
-  @authorizeDevice
+
   Scenario:  Verify functionality of Close button on Help screen
     When he is on the help screen and want to go back
     Then he should see the Turn on your device screen
@@ -64,10 +64,6 @@ Feature: Authorize device
       And he wants to authorize his device later
       Then he should see the Profile screen
 
-#    Validar funcionalidad del boton Conectar √
-
-
-#    Verificar funcionalidad del boton Denegar
 #    Verificar funcionalidad del boton vincular cuando no se tiene el dispositivo marcado para Intercambio de llaves
 #    Verificar funcionalidad del boton vincular cuando se tiene el dispositivo marcado para Intercambio de llaves
 
