@@ -11,8 +11,6 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import java.time.Duration;
-
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
@@ -93,7 +91,7 @@ public class Visualize {
 
     public static Performable aConfirmPasswordModal() {
         return Task.where("{0} visualizes a Confirm Password modal",
-                Ensure.that(ConfirmPasswordModalUI.TITLE.waitingForNoMoreThan(Duration.ofSeconds(10))).isDisplayed(),
+                Ensure.that(ConfirmPasswordModalUI.TITLE.waitingForNoMoreThan(ofSeconds(10))).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.PASSWORD).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.CONTINUE).isDisplayed(),
 //                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CONTINUE))).isFalse(),
@@ -202,30 +200,71 @@ public class Visualize {
                 Ensure.that(IntroTutorialUI.GROW_YOUR_BUSINESS_EXPLANATION).text().contains("Acepta pagos con tarjeta, realiza ventas de tiempo aire y pagos de servicios como luz, Internet y más…"),
                 Ensure.that(IntroTutorialUI.START).isDisplayed());
     }
+
     public static Performable thePersonalInformationUserKOF(User user) {
         return Task.where("{0} validates that your personal information is the same as previously registered",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() +' '+user.getLastName()),
+                Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() + ' ' + user.getLastName()),
                 Ensure.that(PROFILE_PHONE_NUMBER).text().isEqualToIgnoringCase(user.getPhoneNumber())
         );
     }
+
     public static Performable theAbsenceOfTheEditButton() {
         return Task.where("{0} not display the Edit button on profile screen",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(EDIT_INFORMATION).isNotDisplayed()
         );
     }
+
     public static Performable theAbsenceOfTheBusinessButton() {
         return Task.where("{0} not display the Business button on profile screen",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(BUSINESS).isNotDisplayed()
         );
     }
+
     public static Performable theAbsenceOfTheCLABEButton() {
         return Task.where("{0} not display the CLABE button on profile screen",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(CLABE).isNotDisplayed()
         );
     }
-}
 
+    public static Performable theLinkedDeviceScreen() {
+        return Task.where("{0} visualize the linked device screen",
+                WaitUntil.the(AuthorizeDeviceUI.LINKED_DEVICE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(AuthorizeDeviceUI.BATTERY).isDisplayed(),
+                Ensure.that(AuthorizeDeviceUI.SERIAL_NUMBER).isDisplayed(),
+                Ensure.that(AuthorizeDeviceUI.VERSION).isDisplayed()
+        );
+    }
+
+    public static Performable theTurnOnYourDeviceScreen() {
+        return Task.where("{0} visualize the Turn on your device screen",
+                WaitUntil.the(TurnOnYourDeviceUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(10)),
+                Ensure.that(TurnOnYourDeviceUI.TITLE).isDisplayed(),
+                Ensure.that(TurnOnYourDeviceUI.START).isDisplayed(),
+                Ensure.that(TurnOnYourDeviceUI.LINK_LATER).isDisplayed()
+        );
+    }
+
+    public static Performable theModalLocationPermission() {
+        return Task.where("{0} visualize the Location permissions modal",
+                WaitUntil.the(LocationPermissionsUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(10)),
+                Ensure.that(LocationPermissionsUI.TITLE).isDisplayed(),
+                Ensure.that(LocationPermissionsUI.WHILE_THE_APP_IS_IN_USE).isDisplayed(),
+                Ensure.that(LocationPermissionsUI.ONLY_THIS_TIME).isDisplayed(),
+                Ensure.that(LocationPermissionsUI.DO_NOT_ALLOW).isDisplayed()
+        );
+    }
+
+
+    public static Performable theYouDoNotHaveInternetConnectionModal(){
+        return Task.where("{0} visualize the You do not have Internet connection modal",
+                WaitUntil.the(YouDoNotHaveInternetConnectionModalUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(20)),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.TITLE).text().isEqualTo("No tienes conexión a internet"),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.DO_IT_LATER).isDisplayed(),
+                Ensure.that(YouDoNotHaveInternetConnectionModalUI.TRY_AGAIN).isDisplayed()
+                );
+    }
+}

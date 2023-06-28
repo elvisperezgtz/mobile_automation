@@ -1,9 +1,8 @@
 package femsa.stepdefinitions;
 
-import femsa.interactions.Ejecutar;
-import femsa.tasks.Conceder;
+import femsa.interactions.Execute;
+import femsa.tasks.GrantPermissionsOnAndroid;
 import femsa.tasks.Conectar;
-import femsa.tasks.Desactivar;
 import femsa.user_interfaces.VinculacionExitosaUI;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
@@ -25,12 +24,12 @@ public class VinculacionMposSteps {
 
     @AfterEach
     public void uninstallApp(){
-        Ejecutar.elComandoAdb("adb uninstall com.oxxo.Mpos.dev");
+        Execute.theAdbCommand("adb uninstall com.oxxo.Mpos.dev");
     }
     @When("{actor} realiza la vinculacion del dispositivo MPOS")
     public void elvisRealizaLaVinculacionDelDispositivoMPOS(Actor actor) {
         actor.attemptsTo(
-                Conceder.permisosConBlueToothActivado(),
+                GrantPermissionsOnAndroid.permisosConBlueToothActivado(),
                 Conectar.elDispositivoMpos()
         );
     }
@@ -43,16 +42,10 @@ public class VinculacionMposSteps {
     @When("{actor} realiza la vinculacion del dispositivo Mpos aceptando activar el Bluetooth")
     public void elvisRealizaLaVinculacionDelDispositivoMposAceptandoActivarElBluetooth(Actor actor) {
         actor.attemptsTo(
-                Conceder.permisosConBluetoothDesactivado()
+                GrantPermissionsOnAndroid.permisosConBluetoothDesactivado()
         );
     }
 
-    @When("{actor} desactiva el bluetooth de su telefono")
-    public void elvisDesactivaElBluetoothDeSuTelefono(Actor actor) {
-        actor.attemptsTo(
-                Desactivar.blueTooth()
-        );
-    }
 
     @And("{actor} ingresa los datos de su cuenta Clabe")
     public void elvisIngresaLosDatosDeSuCuentaClabe(Actor actor) {

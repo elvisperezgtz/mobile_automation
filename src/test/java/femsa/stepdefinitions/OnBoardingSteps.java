@@ -50,7 +50,7 @@ public class OnBoardingSteps {
         actor.remember("env", EnvironmentSpecificConfiguration.from(env));
         actor.attemptsTo(
                 Complete.theIntroductoryTutorial(),
-                WaitUntil.the(BEGIN_REGISTRATION, isVisible()).forNoMoreThan(ofSeconds(20))
+                WaitUntil.the(BEGIN_REGISTRATION, isVisible()).forNoMoreThan(ofSeconds(30))
         );
 
     }
