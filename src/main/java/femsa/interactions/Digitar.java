@@ -7,7 +7,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Step;
 
-import static femsa.interactions.Ejecutar.elComandoAdb;
+import static femsa.interactions.Execute.theAdbCommand;
 import static femsa.utils.KeyBoard.getKeyEventCode;
 
 public class Digitar implements Interaction {
@@ -35,7 +35,7 @@ public class Digitar implements Interaction {
                     throw new RuntimeException(e);
                 }
                 actor.attemptsTo(
-                        elComandoAdb("adb shell input keyevent ".concat(getKeyEventCode(numero)))
+                        theAdbCommand("adb shell input keyevent ".concat(getKeyEventCode(numero)))
                 );
             }
         }
