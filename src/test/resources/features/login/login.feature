@@ -1,4 +1,4 @@
-@regression  @login
+@regression @login
 
 Feature: Login
   As a user
@@ -17,7 +17,6 @@ Feature: Login
       | username   | password     |
       | 5521996792 | V3JvbmdQYXNz |
     Then he should see the message: Wrong Data
-
   Scenario: Validate Login with email
     When he logs in by "email"
     Then he should see the message: Logging in

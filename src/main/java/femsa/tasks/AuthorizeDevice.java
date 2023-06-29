@@ -14,6 +14,8 @@ import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class AuthorizeDevice {
+    private AuthorizeDevice() {
+    }
 
     public static Performable withoutInternetConnection(String platformVersion) {
         return Task.where("{0} authorizes his device with his wifi off",

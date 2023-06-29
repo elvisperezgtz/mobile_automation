@@ -47,14 +47,6 @@ public class Visualize {
         );
     }
 
-    public static Performable modalConfirmarCerrarSesion() {
-        return Task.where("{0} visualiza el modal : Quieres cerrar tu sesion?",
-                WaitUntil.the(TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(BEGIN_REGISTRATION).isDisplayed(),
-                Ensure.that(ALREADY_HAVE_ACCOUNT).isDisplayed()
-        );
-    }
-
     public static Performable theProfileScreen() {
         return Task.where("{0} visualizes the Profile screen",
                 WaitUntil.the(BUSINESS, isVisible()).forNoMoreThan(ofSeconds(8)),
@@ -94,9 +86,7 @@ public class Visualize {
                 Ensure.that(ConfirmPasswordModalUI.TITLE.waitingForNoMoreThan(ofSeconds(10))).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.PASSWORD).isDisplayed(),
                 Ensure.that(ConfirmPasswordModalUI.CONTINUE).isDisplayed(),
-//                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CONTINUE))).isFalse(),
                 Ensure.that(ConfirmPasswordModalUI.CANCELAR).isDisplayed()
-//                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(ConfirmPasswordModalUI.CANCELAR))).isTrue()
         );
     }
 

@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/features/profile",
+        features = "src/test/resources/features/wallet",
         glue = "femsa.stepdefinitions"
 )
-public class ProfileRunner {
+public class WalletRunner {
 }

@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/features/profile",
-        glue = "femsa.stepdefinitions"
+        features = "src/test/resources/features",
+        glue = "femsa.stepdefinitions",
+        tags = "@regression"
 )
-public class ProfileRunner {
-}
+public class CucumberTestSuite {}

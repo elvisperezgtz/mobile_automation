@@ -13,8 +13,6 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-import static femsa.user_interfaces.ClabeInterbancariaUI.CLABE_INTERBANCARIA;
-import static femsa.user_interfaces.ClabeInterbancariaUI.NOMBRE_TITULAR;
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
@@ -29,20 +27,6 @@ public class Edit {
     private Edit() {
     }
 
-    public static Performable formularioDeDatosBancarios(String clabe, String titular) {
-        return Task.where("{0} edita sus datos bancarios en el formulario de datos bancarios",
-                Enter.theValue(titular).into(NOMBRE_TITULAR),
-                Enter.theValue(clabe).into(CLABE_INTERBANCARIA)
-        );
-    }
-
-    public static Performable losDatosBancarios(String clabe, String titular) {
-        return Task.where("{0} edita sus datos bancarios",
-                WaitUntil.the(CLABE_INTERBANCARIA, isEnabled()),
-                Edit.formularioDeDatosBancarios(clabe, titular),
-                Save.theEditedInformation()
-        );
-    }
 
     public static Performable personalInformation(User user) {
         return Task.where("{0} edits his personal information",
@@ -67,14 +51,6 @@ public class Edit {
                 Click.on(EditBusinessDataUI.EDIT),
                 Confirm.thePassword(theActorInTheSpotlight().recall("password")),
                 Edit.businessInformationForm(merchantInfo)
-        );
-    }
-
-    public static Performable formularioDeDatosDeNegocio(String nombreNegocio, String actividadNegocio, String codigoPostal) {
-        return Task.where("{0} edita sus datos de su negocio en el formulario de datos de negocio",
-                Enter.theValue(nombreNegocio).into(BUSINESS_NAME),
-                SelectFromDropDown.byVisibleText(BUSINESS_ACTIVITY, actividadNegocio),
-                Enter.theValue(codigoPostal).into(EMAIL)
         );
     }
 

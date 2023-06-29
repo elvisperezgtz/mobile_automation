@@ -1,6 +1,6 @@
 package femsa.interactions;
 
-import femsa.enums.Direccion;
+import femsa.enums.Orientation;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
@@ -15,7 +15,7 @@ public class SwipeFrom implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         try {
             Thread.sleep(1000);
-            Swipe.mobileSwipe(BrowseTheWeb.as(actor).getDriver(), Direccion.IZQUIERDA);
+            Swipe.mobileSwipe(BrowseTheWeb.as(actor).getDriver(), Orientation.LEFT);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

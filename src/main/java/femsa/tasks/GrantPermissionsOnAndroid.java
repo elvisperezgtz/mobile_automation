@@ -4,7 +4,6 @@ import femsa.user_interfaces.ActivateBluetoothUI;
 import femsa.user_interfaces.LocationPermissionsUI;
 import femsa.user_interfaces.ProximityPermissionUI;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
@@ -17,23 +16,7 @@ public class GrantPermissionsOnAndroid implements Task {
     private boolean grantLocation;
     private boolean grantProximity;
 
-    public static Performable permisosConBlueToothActivado() {
-        return Task.where(
-                "{0} vincula su movil con el dispositivo MPOS",
-                Navigate.aVincularDispositivoMpos(),
-                Permitir.usarUbicacion()
-        );
-    }
 
-    public static Performable permisosConBluetoothDesactivado() {
-        return Task.where(
-                "{0} vincula su movil con el dispositivo MPOS cuando el bluetooth esta desactivado",
-                Navigate.aVincularDispositivoMpos(),
-                Permitir.activarBlueTooth(),
-                Permitir.usarUbicacion()
-        );
-    }
-    //TODO review this class to eliminate
 
     @Override
     @Step("{0} grants required device permissions")
