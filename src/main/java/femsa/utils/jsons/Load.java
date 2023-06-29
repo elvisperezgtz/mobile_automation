@@ -51,8 +51,6 @@ public class Load {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Crear un objeto JSONObject a partir del contenido del archivo JSON
         String jsonContent = stringBuilder.toString();
         return new JSONObject(jsonContent);
     }
@@ -63,8 +61,4 @@ public class Load {
         return query;
     }
 
-    public static void main(String[] args) {
-//        System.out.println(userFromJsonTemplate("Elvis",""));
-        System.out.println(userAccountFromJsonTemplate("prueba"));
-    }
 }

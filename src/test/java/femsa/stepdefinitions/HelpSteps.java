@@ -1,59 +1,13 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
-import femsa.tasks.Navigate;
-import femsa.user_interfaces.LoginUI;
 import femsa.user_interfaces.ProfileUI;
-import femsa.user_interfaces.RegisterInThreeStepsUI;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class HelpSteps {
-
-    @Given("{actor} ingresa a la pantalla de inicio de sesion")
-    public void elvisIngresaALaPantallaDeInicioDeSesion(Actor actor) {
-        actor.wasAbleTo(Navigate.aLaPantallaDeLogin());
-    }
-
-    @When("{actor} ingresa a la ayuda de la pantalla de inicio de sesion")
-    public void elvisIngresaALaAyudaDeLaPantallaDeInicioDeSesion(Actor actor) {
-        actor.attemptsTo(
-                Click.on(LoginUI.HELP)
-        );
-    }
-
-
-    @When("{actor} ingresa a la ayuda de la pantalla recuperar contrasenia")
-    public void elvisIngresaALaAyudaDeLaPantallaRecuperarContrasenia(Actor actor) {
-        actor.attemptsTo(
-                Click.on(LoginUI.FORGOT_PASSWORD),
-                Click.on(LoginUI.HELP)
-        );
-    }
-
-    @Then("{actor} deberia ver que se muestre la ayuda")
-    public void elvisDeberiaVerQueSeMuestreLaAyuda(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(LoginUI.HELP_TITLE, isVisible()).forNoMoreThan(ofSeconds(5)),
-                Ensure.that(LoginUI.HELP_TITLE).isDisplayed()
-        );
-    }
-
-    @When("{actor} ingresa a la ayuda de la pantalla Ingresa tu numero")
-    public void elvisIngresaALaAyudaDeLaPantallaIngresaTuNumero(Actor actor) {
-        actor.attemptsTo(
-                Click.on(RegisterInThreeStepsUI.BEGIN_REGISTRATION),
-                Click.on(LoginUI.HELP)
-        );
-    }
 
     @When("{actor} enters to the Help module")
     public void heEntersToTheHelpModule(Actor actor) {
@@ -64,4 +18,5 @@ public class HelpSteps {
     public void heShouldSeeTheFrequentlyAskedQuestions(Actor actor) {
         actor.attemptsTo(Visualize.theHelpScreen());
     }
+
 }

@@ -1,6 +1,6 @@
 package femsa.utils;
 
-import femsa.enums.Direccion;
+import femsa.enums.Orientation;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -21,7 +21,7 @@ public class Swipe {
 
     private static final Logger LOGGER = Logger.getLogger(Swipe.class.getName());
 
-    public static void mobileSwipe(WebDriver facade, Direccion direccion) throws InterruptedException {
+    public static void mobileSwipe(WebDriver facade, Orientation direccion) throws InterruptedException {
         final int ANIMATION_TIME = 500;
         final int PRESS_TIME = 200; // ms
 
@@ -31,16 +31,16 @@ public class Swipe {
 
         final HashMap<String, String> scrollObject = new HashMap<String, String>();
         switch (direccion) {
-            case ABAJO:
+            case DOWN:
                 scrollObject.put("direction", "down");
                 break;
-            case ARRIBA:
+            case UP:
                 scrollObject.put("direction", "up");
                 break;
-            case IZQUIERDA:
+            case LEFT:
                 scrollObject.put("direction", "left");
                 break;
-            case DERECHA:
+            case RIGHT:
                 scrollObject.put("direction", "right");
                 break;
             default:
@@ -63,16 +63,16 @@ public class Swipe {
             pointOptionStart = PointOption.point(((dims.width / 1) - 100), dims.height / 2);
 
             switch (direccion) {
-                case ABAJO:
+                case DOWN:
                     pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
                     break;
-                case ARRIBA:
+                case UP:
                     pointOptionEnd = PointOption.point(dims.width / 2, edgeBorder);
                     break;
-                case IZQUIERDA:
+                case LEFT:
                     pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
                     break;
-                case DERECHA:
+                case RIGHT:
                     pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
                     break;
                 default:
@@ -95,7 +95,7 @@ public class Swipe {
                 LOGGER.log(Level.WARNING,"Interrupted!", e);
                 Thread.currentThread().interrupt();
             }
-            LOGGER.info("Executing Swipe on Android");
+            LOGGER.info("Executing Swipe on Android...");
         }
 
     }

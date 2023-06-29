@@ -19,10 +19,6 @@ public class EditPersonalInformationUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"EDIT_CONSTRAINT_CONTENT\"]/android.view.View/android.widget.ScrollView/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"PROFILE_PERSONALDATA_INITIALNAME_LABEL\"]"));
 
-    public static final Target MENSAJE_CAMPO_OBLIGATORIO = Target.the("alerta Campo obligatorio")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este campo es obligatorio']"))
-            .locatedForIOS(By.xpath(""));
-
     public static final Target INVALID_EMAIL_FORMAT = Target.the("alerta Formato de email incorrecto")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Formato de email incorrecto']"))
             .locatedForIOS(By.name("Formato de email incorrecto"));

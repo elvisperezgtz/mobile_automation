@@ -10,38 +10,38 @@ import net.thucydides.core.annotations.Step;
 import static femsa.interactions.Execute.theAdbCommand;
 import static femsa.utils.KeyBoard.getKeyEventCode;
 
-public class Digitar implements Interaction {
+public class Write implements Interaction {
 
-    private String codigoValidacion;
+    private String validationCode;
 
-    public Digitar(String codigoValidacion) {
-        this.codigoValidacion = codigoValidacion;
+    public Write(String codigoValidacion) {
+        this.validationCode = codigoValidacion;
     }
 
-    @Step("{0} ingresa el codigo de validacion")
+    @Step("{0} Write")
     @Override
     public <T extends Actor> void performAs(T actor) {
         if (Validate.isIOS()) {
-            for (char numero : codigoValidacion.toCharArray()) {
+            for (char number : validationCode.toCharArray()) {
                 actor.attemptsTo(
-                        Click.on("//XCUIElementTypeKey[@name='" + numero + "']")
+                        Click.on("//XCUIElementTypeKey[@name='" + number + "']")
                 );
             }
         } else {
-            for (char numero : codigoValidacion.toCharArray()) {
+            for (char number : validationCode.toCharArray()) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 actor.attemptsTo(
-                        theAdbCommand("adb shell input keyevent ".concat(getKeyEventCode(numero)))
+                        theAdbCommand("adb shell input keyevent ".concat(getKeyEventCode(number)))
                 );
             }
         }
     }
 
-    public static Digitar conTecladoNativo(String codigoValidacion) {
-        return Tasks.instrumented(Digitar.class, codigoValidacion);
+    public static Write withNativeKeyboard(String validationCode) {
+        return Tasks.instrumented(Write.class, validationCode);
     }
 }

@@ -5,10 +5,6 @@ import org.openqa.selenium.By;
 
 public class HomeUI {
 
-    public static final Target COBRAR = Target.the("boton Cobrar- Home")
-            .locatedForAndroid(By.xpath(""))
-            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Cobrar']"));
-
     public static final Target HOME = Target.the("Home")
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc=\"title\"])[1]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name='Inicio']"));
