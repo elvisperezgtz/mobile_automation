@@ -20,7 +20,7 @@ public class EnterYourPhoneNumberUI {
 
     public static final Target CONTINUE = Target.the("Continue button")
             .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERPHONENUMBER_COLUMN\"]/android.view.View[5]/android.widget.Button"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Enviar código\"]"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"REGISTER_SENDSMS_BTN\"]"));
 
     public static final Target THE_NUMBER_IS_INCORRECT = Target.the("The number is incorrect")
             .locatedForAndroid(By.xpath(""))
@@ -28,7 +28,7 @@ public class EnterYourPhoneNumberUI {
 
     public static final Target THIS_NUMBER_CANNOT_BE_REGISTERED = Target.the("Message: This number cannot be registered")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc=\"OUTLINE_TEXTFIELD\"]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"No se puede registrar este número\"]"));
 
     public static final Target HELP = Target.the("Help button")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
