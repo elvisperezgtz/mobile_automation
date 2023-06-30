@@ -8,6 +8,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static femsa.user_interfaces.HomeUI.HOME;
 import static femsa.user_interfaces.HomeUI.PROFILE;
+import static femsa.user_interfaces.HomeUI.COLLECTION_BUTTON;
 import static femsa.user_interfaces.ProfileUI.*;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -49,6 +50,12 @@ public class Navigate {
         return Task.where("{0} navigates from Business Information to Home screen",
                 Click.on(EditBusinessDataUI.BACK),
                 Click.on(HOME)
+        );
+    }
+    public static Performable toTheCollectionScreen() {
+        return Task.where("{0} navigates to the Collection screen",
+                WaitUntil.the(COLLECTION_BUTTON, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(COLLECTION_BUTTON)
         );
     }
 }

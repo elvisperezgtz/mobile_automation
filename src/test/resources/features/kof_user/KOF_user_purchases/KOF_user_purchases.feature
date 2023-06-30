@@ -1,14 +1,14 @@
 @KOF @KOF_user_purchases @regression
 
-Feature: KOF user permissions
+Feature: KOF user purchase
   As a KOF delivery user
   I want the users to provide me with the Purchase Order from the application.
   To relate it to each purchase they make.
-  Background: the KOF user accesses the Profile screen
+  Background: the KOF user accesses the Collection screen
     Given KOF_User Perform the introductory tutorial
-    And he logs in as a kof user with credentials
-    When he enter the purchase screen
-
+    And he logs in as a kof user
+    When he enter the Collection screen
+  @test123
   Scenario: Verify purchase order field for KOF users
     Then he should see the order field for KOF users
   Scenario: Verify character entry for purchase order field for KOF users

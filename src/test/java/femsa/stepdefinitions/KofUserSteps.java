@@ -3,12 +3,18 @@ package femsa.stepdefinitions;
 import femsa.asserts.Visualize;
 import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
+import femsa.models.Credentials;
 import femsa.models.User;
+import femsa.tasks.Login;
+import femsa.tasks.Navigate;
+import femsa.utils.Decoder;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+
+import java.io.IOException;
 
 public class KofUserSteps {
     @Then("{actor} should see the personal data of the KOF profile correctly")
@@ -43,16 +49,25 @@ public class KofUserSteps {
         );
     }
 
-    @And("{actor} logs in as a kof user with credentials")
-    public void heLogsInAsAKofUserWithCredentials(Actor actor) {
+    @And("{actor} logs in as a kof user")
+    public void heLogsInAsAKofUser(Actor actor) throws IOException {
+        Credentials credentials = JsonTemplate.fromJsonToCredential("kof_code", "kof_user");
+        actor.attemptsTo(
+                Login.whit()
+                        .username(credentials.getUsername())
+                        .andPassword(Decoder.decode(credentials.getPassword()))
+                        .andClickLoginButton(true)
+        );
     }
 
-    @When("{actor} enter the purchase screen")
-    public void heEnterThePurchaseScreen(Actor actor) {
+    @When("{actor} enter the Collection screen")
+    public void heEnterTheCollectionScreen(Actor actor) {
+        actor.attemptsTo(Navigate.toTheCollectionScreen());
     }
 
     @Then("{actor} should see the order field for KOF users")
     public void heShouldSeeTheOrderFieldForKOFUsers(Actor actor) {
+
     }
 
     @And("{actor} enters an alphanumeric text in the purchase order field")
