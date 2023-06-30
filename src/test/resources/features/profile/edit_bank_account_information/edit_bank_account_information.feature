@@ -19,7 +19,6 @@ Feature: Edit Bank account information
     And he wants to edit his information
     Then he should see a Confirm Password modal
 
-
   Scenario: Verify functionality of Continue Button with incorrect password
     And he tries to confirm the password with a wrong password "BadPassword"
     Then he should see the error message "Contraseña incorrecta"

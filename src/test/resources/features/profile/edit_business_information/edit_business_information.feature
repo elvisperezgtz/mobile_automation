@@ -22,7 +22,6 @@ Feature: Edit business information
     Then he should see the Profile screen
 
   Rule: The system must request password confirmation before enabling the fields for editing.
-
     Scenario: Verify functionality of Continue Button with incorrect password
       And he tries to confirm the password with a wrong password "BadPassword"
       Then he should see the error message "Contraseña incorrecta"

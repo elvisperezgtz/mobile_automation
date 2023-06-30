@@ -5,6 +5,7 @@ import femsa.enums.JsonPath;
 import femsa.interactions.Hide;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.user_interfaces.ConfirmPasswordModalUI;
 import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
@@ -160,5 +161,10 @@ public class EditPersonalInformationSteps {
     @And("{actor} edits his personal information without modifying email")
     public void heEditsHisPersonalInformationWithoutModifyingEmail(Actor actor, DataTable hisPersonalInformation) {
         actor.attemptsTo(Edit.personalInformation(dataTableToUserWithoutEmail(hisPersonalInformation, actor)));
+    }
+
+    @Then("{actor} should see the error message {string}")
+    public void heShouldSeeTheErrorMessage(Actor actor, String message) {
+        actor.attemptsTo(Ensure.that(ConfirmPasswordModalUI.ERROR_MESSAGE).text().isEqualTo(message));
     }
 }
