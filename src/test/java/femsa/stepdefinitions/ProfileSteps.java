@@ -1,9 +1,7 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
-import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
-import femsa.models.Credentials;
 import femsa.models.User;
 import femsa.user_interfaces.HomeUI;
 import femsa.utils.jsons.JsonTemplate;
@@ -36,7 +34,7 @@ public class ProfileSteps {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(
-                Visualize.thePersonalInformationUserKOF(user)
+                Visualize.thePersonalInformationUser(user)
         );
     }
 }
