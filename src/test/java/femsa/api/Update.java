@@ -137,9 +137,4 @@ public class Update {
                 .prettyPrint();
     }
 
-    public static void main(String[] args) {
-        Response response = userInfo("Elvis");
-        System.out.println(response.getStatusCode());
-        System.out.println( "Message =====> "+response.body().jsonPath().getString("message"));
-    }
 }

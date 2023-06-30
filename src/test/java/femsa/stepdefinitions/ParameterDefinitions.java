@@ -45,13 +45,11 @@ public class ParameterDefinitions {
         Update.bankAccountInfo(EnvironmentSpecificConfiguration.from(env).getProperty("actor"));
     }
 
-    @Before(value = "@hookEnableWifi",order = 2)
+    @Before(value = "@hookEnableWifi", order = 2)
     @After("@hookEnableWifi")
     public void turnWifiOn() {
-
-
         LOGGER.info("Turning on Wifi...");
-        String deviceName =  EnvironmentSpecificConfiguration.from(env).getProperty("appium.deviceName");
+        String deviceName = EnvironmentSpecificConfiguration.from(env).getProperty("appium.deviceName");
         Commands.execute("adb -s " + deviceName + " shell svc wifi enable");
     }
 
