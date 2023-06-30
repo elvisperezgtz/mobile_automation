@@ -7,6 +7,7 @@ import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
@@ -191,11 +192,12 @@ public class Visualize {
                 Ensure.that(IntroTutorialUI.START).isDisplayed());
     }
 
-    public static Performable thePersonalInformationUserKOF(User user) {
+    public static Performable thePersonalInformationUser(User user) {
+        String PHONE_NUMBER = PROFILE_PHONE_NUMBER.resolveFor(OnStage.theActorInTheSpotlight()).getText().replaceAll(" ","");
         return Task.where("{0} validates that your personal information is the same as previously registered",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() + ' ' + user.getLastName()),
-                Ensure.that(PROFILE_PHONE_NUMBER).text().isEqualToIgnoringCase(user.getPhoneNumber())
+                Ensure.that(PHONE_NUMBER).isEqualToIgnoringCase(user.getPhoneNumber())
         );
     }
 
