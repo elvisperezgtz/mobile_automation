@@ -16,7 +16,7 @@ public class KofUserSteps {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.KOF.getName());
         //assert user != null;
         actor.attemptsTo(
-                Visualize.thePersonalInformationUserKOF(user)
+                Visualize.thePersonalInformationUser(user)
         );
     }
 
