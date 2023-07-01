@@ -7,9 +7,7 @@
   Background: The user is at the home of the app
     Given RegularUser Perform the introductory tutorial
   Scenario: Validate successful login to the app
-    When he tries to log in with credentials
-      | username   | password         |
-      | KOF0000071 | UHJ1ZWJhMTIzNA== |
+    When he logs in as a kof user
     Then he should see the message: Logging in
   Scenario: Validate error message when logging in with invalid password
     When he tries to log in with credentials
