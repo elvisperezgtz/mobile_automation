@@ -8,7 +8,7 @@ Feature: KOF user purchase
     Given KOF_User Perform the introductory tutorial
     And he logs in as a kof user
     When he enter the Collection screen
-  @test123
+
   Scenario: Verify purchase order field for KOF users
     Then he should see the order field for KOF users
   Scenario: Verify character entry for purchase order field for KOF users
@@ -16,4 +16,4 @@ Feature: KOF user purchase
     Then he verifies that the text has been inserted
   Scenario: Verify a purchase without the purchase order field
     And he makes a charge without entering a purchase order
-    Then he displays the page looking for the device
+    Then he sees that the Collect button is enabled
