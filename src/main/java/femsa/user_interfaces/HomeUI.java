@@ -21,5 +21,5 @@ public class HomeUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"HOME_MERCHANTNAME_LABEL\"]"));
     public static final Target COLLECTION_BUTTON = Target.the("Collection button on the home screen")
             .locatedForAndroid(By.xpath("(//android.view.View[@content-desc=\"title\"])[2]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"Cobrar\"]"));
 }
