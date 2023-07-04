@@ -9,6 +9,6 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"},
         features = "src/test/resources/features",
         glue = "femsa.stepdefinitions",
-        tags = "@test123"
+        tags = "@regression"
 )
 public class CucumberTestSuite {}
