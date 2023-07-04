@@ -1,9 +1,13 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
+import femsa.enums.JsonPath;
+import femsa.models.User;
 import femsa.user_interfaces.HomeUI;
+import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
 
@@ -25,4 +29,12 @@ public class ProfileSteps {
         actor.attemptsTo(Visualize.loginScreen());
     }
 
+    @Then("{actor} should be able to see your registered phone number")
+    public void heShouldBeAbleToSeeYourRegisteredPhoneNumber(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                Visualize.thePersonalInformationUser(user)
+        );
+    }
 }

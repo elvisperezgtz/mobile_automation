@@ -62,7 +62,7 @@
       "last_name": "Arcia",
       "email": "larcia@palo-it.com",
       "merchant_info": {
-        "merchant_name": "Tiendita KOF",
+        "merchant_name": "Tiendita KOF QA",
         "merchant_activity": "",
         "postal_code": ""
       },
@@ -70,7 +70,7 @@
         "clabe": "",
         "account_holder": ""
       },
-      "phone_number": "00 0000 0103",
+      "phone_number": "0000000103",
       "credentials": {
         "username": "KOF0000071",
         "password": "UHJ1ZWJhMTIzNA=="

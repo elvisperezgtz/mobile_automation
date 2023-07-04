@@ -5,12 +5,16 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import static femsa.user_interfaces.CollectionUI.COLLECTION_BUTTON;
+import static femsa.user_interfaces.CollectionUI.PURCHASE_ORDER_BUTTON;
 import static femsa.user_interfaces.EditBankAccountUI.ACCOUNT_HOLDER;
 import static femsa.user_interfaces.EditBankAccountUI.CLABE;
 import static femsa.user_interfaces.EditBusinessDataUI.*;
@@ -191,11 +195,12 @@ public class Visualize {
                 Ensure.that(IntroTutorialUI.START).isDisplayed());
     }
 
-    public static Performable thePersonalInformationUserKOF(User user) {
+    public static Performable thePersonalInformationUser(User user) {
+        String PHONE_NUMBER = PROFILE_PHONE_NUMBER.resolveFor(OnStage.theActorInTheSpotlight()).getText().replaceAll(" ","");
         return Task.where("{0} validates that your personal information is the same as previously registered",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() + ' ' + user.getLastName()),
-                Ensure.that(PROFILE_PHONE_NUMBER).text().isEqualToIgnoringCase(user.getPhoneNumber())
+                Ensure.that(PHONE_NUMBER).isEqualToIgnoringCase(user.getPhoneNumber())
         );
     }
 
@@ -248,7 +253,6 @@ public class Visualize {
         );
     }
 
-
     public static Performable theYouDoNotHaveInternetConnectionModal(){
         return Task.where("{0} visualize the You do not have Internet connection modal",
                 WaitUntil.the(YouDoNotHaveInternetConnectionModalUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(20)),
@@ -256,5 +260,27 @@ public class Visualize {
                 Ensure.that(YouDoNotHaveInternetConnectionModalUI.DO_IT_LATER).isDisplayed(),
                 Ensure.that(YouDoNotHaveInternetConnectionModalUI.TRY_AGAIN).isDisplayed()
                 );
+    }
+
+    public static Performable thePurchaseOrderFieldName() {
+        return Task.where("{0} visualize that the purchase order field exists",
+                WaitUntil.the(PURCHASE_ORDER_BUTTON, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(PURCHASE_ORDER_BUTTON).text().isEqualTo("Orden de compra")
+        );
+    }
+
+    public static Performable theTextInsidePurchaseOrderField() {
+        String TEXT_PURCHASE_ORDER = PURCHASE_ORDER_BUTTON.resolveFor(OnStage.theActorInTheSpotlight()).getText().trim();
+        return Task.where("{0} visualize that the text was inserted in the purchase field",
+                WaitUntil.the(PURCHASE_ORDER_BUTTON, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(TEXT_PURCHASE_ORDER).isEqualTo("Esta es un orden de compra con 50 caracteres 4lfaN")
+        );
+    }
+
+    public static Performable theCollectionButtonEnabled() {
+        return Task.where("{0} visualize that the purchase order field exists",
+                WaitUntil.the(COLLECTION_BUTTON, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(COLLECTION_BUTTON))).isTrue()
+        );
     }
 }
