@@ -8,8 +8,10 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
 
+import static femsa.user_interfaces.CollectionUI.ENTER_AMOUNT_TITLE;
 import static net.serenitybdd.screenplay.abilities.BrowseTheWeb.as;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+
 
 public class Hide implements Interaction {
 
@@ -20,7 +22,11 @@ public class Hide implements Interaction {
         } else if (Validate.isIOS()) {
             actor.attemptsTo(
                     Check.whether(Validate.isKeyboardShown(as(theActorInTheSpotlight()).getDriver()))
-                                    .andIfSo(Click.on(CommonsUI.HIDE_KEYBOARD))
+                            .andIfSo(Check.whether(ENTER_AMOUNT_TITLE.isVisibleFor(theActorInTheSpotlight()))
+                                    .andIfSo(Click.on(ENTER_AMOUNT_TITLE))
+                                    .otherwise(Click.on(CommonsUI.HIDE_KEYBOARD))
+                            )
+
             );
         }
     }
