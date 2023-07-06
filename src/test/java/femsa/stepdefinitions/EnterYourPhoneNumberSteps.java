@@ -1,7 +1,6 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
-import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
 import femsa.interactions.Hide;
 import femsa.models.User;
@@ -16,7 +15,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 
-import static femsa.user_interfaces.EnterYourPhoneNumberUI.CONTINUE;
+import static femsa.user_interfaces.EnterYourPhoneNumberUI.SEND_CODE;
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.HELP_TITLE;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
 import static java.time.Duration.ofSeconds;
@@ -38,7 +37,7 @@ public class EnterYourPhoneNumberSteps {
 
     @Then("{actor} should see Send code button disabled")
     public void heShouldSeeSendCodeButtonDisabled(Actor actor) {
-        actor.attemptsTo(Ensure.that(CONTINUE).attribute("enabled").asABoolean().isEqualTo(false));
+        actor.attemptsTo(Ensure.that(SEND_CODE).attribute("enabled").asABoolean().isEqualTo(false));
     }
 
     @When("{actor} tries to start his registration accepting terms and conditions")
@@ -50,15 +49,15 @@ public class EnterYourPhoneNumberSteps {
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .phoneNumber(user.getPhoneNumber())
-                        .termsAndCondition(true)
+                        .acceptTermsAndCondition(true)
         );
     }
 
     @Then("{actor} should see Send code button enabled")
     public void heShouldSeeSendCodeButtonEnabled(Actor actor) {
-        boolean isEnable = Enabled.of(CONTINUE).answeredBy(actor);
+        boolean isEnable = Enabled.of(SEND_CODE).answeredBy(actor);
         actor.attemptsTo(
-                Ensure.that(Enabled.of(CONTINUE).answeredBy(actor)).isEqualTo(true)
+                Ensure.that(Enabled.of(SEND_CODE).answeredBy(actor)).isEqualTo(true)
         );
     }
 
@@ -71,8 +70,8 @@ public class EnterYourPhoneNumberSteps {
                 FillOutTheFormEnterYourPhoneNumber.
                         with()
                         .phoneNumber(user.getPhoneNumber())
-                        .termsAndCondition(true)
-                        .clickOnContinue(true)
+                        .acceptTermsAndCondition(true)
+                        .clickOnSendCode(true)
         );
     }
 
@@ -98,8 +97,8 @@ public class EnterYourPhoneNumberSteps {
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
-                        .termsAndCondition(true)
-                        .clickOnContinue(true)
+                        .acceptTermsAndCondition(true)
+                        .clickOnSendCode(true)
         );
     }
 
