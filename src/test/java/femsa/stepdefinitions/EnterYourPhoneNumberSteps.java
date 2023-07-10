@@ -15,6 +15,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Enabled;
 
+import java.util.Objects;
+
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.SEND_CODE;
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.HELP_TITLE;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
@@ -69,9 +71,9 @@ public class EnterYourPhoneNumberSteps {
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber.
                         with()
-                        .phoneNumber(user.getPhoneNumber())
+                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
                         .acceptTermsAndCondition(true)
-                        .clickOnSendCode(true)
+
         );
     }
 
@@ -98,7 +100,7 @@ public class EnterYourPhoneNumberSteps {
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .acceptTermsAndCondition(true)
-                        .clickOnSendCode(true)
+
         );
     }
 
