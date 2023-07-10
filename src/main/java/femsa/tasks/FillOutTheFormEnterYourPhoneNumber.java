@@ -16,7 +16,7 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 public class FillOutTheFormEnterYourPhoneNumber implements Task {
     private String phoneNumber;
     private boolean termsAndCondition;
-    private boolean clickOnSendCode;
+
 
     @Override
     @Step("{0} fill out the form We want to meet you")
@@ -25,8 +25,8 @@ public class FillOutTheFormEnterYourPhoneNumber implements Task {
                 WaitUntil.the(TITLE, isVisible()).forNoMoreThan(ofSeconds(10)),
                 Enter.theValue(phoneNumber).into(PHONE_NUMBER),
                 Check.whether(termsAndCondition)
-                        .andIfSo(Click.on(TERMS_AND_CONDITION)),
-                Check.whether(clickOnSendCode).andIfSo(Click.on(SEND_CODE))
+                        .andIfSo(Click.on(TERMS_AND_CONDITION))
+
         );
     }
 
@@ -44,8 +44,5 @@ public class FillOutTheFormEnterYourPhoneNumber implements Task {
         return this;
     }
 
-    public FillOutTheFormEnterYourPhoneNumber clickOnSendCode(boolean clickOnSendCode) {
-        this.clickOnSendCode = clickOnSendCode;
-        return this;
-    }
+
 }

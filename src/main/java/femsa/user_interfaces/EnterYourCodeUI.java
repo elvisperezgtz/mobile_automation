@@ -10,7 +10,7 @@ public class EnterYourCodeUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target SMS_CODE_BOXES = Target.the("SMS code boxes")
-            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"SMSCODE_ROW_CONTAINER\"]"))
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"SMSCODE_ROW_CONTAINER\"]/android.widget.EditText"))
             .locatedForIOS(By.xpath(""));
 
 
