@@ -5,11 +5,11 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
-import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.Enabled;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
@@ -283,4 +283,10 @@ public class Visualize {
                 Ensure.that(theActorInTheSpotlight().asksFor(Enabled.of(COLLECTION_BUTTON))).isTrue()
         );
     }
+
+
+    public static Performable theCreateYourPasswordScreen() {
+        return Task.where("{0} visualizes the create your password screen",
+                WaitUntil.the(CreateYourPasswordUI.TITLE, WebElementStateMatchers.isVisible()),
+                Ensure.that(CreateYourPasswordUI.TITLE).isDisplayed());    }
 }

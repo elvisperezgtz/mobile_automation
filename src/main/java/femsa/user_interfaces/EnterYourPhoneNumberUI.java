@@ -18,8 +18,8 @@ public class EnterYourPhoneNumberUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeScrollView[@name=\"REGISTER_SCROLLVIEW\"]/XCUIElementTypeOther/XCUIElementTypeButton[1]"));
 
 
-    public static final Target CONTINUE = Target.the("Continue button")
-            .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERPHONENUMBER_COLUMN\"]/android.view.View[5]/android.widget.Button"))
+    public static final Target SEND_CODE = Target.the("Send code button")
+            .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERPHONENUMBER_COLUMN\"]/android.view.View[5]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"REGISTER_SENDSMS_BTN\"]"));
 
     public static final Target THE_NUMBER_IS_INCORRECT = Target.the("The number is incorrect")

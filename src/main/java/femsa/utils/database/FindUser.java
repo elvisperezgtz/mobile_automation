@@ -9,11 +9,11 @@ public class FindUser {
     private static final Logger LOGGER = Logger.getLogger(FindUser.class.getName());
     public static void andUpdate() throws SQLException {
 
-        String host = "b2b-services-database-instance-1.ct0ibmeqcy9w.us-east-1.rds.amazonaws.com";
+        String host = "b2b-services-database.cluster-chustjluqurn.us-east-1.rds.amazonaws.com";
         String port = "5432";
         String database = "user-service";
-        String user = "elvis.perez";
-        String password = "gx1sCKbFsgbI";
+        String user = "paloit.larcia";
+        String password = "NcTlgAh0APj9HQ";
         DatabaseConnector db = new DatabaseConnector(host, port, database, user, password);
         db.open();
 
@@ -36,5 +36,9 @@ public class FindUser {
         }
         rs.close();
         db.close();
+    }
+
+    public static void main(String[] args) {
+
     }
 }
