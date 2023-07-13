@@ -17,14 +17,16 @@ Feature: On boarding
       When he enter his phone number and accepts terms and conditions
       Then he should see the Send code button enabled
 
-    @onBoarding
+
     Scenario: Verify that the Enter Your Code screen is displayed when a valid phone number is entered.
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
       Then he should see the Enter Your Code screen
 
+    @onBoarding
     Scenario: Verify that the We want to meet you is displayed when a valid verification code is entered.
       And He enters and validates his phone number
-      Then he should see the Send code button enabled
+      And he should see the Create your password screen
+
 
   Rule: You can only register the same phone number once.

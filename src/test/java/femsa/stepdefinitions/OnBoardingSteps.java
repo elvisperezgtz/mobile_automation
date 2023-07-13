@@ -100,13 +100,12 @@ public class OnBoardingSteps {
         actor.attemptsTo(
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
-//                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
-                        .phoneNumber("0000000000")
+                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
                         .acceptTermsAndCondition(true),
                 Click.on(SEND_CODE),
                 EnterTheVerificationCode
                         .with()
-                        .phoneNumber("0000000000")
+                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
         );
     }
 
@@ -118,5 +117,10 @@ public class OnBoardingSteps {
     @Then("{actor} should see the Enter Your Code screen")
     public void heShouldSeeTheEnterYourCodeScreen(Actor actor) {
         actor.attemptsTo(Visualize.theEnterYourCodeScreen());
+    }
+
+    @And("{actor} should see the Create your password screen")
+    public void heShouldSeeTheCreateYourPasswordScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theCreateYourPasswordScreen());
     }
 }
