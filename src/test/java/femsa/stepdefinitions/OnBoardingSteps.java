@@ -5,8 +5,10 @@ import femsa.asserts.Visualize;
 import femsa.enums.JsonPath;
 import femsa.models.User;
 import femsa.tasks.Complete;
+import femsa.tasks.CompleteTheCreateYouPassword;
 import femsa.tasks.EnterTheVerificationCode;
 import femsa.tasks.FillOutTheFormEnterYourPhoneNumber;
+import femsa.utils.StringGenerator;
 import femsa.utils.jsons.JsonTemplate;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
@@ -122,5 +124,22 @@ public class OnBoardingSteps {
     @And("{actor} should see the Create your password screen")
     public void heShouldSeeTheCreateYourPasswordScreen(Actor actor) {
         actor.attemptsTo(Visualize.theCreateYourPasswordScreen());
+    }
+
+    @And("{actor} enters and validates a secure password")
+    public void heEntersAndValidatesASecurePassword(Actor actor) {
+        actor.remember("Password", StringGenerator.buildPassword(4,1,3,0));
+        actor.attemptsTo(
+                CompleteTheCreateYouPassword
+                        .with()
+                        .password(actor.recall("Password"))
+                        .passwordDisplayButton(true)
+                        .continueButton(true)
+        );
+    }
+
+    @Then("{actor} should see the We want to meet you screen")
+    public void heShouldSeeTheWeWantToMeetYouScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theWeWantToMeetYouScreen());
     }
 }

@@ -30,3 +30,11 @@ Feature: On boarding
 
 
   Rule: You can only register the same phone number once.
+
+  Rule: You can only register with creating a secure password
+    Scenario: Validates that only a strong password allows you to continue with the registration.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      Then he should see the We want to meet you screen
+
+
