@@ -288,5 +288,14 @@ public class Visualize {
     public static Performable theCreateYourPasswordScreen() {
         return Task.where("{0} visualizes the create your password screen",
                 WaitUntil.the(CreateYourPasswordUI.TITLE, WebElementStateMatchers.isVisible()),
-                Ensure.that(CreateYourPasswordUI.TITLE).isDisplayed());    }
+                Ensure.that(CreateYourPasswordUI.TITLE).isDisplayed());
+    }
+
+    public static Performable theWeWantToMeetYouScreen() {
+        return Task.where("{0} visualizes the We want to meet you screen",
+                WaitUntil.the(WeWantToMeetYouUI.TITLE, WebElementStateMatchers.isVisible()),
+                Ensure.that(WeWantToMeetYouUI.TITLE).isDisplayed(),
+                Ensure.that(WeWantToMeetYouUI.TITLE).text().isEqualTo("Queremos conocerte")
+                );
+    }
 }
