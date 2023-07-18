@@ -36,5 +36,10 @@ Feature: On boarding
       And he enters and validates his phone number
       And he enters and validates a secure password
       Then he should see the We want to meet you screen
-
-
+@test1234
+  Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
+    Scenario: Verify that satisfactory filling in the fields of We want to meet you allows to advance in the On boarding.
+      When he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters and completes the form with his personal and business data
+      Then he should see the Already have your device screen
