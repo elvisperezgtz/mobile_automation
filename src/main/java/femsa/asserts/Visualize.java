@@ -298,4 +298,11 @@ public class Visualize {
                 Ensure.that(WeWantToMeetYouUI.TITLE).text().isEqualTo("Queremos conocerte")
                 );
     }
+
+    public static Performable theAlreadyHaveYourDeviceScreen() {
+        return Task.where("{0} visualizes the Already Have Your Device screen",
+                WaitUntil.the(AlreadyHaveYourDeviceUI.I_HAVE_IT, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(AlreadyHaveYourDeviceUI.I_HAVE_IT).text().isEqualTo("Ya lo tengo")
+        );
+    }
 }
