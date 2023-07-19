@@ -28,7 +28,7 @@ public class EnterTheVerificationCode implements Task {
                 actor.attemptsTo(
                         Enter.theValue(otpFromDataBase(phoneNumber)).into(SMS_CODE_BOXES.waitingForNoMoreThan(ofSeconds(15))));
             } else {
-                actor.attemptsTo();
+                actor.attemptsTo(Enter.theValue(otpFromDataBase(phoneNumber)).into(SMS_CODE_BOXES.waitingForNoMoreThan(ofSeconds(15))));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

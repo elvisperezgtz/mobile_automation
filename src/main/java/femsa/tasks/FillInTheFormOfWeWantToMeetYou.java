@@ -40,7 +40,8 @@ public class FillInTheFormOfWeWantToMeetYou implements Task {
                 Click.on(WeWantToMeetYouUI.BUSINESS_NAME).then(Enter.theValue(businessName).into(WeWantToMeetYouUI.BUSINESS_NAME)),
                 Hide.theKeyboard(),
                 Check.whether(Validate.isAndroid())
-                        .andIfSo(SelectFromDropDown.byVisibleText(WeWantToMeetYouUI.BUSINESS_ACTIVITY, businessActivity)),
+                        .andIfSo(SelectFromDropDown.byVisibleText(WeWantToMeetYouUI.BUSINESS_ACTIVITY, businessActivity))
+                        .otherwise(Click.on(WeWantToMeetYouUI.BUSINESS_ACTIVITY).then(Hide.theKeyboard())),
                 Click.on(WeWantToMeetYouUI.ZIP_CODE).then(Enter.theValue(zipCode).into(WeWantToMeetYouUI.ZIP_CODE)),
                 Hide.theKeyboard()
         );
