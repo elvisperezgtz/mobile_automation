@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 
 public class AddYourBankAccountUI {
 
+    private AddYourBankAccountUI() {
+    }
+
     public static final Target TITLE = Target.the("Title of the Add your bank account screen")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@content-desc=\"TEXT_TITLE\"]"))
             .locatedForIOS(By.xpath(""));
