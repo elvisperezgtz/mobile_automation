@@ -5,6 +5,7 @@ import femsa.asserts.Visualize;
 import femsa.enums.JsonPath;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.user_interfaces.YouAreAlmostDoneUI;
 import femsa.utils.StringGenerator;
 import femsa.utils.jsons.JsonTemplate;
 import io.appium.java_client.AppiumDriver;
@@ -85,7 +86,6 @@ public class OnBoardingSteps {
         actor.attemptsTo(
                 EnterTheVerificationCode
                         .with()
-//                        .phoneNumber("0000000000")
                         .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
         );
 
@@ -122,9 +122,10 @@ public class OnBoardingSteps {
     public void heShouldSeeTheCreateYourPasswordScreen(Actor actor) {
         actor.attemptsTo(Visualize.theCreateYourPasswordScreen());
     }
+
     @And("{actor} enters and validates a secure password")
     public void heEntersAndValidatesASecurePassword(Actor actor) {
-        actor.remember("Password", StringGenerator.buildPassword(4,1,3,0));
+        actor.remember("Password", StringGenerator.buildPassword(4, 1, 3, 0));
         actor.attemptsTo(
                 CompleteTheCreateYouPassword
                         .with()
@@ -133,12 +134,14 @@ public class OnBoardingSteps {
                         .continueButton(true)
         );
     }
+
     @Then("{actor} should see the We want to meet you screen")
     public void heShouldSeeTheWeWantToMeetYouScreen(Actor actor) {
         actor.attemptsTo(Visualize.theWeWantToMeetYouScreen());
     }
+
     @And("{actor} enters and completes the form with his personal and business data")
-    public void heEntersAndCompletesTheFormWithHisPersonalAndBusinessData(Actor actor){
+    public void heEntersAndCompletesTheFormWithHisPersonalAndBusinessData(Actor actor) {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         assert user != null;
@@ -146,7 +149,7 @@ public class OnBoardingSteps {
                 FillInTheFormOfWeWantToMeetYou
                         .with()
                         .namesUser(user.getFirstName())
-                        .lastnameUser(user.getLastName())
+                        .lastNameUser(user.getLastName())
                         .emailUser(user.getEmail())
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
@@ -158,5 +161,56 @@ public class OnBoardingSteps {
     @Then("{actor} should see the Already have your device screen")
     public void heShouldSeeTheAlreadyHaveYourDeviceScreen(Actor actor) {
         actor.attemptsTo(Visualize.theAlreadyHaveYourDeviceScreen());
+    }
+
+    @And("{actor} wants to skip the linking device processes")
+    public void heWantsToSkipTheLinkingDeviceProcesses(Actor actor) {
+        actor.attemptsTo(Skip.linkingDeviceProcess());
+    }
+
+    @And("{actor} adds his bank account information")
+    public void heAddsHisBankAccountInformation(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        assert user != null;
+        actor.attemptsTo(
+                Add
+                        .bankAccountInformationWith()
+                        .holder(user.getBankInformation().getAccountHolder())
+                        .interbankClabe(user.getBankInformation().getClabe())
+                        .andContinueSaving(true)
+        );
+    }
+
+    @Then("{actor} should see the You are almost done screen")
+    public void heShouldSeeTheYouAreAlmostDoneScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theYouAreAlmostDoneScreen());
+    }
+
+    @Then("{actor} should see the Add your bank account screen")
+    public void heShouldSeeTheAddYourBankAccountScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theAddYourBankAccountScreen());
+    }
+
+    @When("{actor} starts his on boarding process with the required information skipping pairing device process")
+    public void heStartsHisOnBoardingProcessWithTheRequiredInformationSkippingPairingDeviceProcess(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+       actor.attemptsTo(StartOnBoarding.withHisInformation(user));
+
+    }
+
+    @And("{actor} finish the on boarding process")
+    public void heFinishTheOnBoardingProcess(Actor actor) {
+        actor.attemptsTo(
+                Click.on(YouAreAlmostDoneUI.GOT_IT)
+        );
+    }
+
+    @Then("{actor} should see the Home screen")
+    public void heShouldSeeTheHomeScreen(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(Visualize.theHomeScreen(user));
     }
 }
