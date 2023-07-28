@@ -196,7 +196,7 @@ public class Visualize {
     }
 
     public static Performable thePersonalInformationUser(User user) {
-        String PHONE_NUMBER = PROFILE_PHONE_NUMBER.resolveFor(OnStage.theActorInTheSpotlight()).getText().replaceAll(" ","");
+        String PHONE_NUMBER = PROFILE_PHONE_NUMBER.resolveFor(OnStage.theActorInTheSpotlight()).getText().replaceAll(" ", "");
         return Task.where("{0} validates that your personal information is the same as previously registered",
                 WaitUntil.the(PROFILE_TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(PROFILE_TITLE).text().isEqualToIgnoringCase(user.getFirstName() + ' ' + user.getLastName()),
@@ -253,13 +253,13 @@ public class Visualize {
         );
     }
 
-    public static Performable theYouDoNotHaveInternetConnectionModal(){
+    public static Performable theYouDoNotHaveInternetConnectionModal() {
         return Task.where("{0} visualize the You do not have Internet connection modal",
                 WaitUntil.the(YouDoNotHaveInternetConnectionModalUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(20)),
                 Ensure.that(YouDoNotHaveInternetConnectionModalUI.TITLE).text().isEqualTo("No tienes conexión a internet"),
                 Ensure.that(YouDoNotHaveInternetConnectionModalUI.DO_IT_LATER).isDisplayed(),
                 Ensure.that(YouDoNotHaveInternetConnectionModalUI.TRY_AGAIN).isDisplayed()
-                );
+        );
     }
 
     public static Performable thePurchaseOrderFieldName() {
@@ -296,13 +296,47 @@ public class Visualize {
                 WaitUntil.the(WeWantToMeetYouUI.TITLE, WebElementStateMatchers.isVisible()),
                 Ensure.that(WeWantToMeetYouUI.TITLE).isDisplayed(),
                 Ensure.that(WeWantToMeetYouUI.TITLE).text().isEqualTo("Queremos conocerte")
-                );
+        );
     }
 
     public static Performable theAlreadyHaveYourDeviceScreen() {
         return Task.where("{0} visualizes the Already Have Your Device screen",
                 WaitUntil.the(AlreadyHaveYourDeviceUI.I_HAVE_IT, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(AlreadyHaveYourDeviceUI.I_HAVE_IT).text().isEqualTo("Ya lo tengo")
+                Ensure.that(AlreadyHaveYourDeviceUI.I_HAVE_IT).text().isEqualTo("Ya lo tengo"),
+                Ensure.that(AlreadyHaveYourDeviceUI.I_DO_NOT_HAVE_YET).isDisplayed()
+        );
+    }
+
+    public static Performable theGettingItIsEasyScreen() {
+        return Task.where("{0} visualizes the Getting it is easy screen",
+                WaitUntil.the(GettingItIsEasyUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(GettingItIsEasyUI.TITLE).isDisplayed(),
+                Ensure.that(GettingItIsEasyUI.DO_IT_LATER).isDisplayed(),
+                Ensure.that(GettingItIsEasyUI.MORE_SOON).isDisplayed()
+        );
+    }
+
+    public static Performable theYouAreAlmostDoneScreen() {
+        return Task.where("{0} visualizes the You are almost done screen",
+                Ensure.that(YouAreAlmostDoneUI.TITLE.waitingForNoMoreThan(ofSeconds(15))).isDisplayed(),
+                Ensure.that(YouAreAlmostDoneUI.GOT_IT).isDisplayed()
+        );
+    }
+
+    public static Performable theAddYourBankAccountScreen() {
+        return Task.where("{0} visualizes the Add your bank account screen",
+                WaitUntil.the(YouAreAlmostDoneUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(AddYourBankAccountUI.TITLE).isDisplayed(),
+                Ensure.that(AddYourBankAccountUI.FULL_NAME_OF_THE_HOLDER).isDisplayed(),
+                Ensure.that(AddYourBankAccountUI.CLABE).isDisplayed(),
+                Ensure.that(AddYourBankAccountUI.CONTINUE).isDisplayed()
+        );
+    }
+
+    public static Performable theHomeScreen(User user){
+        return Task.where("{0} visualizes the Home screen",
+                WaitUntil.the(HomeUI.HOME, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(HomeUI.BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName())
         );
     }
 }

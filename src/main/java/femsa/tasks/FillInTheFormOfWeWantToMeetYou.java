@@ -59,7 +59,7 @@ public class FillInTheFormOfWeWantToMeetYou implements Task {
         this.namesUser = namesUser;
         return this;
     }
-    public FillInTheFormOfWeWantToMeetYou lastnameUser (String lastnameUser){
+    public FillInTheFormOfWeWantToMeetYou lastNameUser(String lastnameUser){
         this.lastnameUser = lastnameUser;
         return this;
     }
