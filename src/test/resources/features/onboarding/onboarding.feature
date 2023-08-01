@@ -128,6 +128,5 @@ Feature: On boarding
       And he finish the on boarding process
       Then he should see the Home screen
 
-
     Scenario: Verify modal No internet connection
 
