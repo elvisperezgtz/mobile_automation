@@ -10,24 +10,89 @@ Feature: On boarding
     Given Elvis Perform the introductory tutorial
     And he wants to start his on boarding
 
+  Rule: In order to begin your on boarding you have to press the Start my registration
+    Scenario: Validation of the screen content Enter your number
+      Then he should the Enter your phone number screen
+
+    Scenario: The Back button should redirect to the Register in 3 steps screen.
+      When he wants go back
+      Then he should see the screen Register in three steps
+
+    @onBoarding
+    Scenario: The Help button should redirect to frequently asked questions.
+      When  he accesses help
+      Then  he should see the Frequently Asked Questions
+
+    Scenario: The Close button should redirect you to the Enter your number screen with the information entered above.
+      When he enter his phone number and accepts terms and conditions
+      And he goes to the help screen and comes back
+      Then he should the Enter your phone number screen with the same information
+
+  Rule: You can only register your phone number once.
+    Scenario:  Validate that a previously registered number cannot be registered.
+      When he enter his phone number and accepts terms and conditions
+      And he wants a verification code
+      Then he should see the error message This number cannot be registered
+
   Rule: Should accept terms and conditions before send a code request
     Scenario: Validate that the button Send Code is enabled when the phone number is valid and he accepts terms and conditions
       When he enter his phone number and accepts terms and conditions
       Then he should see the Send code button enabled
+
+    Scenario: Validation of the mandatory terms and conditions check
+      When he enters his phone number, but decline to accept terms and conditions
+      Then he should see the Send code button disable
+
+    Scenario: Validate that the Phone number field is required
+      When he does not enter his phone number, but accept terms and conditions
+      Then he should see the Send code button disable
+
+#      Enter your code
+  Rule: You need a valid verification code before continue
+    Scenario: Validate error message when entered a not valid code.
+
 
     Scenario: Verify that the Enter Your Code screen is displayed when a valid phone number is entered.
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
       Then he should see the Enter Your Code screen
 
-    @onBoarding
     Scenario: Verify that the We want to meet you is displayed when a valid verification code is entered.
       And He enters and validates his phone number
       And he should see the Create your password screen
 
-  Rule: You can only register the same phone number once.
 
-    Rule: You can only register with creating a secure password
+  #Create your password
+
+  Rule: You can only register with creating a secure password
+    Scenario: Verify error message when entering a wrong code
+
+    Scenario: Verify that the Continue button remains disabled until a valid password is entered.
+    Scenario: Verify that the password is at least 8 characters long.
+    Scenario: Verify that the password contains at least one number.
+    Scenario: Verify that the password contains at least one capital letter.
+    Scenario: Verify that the password contains at least one lower case letter.
+    Scenario: Verify that the password is displayed when clicking on the View button.
+    Scenario: Verify that the password is hidden by clicking on the Hide button.
+    Scenario: Validate that the Continue button should redirect to the We want to meet you screen, when we enter a valid password.
+    Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
+    Scenario: Verify that the close button takes us to the We want to meet you screen.
+    Scenario: Validate that the Name field does not allow numbers.
+    Scenario: Validate that the Name field supports special characters
+    Scenario: Validate the obligatory nature of the Surname field.
+    Scenario: Validate that the Surname field supports special characters.
+    Scenario: Validate that the Surname field does not allow numbers.
+    Scenario: Validate the Email field is mandatory
+    Scenario: Validate email format of the Email field
+    Scenario: Validate that emails already registered are not accepted.
+    Scenario: Validate that your Business Name field is required.
+    Scenario: Validate the Activity field is mandatory
+    Scenario: Validate that your Business Name field does not allow special characters.
+    Scenario: Validate the mandatory field Zip Code
+    Scenario: Validate that the Zip Code field does not allow less than 5 numeric characters.
+    Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
+    Scenario: Validate that the Continue button is enabled only when all data is correctly entered.
+
     Scenario: Validates that only a strong password allows you to continue with the registration.
       And he enters and validates his phone number
       And he enters and validates a secure password
@@ -63,5 +128,5 @@ Feature: On boarding
       And he finish the on boarding process
       Then he should see the Home screen
 
-
+    Scenario: Verify modal No internet connection
 
