@@ -1,10 +1,7 @@
 package femsa.utils;
 
-import io.appium.java_client.ios.IOSDriver;
 import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.actors.OnStage;
-import net.thucydides.core.webdriver.WebDriverFacade;
-import org.openqa.selenium.WebDriver;
 
 public class Validate {
     private Validate() {
@@ -20,11 +17,12 @@ public class Validate {
         return currentEnvironment.getProperty("appium.platformName").equalsIgnoreCase("android");
     }
 
-    public static boolean isKeyboardShown(WebDriver facade) {
-        boolean isShow = false;
-        if (Validate.isIOS()) {
-            WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
-            isShow = ((IOSDriver) driver).isKeyboardShown();
+    public static boolean isKeyboardShown() {
+        boolean isShow;
+        if (Boolean.TRUE.equals(isAndroid())) {
+            isShow = GetProxiesDriver.forAndroid().isKeyboardShown();
+        } else {
+            isShow = GetProxiesDriver.forIos().isKeyboardShown();
         }
         return isShow;
     }

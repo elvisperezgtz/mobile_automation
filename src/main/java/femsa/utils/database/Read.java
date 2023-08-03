@@ -47,4 +47,7 @@ public class Read {
         return idUser;
     }
 
+    public static void main(String[] args) throws SQLException {
+        System.out.println("Verification code: " + otpFromDataBase("1000000001"));
+    }
 }

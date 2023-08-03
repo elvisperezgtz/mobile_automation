@@ -5,7 +5,6 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
-import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -346,6 +345,15 @@ public class Visualize {
                 WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisplayed(),
                 Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisabled()
+        );
+    }
+
+    public static Performable theEnterYourNumberScreen() {
+        return Task.where("{0} visualizes the Enter your number screen",
+                WaitUntil.the(EnterYourPhoneNumberUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(EnterYourPhoneNumberUI.PHONE_NUMBER).isDisplayed(),
+                Ensure.that(EnterYourPhoneNumberUI.TERMS_AND_CONDITION).isDisplayed(),
+                Ensure.that(EnterYourPhoneNumberUI.SEND_CODE).isDisplayed()
         );
     }
 }

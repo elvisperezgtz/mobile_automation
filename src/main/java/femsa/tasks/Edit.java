@@ -95,7 +95,7 @@ public class Edit {
                 Enter.theValue(merchantInfo.getPostalCode()).into(POSTAL_CODE),
                 Check.whether(Validate.isIOS())
                         .andIfSo(
-                                Check.whether(isKeyboardShown(as(theActorInTheSpotlight()).getDriver())))
+                                Check.whether(isKeyboardShown()))
                         .andIfSo(Hide.theKeyboard())
         );
     }

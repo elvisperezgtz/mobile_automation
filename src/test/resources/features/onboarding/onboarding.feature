@@ -18,7 +18,7 @@ Feature: On boarding
       When he wants go back
       Then he should see the screen Register in three steps
 
-    @onBoarding
+
     Scenario: The Help button should redirect to frequently asked questions.
       When  he accesses help
       Then  he should see the Frequently Asked Questions
@@ -48,8 +48,12 @@ Feature: On boarding
       Then he should see the Send code button disable
 
 #      Enter your code
+    @onBoarding
   Rule: You need a valid verification code before continue
     Scenario: Validate error message when entered a not valid code.
+      When he enter his phone number and accepts terms and conditions
+      And he enters a not valid verification code
+      Then he should see the error message The code is incorrect
 
 
     Scenario: Verify that the Enter Your Code screen is displayed when a valid phone number is entered.

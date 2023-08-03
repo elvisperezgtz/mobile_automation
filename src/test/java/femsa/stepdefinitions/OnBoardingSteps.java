@@ -3,10 +3,15 @@ package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
 import femsa.enums.JsonPath;
+import femsa.interactions.Hide;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.user_interfaces.EnterYourCodeUI;
+import femsa.user_interfaces.EnterYourPhoneNumberUI;
 import femsa.user_interfaces.YouAreAlmostDoneUI;
 import femsa.utils.StringGenerator;
+import femsa.utils.Validate;
+import femsa.utils.database.Read;
 import femsa.utils.jsons.JsonTemplate;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.And;
@@ -16,11 +21,13 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.util.EnvironmentVariables;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -79,20 +86,20 @@ public class OnBoardingSteps {
     }
 
     @And("{actor} enters his verification code")
-    public void heEntersHisVerificationCode(Actor actor) {
+    public void heEntersHisVerificationCode(Actor actor) throws SQLException {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
 
         actor.attemptsTo(
-                EnterTheVerificationCode
-                        .with()
-                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
+                EnterThe
+                        .verificationCodeWith()
+                        .verificationCode(Read.otpFromDataBase(user.getPhoneNumber()))
         );
 
     }
 
     @And("{actor} enters and validates his phone number")
-    public void heEntersAndValidatesHisPhoneNumber(Actor actor) {
+    public void heEntersAndValidatesHisPhoneNumber(Actor actor) throws SQLException {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
 
@@ -102,9 +109,9 @@ public class OnBoardingSteps {
                         .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
                         .acceptTermsAndCondition(true),
                 Click.on(SEND_CODE),
-                EnterTheVerificationCode
-                        .with()
-                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
+                EnterThe
+                        .verificationCodeWith()
+                        .verificationCode(Read.otpFromDataBase(user.getPhoneNumber()))
         );
     }
 
@@ -196,7 +203,7 @@ public class OnBoardingSteps {
     public void heStartsHisOnBoardingProcessWithTheRequiredInformationSkippingPairingDeviceProcess(Actor actor) {
         EnvironmentSpecificConfiguration env = actor.recall("env");
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
-       actor.attemptsTo(StartOnBoarding.withHisInformation(user));
+        actor.attemptsTo(StartOnBoarding.withHisInformation(user));
 
     }
 
@@ -213,10 +220,12 @@ public class OnBoardingSteps {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(Visualize.theHomeScreen(user));
     }
+
     @Then("{actor} should see the continue button disabled")
     public void actorShouldSeeTheContinueButtonDisabled(Actor actor) {
         actor.attemptsTo(Visualize.theContinueButtonDisabledOnTheCreatePasswordScreen());
     }
+
     @And("{actor} enters an unsecured password of less than 8 characters \\({int} lowercase, {int} uppercase, {int} numbers and {int} special characters)")
     public void heEntersAnUnsecuredPasswordOfLessThanCharactersLowercaseUppercaseNumbersAndSpaceCharacters(Actor actor, int low, int upper, int nums, int spec) {
         actor.remember("Password", StringGenerator.buildPassword(low, upper, nums, spec));
@@ -226,6 +235,53 @@ public class OnBoardingSteps {
                         .password(actor.recall("Password"))
                         .passwordDisplayButton(true)
                         .continueButton(false)
-            );
+        );
+    }
+
+    @Then("{actor} should the Enter your phone number screen")
+    public void heShouldTheEnterYourPhoneNumberScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theEnterYourNumberScreen());
+    }
+
+    @When("{actor} wants go back")
+    public void heWantsGoBack(Actor actor) {
+        actor.attemptsTo(
+                Click.on(EnterYourPhoneNumberUI.BACK)
+        );
+    }
+
+    @And("{actor} goes to the help screen and comes back")
+    public void heGoesToTheHelpScreenAndComesBack(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                FillOutTheFormEnterYourPhoneNumber
+                        .with()
+                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
+                        .acceptTermsAndCondition(true)
+        );
+        actor.attemptsTo(
+                Click.on(EnterYourPhoneNumberUI.HELP),
+                Click.on(EnterYourPhoneNumberUI.BACK)
+        );
+    }
+
+    @When("{actor} enters a not valid verification code")
+    public void heEntersANotValidVerificationCode(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                Check.whether(Validate.isKeyboardShown())
+                        .andIfSo(Hide.theKeyboard()),
+                Click.on(SEND_CODE),
+                EnterThe
+                        .verificationCodeWith()
+                        .verificationCode("000000")
+        );
+    }
+
+    @Then("{actor} should see the error message The code is incorrect")
+    public void heShouldSeeTheErrorMessageTheCodeIsIncorrect(Actor actor) {
+        actor.attemptsTo(Ensure.that(EnterYourCodeUI.THE_CODE_IS_INCORRECT).isDisplayed());
     }
 }

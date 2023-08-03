@@ -2,12 +2,14 @@ package femsa.tasks;
 
 import femsa.models.User;
 import femsa.utils.Decoder;
+import femsa.utils.database.Read;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Step;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.SEND_CODE;
@@ -31,12 +33,16 @@ public class StartOnBoarding implements Task {
                         .acceptTermsAndCondition(true),
                 Click.on(SEND_CODE)
         );
-        actor.attemptsTo(
-                EnterTheVerificationCode
-                        .with()
-                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
+        try {
+            actor.attemptsTo(
+                    EnterThe
+                            .verificationCodeWith()
+                            .verificationCode(Read.otpFromDataBase(user.getPhoneNumber()))
 
-        );
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         actor.attemptsTo(
                 CompleteTheCreateYouPassword
                         .with()

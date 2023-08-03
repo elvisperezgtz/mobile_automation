@@ -17,7 +17,6 @@ public class EnterYourPhoneNumberUI {
             .locatedForAndroid(By.xpath("//android.widget.CheckBox[@content-desc=\"REGISTERPHONENUMBER_CHECKBOX_TERMSANDCONDITIONS\"]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeScrollView[@name=\"REGISTER_SCROLLVIEW\"]/XCUIElementTypeOther/XCUIElementTypeButton[1]"));
 
-
     public static final Target SEND_CODE = Target.the("Send code button")
             .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERPHONENUMBER_COLUMN\"]/android.view.View[5]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"REGISTER_SENDSMS_BTN\"]"));
@@ -37,4 +36,9 @@ public class EnterYourPhoneNumberUI {
     public static final Target HELP_TITLE = Target.the("Help title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cómo usar mi dispositivo de cobro SPIRO']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Preguntas frecuentes\"]"));
+
+    public static final Target BACK = Target.the("Back button")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_BACK\"]"))
+            .locatedForIOS(By.xpath(""));
+
 }

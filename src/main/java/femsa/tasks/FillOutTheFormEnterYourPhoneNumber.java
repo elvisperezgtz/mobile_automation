@@ -23,7 +23,9 @@ public class FillOutTheFormEnterYourPhoneNumber implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 WaitUntil.the(TITLE, isVisible()).forNoMoreThan(ofSeconds(10)),
-                Enter.theValue(phoneNumber).into(PHONE_NUMBER),
+                Enter.theValue(phoneNumber).into(PHONE_NUMBER)
+        );
+        actor.attemptsTo(
                 Check.whether(termsAndCondition)
                         .andIfSo(Click.on(TERMS_AND_CONDITION))
 
@@ -44,5 +46,9 @@ public class FillOutTheFormEnterYourPhoneNumber implements Task {
         return this;
     }
 
+    public FillOutTheFormEnterYourPhoneNumber emptyPhoneNumber(){
+        this.phoneNumber ="";
+        return this;
+    }
 
 }
