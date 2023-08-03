@@ -213,4 +213,19 @@ public class OnBoardingSteps {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(Visualize.theHomeScreen(user));
     }
+    @Then("{actor} should see the continue button disabled")
+    public void actorShouldSeeTheContinueButtonDisabled(Actor actor) {
+        actor.attemptsTo(Visualize.theContinueButtonDisabledOnTheCreatePasswordScreen());
+    }
+    @And("{actor} enters an unsecured password of less than 8 characters \\({int} lowercase, {int} uppercase, {int} numbers and {int} special characters)")
+    public void heEntersAnUnsecuredPasswordOfLessThanCharactersLowercaseUppercaseNumbersAndSpaceCharacters(Actor actor, int low, int upper, int nums, int spec) {
+        actor.remember("Password", StringGenerator.buildPassword(low, upper, nums, spec));
+        actor.attemptsTo(
+                CompleteTheCreateYouPassword
+                        .with()
+                        .password(actor.recall("Password"))
+                        .passwordDisplayButton(true)
+                        .continueButton(false)
+            );
+    }
 }
