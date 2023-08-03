@@ -5,6 +5,7 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -337,6 +338,14 @@ public class Visualize {
         return Task.where("{0} visualizes the Home screen",
                 WaitUntil.the(HomeUI.HOME, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(HomeUI.BUSINESS_NAME).text().isEqualTo(user.getMerchantInfo().getMerchantName())
+        );
+    }
+
+    public static Performable theContinueButtonDisabledOnTheCreatePasswordScreen() {
+        return Task.where("{0} visualizes the continue button disabled on the create password screen",
+                WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisplayed(),
+                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisabled()
         );
     }
 }
