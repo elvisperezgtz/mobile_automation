@@ -17,8 +17,7 @@ import net.serenitybdd.screenplay.questions.Enabled;
 
 import java.util.Objects;
 
-import static femsa.user_interfaces.EnterYourPhoneNumberUI.SEND_CODE;
-import static femsa.user_interfaces.EnterYourPhoneNumberUI.HELP_TITLE;
+import static femsa.user_interfaces.EnterYourPhoneNumberUI.*;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
 import static java.time.Duration.ofSeconds;
 
@@ -79,7 +78,7 @@ public class EnterYourPhoneNumberSteps {
 
     @Then("{actor} should see the message: This number cannot be registered")
     public void heShouldSeeTheMessageThisNumberCannotBeRegistered(Actor actor) {
-        actor.attemptsTo(Ensure.that(EnterYourPhoneNumberUI.THIS_NUMBER_CANNOT_BE_REGISTERED).text().isEqualTo("No se puede registrar este número"));
+        actor.attemptsTo(Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).text().isEqualTo("No se puede registrar este número"));
     }
 
     @When("{actor} accesses help")
@@ -107,5 +106,47 @@ public class EnterYourPhoneNumberSteps {
     @Then("{actor} should see the screen: Enter your code")
     public void heShouldSeeTheScreenEnterYourCode(Actor actor) {
         actor.attemptsTo(Visualize.theEnterYourCodeScreen());
+    }
+
+    @Then("{actor} should the Enter your phone number screen with the same information")
+    public void heShouldTheEnterYourPhoneNumberScreenWithTheSameInformation(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        String phoneNumber = EnterYourPhoneNumberUI.PHONE_NUMBER.resolveFor(actor).getText().trim().replaceAll(" ", "");
+        actor.attemptsTo(Ensure.that(phoneNumber).isEqualTo(user.getPhoneNumber()));
+    }
+
+    @Then("{actor} should see the error message This number cannot be registered")
+    public void heShouldSeeTheErrorMessageThisNumberCannotBeRegistered(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).isDisplayed()
+        );
+    }
+
+    @When("{actor} enters his phone number, but decline to accept terms and conditions")
+    public void heEntersHisPhoneNumberButDeclineToAcceptTermsAndConditions(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                FillOutTheFormEnterYourPhoneNumber
+                        .with()
+                        .phoneNumber(user.getPhoneNumber())
+                        .acceptTermsAndCondition(false)
+        );
+    }
+
+    @Then("{actor} should see the Send code button disable")
+    public void heShouldSeeTheSendCodeButtonDisable(Actor actor) {
+        actor.attemptsTo(Ensure.that(SEND_CODE).attribute("enabled").asABoolean().isEqualTo(false));
+    }
+
+    @When("{actor} does not enter his phone number, but accept terms and conditions")
+    public void heDoesNotEnterHisPhoneNumberButAcceptTermsAndConditions(Actor actor) {
+        actor.attemptsTo(
+                FillOutTheFormEnterYourPhoneNumber
+                        .with()
+                        .emptyPhoneNumber()
+                        .acceptTermsAndCondition(true)
+        );
     }
 }
