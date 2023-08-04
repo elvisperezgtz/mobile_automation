@@ -108,3 +108,4 @@ $ gradle clean :test --tests "femsa.runners.CucumberTestSuite" -Denvironment=my_
 | default | Ejecucion en local con el dispositivo fisico |
 
 Consultar el archivo serenity.conf para ver mas environments
+Esto es un demo desde el Pc de Arcia Env 2
