@@ -10,7 +10,20 @@ import java.util.List;
 public class PhoneNumberGenerator {
 
 
-    public static long generateNumbers(String filePath) throws IOException {
+    public static long generateNewPhoneNumberForTheActor(String actorName) throws IOException {
+
+        String filePath = null;
+        switch (actorName) {
+            case "Elvis":
+                filePath = "src/test/resources/data/phone_numbers/elvis_phone_numbers.txt";
+                break;
+            case "Luis":
+                filePath = "src/test/resources/data/phone_numbers/luis_phone_numbers.txt";
+                break;
+            default:
+                System.out.println("Actor does not exist");
+        }
+
         try {
             Path path = Paths.get(filePath);
             List<String> lines = Files.readAllLines(path);
@@ -29,14 +42,7 @@ public class PhoneNumberGenerator {
         }
         return -1;
     }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println("Last phone number  ====== " + getLastPhoneNumber("src/test/resources/data/phone_numbers/luis_phone_numbers.txt"));
-        long generateNewNumber = generateNumbers("src/test/resources/data/phone_numbers/luis_phone_numbers.txt");
-
-        System.out.println("New number generate and stored in the phone numbers onboading file " + generateNewNumber);
-    }
-
+    
     public static String getLastPhoneNumber(String filePath) throws RuntimeException {
         long lastPhoneNumber = 0;
         try {
