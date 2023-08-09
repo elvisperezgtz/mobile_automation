@@ -27,12 +27,15 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.util.EnvironmentVariables;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.util.Objects;
 
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.SEND_CODE;
 import static femsa.user_interfaces.RegisterInThreeStepsUI.BEGIN_REGISTRATION;
+import static femsa.utils.PhoneNumberGenerator.generateNewPhoneNumberForTheActor;
+import static java.lang.String.valueOf;
 import static java.time.Duration.ofSeconds;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -50,9 +53,18 @@ public class OnBoardingSteps {
                 Complete.theIntroductoryTutorial(),
                 WaitUntil.the(BEGIN_REGISTRATION, isVisible()).forNoMoreThan(ofSeconds(30))
         );
-
     }
 
+    @And("{actor} has the information for his registration")
+    public void heHasTheInformationForHisRegistration(Actor actor) throws IOException {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        String phoneNumber = valueOf(generateNewPhoneNumberForTheActor(env.getProperty("actor")));
+        assert user != null;
+        user.setNewPhoneNumber(phoneNumber);
+        user.setEmail(phoneNumber.concat("@mail.com"));
+        actor.remember("user", user);
+    }
 
     @Then("{actor} should see the home page of the app")
     public void heShouldSeeTheHomePageOfTheApp(Actor actor) {
@@ -69,9 +81,8 @@ public class OnBoardingSteps {
     }
 
     @When("{actor} enter his phone number and accepts terms and conditions")
-    public void heEnterHisPhoneNumberAndAcceptsTermsAndConditions(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+    public void heEnterHisPhoneNumberAndAcceptsTermsAndConditions(Actor actor) throws IOException {
+        User user = actor.recall("user");
         actor.attemptsTo(
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
@@ -87,28 +98,24 @@ public class OnBoardingSteps {
 
     @And("{actor} enters his verification code")
     public void heEntersHisVerificationCode(Actor actor) throws SQLException {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
-
+        User user = actor.recall("user");
         actor.attemptsTo(
                 EnterThe
                         .verificationCodeWith()
                         .verificationCode(Read.otpFromDataBase(user.getPhoneNumber()))
         );
-
     }
 
     @And("{actor} enters and validates his phone number")
     public void heEntersAndValidatesHisPhoneNumber(Actor actor) throws SQLException {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
-
+        User user = actor.recall("user");
         actor.attemptsTo(
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
                         .acceptTermsAndCondition(true),
-                Click.on(SEND_CODE),
+                Click.on(SEND_CODE));
+        actor.attemptsTo(
                 EnterThe
                         .verificationCodeWith()
                         .verificationCode(Read.otpFromDataBase(user.getPhoneNumber()))
@@ -149,8 +156,7 @@ public class OnBoardingSteps {
 
     @And("{actor} enters and completes the form with his personal and business data")
     public void heEntersAndCompletesTheFormWithHisPersonalAndBusinessData(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         assert user != null;
         actor.attemptsTo(
                 FillInTheFormOfWeWantToMeetYou
@@ -177,8 +183,7 @@ public class OnBoardingSteps {
 
     @And("{actor} adds his bank account information")
     public void heAddsHisBankAccountInformation(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         assert user != null;
         actor.attemptsTo(
                 Add
@@ -201,10 +206,8 @@ public class OnBoardingSteps {
 
     @When("{actor} starts his on boarding process with the required information skipping pairing device process")
     public void heStartsHisOnBoardingProcessWithTheRequiredInformationSkippingPairingDeviceProcess(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(StartOnBoarding.withHisInformation(user));
-
     }
 
     @And("{actor} finish the on boarding process")
@@ -216,8 +219,7 @@ public class OnBoardingSteps {
 
     @Then("{actor} should see the Home screen")
     public void heShouldSeeTheHomeScreen(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(Visualize.theHomeScreen(user));
     }
 
@@ -252,14 +254,6 @@ public class OnBoardingSteps {
 
     @And("{actor} goes to the help screen and comes back")
     public void heGoesToTheHelpScreenAndComesBack(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
-        actor.attemptsTo(
-                FillOutTheFormEnterYourPhoneNumber
-                        .with()
-                        .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
-                        .acceptTermsAndCondition(true)
-        );
         actor.attemptsTo(
                 Click.on(EnterYourPhoneNumberUI.HELP),
                 Click.on(EnterYourPhoneNumberUI.BACK)
@@ -268,8 +262,6 @@ public class OnBoardingSteps {
 
     @When("{actor} enters a not valid verification code")
     public void heEntersANotValidVerificationCode(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
         actor.attemptsTo(
                 Check.whether(Validate.isKeyboardShown())
                         .andIfSo(Hide.theKeyboard()),
@@ -284,4 +276,5 @@ public class OnBoardingSteps {
     public void heShouldSeeTheErrorMessageTheCodeIsIncorrect(Actor actor) {
         actor.attemptsTo(Ensure.that(EnterYourCodeUI.THE_CODE_IS_INCORRECT).isDisplayed());
     }
+
 }
