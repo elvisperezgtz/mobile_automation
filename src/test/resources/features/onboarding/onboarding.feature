@@ -1,4 +1,4 @@
-@regression  @onboarding
+  @onboarding
 
 Feature: On boarding
 
@@ -8,9 +8,11 @@ Feature: On boarding
 
   Background: He is on the Enter your phone number screen
     Given Elvis Perform the introductory tutorial
+    And he has the information for his registration
     And he wants to start his on boarding
 
   Rule: In order to begin your on boarding you have to press the Start my registration
+
     Scenario: Validation of the screen content Enter your number
       Then he should the Enter your phone number screen
 
@@ -23,12 +25,15 @@ Feature: On boarding
       When  he accesses help
       Then  he should see the Frequently Asked Questions
 
+
     Scenario: The Close button should redirect you to the Enter your number screen with the information entered above.
       When he enter his phone number and accepts terms and conditions
       And he goes to the help screen and comes back
       Then he should the Enter your phone number screen with the same information
 
+
   Rule: You can only register your phone number once.
+
     Scenario:  Validate that a previously registered number cannot be registered.
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
@@ -48,7 +53,7 @@ Feature: On boarding
       Then he should see the Send code button disable
 
 #      Enter your code
-    @onBoarding
+
   Rule: You need a valid verification code before continue
     Scenario: Validate error message when entered a not valid code.
       When he enter his phone number and accepts terms and conditions
@@ -60,6 +65,7 @@ Feature: On boarding
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
       Then he should see the Enter Your Code screen
+
 
     Scenario: Verify that the We want to meet you is displayed when a valid verification code is entered.
       And He enters and validates his phone number
@@ -115,6 +121,7 @@ Feature: On boarding
       Then he should see the We want to meet you screen
 
   Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
+
     Scenario: Verify that satisfactory filling in the fields of We want to meet you allows to advance in the On boarding.
       When he enters and validates his phone number
       And he enters and validates a secure password
@@ -132,6 +139,7 @@ Feature: On boarding
       #TODO finish this Scenario
     Scenario: Validate that the Continue button is not enabled when a required data is not entered
       And he adds his bank account information
+
 
   Rule: You should be displayed the You are almost done screen when finish the on boarding process without linking device
     Scenario: Verify that the screen Your almost done appears when the on boarding process is complete without pairing the device
