@@ -1,6 +1,5 @@
 package femsa.tasks;
 
-import femsa.utils.PhoneNumberGenerator;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -9,8 +8,6 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
-
-import java.io.IOException;
 
 import static femsa.user_interfaces.EnterYourPhoneNumberUI.*;
 import static java.time.Duration.ofSeconds;
@@ -53,11 +50,5 @@ public class FillOutTheFormEnterYourPhoneNumber implements Task {
         this.phoneNumber ="";
         return this;
     }
-    public FillOutTheFormEnterYourPhoneNumber newPhoneNumber() throws IOException {
-
-        this.phoneNumber = String.valueOf(PhoneNumberGenerator.generateNumbers("src/test/resources/data/phone_numbers/luis_phone_numbers.txt"));
-        return this;
-
-    }
-
+    
 }
