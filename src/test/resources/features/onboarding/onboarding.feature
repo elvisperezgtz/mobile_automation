@@ -131,9 +131,13 @@ Feature: On boarding
       And he wants to skip the linking device processes
       Then he should see the Add your bank account screen
 
-      #TODO finish this Scenario
+
     Scenario: Validate that the Continue button is not enabled when a required data is not entered
-      And he adds his bank account information
+      When he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters and completes the form with his personal and business data
+      And he wants to skip the linking device processes
+      Then he should see the Continue button disabled
 
 
   Rule: You should be displayed the You are almost done screen when finish the on boarding process without linking device
@@ -147,5 +151,17 @@ Feature: On boarding
       And he finish the on boarding process
       Then he should see the Home screen
 
+    @hookEnableWifi
+  Rule: You have to have internet connection  to save the bank account information
+    @AddBankAccount
     Scenario: Verify modal No internet connection
+      When he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters and completes the form with his personal and business data
+      And he wants to skip the linking device processes
+      When he adds his bank account information but lost the internet connection before saving
+      Then  he should see the modal No internet connection
+
+
+
 
