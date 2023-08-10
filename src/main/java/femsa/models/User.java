@@ -62,6 +62,14 @@ public class User {
         return credentials;
     }
 
+    public void setNewPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public static class Builder {
         private String firstName;
         private String lastName;
@@ -100,7 +108,8 @@ public class User {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        public Builder withCredentials(Credentials credentials){
+
+        public Builder withCredentials(Credentials credentials) {
             this.credentials = credentials;
             return this;
         }
@@ -119,7 +128,7 @@ public class User {
                 ", merchantInfo=" + merchantInfo +
                 ", bankInformation=" + bankInformation +
                 ", phoneNumber=" + phoneNumber +
-                ", credentials=" + credentials+
+                ", credentials=" + credentials +
                 '}';
     }
 }

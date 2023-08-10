@@ -24,16 +24,13 @@ import static java.time.Duration.ofSeconds;
 public class EnterYourPhoneNumberSteps {
     @When("{actor} tries to start his registration without accepting terms and conditions")
     public void heTriesToStartHisRegistrationWithoutAcceptingTermsAndConditions(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .phoneNumber(user.getPhoneNumber()),
-                Hide.theKeyboard()
-
-        );
+                Hide.theKeyboard());
     }
 
     @Then("{actor} should see Send code button disabled")
@@ -43,42 +40,36 @@ public class EnterYourPhoneNumberSteps {
 
     @When("{actor} tries to start his registration accepting terms and conditions")
     public void heTriesToStartHisRegistrationAcceptingTermsAndConditions(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .phoneNumber(user.getPhoneNumber())
-                        .acceptTermsAndCondition(true)
-        );
+                        .acceptTermsAndCondition(true));
     }
 
     @Then("{actor} should see Send code button enabled")
     public void heShouldSeeSendCodeButtonEnabled(Actor actor) {
         boolean isEnable = Enabled.of(SEND_CODE).answeredBy(actor);
         actor.attemptsTo(
-                Ensure.that(Enabled.of(SEND_CODE).answeredBy(actor)).isEqualTo(true)
-        );
+                Ensure.that(Enabled.of(SEND_CODE).answeredBy(actor)).isEqualTo(true));
     }
 
     @When("{actor} tries to start his registration with a phone number previously registered")
     public void heTriesToStartHisRegistrationWithAPhoneNumberPreviouslyRegistered(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(
                 Click.on(BEGIN_REGISTRATION),
-                FillOutTheFormEnterYourPhoneNumber.
-                        with()
+                FillOutTheFormEnterYourPhoneNumber.with()
                         .phoneNumber(Objects.requireNonNull(user).getPhoneNumber())
-                        .acceptTermsAndCondition(true)
-
-        );
+                        .acceptTermsAndCondition(true));
     }
 
     @Then("{actor} should see the message: This number cannot be registered")
     public void heShouldSeeTheMessageThisNumberCannotBeRegistered(Actor actor) {
-        actor.attemptsTo(Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).text().isEqualTo("No se puede registrar este número"));
+        actor.attemptsTo(
+                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).text().isEqualTo("No se puede registrar este número"));
     }
 
     @When("{actor} accesses help")
@@ -98,9 +89,7 @@ public class EnterYourPhoneNumberSteps {
                 Click.on(BEGIN_REGISTRATION),
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
-                        .acceptTermsAndCondition(true)
-
-        );
+                        .acceptTermsAndCondition(true));
     }
 
     @Then("{actor} should see the screen: Enter your code")
@@ -110,8 +99,7 @@ public class EnterYourPhoneNumberSteps {
 
     @Then("{actor} should the Enter your phone number screen with the same information")
     public void heShouldTheEnterYourPhoneNumberScreenWithTheSameInformation(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         String phoneNumber = EnterYourPhoneNumberUI.PHONE_NUMBER.resolveFor(actor).getText().trim().replaceAll(" ", "");
         actor.attemptsTo(Ensure.that(phoneNumber).isEqualTo(user.getPhoneNumber()));
     }
@@ -119,20 +107,17 @@ public class EnterYourPhoneNumberSteps {
     @Then("{actor} should see the error message This number cannot be registered")
     public void heShouldSeeTheErrorMessageThisNumberCannotBeRegistered(Actor actor) {
         actor.attemptsTo(
-                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).isDisplayed()
-        );
+                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).isDisplayed());
     }
 
     @When("{actor} enters his phone number, but decline to accept terms and conditions")
     public void heEntersHisPhoneNumberButDeclineToAcceptTermsAndConditions(Actor actor) {
-        EnvironmentSpecificConfiguration env = actor.recall("env");
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        User user = actor.recall("user");
         actor.attemptsTo(
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .phoneNumber(user.getPhoneNumber())
-                        .acceptTermsAndCondition(false)
-        );
+                        .acceptTermsAndCondition(false));
     }
 
     @Then("{actor} should see the Send code button disable")
@@ -146,7 +131,6 @@ public class EnterYourPhoneNumberSteps {
                 FillOutTheFormEnterYourPhoneNumber
                         .with()
                         .emptyPhoneNumber()
-                        .acceptTermsAndCondition(true)
-        );
+                        .acceptTermsAndCondition(true));
     }
 }
