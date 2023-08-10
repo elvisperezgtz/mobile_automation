@@ -1,4 +1,4 @@
-  @onboarding
+@regression  @onboarding
 
 Feature: On boarding
 
@@ -12,7 +12,6 @@ Feature: On boarding
     And he wants to start his on boarding
 
   Rule: In order to begin your on boarding you have to press the Start my registration
-
     Scenario: Validation of the screen content Enter your number
       Then he should the Enter your phone number screen
 
@@ -20,20 +19,16 @@ Feature: On boarding
       When he wants go back
       Then he should see the screen Register in three steps
 
-
     Scenario: The Help button should redirect to frequently asked questions.
       When  he accesses help
       Then  he should see the Frequently Asked Questions
-
 
     Scenario: The Close button should redirect you to the Enter your number screen with the information entered above.
       When he enter his phone number and accepts terms and conditions
       And he goes to the help screen and comes back
       Then he should the Enter your phone number screen with the same information
 
-
   Rule: You can only register your phone number once.
-
     Scenario:  Validate that a previously registered number cannot be registered.
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
