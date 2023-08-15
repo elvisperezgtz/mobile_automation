@@ -4,8 +4,10 @@ package femsa.stepdefinitions;
 import femsa.asserts.Visualize;
 import femsa.enums.JsonPath;
 import femsa.interactions.Hide;
+import femsa.interactions.Turn;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.user_interfaces.AddYourBankAccountUI;
 import femsa.user_interfaces.EnterYourCodeUI;
 import femsa.user_interfaces.EnterYourPhoneNumberUI;
 import femsa.user_interfaces.YouAreAlmostDoneUI;
@@ -277,4 +279,31 @@ public class OnBoardingSteps {
         actor.attemptsTo(Ensure.that(EnterYourCodeUI.THE_CODE_IS_INCORRECT).isDisplayed());
     }
 
+    @Then("{actor} should see the Continue button disabled")
+    public void heShouldSeeTheContinueButtonDisabled(Actor actor) {
+        actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("clickable").asABoolean().isEqualTo(false));
+    }
+
+
+    @When("{actor} adds his bank account information but lost the internet connection before saving")
+    public void heAddsHisBankAccountInformationButLostTheInternetConnectionBeforeSaving(Actor actor) {
+        User user = actor.recall("user");
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+
+        String deviceName = env.getProperty("appium.deviceName");
+        actor.attemptsTo(
+                Add
+                        .bankAccountInformationWith()
+                        .holder(user.getBankInformation().getAccountHolder())
+                        .interbankClabe(user.getBankInformation().getClabe())
+        );
+        actor.attemptsTo(Turn.offTheWifi(deviceName));
+        actor.attemptsTo(Click.on(AddYourBankAccountUI.CONTINUE),
+                Click.on(AddYourBankAccountUI.CONFIRM_CONTINUE));
+    }
+
+    @Then("{actor} should see the modal No internet connection")
+    public void heShouldSeeTheModalNoInternetConnection(Actor actor) {
+        actor.attemptsTo(Ensure.that(AddYourBankAccountUI.NO_INTERNET_CONNECTION).isDisplayed());
+    }
 }

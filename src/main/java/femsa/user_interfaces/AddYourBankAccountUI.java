@@ -21,7 +21,7 @@ public class AddYourBankAccountUI {
             .locatedForIOS(By.xpath(""));
 
     public static final Target CONTINUE = Target.the("Continue button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Continuar']"))
+            .locatedForAndroid(By.xpath("(//android.widget.Button)[1]"))
             .locatedForIOS(By.xpath(""));
 
     public static final Target DO_IT_LATER = Target.the("Do it later button")
@@ -36,5 +36,8 @@ public class AddYourBankAccountUI {
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR']"))
             .locatedForIOS(By.xpath(""));
 
+    public static final Target NO_INTERNET_CONNECTION = Target.the("Message No internet connection")
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"DONGLE_MESSAGE_VALIDATION\"]/android.widget.TextView"))
+            .locatedForIOS(By.xpath(""));
 
 }
