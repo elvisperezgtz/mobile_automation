@@ -1,4 +1,4 @@
-@regression  @onboarding
+@regression  @onboarding @AddBankAccount
 
 Feature: On boarding
 
@@ -55,17 +55,14 @@ Feature: On boarding
       And he enters a not valid verification code
       Then he should see the error message The code is incorrect
 
-
     Scenario: Verify that the Enter Your Code screen is displayed when a valid phone number is entered.
       When he enter his phone number and accepts terms and conditions
       And he wants a verification code
       Then he should see the Enter Your Code screen
 
-
     Scenario: Verify that the We want to meet you is displayed when a valid verification code is entered.
       And He enters and validates his phone number
       And he should see the Create your password screen
-
 
   #Create your password
 
@@ -75,20 +72,25 @@ Feature: On boarding
     Scenario: Verify that the Continue button remains disabled until a valid password is entered.
       When he enters and validates his phone number
       Then he should see the continue button disabled
+
     Scenario: Verify that the password is at least 8 characters long.
       When he enters and validates his phone number
       And he enters an unsecured password of less than 8 characters (1 lowercase, 1 uppercase, 1 numbers and 2 special characters)
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one number.
       When he enters and validates his phone number
       And he enters an unsecured password of less than 8 characters (4 lowercase, 4 uppercase, 0 numbers and 0 special characters)
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one capital letter.
       And he enters an unsecured password of less than 8 characters (4 lowercase, 0 uppercase, 4 numbers and 0 special characters)
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one lower case letter.
       And he enters an unsecured password of less than 8 characters (0 lowercase, 4 uppercase, 4 numbers and 0 special characters)
       Then he should see the continue button disabled
+
     Scenario: Verify that the password is displayed when clicking on the View button.
     Scenario: Verify that the password is hidden by clicking on the Hide button.
     Scenario: Validate that the Continue button should redirect to the We want to meet you screen, when we enter a valid password.
@@ -131,14 +133,12 @@ Feature: On boarding
       And he wants to skip the linking device processes
       Then he should see the Add your bank account screen
 
-
     Scenario: Validate that the Continue button is not enabled when a required data is not entered
       When he enters and validates his phone number
       And he enters and validates a secure password
       And he enters and completes the form with his personal and business data
       And he wants to skip the linking device processes
       Then he should see the Continue button disabled
-
 
   Rule: You should be displayed the You are almost done screen when finish the on boarding process without linking device
     Scenario: Verify that the screen Your almost done appears when the on boarding process is complete without pairing the device
@@ -152,8 +152,7 @@ Feature: On boarding
       Then he should see the Home screen
 
     @hookEnableWifi
-  Rule: You have to have internet connection  to save the bank account information
-    @AddBankAccount
+    Rule: You have to have internet connection  to save the bank account information
     Scenario: Verify modal No internet connection
       When he enters and validates his phone number
       And he enters and validates a secure password
