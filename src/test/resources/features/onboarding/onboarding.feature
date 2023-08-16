@@ -77,17 +77,17 @@ Feature: On boarding
       Then he should see the continue button disabled
     Scenario: Verify that the password is at least 8 characters long.
       When he enters and validates his phone number
-      And he enters an unsecured password of less than 8 characters (1 lowercase, 1 uppercase, 1 numbers and 2 special characters)
+      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
       Then he should see the continue button disabled
     Scenario: Verify that the password contains at least one number.
       When he enters and validates his phone number
-      And he enters an unsecured password of less than 8 characters (4 lowercase, 4 uppercase, 0 numbers and 0 special characters)
+      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
       Then he should see the continue button disabled
     Scenario: Verify that the password contains at least one capital letter.
-      And he enters an unsecured password of less than 8 characters (4 lowercase, 0 uppercase, 4 numbers and 0 special characters)
+      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
       Then he should see the continue button disabled
     Scenario: Verify that the password contains at least one lower case letter.
-      And he enters an unsecured password of less than 8 characters (0 lowercase, 4 uppercase, 4 numbers and 0 special characters)
+      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
       Then he should see the continue button disabled
     Scenario: Verify that the password is displayed when clicking on the View button.
     Scenario: Verify that the password is hidden by clicking on the Hide button.
