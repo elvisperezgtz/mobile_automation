@@ -1,4 +1,4 @@
-@regression @editBankAccount @hookBankAccountInfo
+@regression  @hookBankAccountInfo
 
 Feature: Edit Bank account information
   As a Spin pro user
@@ -67,3 +67,29 @@ Feature: Edit Bank account information
       And he should see the bank account information updated
         | clabe              | accountHolder         |
         | 123456789123456789 | Elvis Perez Gutierrez |
+
+  Rule: In order to update your bank account information, you have to change at least one of the field Interbank Clabe or Account Holder
+    Scenario: Validate that it is allowed to modify the name without modifying the interbank Clabe
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      Then he should see the Save button enabled
+
+    Scenario: Validate that it is allowed to modify the Interbank Clabe without modifying the name
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      Then he should see the Save button enabled
+
+    Scenario: Validate that the save button is not enabled when no data is modified.
+      And he changes his bank account information
+        | clabe              | accountHolder         |
+        | 123456789123456789 | Elvis Perez Gutierrez |
+      Then he should see the Save button disabled
+      
+    @editBankAccount
+    Scenario: Validate that the Save button is disabled when confirm the password
+      And he confirms his password
+      Then he should see the bank account information form in edit mode
+      And he should see the Save button disabled
+
