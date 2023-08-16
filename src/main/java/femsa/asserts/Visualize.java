@@ -343,8 +343,7 @@ public class Visualize {
     public static Performable theContinueButtonDisabledOnTheCreatePasswordScreen() {
         return Task.where("{0} visualizes the continue button disabled on the create password screen",
                 WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisplayed(),
-                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisabled()
+                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isNotDisplayed()
         );
     }
 

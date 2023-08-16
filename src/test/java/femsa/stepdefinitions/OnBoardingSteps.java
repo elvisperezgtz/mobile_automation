@@ -238,6 +238,7 @@ public class OnBoardingSteps {
                         .passwordDisplayButton(true)
                         .continueButton(false)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @Then("{actor} should the Enter your phone number screen")
