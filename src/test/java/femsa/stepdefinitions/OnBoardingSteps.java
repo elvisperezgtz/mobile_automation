@@ -278,4 +278,24 @@ public class OnBoardingSteps {
         actor.attemptsTo(Ensure.that(EnterYourCodeUI.THE_CODE_IS_INCORRECT).isDisplayed());
     }
 
+    @Then("{actor} should see the unencrypted password")
+    public void heShouldSeeTheUnencryptedPassword(Actor actor) {
+        actor.attemptsTo(Visualize.theUnencryptedPassword(actor));
+    }
+    @And("{actor} builds a password without visualizing it")
+    public void heBuildsAPasswordWithoutVisualizingIt(Actor actor) {
+        actor.remember("Password", StringGenerator.buildPassword(2, 2, 2, 0));
+        actor.attemptsTo(
+                CompleteTheCreateYouPassword
+                        .with()
+                        .password(actor.recall("Password"))
+                        .passwordDisplayButton(false)
+                        .continueButton(false)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+    @Then("{actor} should see the encrypted password")
+    public void heShouldSeeTheEncryptedPassword(Actor actor) {
+        actor.attemptsTo(Visualize.theEncryptedPassword());
+    }
 }

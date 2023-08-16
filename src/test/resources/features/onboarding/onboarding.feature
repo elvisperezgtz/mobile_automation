@@ -70,28 +70,42 @@ Feature: On boarding
   #Create your password
 
   Rule: You can only register with creating a secure password
-    Scenario: Verify error message when entering a wrong code
 
     Scenario: Verify that the Continue button remains disabled until a valid password is entered.
       When he enters and validates his phone number
       Then he should see the continue button disabled
+
     Scenario: Verify that the password is at least 8 characters long.
       When he enters and validates his phone number
-      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
+      And he enters an unsecured password with 3 lowercase, 1 uppercase, 1 numbers and 0 special characters
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one number.
       When he enters and validates his phone number
-      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
+      And he enters an unsecured password with 4 lowercase, 4 uppercase, 0 numbers and 0 special characters
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one capital letter.
-      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
+      And he enters an unsecured password with 4 lowercase, 0 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
+
     Scenario: Verify that the password contains at least one lower case letter.
-      And he enters an unsecured password with 1 lowercase, 1 uppercase, 1 numbers and 2 special characters
+      And he enters an unsecured password with 0 lowercase, 4 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
+
     Scenario: Verify that the password is displayed when clicking on the View button.
+      And he enters an unsecured password with 4 lowercase, 2 uppercase, 2 numbers and 0 special characters
+      Then he should see the unencrypted password
+
     Scenario: Verify that the password is hidden by clicking on the Hide button.
+      And he builds a password without visualizing it
+      Then he should see the encrypted password
+
     Scenario: Validate that the Continue button should redirect to the We want to meet you screen, when we enter a valid password.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      Then he should see the We want to meet you screen
+
     Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
     Scenario: Verify that the close button takes us to the We want to meet you screen.
     Scenario: Validate that the Name field does not allow numbers.
