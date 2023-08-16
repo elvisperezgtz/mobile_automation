@@ -10,7 +10,7 @@ public class CreateYourPasswordUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"CREATEPASSWORD_TITLE_LABEL\"]"));
     public static final Target HELP_ICON = Target.the("Help icon on the screen to create your password")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"));
     public static final Target PASSWORD_TEXTBOX = Target.the("Text box to enter password")
             .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"CREATECODE_COLUMN\"]/android.widget.EditText"))
             .locatedForIOS(By.xpath("//XCUIElementTypeOther[@name=\"CREATEPASSWORD_PASSWORD_TEXTFIELD\"]"));
