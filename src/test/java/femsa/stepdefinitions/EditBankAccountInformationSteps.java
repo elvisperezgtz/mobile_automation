@@ -90,4 +90,18 @@ public class EditBankAccountInformationSteps {
                 Visualize.bankAccountInformation(bankInformation)
         );
     }
+
+    @And("{actor} should see the Save button disabled")
+    public void heShouldSeeTheSaveButtonDisabled(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(CommonsUI.SAVE).attribute("enabled").asABoolean().isEqualTo(false)
+        );
+    }
+
+    @Then("{actor} should see the Save button enabled")
+    public void heShouldSeeTheSaveButtonEnabled(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(CommonsUI.SAVE).attribute("enabled").asABoolean().isEqualTo(true)
+        );
+    }
 }
