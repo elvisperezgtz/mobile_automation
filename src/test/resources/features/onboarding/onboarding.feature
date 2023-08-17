@@ -106,6 +106,8 @@ Feature: On boarding
       And he enters and validates a secure password
       Then he should see the We want to meet you screen
 
+#We want to meet you
+
   Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
 
     Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
@@ -122,16 +124,66 @@ Feature: On boarding
       Then he should see the We want to meet you screen
 
     Scenario: Validate that the Name field does not allow numbers.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with name field with numbers
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Name field supports special characters
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with name field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate the obligatory nature of the Surname field.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Surname field supports special characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Surname field does not allow numbers.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field with numbers
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate the Email field is mandatory
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate email format of the Email field
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email field without valid formatting
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that emails already registered are not accepted.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email previously registered
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that your Business Name field is required.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Business Name field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate the Activity field is mandatory
     Scenario: Validate that your Business Name field does not allow special characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Business Name field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate the mandatory field Zip Code
     Scenario: Validate that the Zip Code field does not allow less than 5 numeric characters.
     Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
