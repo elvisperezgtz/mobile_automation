@@ -6,9 +6,7 @@ import femsa.enums.JsonPath;
 import femsa.interactions.Hide;
 import femsa.models.User;
 import femsa.tasks.*;
-import femsa.user_interfaces.EnterYourCodeUI;
-import femsa.user_interfaces.EnterYourPhoneNumberUI;
-import femsa.user_interfaces.YouAreAlmostDoneUI;
+import femsa.user_interfaces.*;
 import femsa.utils.StringGenerator;
 import femsa.utils.Validate;
 import femsa.utils.database.Read;
@@ -297,5 +295,17 @@ public class OnBoardingSteps {
     @Then("{actor} should see the encrypted password")
     public void heShouldSeeTheEncryptedPassword(Actor actor) {
         actor.attemptsTo(Visualize.theEncryptedPassword());
+    }
+    @And("{actor} enters the FAQs screen")
+    public void heEntersTheFAQsPage(Actor actor) {
+        actor.attemptsTo(Click.on(WeWantToMeetYouUI.HELP_ICON));
+    }
+    @Then("{actor} should see the FAQs screen")
+    public void heShouldSeeTheFAQsScreen(Actor actor) {
+        actor.attemptsTo(Ensure.that(FAQsUI.TITLE).isDisplayed());
+    }
+    @And("{actor} closes the FAQs screen")
+    public void heClosesTheFAQsScreen(Actor actor) {
+        actor.attemptsTo(Click.on(FAQsUI.BUTTON_CLOSE));
     }
 }

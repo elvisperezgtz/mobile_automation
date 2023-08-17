@@ -106,8 +106,21 @@ Feature: On boarding
       And he enters and validates a secure password
       Then he should see the We want to meet you screen
 
+  Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
+
     Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters the FAQs screen
+      Then he should see the FAQs screen
+
     Scenario: Verify that the close button takes us to the We want to meet you screen.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters the FAQs screen
+      And he closes the FAQs screen
+      Then he should see the We want to meet you screen
+
     Scenario: Validate that the Name field does not allow numbers.
     Scenario: Validate that the Name field supports special characters
     Scenario: Validate the obligatory nature of the Surname field.
