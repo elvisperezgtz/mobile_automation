@@ -25,7 +25,7 @@ public class WeWantToMeetYouUI {
             .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERDATA_COLUMN_CONTAINER\"]/android.widget.EditText[5]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeOther[@name=\"PERSONALDATA_POSTALCODE_TEXTFIELD\"]"));
     public static final Target CONTINUE = Target.the("Continue button of the We want to meet you screen")
-            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"REGISTERDATA_BUTTON_CONTINUE\"]"))
+            .locatedForAndroid(By.xpath("//android.widget.ScrollView[@content-desc=\"REGISTERDATA_COLUMN_CONTAINER\"]/android.view.View[2]"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"PERSONALDATA_CONTINUE_BTN\"]"));
     public static final Target HELP_ICON = Target.the("Help icon on the screen We want to meet you screen")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
