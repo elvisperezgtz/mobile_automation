@@ -5,8 +5,11 @@ import femsa.enums.JsonPath;
 import femsa.models.BankInformation;
 import femsa.models.User;
 import femsa.tasks.Edit;
+import femsa.tasks.EditBankAccountInformation;
 import femsa.tasks.Navigate;
+import femsa.tasks.Save;
 import femsa.user_interfaces.CommonsUI;
+import femsa.user_interfaces.EditBankAccountUI;
 import femsa.utils.Convert;
 import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
@@ -19,7 +22,10 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
-import static femsa.user_interfaces.EditBankAccountUI.CLABE_MUST_HAVE_18_DIGITS;
+import java.util.ArrayList;
+import java.util.List;
+
+import static femsa.user_interfaces.EditBankAccountUI.*;
 
 public class EditBankAccountInformationSteps {
 
@@ -103,5 +109,107 @@ public class EditBankAccountInformationSteps {
         actor.attemptsTo(
                 Ensure.that(CommonsUI.SAVE).attribute("enabled").asABoolean().isEqualTo(true)
         );
+    }
+
+    @When("{actor} edits his bank account information three times")
+    public void heEditsHisBankAccountInformationThreeTimes(Actor actor, DataTable bankAccountInformation) {
+        List<List<String>> rows = bankAccountInformation.asLists(String.class);
+        List<BankInformation> bankInformationList = new ArrayList<>();
+
+        for (List<String> columns : rows) {
+            bankInformationList.add(new BankInformation(columns.get(1), columns.get(0)));
+        }
+
+        actor.attemptsTo(Navigate.toBankAccountInformationScreen());
+        for (BankInformation bankInformation : bankInformationList) {
+            actor.attemptsTo(Edit.theBankAccountInformationForm(bankInformation.getClabe(), bankInformation.getAccountHolder()));
+            actor.attemptsTo(Save.theEditedInformation());
+        }
+    }
+
+    @And("{actor} changes his account holder name for {string}")
+    public void heChangesHisAccountHolderNameFor(Actor actor, String holder) {
+        actor.attemptsTo(
+                EditBankAccountInformation
+                        .with()
+                        .confirmPasswordFirst()
+                        .changingTheHolderFor(holder)
+                        .withoutChangingTheClabe()
+                        .saveChanges(true)
+        );
+    }
+
+    @And("{actor} changes his interbank Clabe for {string}")
+    public void heChangesHisInterbankClabeFor(Actor actor, String newClabe) {
+        actor.attemptsTo(
+                EditBankAccountInformation
+                        .with()
+                        .confirmPasswordFirst()
+                        .changingTheClabeFor(newClabe)
+                        .withoutChangingTheHolder()
+                        .saveChanges(true)
+                        .confirmSaveChanges(true)
+        );
+        actor.remember("newClabe", newClabe);
+    }
+
+    @Then("{actor} should see that the changes were applied")
+    public void heShouldSeeThatTheChangesWereApplied(Actor actor) {
+        actor.attemptsTo(
+                Ensure.that(ACCOUNT_HOLDER).text().isEqualTo(actor.recall("holder")),
+                Ensure.that(CLABE).text().isEqualTo(actor.recall("clabe"))
+        );
+
+    }
+
+    @And("{actor} changes the account holder for {string} and the interbank CLABE for {string}")
+    public void heChangesTheAccountHolderForAndTheInterbankCLABEFor(Actor actor, String holder, String clabe) {
+        actor.attemptsTo(
+                EditBankAccountInformation
+                        .with()
+                        .confirmPasswordFirst()
+                        .changingTheHolderFor(holder)
+                        .changingTheClabeFor(clabe)
+                        .saveChanges(true)
+                        .confirmSaveChanges(true)
+        );
+        actor.remember("holder", holder);
+        actor.remember("clabe", clabe);
+    }
+
+    @Then("{actor} should see that the changes on the interbank CLABE were applied")
+    public void heShouldSeeThatTheChangesOnTheInterbankCLABEWereApplied(Actor actor) {
+        actor.attemptsTo(Ensure.that(EditBankAccountUI.CLABE).text().isEqualTo(actor.recall("newClabe")));
+    }
+
+    @And("{actor} does not make any changes on his bank account information")
+    public void heDoesNotMakeAnyChangesOnHisBankAccountInformation(Actor actor) {
+        actor.attemptsTo(
+                EditBankAccountInformation
+                        .with()
+                        .confirmPasswordFirst()
+                        .withoutChangingTheHolder()
+                        .withoutChangingTheClabe()
+                        .saveChanges(true)
+        );
+    }
+
+    @And("{actor} enters the same bank account information")
+    public void heEntersTheSameBankAccountInformation(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                EditBankAccountInformation
+                        .with()
+                        .confirmPasswordFirst()
+                        .changingTheHolderFor(user.getBankInformation().getAccountHolder())
+                        .changingTheClabeFor(user.getBankInformation().getClabe())
+                        .saveChanges(true)
+        );
+    }
+
+    @Then("{actor} should see that the save confirmation modal is not displayed")
+    public void heShouldSeeThatTheSaveConfirmationModalIsNotDisplayed(Actor actor) {
+        actor.attemptsTo(Ensure.that(CommonsUI.CONTINUE).isNotDisplayed());
     }
 }
