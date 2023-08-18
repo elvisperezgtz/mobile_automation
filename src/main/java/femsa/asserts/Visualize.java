@@ -5,6 +5,7 @@ import femsa.models.MerchantInfo;
 import femsa.models.User;
 import femsa.user_interfaces.*;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
+import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -343,8 +344,7 @@ public class Visualize {
     public static Performable theContinueButtonDisabledOnTheCreatePasswordScreen() {
         return Task.where("{0} visualizes the continue button disabled on the create password screen",
                 WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisplayed(),
-                Ensure.that(CreateYourPasswordUI.CONTINUE_BUTTON).isDisabled()
+                Ensure.that(Enabled.of(CreateYourPasswordUI.CONTINUE_BUTTON)).isFalse()
         );
     }
 
@@ -354,6 +354,27 @@ public class Visualize {
                 Ensure.that(EnterYourPhoneNumberUI.PHONE_NUMBER).isDisplayed(),
                 Ensure.that(EnterYourPhoneNumberUI.TERMS_AND_CONDITION).isDisplayed(),
                 Ensure.that(EnterYourPhoneNumberUI.SEND_CODE).isDisplayed()
+        );
+    }
+
+    public static Performable theUnencryptedPassword(Actor actor) {
+        return Task.where("{0} visualizes the Enter your number screen",
+                WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(CreateYourPasswordUI.PASSWORD_TEXTBOX).text().isEqualTo(actor.recall("Password"))
+        );
+    }
+
+    public static Performable theEncryptedPassword() {
+        return Task.where("{0} visualizes the Enter your number screen",
+                WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(CreateYourPasswordUI.PASSWORD_TEXTBOX).text().isEqualTo("••••••")
+        );
+    }
+
+    public static Performable theContinueButtonDisabledOnTheWeWantToMeetYouScreen() {
+        return Task.where("{0} visualizes the continue button disabled on the create password screen",
+                WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(Enabled.of(WeWantToMeetYouUI.CONTINUE)).isFalse()
         );
     }
 }
