@@ -50,6 +50,7 @@ public class StartOnBoarding implements Task {
                         .passwordDisplayButton(true)
                         .continueButton(true)
         );
+        actor.remember("password",Decoder.decode(user.getCredentials().getPassword()));
         actor.attemptsTo(
                 FillInTheFormOfWeWantToMeetYou
                         .with()
