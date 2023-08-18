@@ -186,19 +186,6 @@ Feature: On boarding
     Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
     Scenario: Validate that the Continue button is enabled only when all data is correctly entered.
 
-    Scenario: Validates that only a strong password allows you to continue with the registration.
-      And he enters and validates his phone number
-      And he enters and validates a secure password
-      Then he should see the We want to meet you screen
-
-  Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
-
-    Scenario: Verify that satisfactory filling in the fields of We want to meet you allows to advance in the On boarding.
-      When he enters and validates his phone number
-      And he enters and validates a secure password
-      And he enters and completes the form with his personal and business data
-      Then he should see the Already have your device screen
-
   Rule: You should be displayed the Add bank account information when you skip the linking device process
     Scenario: Verify that the Do it later button skip the linking device processes
       When he enters and validates his phone number

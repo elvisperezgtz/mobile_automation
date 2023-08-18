@@ -227,8 +227,8 @@ public class OnBoardingSteps {
         actor.attemptsTo(Visualize.theContinueButtonDisabledOnTheCreatePasswordScreen());
     }
 
-    @And("{actor} enters an unsecured password of less than 8 characters \\({int} lowercase, {int} uppercase, {int} numbers and {int} special characters)")
-    public void heEntersAnUnsecuredPasswordOfLessThanCharactersLowercaseUppercaseNumbersAndSpaceCharacters(Actor actor, int low, int upper, int nums, int spec) {
+    @And("{actor} enters an unsecured password with {int} lowercase, {int} uppercase, {int} numbers and {int} special characters")
+    public void heEntersAnUnsecuredPasswordWith(Actor actor, int low, int upper, int nums, int spec) {
         actor.remember("Password", StringGenerator.buildPassword(low, upper, nums, spec));
         actor.attemptsTo(
                 CompleteTheCreateYouPassword
