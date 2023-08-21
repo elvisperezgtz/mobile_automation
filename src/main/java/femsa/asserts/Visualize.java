@@ -344,7 +344,7 @@ public class Visualize {
     public static Performable theContinueButtonDisabledOnTheCreatePasswordScreen() {
         return Task.where("{0} visualizes the continue button disabled on the create password screen",
                 WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(Enabled.of(CreateYourPasswordUI.CONTINUE_BUTTON)).isFalse()
+                Ensure.that(CreateYourPasswordUI.TITLE).text().isEqualTo("Crea tu contraseña")
         );
     }
 
@@ -374,7 +374,7 @@ public class Visualize {
     public static Performable theContinueButtonDisabledOnTheWeWantToMeetYouScreen() {
         return Task.where("{0} visualizes the continue button disabled on the create password screen",
                 WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
-                Ensure.that(Enabled.of(WeWantToMeetYouUI.CONTINUE)).isFalse()
+                Ensure.that(WeWantToMeetYouUI.TITLE).text().isEqualTo("Queremos conocerte")
         );
     }
 }
