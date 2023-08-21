@@ -235,8 +235,9 @@ public class OnBoardingSteps {
                         .with()
                         .password(actor.recall("Password"))
                         .passwordDisplayButton(true)
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @Then("{actor} should the Enter your phone number screen")
@@ -325,11 +326,13 @@ public class OnBoardingSteps {
     }
     @And("{actor} enters the FAQs screen")
     public void heEntersTheFAQsPage(Actor actor) {
-        actor.attemptsTo(Click.on(WeWantToMeetYouUI.HELP_ICON));
+        actor.attemptsTo(
+                WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(WeWantToMeetYouUI.HELP_ICON));
     }
     @Then("{actor} should see the FAQs screen")
     public void heShouldSeeTheFAQsScreen(Actor actor) {
-        actor.attemptsTo(Ensure.that(FAQsUI.TITLE).isDisplayed());
+        actor.attemptsTo(Ensure.that(WeWantToMeetYouUI.TITLE).isNotDisplayed());
     }
     @And("{actor} closes the FAQs screen")
     public void heClosesTheFAQsScreen(Actor actor) {
@@ -349,8 +352,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @Then("{actor} should see the continue button disabled on the we want to meet you screen")
@@ -371,8 +375,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Surname field empty")
@@ -388,8 +393,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Surname field with special characters")
@@ -405,8 +411,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Surname field with numbers")
@@ -422,8 +429,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Email field empty")
@@ -439,8 +447,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Email field without valid formatting")
@@ -456,8 +465,9 @@ public class OnBoardingSteps {
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Email previously registered")
@@ -469,12 +479,13 @@ public class OnBoardingSteps {
                         .with()
                         .namesUser(user.getFirstName())
                         .lastNameUser(user.getLastName())
-                        .emailUser(user.getEmail()) // permanecer un email registrado previamente
+                        .emailUser("larcia@palo-it.com") // permanecer un email registrado previamente
                         .businessName(user.getMerchantInfo().getMerchantName())
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Business Name field empty")
@@ -490,8 +501,9 @@ public class OnBoardingSteps {
                         .businessName("")
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @And("{actor} enters fills in the form with Business Name field with special characters")
@@ -507,7 +519,80 @@ public class OnBoardingSteps {
                         .businessName("-*-/-/**-")
                         .businessActivity(user.getMerchantInfo().getMerchantActivity())
                         .zipCode(user.getMerchantInfo().getPostalCode())
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Activity field empty")
+    public void heEntersFillsInTheFormWithActivityFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity("")
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field empty")
+    public void heEntersFillsInTheFormWithZipCodeFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field with less than 5 characters")
+    public void heEntersFillsInTheFormWithZipCodeFieldWithLessThanCharacters(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("3598")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field that are not from Mexico")
+    public void heEntersFillsInTheFormWithZipCodeFieldThatAreNotFromMexico(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("050014")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 }
