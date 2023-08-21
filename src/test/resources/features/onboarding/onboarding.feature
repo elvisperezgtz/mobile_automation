@@ -83,18 +83,22 @@ Feature: On boarding
       Then he should see the continue button disabled
 
     Scenario: Verify that the password contains at least one capital letter.
+      When he enters and validates his phone number
       And he enters an unsecured password with 4 lowercase, 0 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password contains at least one lower case letter.
+      When he enters and validates his phone number
       And he enters an unsecured password with 0 lowercase, 4 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password is displayed when clicking on the View button.
-      And he enters an unsecured password with 4 lowercase, 2 uppercase, 2 numbers and 0 special characters
+      When he enters and validates his phone number
+      And he enters an unsecured password with 4 lowercase, 2 uppercase, 0 numbers and 0 special characters
       Then he should see the unencrypted password
 
     Scenario: Verify that the password is hidden by clicking on the Hide button.
+      When he enters and validates his phone number
       And he builds a password without visualizing it
       Then he should see the encrypted password
 
@@ -175,6 +179,11 @@ Feature: On boarding
       Then he should see the continue button disabled on the we want to meet you screen
 
     Scenario: Validate the Activity field is mandatory
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Activity field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that your Business Name field does not allow special characters.
       And he enters and validates his phone number
       And he enters and validates a secure password
@@ -182,9 +191,28 @@ Feature: On boarding
       Then he should see the continue button disabled on the we want to meet you screen
 
     Scenario: Validate the mandatory field Zip Code
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Zip Code field does not allow less than 5 numeric characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field with less than 5 characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field that are not from Mexico
+      Then he should see the continue button disabled on the we want to meet you screen
+
     Scenario: Validate that the Continue button is enabled only when all data is correctly entered.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters and completes the form with his personal and business data
+      Then he should see the Already have your device screen
 
   Rule: You should be displayed the Add bank account information when you skip the linking device process
     Scenario: Verify that the Do it later button skip the linking device processes
