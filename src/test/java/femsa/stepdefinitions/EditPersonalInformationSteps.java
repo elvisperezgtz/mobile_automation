@@ -1,17 +1,18 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
-import femsa.enums.CredentialsName;
 import femsa.enums.JsonPath;
 import femsa.interactions.Hide;
 import femsa.models.User;
 import femsa.tasks.*;
+import femsa.user_interfaces.ConfirmPasswordModalUI;
 import femsa.utils.Validate;
 import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
@@ -21,6 +22,7 @@ import static femsa.user_interfaces.CommonsUI.*;
 import static femsa.user_interfaces.EditPersonalInformationUI.*;
 import static femsa.user_interfaces.ProfileUI.PROFILE_TITLE;
 import static femsa.utils.Convert.dataTableToUser;
+import static femsa.utils.Convert.dataTableToUserWithoutEmail;
 import static java.time.Duration.ofSeconds;
 
 public class EditPersonalInformationSteps {
@@ -31,7 +33,8 @@ public class EditPersonalInformationSteps {
 
     @Then("{actor} should see his personal data registered")
     public void elvisShouldSeeHisPersonalDataRegistered(Actor actor) {
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
         actor.attemptsTo(
                 Visualize.hisPersonalInformation(user)
         );
@@ -69,7 +72,8 @@ public class EditPersonalInformationSteps {
 
     @Then("{actor} should see the personal information form in edit mode")
     public void heShouldSeeThePersonalInformationFormInEditMode(Actor actor) {
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
         actor.attemptsTo(Visualize.thePersonalInformationFormInEditMode(user));
     }
 
@@ -100,7 +104,7 @@ public class EditPersonalInformationSteps {
     @Then("{actor} should see the following message: You have updated your data")
     public void heShouldSeeTheFollowingMessageYouHaveUpdatedYourData(Actor actor) {
         //Todo change this validation for text()
-        actor.attemptsTo(Ensure.that(YOU_HAVE_UPDATED_YOUR_DATA).isDisplayed());
+        actor.attemptsTo(Ensure.that(YOU_HAVE_UPDATED_YOUR_DATA).text().isEqualTo("Actualizaste tus datos"));
     }
 
     @And("{actor} changes his personal information")
@@ -134,7 +138,8 @@ public class EditPersonalInformationSteps {
 
     @Then("{actor} should see that there are not changes on his personal information")
     public void heShouldSeeThatThereAreNotChangesOnHisPersonalInformation(Actor actor) {
-        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.ELVIS.getName());
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(),env.getProperty("actor") );
         actor.attemptsTo(Visualize.hisPersonalInformation(user));
     }
 
@@ -152,5 +157,14 @@ public class EditPersonalInformationSteps {
     public void heShouldSeeTheTitleAtTheProfileScreen(Actor actor, String title) {
         actor.attemptsTo(Ensure.that(PROFILE_TITLE).text().isEqualTo(title));
 
+    }
+    @And("{actor} edits his personal information without modifying email")
+    public void heEditsHisPersonalInformationWithoutModifyingEmail(Actor actor, DataTable hisPersonalInformation) {
+        actor.attemptsTo(Edit.personalInformation(dataTableToUserWithoutEmail(hisPersonalInformation, actor)));
+    }
+
+    @Then("{actor} should see the error message {string}")
+    public void heShouldSeeTheErrorMessage(Actor actor, String message) {
+        actor.attemptsTo(Ensure.that(ConfirmPasswordModalUI.ERROR_MESSAGE).text().isEqualTo(message));
     }
 }

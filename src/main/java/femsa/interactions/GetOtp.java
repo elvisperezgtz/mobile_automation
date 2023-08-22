@@ -30,7 +30,7 @@ public class GetOtp implements Interaction {
         code = (code[code.length - 1].replace(".", "").split(" "));
         String otp = code[1];
         String cmd = "adb shell input keyevent 4";
-        actor.attemptsTo(Ejecutar.elComandoAdb(cmd));
+        actor.attemptsTo(Execute.theAdbCommand(cmd));
         actor.remember("otp", otp);
     }
 

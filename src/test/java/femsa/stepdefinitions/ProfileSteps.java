@@ -1,26 +1,17 @@
 package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
-import femsa.tasks.*;
+import femsa.enums.JsonPath;
+import femsa.models.User;
 import femsa.user_interfaces.HomeUI;
-import femsa.user_interfaces.ProfileUI;
+import femsa.utils.jsons.JsonTemplate;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.time.Duration;
-
-import static femsa.user_interfaces.ProfileUI.PREGUNTAS_FRECUENTES;
-import static femsa.user_interfaces.ClabeInterbancariaUI.*;
-import static femsa.user_interfaces.ConfirmPasswordModalUI.CONFIRMA_TU_CONTRASENIA;
-import static java.time.Duration.ofSeconds;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class ProfileSteps {
     @And("{actor} enters in the Profile screen")
@@ -38,4 +29,12 @@ public class ProfileSteps {
         actor.attemptsTo(Visualize.loginScreen());
     }
 
+    @Then("{actor} should be able to see your registered phone number")
+    public void heShouldBeAbleToSeeYourRegisteredPhoneNumber(Actor actor) {
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        actor.attemptsTo(
+                Visualize.thePersonalInformationUser(user)
+        );
+    }
 }

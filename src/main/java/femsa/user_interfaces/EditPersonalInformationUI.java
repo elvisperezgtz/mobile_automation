@@ -19,10 +19,6 @@ public class EditPersonalInformationUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"EDIT_CONSTRAINT_CONTENT\"]/android.view.View/android.widget.ScrollView/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"PROFILE_PERSONALDATA_INITIALNAME_LABEL\"]"));
 
-    public static final Target MENSAJE_CAMPO_OBLIGATORIO = Target.the("alerta Campo obligatorio")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Este campo es obligatorio']"))
-            .locatedForIOS(By.xpath(""));
-
     public static final Target INVALID_EMAIL_FORMAT = Target.the("alerta Formato de email incorrecto")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Formato de email incorrecto']"))
             .locatedForIOS(By.name("Formato de email incorrecto"));
@@ -34,5 +30,5 @@ public class EditPersonalInformationUI {
 
     public static final Target YOU_HAVE_UPDATED_YOUR_DATA = Target.the("Message You have updated your data")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Actualizaste tus datos']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"Spin Pro-QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[5]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Actualizaste tus datos\"]"));
 }

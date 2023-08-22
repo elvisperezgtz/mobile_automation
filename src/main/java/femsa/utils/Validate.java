@@ -1,25 +1,30 @@
 package femsa.utils;
 
-import io.appium.java_client.ios.IOSDriver;
-import net.thucydides.core.webdriver.WebDriverFacade;
-import org.openqa.selenium.WebDriver;
-
-import static femsa.utils.GetProperty.fromPropertyFile;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
+import net.serenitybdd.screenplay.actors.OnStage;
 
 public class Validate {
     private Validate() {
     }
 
     public static Boolean isIOS() {
-        return fromPropertyFile("serenity.properties", "appium.platformName").equalsIgnoreCase("ios");
+        EnvironmentSpecificConfiguration currentEnvironment = OnStage.theActorInTheSpotlight().recall("env");
+        return currentEnvironment.getProperty("appium.platformName").equalsIgnoreCase("ios");
     }
 
     public static Boolean isAndroid() {
-        return fromPropertyFile("serenity.properties", "appium.platformName").equalsIgnoreCase("android");
+        EnvironmentSpecificConfiguration currentEnvironment = OnStage.theActorInTheSpotlight().recall("env");
+        return currentEnvironment.getProperty("appium.platformName").equalsIgnoreCase("android");
     }
 
-    public static boolean isKeyboardShown (WebDriver facade){
-       WebDriver driver= ((WebDriverFacade) facade).getProxiedDriver();
-        return ((IOSDriver)driver).isKeyboardShown();
+    public static boolean isKeyboardShown() {
+        boolean isShow;
+        if (Boolean.TRUE.equals(isAndroid())) {
+            isShow = GetProxiesDriver.forAndroid().isKeyboardShown();
+        } else {
+            isShow = GetProxiesDriver.forIos().isKeyboardShown();
+        }
+        return isShow;
     }
+
 }

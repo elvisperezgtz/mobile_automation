@@ -1,15 +1,14 @@
 package femsa.tasks;
 
 import femsa.interactions.Hide;
-import femsa.user_interfaces.EditBankAccountUI;
 import femsa.utils.Validate;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
 
-import static femsa.user_interfaces.CommonsUI.*;
-import static femsa.user_interfaces.SaveModalUI.*;
+import static femsa.user_interfaces.CommonsUI.CONTINUE;
+import static femsa.user_interfaces.CommonsUI.SAVE;
 import static java.time.Duration.ofSeconds;
 
 public class Save {
@@ -21,10 +20,5 @@ public class Save {
                 Click.on(CONTINUE)
         );
     }
-    public static Performable datosBancarios(){
-        return Task.where("{0} guarda los datos editados",
-                Click.on(GUARDAR),
-                Click.on(EditBankAccountUI.CONFIRMAR)
-        );
-    }
+
 }

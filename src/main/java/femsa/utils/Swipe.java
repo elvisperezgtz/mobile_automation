@@ -1,6 +1,6 @@
 package femsa.utils;
 
-import femsa.enums.Direccion;
+import femsa.enums.Orientation;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -11,10 +11,17 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Swipe {
 
-    public static void mobileSwipe(WebDriver facade, Direccion direccion) throws InterruptedException {
+    private Swipe() {
+    }
+
+    private static final Logger LOGGER = Logger.getLogger(Swipe.class.getName());
+
+    public static void mobileSwipe(WebDriver facade, Orientation direccion) throws InterruptedException {
         final int ANIMATION_TIME = 500;
         final int PRESS_TIME = 200; // ms
 
@@ -24,16 +31,16 @@ public class Swipe {
 
         final HashMap<String, String> scrollObject = new HashMap<String, String>();
         switch (direccion) {
-            case ABAJO:
+            case DOWN:
                 scrollObject.put("direction", "down");
                 break;
-            case ARRIBA:
+            case UP:
                 scrollObject.put("direction", "up");
                 break;
-            case IZQUIERDA:
+            case LEFT:
                 scrollObject.put("direction", "left");
                 break;
-            case DERECHA:
+            case RIGHT:
                 scrollObject.put("direction", "right");
                 break;
             default:
@@ -47,25 +54,25 @@ public class Swipe {
                 Thread.sleep(ANIMATION_TIME);
 
             } catch (Exception e) {
-                System.err.println("mobileSwipeScreenIOS(): FAILED\n" + e.getMessage());
+                LOGGER.severe("mobileSwipeScreenIOS(): FAILED\n" + e.getMessage());
                 return;
             }
         } else if (Validate.isAndroid()) {
             WebDriver driver = ((WebDriverFacade) facade).getProxiedDriver();
             Dimension dims = driver.manage().window().getSize();
-            pointOptionStart = PointOption.point(((dims.width / 1)-100), dims.height / 2);
+            pointOptionStart = PointOption.point(((dims.width / 1) - 100), dims.height / 2);
 
             switch (direccion) {
-                case ABAJO:
+                case DOWN:
                     pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
                     break;
-                case ARRIBA:
+                case UP:
                     pointOptionEnd = PointOption.point(dims.width / 2, edgeBorder);
                     break;
-                case IZQUIERDA:
+                case LEFT:
                     pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
                     break;
-                case DERECHA:
+                case RIGHT:
                     pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
                     break;
                 default:
@@ -78,15 +85,17 @@ public class Swipe {
                         .moveTo(pointOptionEnd)
                         .release().perform();
             } catch (Exception e) {
-                System.err.println("swipeScreen(): TouchAction FAILED\n" + e.getMessage());
+                LOGGER.severe("swipeScreen(): TouchAction FAILED\n" + e.getMessage());
                 return;
             }
             try {
                 Thread.sleep(ANIMATION_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                LOGGER.log(Level.WARNING,"Interrupted!", e);
+                Thread.currentThread().interrupt();
             }
-            System.out.println("Ejecutando Swipe en Android");
+            LOGGER.info("Executing Swipe on Android...");
         }
 
     }
