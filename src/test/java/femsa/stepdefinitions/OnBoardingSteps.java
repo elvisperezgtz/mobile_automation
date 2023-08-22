@@ -7,10 +7,7 @@ import femsa.interactions.Hide;
 import femsa.interactions.Turn;
 import femsa.models.User;
 import femsa.tasks.*;
-import femsa.user_interfaces.AddYourBankAccountUI;
-import femsa.user_interfaces.EnterYourCodeUI;
-import femsa.user_interfaces.EnterYourPhoneNumberUI;
-import femsa.user_interfaces.YouAreAlmostDoneUI;
+import femsa.user_interfaces.*;
 import femsa.utils.StringGenerator;
 import femsa.utils.Validate;
 import femsa.utils.database.Read;
@@ -230,16 +227,17 @@ public class OnBoardingSteps {
         actor.attemptsTo(Visualize.theContinueButtonDisabledOnTheCreatePasswordScreen());
     }
 
-    @And("{actor} enters an unsecured password of less than 8 characters \\({int} lowercase, {int} uppercase, {int} numbers and {int} special characters)")
-    public void heEntersAnUnsecuredPasswordOfLessThanCharactersLowercaseUppercaseNumbersAndSpaceCharacters(Actor actor, int low, int upper, int nums, int spec) {
+    @And("{actor} enters an unsecured password with {int} lowercase, {int} uppercase, {int} numbers and {int} special characters")
+    public void heEntersAnUnsecuredPasswordWith(Actor actor, int low, int upper, int nums, int spec) {
         actor.remember("Password", StringGenerator.buildPassword(low, upper, nums, spec));
         actor.attemptsTo(
                 CompleteTheCreateYouPassword
                         .with()
                         .password(actor.recall("Password"))
                         .passwordDisplayButton(true)
-                        .continueButton(false)
+                        .continueButton(true)
         );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 
     @Then("{actor} should the Enter your phone number screen")
@@ -305,5 +303,296 @@ public class OnBoardingSteps {
     @Then("{actor} should see the modal No internet connection")
     public void heShouldSeeTheModalNoInternetConnection(Actor actor) {
         actor.attemptsTo(Ensure.that(AddYourBankAccountUI.NO_INTERNET_CONNECTION).isDisplayed());
+    }
+    @Then("{actor} should see the unencrypted password")
+    public void heShouldSeeTheUnencryptedPassword(Actor actor) {
+        actor.attemptsTo(Visualize.theUnencryptedPassword(actor));
+    }
+    @And("{actor} builds a password without visualizing it")
+    public void heBuildsAPasswordWithoutVisualizingIt(Actor actor) {
+        actor.remember("Password", StringGenerator.buildPassword(2, 2, 2, 0));
+        actor.attemptsTo(
+                CompleteTheCreateYouPassword
+                        .with()
+                        .password(actor.recall("Password"))
+                        .passwordDisplayButton(false)
+                        .continueButton(false)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+    @Then("{actor} should see the encrypted password")
+    public void heShouldSeeTheEncryptedPassword(Actor actor) {
+        actor.attemptsTo(Visualize.theEncryptedPassword());
+    }
+    @And("{actor} enters the FAQs screen")
+    public void heEntersTheFAQsPage(Actor actor) {
+        actor.attemptsTo(
+                WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(WeWantToMeetYouUI.HELP_ICON));
+    }
+    @Then("{actor} should see the FAQs screen")
+    public void heShouldSeeTheFAQsScreen(Actor actor) {
+        actor.attemptsTo(Ensure.that(WeWantToMeetYouUI.TITLE).isNotDisplayed());
+    }
+    @And("{actor} closes the FAQs screen")
+    public void heClosesTheFAQsScreen(Actor actor) {
+        actor.attemptsTo(Click.on(FAQsUI.BUTTON_CLOSE));
+    }
+
+    @And("{actor} enters fills in the form with name field with numbers")
+    public void heEntersFillsInTheFormWithNameFieldWithNumbers(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser("123456")
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @Then("{actor} should see the continue button disabled on the we want to meet you screen")
+    public void heShouldSeeTheContinueButtonDisabledOnTheWeWantToMeetYouScreen(Actor actor) {
+        actor.attemptsTo(Visualize.theContinueButtonDisabledOnTheWeWantToMeetYouScreen());
+    }
+
+    @And("{actor} enters fills in the form with name field with special characters")
+    public void heEntersFillsInTheFormWithNameFieldWithSpecialCharacters(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser("*--*////**")
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Surname field empty")
+    public void heEntersFillsInTheFormWithSurnameFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser("")
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Surname field with special characters")
+    public void heEntersFillsInTheFormWithSurnameWithSpecialCharacters(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser("*--*////**")
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Surname field with numbers")
+    public void heEntersFillsInTheFormWithSurnameWithNumbers(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser("123456")
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Email field empty")
+    public void heEntersFillsInTheFormWithEmailFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser("")
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Email field without valid formatting")
+    public void heEntersFillsInTheFormWithEmailFieldWithoutValidFormatting(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser("palo-it23.com")
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Email previously registered")
+    public void heEntersFillsInTheFormWithEmailPreviouslyRegistered(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser("larcia@palo-it.com") // permanecer un email registrado previamente
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Business Name field empty")
+    public void heEntersFillsInTheFormWithBusinessNameFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName("")
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Business Name field with special characters")
+    public void heEntersFillsInTheFormWithBusinessNameFieldWithSpecialCharacters(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName("-*-/-/**-")
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Activity field empty")
+    public void heEntersFillsInTheFormWithActivityFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity("")
+                        .zipCode(user.getMerchantInfo().getPostalCode())
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field empty")
+    public void heEntersFillsInTheFormWithZipCodeFieldEmpty(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field with less than 5 characters")
+    public void heEntersFillsInTheFormWithZipCodeFieldWithLessThanCharacters(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("3598")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @And("{actor} enters fills in the form with Zip Code field that are not from Mexico")
+    public void heEntersFillsInTheFormWithZipCodeFieldThatAreNotFromMexico(Actor actor) {
+        User user = actor.recall("user");
+        assert user != null;
+        actor.attemptsTo(
+                FillInTheFormOfWeWantToMeetYou
+                        .with()
+                        .namesUser(user.getFirstName())
+                        .lastNameUser(user.getLastName())
+                        .emailUser(user.getEmail())
+                        .businessName(user.getMerchantInfo().getMerchantName())
+                        .businessActivity(user.getMerchantInfo().getMerchantActivity())
+                        .zipCode("050014")
+                        .continueButton(true)
+        );
+        actor.attemptsTo(Hide.theKeyboard());
     }
 }

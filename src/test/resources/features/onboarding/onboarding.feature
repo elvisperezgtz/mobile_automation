@@ -67,7 +67,6 @@ Feature: On boarding
   #Create your password
 
   Rule: You can only register with creating a secure password
-    Scenario: Verify error message when entering a wrong code
 
     Scenario: Verify that the Continue button remains disabled until a valid password is entered.
       When he enters and validates his phone number
@@ -75,52 +74,142 @@ Feature: On boarding
 
     Scenario: Verify that the password is at least 8 characters long.
       When he enters and validates his phone number
-      And he enters an unsecured password of less than 8 characters (1 lowercase, 1 uppercase, 1 numbers and 2 special characters)
+      And he enters an unsecured password with 3 lowercase, 1 uppercase, 1 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password contains at least one number.
       When he enters and validates his phone number
-      And he enters an unsecured password of less than 8 characters (4 lowercase, 4 uppercase, 0 numbers and 0 special characters)
+      And he enters an unsecured password with 4 lowercase, 4 uppercase, 0 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password contains at least one capital letter.
-      And he enters an unsecured password of less than 8 characters (4 lowercase, 0 uppercase, 4 numbers and 0 special characters)
+      When he enters and validates his phone number
+      And he enters an unsecured password with 4 lowercase, 0 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password contains at least one lower case letter.
-      And he enters an unsecured password of less than 8 characters (0 lowercase, 4 uppercase, 4 numbers and 0 special characters)
+      When he enters and validates his phone number
+      And he enters an unsecured password with 0 lowercase, 4 uppercase, 4 numbers and 0 special characters
       Then he should see the continue button disabled
 
     Scenario: Verify that the password is displayed when clicking on the View button.
-    Scenario: Verify that the password is hidden by clicking on the Hide button.
-    Scenario: Validate that the Continue button should redirect to the We want to meet you screen, when we enter a valid password.
-    Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
-    Scenario: Verify that the close button takes us to the We want to meet you screen.
-    Scenario: Validate that the Name field does not allow numbers.
-    Scenario: Validate that the Name field supports special characters
-    Scenario: Validate the obligatory nature of the Surname field.
-    Scenario: Validate that the Surname field supports special characters.
-    Scenario: Validate that the Surname field does not allow numbers.
-    Scenario: Validate the Email field is mandatory
-    Scenario: Validate email format of the Email field
-    Scenario: Validate that emails already registered are not accepted.
-    Scenario: Validate that your Business Name field is required.
-    Scenario: Validate the Activity field is mandatory
-    Scenario: Validate that your Business Name field does not allow special characters.
-    Scenario: Validate the mandatory field Zip Code
-    Scenario: Validate that the Zip Code field does not allow less than 5 numeric characters.
-    Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
-    Scenario: Validate that the Continue button is enabled only when all data is correctly entered.
+      When he enters and validates his phone number
+      And he enters an unsecured password with 4 lowercase, 2 uppercase, 0 numbers and 0 special characters
+      Then he should see the unencrypted password
 
-    Scenario: Validates that only a strong password allows you to continue with the registration.
+    Scenario: Verify that the password is hidden by clicking on the Hide button.
+      When he enters and validates his phone number
+      And he builds a password without visualizing it
+      Then he should see the encrypted password
+
+    Scenario: Validate that the Continue button should redirect to the We want to meet you screen, when we enter a valid password.
       And he enters and validates his phone number
       And he enters and validates a secure password
       Then he should see the We want to meet you screen
 
+#We want to meet you
+
   Rule: You should complete the required fields on the screen We want to meet you to finalize the On boarding.
 
-    Scenario: Verify that satisfactory filling in the fields of We want to meet you allows to advance in the On boarding.
-      When he enters and validates his phone number
+    Scenario: Verify that the Help button redirects to the Frequently Asked Questions screen.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters the FAQs screen
+      Then he should see the FAQs screen
+
+    Scenario: Verify that the close button takes us to the We want to meet you screen.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters the FAQs screen
+      And he closes the FAQs screen
+      Then he should see the We want to meet you screen
+
+    Scenario: Validate that the Name field does not allow numbers.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with name field with numbers
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Name field supports special characters
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with name field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate the obligatory nature of the Surname field.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Surname field supports special characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Surname field does not allow numbers.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Surname field with numbers
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate the Email field is mandatory
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate email format of the Email field
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email field without valid formatting
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that emails already registered are not accepted.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Email previously registered
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that your Business Name field is required.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Business Name field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate the Activity field is mandatory
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Activity field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that your Business Name field does not allow special characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Business Name field with special characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate the mandatory field Zip Code
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field empty
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Zip Code field does not allow less than 5 numeric characters.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field with less than 5 characters
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Zip Code field does not admit zip codes that are not from Mexico.
+      And he enters and validates his phone number
+      And he enters and validates a secure password
+      And he enters fills in the form with Zip Code field that are not from Mexico
+      Then he should see the continue button disabled on the we want to meet you screen
+
+    Scenario: Validate that the Continue button is enabled only when all data is correctly entered.
+      And he enters and validates his phone number
       And he enters and validates a secure password
       And he enters and completes the form with his personal and business data
       Then he should see the Already have your device screen

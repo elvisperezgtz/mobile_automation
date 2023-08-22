@@ -38,15 +38,22 @@ public class FillInTheFormOfWeWantToMeetYou implements Task {
         );
         actor.attemptsTo(
                 Click.on(WeWantToMeetYouUI.BUSINESS_NAME).then(Enter.theValue(businessName).into(WeWantToMeetYouUI.BUSINESS_NAME)),
-                Hide.theKeyboard(),
-                Check.whether(Validate.isAndroid())
-                        .andIfSo(SelectFromDropDown.byVisibleText(WeWantToMeetYouUI.BUSINESS_ACTIVITY, businessActivity))
-                        .otherwise(Click.on(WeWantToMeetYouUI.BUSINESS_ACTIVITY).then(Hide.theKeyboard())),
+                Hide.theKeyboard()
+        );
+        if(!businessActivity.equals("")){
+            actor.attemptsTo(
+                    Check.whether(Validate.isAndroid())
+                            .andIfSo(SelectFromDropDown.byVisibleText(WeWantToMeetYouUI.BUSINESS_ACTIVITY, businessActivity))
+                            .otherwise(Click.on(WeWantToMeetYouUI.BUSINESS_ACTIVITY).then(Hide.theKeyboard()))
+            );
+        }
+        actor.attemptsTo(
                 Click.on(WeWantToMeetYouUI.ZIP_CODE).then(Enter.theValue(zipCode).into(WeWantToMeetYouUI.ZIP_CODE)),
                 Hide.theKeyboard()
         );
         actor.attemptsTo(
-                SwipeFrom.upToDown(),
+                Check.whether(!(WeWantToMeetYouUI.CONTINUE).isVisibleFor(actor))
+                        .andIfSo(SwipeFrom.upToDown()),
                 Check.whether(continueButton)
                         .andIfSo(Click.on(WeWantToMeetYouUI.CONTINUE))
         );
