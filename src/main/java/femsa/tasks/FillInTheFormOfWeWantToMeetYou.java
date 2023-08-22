@@ -52,9 +52,10 @@ public class FillInTheFormOfWeWantToMeetYou implements Task {
                 Hide.theKeyboard()
         );
         actor.attemptsTo(
-                //SwipeFrom.upToDown(),
+                Check.whether(!(WeWantToMeetYouUI.CONTINUE).isVisibleFor(actor))
+                        .andIfSo(SwipeFrom.upToDown()),
                 Check.whether(continueButton)
-                        .andIfSo(WaitUntil.the(WeWantToMeetYouUI.CONTINUE, isVisible()).forNoMoreThan(ofSeconds(15)), Click.on(WeWantToMeetYouUI.CONTINUE))
+                        .andIfSo(Click.on(WeWantToMeetYouUI.CONTINUE))
         );
     }
     public static FillInTheFormOfWeWantToMeetYou with() {
