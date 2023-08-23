@@ -2,8 +2,10 @@ package femsa.api;
 
 import femsa.models.User;
 import femsa.utils.UserController;
+import io.cucumber.junit.CucumberSerenityRunner;
 import io.restassured.http.ContentType;
-import net.serenitybdd.junit.runners.SerenityRunner;
+
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.Cast;
@@ -21,7 +23,7 @@ import java.nio.file.Paths;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
 
-@RunWith(SerenityRunner.class)
+@RunWith(CucumberSerenityRunner.class)
 @Narrative(text = {"As an user",
         "I want to be able to edit my personal information",
         "In order to get update my personal information"})
