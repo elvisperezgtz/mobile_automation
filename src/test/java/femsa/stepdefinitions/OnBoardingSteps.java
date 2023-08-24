@@ -595,4 +595,24 @@ public class OnBoardingSteps {
         );
         actor.attemptsTo(Hide.theKeyboard());
     }
+
+    @Given("{actor} has a new account")
+    public void heHasANewAccount(Actor actor) throws IOException {
+        actor.remember("env", EnvironmentSpecificConfiguration.from(env));
+        actor.attemptsTo(
+                Complete.theIntroductoryTutorial(),
+                WaitUntil.the(BEGIN_REGISTRATION, isVisible()).forNoMoreThan(ofSeconds(30))
+        );
+        EnvironmentSpecificConfiguration env = actor.recall("env");
+        User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), env.getProperty("actor"));
+        String phoneNumber = valueOf(generateNewPhoneNumberForTheActor(env.getProperty("actor")));
+        assert user != null;
+        user.setNewPhoneNumber(phoneNumber);
+        user.setEmail(phoneNumber.concat("@mail.com"));
+        actor.remember("user", user);
+        actor.attemptsTo(Click.on(BEGIN_REGISTRATION));
+        actor.attemptsTo(StartOnBoarding.withHisInformation(user));
+        actor.attemptsTo(Click.on(YouAreAlmostDoneUI.GOT_IT));
+
+    }
 }

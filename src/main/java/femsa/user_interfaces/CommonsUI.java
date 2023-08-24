@@ -50,10 +50,10 @@ public class CommonsUI {
             .locatedForIOS(xpath("//XCUIElementTypeButton[@name=\"backWhite\"]"));
 
     public static final Target SAVE = Target.the("Save button")
-            .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Guardar' or @text='GUARDAR']"))
+            .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"BUTTON_SAVE\"]"))
             .locatedForIOS(By.name("PROFILE_PERSONALDATA_SAVE_BTN"));
 
-    public static final Target CONTINUE = Target.the("Continue button")
+    public static final Target CONTINUE = Target.the("Confirm save button")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='CONTINUAR' or @text='GUARDAR CAMBIOS' or @text='CONFIRMAR']"))
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"GUARDAR CAMBIOS\" or @label='CONFIRMAR']"));
 

@@ -1,4 +1,4 @@
-@regression @editBankAccount @hookBankAccountInfo
+@regression  @hookBankAccountInfo
 
 Feature: Edit Bank account information
   As a Spin pro user
@@ -10,10 +10,8 @@ Feature: Edit Bank account information
     And he logs in by "phone number"
     When he enters in the bank account information option
 
-
   Scenario: Verify Edit button redirection
     Then Elvis should see his Bank account information registered
-
 
   Scenario: Verify functionality of the Edit button
     And he wants to edit his information
@@ -67,3 +65,41 @@ Feature: Edit Bank account information
       And he should see the bank account information updated
         | clabe              | accountHolder         |
         | 123456789123456789 | Elvis Perez Gutierrez |
+
+  Rule: In order to update your interbank Information, you have to change  the field Interbank Clabe
+
+    Scenario:Validate that when changing the Account Holder without changing the interbank CLABE the changes do not apply.
+      And he changes his account holder name for "John Doe"
+      Then he should see that there are not changes on his bank account information
+
+
+    Scenario: Validate that it is allowed to modify the Interbank Clabe without modifying the name
+      And he changes his interbank Clabe for "123456789123456999"
+      Then he should see that the changes on the interbank CLABE were applied
+
+
+    Scenario: Validate that the changes are correctly applied when both the holder and the interbank account are modified.
+      And he changes the account holder for "John Doe" and the interbank CLABE for "123456789123456999"
+      Then he should see that the changes were applied
+
+
+    Scenario: Validate that the save confirmation modal is not displayed when the information is not modified.
+      And he does not make any changes on his bank account information
+      Then he should see that there are not changes on his bank account information
+
+    @noRun
+    Scenario: Validate that the save button is not enabled when no data is modified.
+      Then he should see the Save button disabled
+    @noRun
+    Scenario: Validate that the Save button is disabled when confirm the password
+      And he confirms his password
+      Then he should see the bank account information form in edit mode
+      And he should see the Save button disabled
+
+    @editBankAccount
+    Scenario: Validate that the save confirmation modal is not displayed when the information entered is the same as before.
+      And he enters the same bank account information
+      Then he should see that the save confirmation modal is not displayed
+
+
+
