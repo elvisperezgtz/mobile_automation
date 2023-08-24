@@ -1,6 +1,7 @@
 package femsa.tasks;
 
 import femsa.asserts.Visualize;
+import femsa.user_interfaces.KnowYourAppUI;
 import femsa.user_interfaces.wallet.IntroTutorialUI;
 import femsa.utils.Validate;
 import net.serenitybdd.screenplay.Performable;
@@ -24,6 +25,12 @@ public class Complete {
         );
     }
 
+    public static Performable theKnowYourAppTutorial(){
+        return Task.where("{0} completes the Know your app tutorial",
+                Click.on(KnowYourAppUI.CONTINUE_BUTTON),
+                Click.on(KnowYourAppUI.CONTINUE_BUTTON)
+        );
+    }
     public static Performable theWalletIntroTutorial() {
         return Task.where("{0} completes the introductory tutorial",
                 WaitUntil.the(IntroTutorialUI.TITLE, WebElementStateMatchers.isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
