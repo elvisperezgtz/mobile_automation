@@ -8,6 +8,12 @@ public class BankInformation {
     @SerializedName("account_holder")
     private String accountHolder;
 
+    public BankInformation(String clabe, String accountHolder) {
+        this.clabe = clabe;
+        this.accountHolder = accountHolder;
+    }
+
+
     public String getClabe() {
         return clabe;
     }
@@ -24,7 +30,7 @@ public class BankInformation {
         this.accountHolder = accountHolder;
     }
 
-    public BankInformation (Builder builder){
+    public BankInformation(Builder builder) {
         this.clabe = builder.clabe;
         this.accountHolder = builder.accountHolder;
     }
@@ -36,20 +42,23 @@ public class BankInformation {
                 ", accountHolder='" + accountHolder + '\'' +
                 '}';
     }
-    public static class Builder{
+
+    public static class Builder {
         private String clabe;
         private String accountHolder;
 
-        public Builder withClabe(String clabe){
+        public Builder withClabe(String clabe) {
             this.clabe = clabe;
             return this;
         }
-        public Builder withAccountHolder(String accountHolder){
+
+        public Builder withAccountHolder(String accountHolder) {
             this.accountHolder = accountHolder;
-            return  this;
+            return this;
 
         }
-        public BankInformation build(){
+
+        public BankInformation build() {
             return new BankInformation(this);
         }
     }
