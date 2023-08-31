@@ -88,7 +88,8 @@ Feature: Edit Bank account information
     @noRun
     Scenario: Validate that the save button is not enabled when no data is modified.
       Then he should see the Save button disabled
-    @noRun
+
+    @noRun @unimplemented
     Scenario: Validate that the Save button is disabled when confirm the password
       And he confirms his password
       Then he should see the bank account information form in edit mode
