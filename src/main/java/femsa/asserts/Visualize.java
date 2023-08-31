@@ -162,6 +162,7 @@ public class Visualize {
 
     public static Performable theHelpScreen() {
         return Task.where("{0} visualizes the Help screen",
+                WaitUntil.the(PREGUNTAS_FRECUENTES, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(PREGUNTAS_FRECUENTES).isDisplayed());
     }
 
@@ -326,7 +327,7 @@ public class Visualize {
 
     public static Performable theAddYourBankAccountScreen() {
         return Task.where("{0} visualizes the Add your bank account screen",
-                WaitUntil.the(YouAreAlmostDoneUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                WaitUntil.the(AddYourBankAccountUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(AddYourBankAccountUI.TITLE).isDisplayed(),
                 Ensure.that(AddYourBankAccountUI.FULL_NAME_OF_THE_HOLDER).isDisplayed(),
                 Ensure.that(AddYourBankAccountUI.CLABE).isDisplayed(),
@@ -375,6 +376,13 @@ public class Visualize {
         return Task.where("{0} visualizes the continue button disabled on the create password screen",
                 WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Ensure.that(WeWantToMeetYouUI.TITLE).text().isEqualTo("Queremos conocerte")
+        );
+    }
+
+    public static Performable theUnencryptedPasswordiOS(Actor actor) {
+        return Task.where("{0} visualizes the Enter your number screen",
+                WaitUntil.the(CreateYourPasswordUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Ensure.that(CreateYourPasswordUI.PASSWORD_TEXTBOX_iOS).text().isEqualTo(actor.recall("Password"))
         );
     }
 }

@@ -30,7 +30,7 @@ Feature: On boarding
 
   Rule: You can only register your phone number once.
     Scenario:  Validate that a previously registered number cannot be registered.
-      When he enter his phone number and accepts terms and conditions
+      When he enter his old phone number and accepts terms and conditions
       And he wants a verification code
       Then he should see the error message This number cannot be registered
 
