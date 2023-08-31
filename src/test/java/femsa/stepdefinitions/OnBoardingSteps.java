@@ -279,7 +279,11 @@ public class OnBoardingSteps {
 
     @Then("{actor} should see the Continue button disabled")
     public void heShouldSeeTheContinueButtonDisabled(Actor actor) {
-        actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("clickable").asABoolean().isEqualTo(false));
+        if (Validate.isAndroid()) {
+            actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("clickable").asABoolean().isEqualTo(false));
+        } else if (Validate.isIOS()){
+            actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("enabled").asABoolean().isEqualTo(false));
+        }
     }
 
 
@@ -296,7 +300,11 @@ public class OnBoardingSteps {
                         .interbankClabe(user.getBankInformation().getClabe())
         );
         actor.attemptsTo(Turn.offTheWifi(deviceName));
-        actor.attemptsTo(Click.on(AddYourBankAccountUI.CONTINUE),
+        actor.attemptsTo(
+                Hide.theKeyboard(),
+                WaitUntil.the(AddYourBankAccountUI.CONTINUE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                Click.on(AddYourBankAccountUI.CONTINUE),
+                WaitUntil.the(AddYourBankAccountUI.CONFIRM_CONTINUE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(AddYourBankAccountUI.CONFIRM_CONTINUE));
     }
 
@@ -306,7 +314,12 @@ public class OnBoardingSteps {
     }
     @Then("{actor} should see the unencrypted password")
     public void heShouldSeeTheUnencryptedPassword(Actor actor) {
-        actor.attemptsTo(Visualize.theUnencryptedPassword(actor));
+        if (Validate.isAndroid()) {
+            actor.attemptsTo(Visualize.theUnencryptedPassword(actor));
+        } else if (Validate.isIOS()){
+            actor.attemptsTo(Visualize.theUnencryptedPasswordiOS(actor));
+        }
+
     }
     @And("{actor} builds a password without visualizing it")
     public void heBuildsAPasswordWithoutVisualizingIt(Actor actor) {
@@ -322,7 +335,7 @@ public class OnBoardingSteps {
     }
     @Then("{actor} should see the encrypted password")
     public void heShouldSeeTheEncryptedPassword(Actor actor) {
-        actor.attemptsTo(Visualize.theEncryptedPassword());
+            actor.attemptsTo(Visualize.theEncryptedPassword());
     }
     @And("{actor} enters the FAQs screen")
     public void heEntersTheFAQsPage(Actor actor) {
@@ -594,5 +607,15 @@ public class OnBoardingSteps {
                         .continueButton(true)
         );
         actor.attemptsTo(Hide.theKeyboard());
+    }
+
+    @When("{actor} enter his old phone number and accepts terms and conditions")
+    public void heEnterHisOldPhoneNumberAndAcceptsTermsAndConditions(Actor actor) {
+        actor.attemptsTo(
+                FillOutTheFormEnterYourPhoneNumber
+                        .with()
+                        .phoneNumber("5529608038")
+                        .acceptTermsAndCondition(true)
+        );
     }
 }
