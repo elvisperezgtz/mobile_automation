@@ -35,10 +35,10 @@ public class EnterYourPhoneNumberUI {
 
     public static final Target HELP_TITLE = Target.the("Help title")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Cómo usar mi dispositivo de cobro SPIRO']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Preguntas frecuentes\"]"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"helpIcon\"]"));
 
     public static final Target BACK = Target.the("Back button")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_BACK\"]"))
-            .locatedForIOS(By.xpath(""));
+            .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"backWhite\"]"));
 
 }

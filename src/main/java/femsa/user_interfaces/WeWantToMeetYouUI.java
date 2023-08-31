@@ -29,5 +29,5 @@ public class WeWantToMeetYouUI {
             .locatedForIOS(By.xpath("//XCUIElementTypeButton[@name=\"PERSONALDATA_CONTINUE_BTN\"]"));
     public static final Target HELP_ICON = Target.the("Help icon on the screen We want to meet you screen")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"))
-            .locatedForIOS(By.xpath("//android.view.View[@content-desc=\"ICONBUTTON_HELP\"]"));
+            .locatedForIOS(By.xpath(""));
 }
