@@ -74,7 +74,7 @@ public class EnterYourPhoneNumberSteps {
 
     @When("{actor} accesses help")
     public void heAccessesHelp(Actor actor) {
-        actor.attemptsTo(Click.on(BEGIN_REGISTRATION),
+        actor.attemptsTo(
                 Click.on(EnterYourPhoneNumberUI.HELP));
     }
 
@@ -107,7 +107,8 @@ public class EnterYourPhoneNumberSteps {
     @Then("{actor} should see the error message This number cannot be registered")
     public void heShouldSeeTheErrorMessageThisNumberCannotBeRegistered(Actor actor) {
         actor.attemptsTo(
-                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).isDisplayed());
+                Ensure.that(THIS_NUMBER_CANNOT_BE_REGISTERED).text().isEqualTo("No se puede registrar este número")
+        );
     }
 
     @When("{actor} enters his phone number, but decline to accept terms and conditions")

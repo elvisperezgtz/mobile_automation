@@ -1,14 +1,19 @@
 package femsa.tasks;
 
+import femsa.interactions.Hide;
+import femsa.user_interfaces.AddYourBankAccountUI;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.annotations.Step;
 
 import static femsa.user_interfaces.AddYourBankAccountUI.*;
+import static java.time.Duration.ofSeconds;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class Add implements Task {
 
@@ -24,11 +29,15 @@ public class Add implements Task {
 
         actor.attemptsTo(
                 Enter.theValue(holder).into(FULL_NAME_OF_THE_HOLDER),
-                Enter.theValue(clabe).into(CLABE)
+                Enter.theValue(clabe).into(CLABE),
+                Hide.theKeyboard()
         );
         actor.attemptsTo(
                 Check.whether(continueSaving)
-                        .andIfSo(Click.on(CONTINUE))
+                        .andIfSo(
+                                WaitUntil.the(AddYourBankAccountUI.CONTINUE, isVisible()).forNoMoreThan(ofSeconds(15)),
+                                Click.on(CONTINUE)
+                        )
         );
         actor.attemptsTo(
                 Check.whether(doItLater)
