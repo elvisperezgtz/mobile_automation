@@ -7,6 +7,7 @@ import femsa.interactions.Hide;
 import femsa.interactions.Write;
 import femsa.models.Credentials;
 import femsa.models.User;
+import femsa.tasks.Complete;
 import femsa.tasks.Login;
 import femsa.tasks.Navigate;
 import femsa.utils.Decoder;
@@ -30,7 +31,6 @@ public class KofUserSteps {
     @Then("{actor} should see the personal data of the KOF profile correctly")
     public void heShouldSeeThePersonalDataOfTheKOFProfileCorrectly(Actor actor) {
         User user = JsonTemplate.getObjectFromJsonFile(JsonPath.USERS_DATA.getFilePath(), CredentialsName.KOF.getName());
-        //assert user != null;
         actor.attemptsTo(
                 Visualize.thePersonalInformationUser(user)
         );
@@ -68,6 +68,7 @@ public class KofUserSteps {
                         .andPassword(Decoder.decode(credentials.getPassword()))
                         .andClickLoginButton(true)
         );
+        actor.attemptsTo(Complete.theKnowYourAppTutorial());
     }
 
     @When("{actor} enter the Collection screen")
