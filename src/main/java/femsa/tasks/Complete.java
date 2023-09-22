@@ -28,7 +28,7 @@ public class Complete {
     public static Performable theKnowYourAppTutorial(){
         return Task.where("{0} completes the Know your app tutorial",
                 Click.on(KnowYourAppUI.CONTINUE_BUTTON),
-                Click.on(KnowYourAppUI.CONTINUE_BUTTON)
+                Click.on(KnowYourAppUI.START)
         );
     }
     public static Performable theWalletIntroTutorial() {
@@ -38,7 +38,6 @@ public class Complete {
                 Click.on(IntroTutorialUI.CONTINUE),
                 Visualize.theInTransitToBankAccountIntro(),
                 Click.on(IntroTutorialUI.CONTINUE),
-
                 Click.on(IntroTutorialUI.START)
         );
     }
