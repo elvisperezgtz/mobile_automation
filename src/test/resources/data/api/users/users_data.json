@@ -12,19 +12,87 @@
       "bank_information": {
         "clabe": "123456789123456789",
         "account_holder": "Elvis Perez"
+      },
+      "phone_number": "5521996723",
+      "credentials": {
+        "username": "5521996723",
+        "password": "UHJ1ZWJhMTIzNA=="
       }
-    },"elvis-edited": {
-      "first_name": "Elvis",
-      "last_name": "Perez Gutiérrez",
-      "email": "eperez@palo-it.com",
+    },
+    "Luis": {
+      "first_name": "Luis",
+      "last_name": "Arcia",
+      "email": "larcia@palo-it.com",
       "merchant_info": {
-        "merchant_name": "SAO",
+        "merchant_name": "Surtimax",
+        "merchant_activity": "GASOLINERA",
+        "postal_code": "43401"
+      },
+      "bank_information": {
+        "clabe": "123456789123456789",
+        "account_holder": "Elvis Perez Gutierrez"
+      },
+      "phone_number": "5529608038",
+      "credentials": {
+        "username": "5529608038",
+        "password": "UGFsbzIwMjM="
+      }
+    },
+    "new_user": {
+      "first_name": "Juan",
+      "last_name": "Gil",
+      "email": "jgil@palo-it.com",
+      "merchant_info": {
+        "merchant_name": "Maxi price",
         "merchant_activity": "ABARROTES Y MISCELANEA",
         "postal_code": "43400"
       },
       "bank_information": {
         "clabe": "123456789123456789",
-        "account_holder": "Elvis Perez"
+        "account_holder": "Juan Gil"
+      },
+      "phone_number": "5529604598",
+      "credentials": {
+        "username": "5529604598",
+        "password": "Prueba1234"
+      }
+    },
+    "kof_user": {
+      "first_name": "luis",
+      "last_name": "Arcia",
+      "email": "larcia@palo-it.com",
+      "merchant_info": {
+        "merchant_name": "Tiendita KOF QA",
+        "merchant_activity": "",
+        "postal_code": ""
+      },
+      "bank_information": {
+        "clabe": "",
+        "account_holder": ""
+      },
+      "phone_number": "0000000103",
+      "credentials": {
+        "username": "KOF0000071",
+        "password": "UHJ1ZWJhMTIzNA=="
+      }
+    },
+    "kof_admin": {
+      "first_name": "Usiario",
+      "last_name": "Admin KOF",
+      "email": "usuarioAdminKof@spinpro.com",
+      "merchant_info": {
+        "merchant_name": "Tiendita KOF",
+        "merchant_activity": "ABARROTES Y MISCELANEAS",
+        "postal_code": "05000"
+      },
+      "bank_information": {
+        "clabe": "646466464646464644",
+        "account_holder": "Usuarios KOF"
+      },
+      "phone_number": "5521996611",
+      "credentials": {
+        "username": "5521996611",
+        "password": "Prueba1234"
       }
     }
   }

@@ -1,7 +1,7 @@
 package femsa.utils.jsons;
 
 import femsa.enums.JsonPath;
-import femsa.models.Credential;
+import femsa.models.Credentials;
 import femsa.models.User;
 import femsa.utils.Decoder;
 import org.json.JSONObject;
@@ -19,10 +19,10 @@ import static java.util.Objects.requireNonNull;
 public class Load {
 
     public static String credentialsFromJsonTemplate(String filePath) {
-        Credential credential = getCredentialsFromTemplate(CREDENTIALS.getFilePath(), ELVIS.getName());
+        Credentials credentials = getCredentialsFromTemplate(CREDENTIALS.getFilePath(), ELVIS.getName());
         String query = requireNonNull(loadJson(filePath).toString());
-        query = query.replace("{{password}}", Decoder.decode(credential.getPassword()));
-        query = query.replace("{{userName}}", credential.getUsername());
+        query = query.replace("{{password}}", Decoder.decode(credentials.getPassword()));
+        query = query.replace("{{userName}}", credentials.getUsername());
         return query;
     }
 
@@ -51,8 +51,6 @@ public class Load {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Crear un objeto JSONObject a partir del contenido del archivo JSON
         String jsonContent = stringBuilder.toString();
         return new JSONObject(jsonContent);
     }
@@ -63,8 +61,4 @@ public class Load {
         return query;
     }
 
-    public static void main(String[] args) {
-//        System.out.println(userFromJsonTemplate("Elvis",""));
-        System.out.println(userAccountFromJsonTemplate("prueba"));
-    }
 }

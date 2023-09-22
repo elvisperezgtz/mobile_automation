@@ -7,7 +7,7 @@ Feature: Logout
 
   Background: the user is on the Profile screen
     Given Elvis Perform the introductory tutorial
-    And he is logged in to the app by "phone number" with his "valid credentials"
+    And he logs in by "phone number"
     And he enters in the Profile screen
 
   Scenario: Logout

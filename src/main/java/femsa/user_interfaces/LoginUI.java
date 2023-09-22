@@ -24,7 +24,7 @@ public class LoginUI {
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
             .locatedForIOS(By.xpath("//*[@label='Iniciando sesión']"));
 
-    public static final Target ERROR_MESSAGE = Target.the("errorr message")
+    public static final Target ERROR_MESSAGE = Target.the("error message")
             .locatedForAndroid(By.xpath("//android.view.View[@content-desc='SMSCODE_MESSAGE_VALIDATION']/android.widget.TextView"))
             .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"FEMSA B2B\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther"));
 
@@ -50,6 +50,6 @@ public class LoginUI {
 
     public static final Target WRONG_DATA = Target.the("Wrong data")
             .locatedForAndroid(By.xpath("//android.widget.TextView[@text='Datos incorrectos']"))
-            .locatedForIOS(By.xpath("//XCUIElementTypeApplication[@name=\"Spin Pro-QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"));
+            .locatedForIOS(By.xpath("//XCUIElementTypeStaticText[@name=\"Datos incorrectos\"]"));
 
 }

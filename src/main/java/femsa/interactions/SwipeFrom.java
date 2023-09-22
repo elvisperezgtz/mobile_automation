@@ -1,27 +1,30 @@
 package femsa.interactions;
 
-import femsa.enums.Direccion;
+import femsa.enums.Orientation;
+import femsa.enums.SwipeDirection;
+import femsa.utils.W3CSwipeUtils;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Step;
-import femsa.utils.Swipe;
 
 public class SwipeFrom implements Interaction {
 
-    @Step("{0} perform a swipe from left to right")
+    private static Orientation orientation;
+
+    @Step("{0} performs a swipe from left to right")
     @Override
     public <T extends Actor> void performAs(T actor) {
-        try {
-            Thread.sleep(1000);
-            Swipe.mobileSwipe(BrowseTheWeb.as(actor).getDriver(), Direccion.IZQUIERDA);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        W3CSwipeUtils.swipe(SwipeDirection.SWIPE_LEFT);
     }
 
     public static SwipeFrom leftToRight() {
-        return Tasks.instrumented(SwipeFrom.class);
+        orientation = Orientation.LEFT;
+        return Tasks.instrumented(SwipeFrom.class, orientation);
+    }
+
+    public static SwipeFrom upToDown() {
+        orientation = Orientation.UP;
+        return Tasks.instrumented(SwipeFrom.class, orientation);
     }
 }

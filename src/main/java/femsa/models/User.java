@@ -18,6 +18,11 @@ public class User {
     private MerchantInfo merchantInfo;
     @SerializedName("bank_information")
     private BankInformation bankInformation;
+    @SerializedName("phone_number")
+    private String phoneNumber;
+
+    @SerializedName("credentials")
+    private Credentials credentials;
 
     private User(Builder builder) {
         this.firstName = builder.firstName;
@@ -25,6 +30,8 @@ public class User {
         this.email = builder.email;
         this.merchantInfo = builder.merchantInfo;
         this.bankInformation = builder.bankInformation;
+        this.phoneNumber = builder.phoneNumber;
+        this.credentials = builder.credentials;
     }
 
     public String getFirstName() {
@@ -47,12 +54,30 @@ public class User {
         return bankInformation;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setNewPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public static class Builder {
         private String firstName;
         private String lastName;
         private String email;
         private MerchantInfo merchantInfo;
         private BankInformation bankInformation;
+        private String phoneNumber;
+        private Credentials credentials;
 
         public Builder withFirstName(String firstName) {
             this.firstName = firstName;
@@ -79,6 +104,16 @@ public class User {
             return this;
         }
 
+        public Builder withPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder withCredentials(Credentials credentials) {
+            this.credentials = credentials;
+            return this;
+        }
+
         public User build() {
             return new User(this);
         }
@@ -92,6 +127,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", merchantInfo=" + merchantInfo +
                 ", bankInformation=" + bankInformation +
+                ", phoneNumber=" + phoneNumber +
+                ", credentials=" + credentials +
                 '}';
     }
 }
