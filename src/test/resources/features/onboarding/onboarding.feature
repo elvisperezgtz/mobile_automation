@@ -251,5 +251,23 @@ Feature: On boarding
       Then  he should see the modal No internet connection
 
 
+    @onboardingCutOff
+    Rule: When onboarding is cut off before the password is created, onboarding must be restarted.
+
+    Scenario: Onboarding cut off before the Create your password screen
+      When he enters and validates his phone number
+      And  he restarts the app before creating a password
+      And he tries to start his onboarding again with the same cellphone number
+      Then he should see that the app allows to register his cellphone number again
+
+    @onboardingCutOff
+    Rule:When the onboarding is interrupted after creating the password, you must log in with the credentials and will continue on the screen where the onboarding was interrupted..
+
+    Scenario: Onboarding cut off after Create your password
+      When he enters and validates his phone number
+      And he enters and validates a secure password
+      And he restarts the app in the We want to meet you screen
+      And he logs in with his credentials
+      Then he should then be able to see that the application redirects to the We want to meet you screen.
 
 

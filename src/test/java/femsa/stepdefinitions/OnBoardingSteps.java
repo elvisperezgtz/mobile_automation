@@ -3,6 +3,7 @@ package femsa.stepdefinitions;
 
 import femsa.asserts.Visualize;
 import femsa.enums.JsonPath;
+import femsa.interactions.Close;
 import femsa.interactions.Hide;
 import femsa.interactions.Turn;
 import femsa.models.User;
@@ -281,7 +282,7 @@ public class OnBoardingSteps {
     public void heShouldSeeTheContinueButtonDisabled(Actor actor) {
         if (Validate.isAndroid()) {
             actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("clickable").asABoolean().isEqualTo(false));
-        } else if (Validate.isIOS()){
+        } else if (Validate.isIOS()) {
             actor.attemptsTo(Ensure.that(AddYourBankAccountUI.CONTINUE).attribute("enabled").asABoolean().isEqualTo(false));
         }
     }
@@ -312,15 +313,17 @@ public class OnBoardingSteps {
     public void heShouldSeeTheModalNoInternetConnection(Actor actor) {
         actor.attemptsTo(Ensure.that(AddYourBankAccountUI.NO_INTERNET_CONNECTION).isDisplayed());
     }
+
     @Then("{actor} should see the unencrypted password")
     public void heShouldSeeTheUnencryptedPassword(Actor actor) {
         if (Validate.isAndroid()) {
             actor.attemptsTo(Visualize.theUnencryptedPassword(actor));
-        } else if (Validate.isIOS()){
+        } else if (Validate.isIOS()) {
             actor.attemptsTo(Visualize.theUnencryptedPasswordiOS(actor));
         }
 
     }
+
     @And("{actor} builds a password without visualizing it")
     public void heBuildsAPasswordWithoutVisualizingIt(Actor actor) {
         actor.remember("Password", StringGenerator.buildPassword(2, 2, 2, 0));
@@ -333,20 +336,24 @@ public class OnBoardingSteps {
         );
         actor.attemptsTo(Hide.theKeyboard());
     }
+
     @Then("{actor} should see the encrypted password")
     public void heShouldSeeTheEncryptedPassword(Actor actor) {
-            actor.attemptsTo(Visualize.theEncryptedPassword());
+        actor.attemptsTo(Visualize.theEncryptedPassword());
     }
+
     @And("{actor} enters the FAQs screen")
     public void heEntersTheFAQsPage(Actor actor) {
         actor.attemptsTo(
                 WaitUntil.the(WeWantToMeetYouUI.TITLE, isVisible()).forNoMoreThan(ofSeconds(15)),
                 Click.on(WeWantToMeetYouUI.HELP_ICON));
     }
+
     @Then("{actor} should see the FAQs screen")
     public void heShouldSeeTheFAQsScreen(Actor actor) {
         actor.attemptsTo(Ensure.that(WeWantToMeetYouUI.TITLE).isNotDisplayed());
     }
+
     @And("{actor} closes the FAQs screen")
     public void heClosesTheFAQsScreen(Actor actor) {
         actor.attemptsTo(Click.on(FAQsUI.BUTTON_CLOSE));
@@ -637,5 +644,35 @@ public class OnBoardingSteps {
         actor.attemptsTo(StartOnBoarding.withHisInformation(user));
         actor.attemptsTo(Click.on(YouAreAlmostDoneUI.GOT_IT));
 
+    }
+
+    @And("{actor} tries to start his onboarding again with the same cellphone number")
+    public void heTriesToStartHisOnboardingAgainWithTheSameCellphoneNumber(Actor actor) {
+
+
+    }
+
+    @And("{actor} restarts the app before creating a password")
+    public void heRestartsTheAppBeforeCreatingAPassword(Actor actor) {
+
+    }
+
+    @Then("{actor} should see that the app allows to register his cellphone number again")
+    public void heShouldSeeThatTheAppAllowsToRegisterHisCellphoneNumberAgain(Actor actor) {
+    }
+
+
+    @And("{actor} restarts the app in the We want to meet you screen")
+    public void heRestartsTheAppInTheWeWantToMeetYouScreen(Actor actor) {
+
+    }
+
+    @And("{actor} logs in with his credentials")
+    public void heLogsInWithHisCredentials(Actor actor) {
+
+    }
+
+    @Then("{actor} should then be able to see that the application redirects to the We want to meet you screen.")
+    public void heShouldThenBeAbleToSeeThatTheApplicationRedirectsToTheWeWantToMeetYouScreen(Actor actor) {
     }
 }

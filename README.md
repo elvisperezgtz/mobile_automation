@@ -82,6 +82,15 @@ $ gradle :test --tests "femsa.runners.CucumberTestSuite" -Dappium.hub=http://127
 | -Dappium.udid | ID del dispositivo iOS |
 | -Dcucumber.filter.tags | Tag de las pruebas que se desean correr, ejemplo, si deseas correr el smoke test puedes usar el tag `@smoke` |
 
+## Ejecucion de pruebas con usuarios kof
+Para ejecutar las pruebas de los usuarios KOF en iOS ejecuta el siguiente comando
+```agsl
+$ gradle clean :test --tests "femsa.runners.KofRunner" -Denvironment=kof_iphone_11     
+```
+Para android:
+```agsl
+$ gradle clean :test --tests "femsa.runners.KofRunner" -Denvironment=kof_user_android_13
+```
 ## Resultados de las pruebas
 Los resultados de la ejecucion se podra ver en el siguiente directorio `target/site/serenity` gradle construira una version HTML como reporte de pruebas y lo podemos ver en el archivo `index.html`.
 
